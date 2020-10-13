@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import TOC from './components/Toc';
 import Subject from './components/Subject';
-import Content from './components/Content';
+import Content from './components/ReadContent';
+import CreateContent from './components/CreateContent';
+import Control from './components/Control';
 
 class App extends Component {
   constructor (props) {
     super(props);
+    this.max_content_id = 3;
     this.state = {
-      mode: 'read',
+      mode: 'create',
       selected_content_id: 2,
       welcome: {title: 'Welcome', desc: 'Hello, React!!'},
       subject: {
@@ -23,10 +26,11 @@ class App extends Component {
     }
   }
   render() {
-    var _title, _desc = null;
+    var _title, _desc, _article = null;
     if(this.state.mode === 'welcome') {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <Content title={_title} desc={_desc}></Content>
     }else if (this.state.mode === 'read') {
       var i = 0;
       while(i < this.state.contents.length) {
@@ -38,6 +42,16 @@ class App extends Component {
         }
         i++;
       }
+      _article = <Content title={_title} desc={_desc}></Content>
+    } else if(this.state.mode === 'create') {
+      _article = <CreateContent onSubmit={function(_title, _desc) {
+        this.max_content_id++;
+        // 배열 복제 : Arrays.from(a), 객체 복제 : Object.assign({}, a)
+        var _contents = this.state.contents.concat({id: this.max_content_id, title: _title, desc: _desc});
+        this.setState({
+          contents: _contents
+        })
+      }.bind(this)}></CreateContent>
     }
     return (
       <div>
@@ -52,7 +66,12 @@ class App extends Component {
             selected_content_id: Number(id)
           });
         }.bind(this)}></TOC>
-        <Content title={_title} desc={_desc}></Content>
+        <Control onChangeMode={function(mode) {
+          this.setState({
+            mode: mode
+          })
+        }.bind(this)}></Control>
+        {_article}
       </div>
     );
   }
