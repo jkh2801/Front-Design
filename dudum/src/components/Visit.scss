@@ -1,0 +1,17 @@
+.visit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    a {
+      text-decoration: none;
+      color: #000;
+      font-size: 2em;
+      transition: 1s;
+    }
+    a:hover {
+      color: #f00;
+      font-size: 3em;
+      font-weight: bold;
+    }
+}

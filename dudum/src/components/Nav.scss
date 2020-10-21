@@ -1,0 +1,15 @@
+.gnb {
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
+    background: #0d0d0d;
+    .container {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .main-row {
+        height: 68px;
+    }
+    
+
+}

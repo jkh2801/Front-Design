@@ -1,9 +1,8 @@
 import React from 'react';
+import Nav from './Nav.js'
 
 export default function Dudum(){
     return(
-        <div>
-            <h1>Welcome Dudum</h1>
-        </div>
+        <Nav></Nav>
     )
 }

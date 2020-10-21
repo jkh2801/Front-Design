@@ -1,5 +1,5 @@
 import React from 'react';
-import './Visit.css';
+import './Visit.scss';
 
 export default function Visit(){
     return(
