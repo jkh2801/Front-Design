@@ -17,8 +17,24 @@ export default function Nav() {
                     </div>
                     <div className="user_info_bar">
                         <span className="creator_registration_button">크리에이터 등록</span>
-                        <a href="/login" className="navbar-signin">로그인</a>
-                        <a href="/signup" className="navbar-signup">회원가입</a>
+                        <a href="/login" className="navbar_signin">로그인</a>
+                        <a href="/signup" className="navbar_signup">회원가입</a>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="nav_menu">
+                        <div className="menu">
+                            <a href="#" className="menu_item indicator">기업 홍보 영상</a>
+                            <a href="#" className="menu_item">캠페인・교육</a>
+                            <a href="#" className="menu_item">제품 광고</a>
+                            <a href="#" className="menu_item">유튜브 제작</a>
+                            <a href="#" className="menu_item">애니메이션</a>
+                            <a href="#" className="menu_item">행사 영상</a>
+                            <a href="#" className="menu_item">기타</a>
+                        </div>
+                        <div className="menu">
+                            <a href="/creator" className="creator_menu">크리에이터만 보기</a>
+                        </div>
                     </div>
                 </div>
             </div>
