@@ -9,3 +9,9 @@
     height: 100%;
     margin: auto;
 }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
