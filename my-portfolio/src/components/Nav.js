@@ -3,9 +3,10 @@ import './Nav.scss';
 import logo from '../logo.svg';
 
 
+
 export default function Nav(){
     return(
-        <div>
+        <div className="nav">
             <a href="#" className="logo"><img src={logo} className="App-logo" alt="logo" /> <span>M</span>y-<span>P</span>ortfoilo</a>
             <div className="menuToggle"></div>
             <ul className="navigation">

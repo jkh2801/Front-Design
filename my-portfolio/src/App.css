@@ -41,4 +41,5 @@
     width: 100%;
     background: #222;
     z-index: 1;
+    position: relative;
 }

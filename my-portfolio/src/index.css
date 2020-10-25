@@ -19,3 +19,7 @@ code {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
+p {
+  font-weight: 300;
+  color: #111;
+}

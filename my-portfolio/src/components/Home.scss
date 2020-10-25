@@ -1,0 +1,17 @@
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    .content {
+        max-width: 900px;
+        text-align: center;
+        h2 {
+            font-size: 1em;
+            color: #fff;
+        }
+    }
+}
