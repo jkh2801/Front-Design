@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Ex5</title>
+    <style>
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 10000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.5s;
+        }
+
+        .nav .logo {
+            color: #fff;
+            font-weight: 700;
+            font-size: 2em;
+            text-decoration: none;
+        }
+
+        .nav .logo span {
+            color: #ff0157;
+        }
+
+        .navigation {
+            position: relative;
+            display: flex;
+        }
+
+        .navigation li {
+            list-style: none;
+            margin-left: 30px;
+        }
+
+        .navigation li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+        }
+        .navigation li a:hover {
+            color: #ff0157;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="nav">
+            <a href="#" class="logo"> <span>M</span>y-<span>P</span>ortfoilo</a>
+            <div class="menuToggle"></div>
+            <ul class="navigation">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skill">Skill</a></li>
+                <li><a href="#project">Project</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <section id="home">
+        <div class="banner">
+            
+        </div>
+    </section>
+    <section id="about"></section>
+</body>
+
+</html>
