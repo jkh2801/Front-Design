@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         #winter {
             position: relative;
             width: 100%;
@@ -18,6 +20,7 @@
             background-attachment: fixed;
             overflow: hidden;
         }
+
         #winter::before {
             content: '';
             position: absolute;
@@ -29,13 +32,243 @@
             border-top-left-radius: 50%;
             border-top-right-radius: 50%;
         }
+
+        .tree {
+            position: absolute;
+            bottom: 70px;
+            right: 30px;
+            width: 400px;
+            height: 400px;
+        }
+
+        .tree::before {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .tree::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background: #734500;
+        }
+
+        .tree .layer {
+            position: absolute;
+            width: 100%;
+            height: 200px;
+            bottom: 0;
+            display: flex;
+        }
+
+        .tree .layer:nth-child(2) {
+            transform: translateY(-100px) scale(0.8);
+            z-index: 1;
+        }
+
+        .tree .layer:nth-child(3) {
+            transform: translateY(-175px) scale(0.6);
+            z-index: 1;
+        }
+
+        .tree .layer:nth-child(4) {
+            transform: translateY(-240px) scale(0.4);
+            z-index: 1;
+        }
+
+        .tree .layer:nth-child(5) {
+            transform: translateY(-280px) scale(0.2);
+            z-index: 1;
+        }
+
+        .tree .layer span {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+        }
+
+        .tree .layer span:nth-child(1)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-bottom: 181px solid #00b300;
+        }
+
+        .tree .layer span:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-right: 200px solid transparent;
+            border-bottom: 181px solid #00b300;
+        }
+
+        .tree .layer span:nth-child(1)::after {
+            content: '';
+            position: absolute;
+            top: 180px;
+            left: 0;
+            width: 200px;
+            height: 20px;
+            background: #00b300;
+            border-bottom-left-radius: 100%;
+        }
+
+        .tree .layer span:nth-child(2)::after {
+            content: '';
+            position: absolute;
+            top: 180px;
+            left: 0;
+            width: 200px;
+            height: 20px;
+            background: #00b300;
+            border-bottom-right-radius: 100%;
+        }
+
+        .tree .layer .star {
+            position: absolute;
+            margin: 50px 0;
+            display: block;
+            color: #ffe000;
+            width: 0px;
+            height: 0px;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid #ffe000;
+            border-left: 100px solid transparent;
+            transform: scale(2) rotate(35deg);
+            left: 27%;
+            top: -40%;
+        }
+
+        .tree .layer .star::before {
+            border-bottom: 80px solid #ffe000;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: -45px;
+            left: -65px;
+            display: block;
+            content: '';
+            transform: rotate(-35deg);
+        }
+
+        .tree .layer .star::after {
+            position: absolute;
+            display: block;
+            color: #ffe000;
+            top: 3px;
+            left: -105px;
+            width: 0px;
+            height: 0px;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid #ffe000;
+            border-left: 100px solid transparent;
+            transform: rotate(-70deg);
+            content: '';
+        }
+        .snowman {
+            position: absolute;
+            bottom: 30px;
+            width: 300px;
+            height: 300px;
+            right: 400px;
+        }
+        .snowman::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 60%;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .snowman .layer {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            bottom: 0;
+            display: flex;
+            background: #fff;
+            border-radius: 50%;
+            left: 25%;
+            border: 1px solid #222;
+        }
+        .snowman .layer:nth-child(2) {
+            transform: translateY(-100px) scale(0.8);
+            border: none;
+            z-index: 1;
+        }
+        .snowman .face span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #222;
+            top: 50px;
+            border-radius: 50%;
+        }
+        .snowman .face span:nth-child(1) {
+            left: calc(40% - 20px);
+        }
+        .snowman .face span:nth-child(2) {
+            left: calc(40% + 20px);
+        }
     </style>
 </head>
+
 <body>
     <section id="winter">
-        <div class="snowman"></div>
-        <div class="snowman"></div>
-        <div class="tree"></div>
+        <div class="snowman">
+            <div class="layer body"></div>
+            <div class="layer face">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="tree">
+            <div class="layer">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="layer">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="layer">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="layer">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="layer">
+                <span></span>
+                <span></span>
+                <div class="star"></div>
+            </div>
+        </div>
     </section>
 </body>
+
 </html>
