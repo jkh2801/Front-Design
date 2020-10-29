@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Ex3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: consolas;
+        }
+
+        body {
+            background: #000;
+        }
+
+        section {
+            padding: 100px;
+        }
+
+        section h2 {
+            font-size: 3.5em;
+            color: #555;
+        }
+
+        section p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        #scrollpath {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        #progressbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 10px;
+            background: linear-gradient(to top, #008aff, #00ffe7);
+            animation: animate 5s linear infinite;
+        }
+
+        #progressbar:before,
+        #progressbar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #008aff, #00ffe7);
+            filter: blur(10px);
+        }
+
+        #progressbar:after {
+            filter: blur(30px);
+        }
+
+        @keyframes animate {
+
+            0%,
+            100% {
+                filter: hue-rotate(0deg);
+            }
+
+            50% {
+                filter: hue-rotate(360deg);
+            }
+
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        #percent {
+            position: fixed;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%) rotateX(180deg) rotateY(180deg);
+            color: #fff;
+            font-size: 2em;
+            writing-mode: vertical-rl;
+            text-orientation: sideways;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressbar"></div>
+    <div id="scrollpath"></div>
+    <div id="percent"></div>
+    <section>
+        <h2>A Simple Component</h2>
+        <p>
+            React components implement a render() method that takes input data and returns what to display. This example
+            uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by render()
+            via this.props.
+
+            JSX is optional and not required to use React. Try the Babel REPL to see the raw JavaScript code produced by
+            the JSX compilation step.
+
+            In addition to taking input data (accessed via this.props), a component can maintain internal state data
+            (accessed via this.state). When a component’s state data changes, the rendered markup will be updated by
+            re-invoking render().
+
+            Using props and state, we can put together a small Todo application. This example uses state to track the
+            current list of items as well as the text that the user has entered. Although event handlers appear to be
+            rendered inline, they will be collected and implemented using event delegation.
+
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.Actor Park Han-byul
+            has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.Actor Park Han-byul
+            has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+            Actor Park Han-byul has moved to Jeju Island with her husband and son, according to local media.
+
+            Park has sold her house in Seoul and is currently living on Jeju with her family, Star New reports. The
+            actor has been off the grid since "Love in Sadness," her last drama series in MBC, ended in April 2019.
+
+            Her husband Yu In-seok is on trial for his involvement in the Burning Sun scandal. He is suspected of
+            embezzlement, commercial sex trafficking-related offenses and the violation of the Food Sanitation Act and
+            the Act on Specific Economic Crimes.
+
+            After it was reported that Yu was a business partner of Seungri, Park uploaded an apology on her Instagram
+            in March.
+
+            "I'm so sorry to have caused trouble to many of those around me due to disputes, events and suspicions
+            related to my husband," Park wrote. "I am truly thankful to those who support me and offer a heartfelt
+            apology to those who criticize me for all the disputes related to my family."
+
+            According to reports, Park has settled down and is living peacefully in Jeju. As she seems to have moved out
+            of Seoul completely, it is unlikely she will be returning to her career anytime soon.
+
+            Park debuted as a model in the pages of Ceci in 2002 and made her screen debut in 2003 in "Wishing Stairs,"
+            a horror film.
+
+            She met Yu while she was appearing in MBC drama series "Borg Mom" in 2017 and broke the news of her
+            pregnancy and marriage in November that year. She gave birth to her son in April 2018.
+        </p>
+    </section>
+    <script>
+        var percent = document.getElementById("percent");
+        var progressbar = document.getElementById("progressbar");
+        var totalHeight = document.body.scrollHeight - window.innerHeight;
+        window.onscroll = function () {
+            var progress = (window.pageYOffset / totalHeight) * 100;
+            progressbar.style.height = progress + "%";
+            percent.innerHTML = Math.round(progress) + "%";
+        }
+    </script>
+</body>
+
+</html>

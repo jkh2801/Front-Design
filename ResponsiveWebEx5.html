@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Web Ex5</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
         .nav {
             position: fixed;
             top: 0;
@@ -18,16 +26,20 @@
             align-items: center;
             transition: 0.5s;
         }
-
+        .nav.sticky {
+            background: #fff;
+            padding: 10px 100px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
         .nav .logo {
-            color: #fff;
+            color: #222;
             font-weight: 700;
             font-size: 2em;
             text-decoration: none;
         }
 
         .nav .logo span {
-            color: #ff0157;
+            color: #b20504;
         }
 
         .navigation {
@@ -42,11 +54,223 @@
 
         .navigation li a {
             text-decoration: none;
-            color: #fff;
+            color: #222;
             font-weight: 300;
         }
         .navigation li a:hover {
             color: #ff0157;
+        }
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(#f0ffb2, #ffd401bf);
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        .banner .leaves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .banner .set {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .banner .set div {
+            position: absolute;
+            filter: blur(2px);
+        }
+        .banner .set div img{
+            transform: scale(0.5);
+        }
+        .banner .set div:nth-child(1) {
+            left: 20%;
+            animation: animate 15s linear infinite;
+            animation-delay: -7s;
+        }
+
+        .banner .set div:nth-child(2) {
+            left: 50%;
+            animation: animate 20s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .banner .set div:nth-child(3) {
+            left: 70%;
+            animation: animate 20s linear infinite;
+            animation-delay: 0s;
+        }
+
+        .banner .set div:nth-child(4) {
+            left: 0%;
+            animation: animate 15s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .banner .set div:nth-child(5) {
+            left: 85%;
+            animation: animate 18s linear infinite;
+            animation-delay: -10s;
+        }
+
+        .banner .set div:nth-child(6) {
+            left: 72%;
+            animation: animate 12s linear infinite;
+        }
+
+        .banner .set div:nth-child(7) {
+            left: 15%;
+            animation: animate 14s linear infinite;
+        }
+
+        .banner .set div:nth-child(8) {
+            left: 60%;
+            animation: animate 15s linear infinite;
+        }
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                top: -10%;
+                transform: translateX(20px) rotate(0deg);
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            20% {
+                transform: translateX(-20px) rotate(45deg);
+            }
+
+            40% {
+                transform: translateX(-20px) rotate(90deg);
+            }
+
+            60% {
+                transform: translateX(20px) rotate(180deg);
+            }
+
+            80% {
+                transform: translateX(-20px) rotate(180deg);
+            }
+
+            100% {
+                top: 90%;
+                transform: translateX(20px) rotate(225deg);
+            }
+        }
+        .banner h2 {
+            position: relative;
+            color: #d50209;
+            overflow: hidden;
+            font-weight: bold;
+            visibility: hidden;
+            opacity: 0;
+            transition: 2s;
+        }
+        .banner h2:nth-of-type(1) {
+            font-size: 3em; 
+            top: 30%;
+            animation: textanimate1 3s linear forwards; 
+        }
+        .banner h2:nth-of-type(2) {
+            font-size: 4em;
+            top: 40%;
+            text-align: right;
+            animation: textanimate2 5s linear forwards; 
+        }
+        @keyframes textanimate1 {
+            0%{
+                left: 20%;
+            }
+            90% {
+                opacity: 1;
+                visibility: visible;
+            }
+            100% {
+                left: 40%;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        @keyframes textanimate2 {
+            0%{
+                right: 15%;
+            }
+            90% {
+                opacity: 1;
+                visibility: visible;
+            }
+            100% {
+                right: 35%;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        .about {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #f9ecd8;
+            overflow: hidden;
+            padding: 100px;
+        }
+        .about .title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .about .title span {
+            font-size: 1.5em;
+            color: #b20504;
+        }
+        .about .content {
+            margin-top: 20px;
+            width: 100%;
+            height: 80%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about .box {
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .about .box h2 {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .about .box p {
+            text-align: center;
+            font-size: 1em;
+        }
+        .skill {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #2e2e2e;
+            overflow: hidden;
+            padding: 100px;
+        }
+        .skill .title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .skill .title span {
+            font-size: 1.5em;
+            color: #fff;
         }
     </style>
 </head>
@@ -67,10 +291,52 @@
     </header>
     <section id="home">
         <div class="banner">
+            <img src="image/leaves5.png" class="leaves">
+            <div class="set">
+                <div><img src="image/leaves1.png"></div>
+                <div><img src="image/leaves2.png"></div>
+                <div><img src="image/leaves3.png"></div>
+                <div><img src="image/leaves4.png"></div>
+                <div><img src="image/leaves1.png"></div>
+                <div><img src="image/leaves2.png"></div>
+                <div><img src="image/leaves3.png"></div>
+                <div><img src="image/leaves4.png"></div>
+            </div>
+            <h2>Welcome!!</h2>
+            <h2>My-Portfolio</h2>
+        </div>
+    </section>
+    <section id="about">
+        <div class="about">
+            <div class="title"><span>A</span>bout <span>M</span>e</div>
+            <div class="content">
+                <div class="box">
+                   <h2>간단한 자기소개</h2>
+                   <p></p>
+                </div>
+                <div class="box">
+                    <h2>개발자가 되고 싶은 계기</h2>
+                    <p></p>
+                 </div>
+                 <div class="box">
+                    <h2>앞으로의 목표</h2>
+                    <p></p>
+                 </div>
+            </div>
+        </div>
+    </section>
+    <section id="skill">
+        <div class="skill">
+            <div class="title"><span>M</span>y <span>S</span>kill</div>
             
         </div>
     </section>
-    <section id="about"></section>
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            nav.classList.toggle("sticky", window.scrollY > 0);
+        })
+    </script>
 </body>
 
 </html>

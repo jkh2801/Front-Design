@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
         * {
             margin: 0;
@@ -31,6 +32,29 @@
             background: #fff;
             border-top-left-radius: 50%;
             border-top-right-radius: 50%;
+        }
+        #winter .snow {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: animate linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            10%,
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
         }
 
         .tree {
@@ -71,6 +95,17 @@
             display: flex;
         }
 
+        .tree .layer::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 20px;
+            border-bottom: 10px solid #fff;
+            border-radius: 50%;
+            z-index: 10;
+            transform: translate(0%, 164px);
+        }
+
         .tree .layer:nth-child(2) {
             transform: translateY(-100px) scale(0.8);
             z-index: 1;
@@ -89,6 +124,78 @@
         .tree .layer:nth-child(5) {
             transform: translateY(-280px) scale(0.2);
             z-index: 1;
+        }
+        .tree .layer:nth-child(5) .star {
+           position: absolute;
+           font-size: 300px;
+           color: #fffa00;
+           transform: translate(50px, -185px);
+           text-shadow: 0 0 10px #fffa00,
+                        0 0 20px #fffa00,
+                        0 0 40px #fffa00,
+                        0 0 80px #fffa00,
+                        0 0 160px #fffa00,
+                        0 0 320px #fffa00,
+                        0 0 640px #fffa00;
+        }
+        .tree .layer:nth-child(4) .circle {
+           position: absolute;
+           font-size: 50px;
+           color: #ff963c;
+           text-shadow: 0 0 10px #ff963c,
+                        0 0 20px #ff963c,
+                        0 0 40px #ff963c;
+           bottom: 20px;
+           right: 100px;
+        }
+        .tree .layer:nth-child(3) .circle {
+           position: absolute;
+           font-size: 60px;
+           color: #fff;
+           text-shadow: 0 0 10px #fff,
+                        0 0 20px #fff;
+           bottom: 20px;
+           left: 100px;
+        }
+        .tree .layer:nth-child(2) .star {
+           position: absolute;
+           font-size: 60px;
+           color: #f00;
+           text-shadow: 0 0 10px #f00,
+                        0 0 20px #f00;
+           bottom: 20px;
+           left: 77px;
+           transform: skewY(10deg);
+        }
+        .tree .layer:nth-child(2) .circle {
+           position: absolute;
+           font-size: 50px;
+           color: #fffa00;
+           text-shadow: 0 0 10px #fffa00,
+                        0 0 20px #fffa00;
+           bottom: 20px;
+           right: 100px;
+        }
+        .tree .layer:nth-child(1) .star:nth-child(3) {
+           position: absolute;
+           font-size: 80px;
+           color: #fd00ff;
+           text-shadow: 0 0 10px #fd00ff,
+                        0 0 20px #fd00ff;
+           bottom: 20px;
+           left: 120px;
+           transform: rotate(45deg);
+        }
+        .tree .layer:nth-child(1) .star:nth-child(4) {
+           position: absolute;
+           font-size: 50px;
+           color: #fffa00;
+           text-shadow: 0 0 10px #fffa00,
+                        0 0 20px #fffa00,
+                        0 0 40px #fffa00;
+           bottom: 20px;
+           right: 105px;
+           transform: rotate(45deg);
         }
 
         .tree .layer span {
@@ -142,50 +249,6 @@
             background: #00b300;
             border-bottom-right-radius: 100%;
         }
-
-        .tree .layer .star {
-            position: absolute;
-            margin: 50px 0;
-            display: block;
-            color: #ffe000;
-            width: 0px;
-            height: 0px;
-            border-right: 100px solid transparent;
-            border-bottom: 70px solid #ffe000;
-            border-left: 100px solid transparent;
-            transform: scale(2) rotate(35deg);
-            left: 27%;
-            top: -40%;
-        }
-
-        .tree .layer .star::before {
-            border-bottom: 80px solid #ffe000;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            position: absolute;
-            height: 0;
-            width: 0;
-            top: -45px;
-            left: -65px;
-            display: block;
-            content: '';
-            transform: rotate(-35deg);
-        }
-
-        .tree .layer .star::after {
-            position: absolute;
-            display: block;
-            color: #ffe000;
-            top: 3px;
-            left: -105px;
-            width: 0px;
-            height: 0px;
-            border-right: 100px solid transparent;
-            border-bottom: 70px solid #ffe000;
-            border-left: 100px solid transparent;
-            transform: rotate(-70deg);
-            content: '';
-        }
         .snowman {
             position: absolute;
             bottom: 30px;
@@ -214,7 +277,7 @@
             left: 25%;
             border: 1px solid #222;
         }
-        .snowman .layer:nth-child(2) {
+        .snowman .layer:nth-child(1) {
             transform: translateY(-100px) scale(0.8);
             border: none;
             z-index: 1;
@@ -233,14 +296,54 @@
         .snowman .face span:nth-child(2) {
             left: calc(40% + 20px);
         }
+        .snowman .face::before {
+            position: absolute;
+            content: '';
+            border-left: 35px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid #ff963c;
+            left: 20%;
+            top: 65px;
+            transform: rotate(45deg);
+        }
+        .snowman .face::after {
+            position: absolute;
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-left: 3px solid #222;
+            border-bottom: 3px solid #222;
+            transform: rotate(-45deg);
+            left: 35%;
+            bottom: 42px;
+        }
+        .snowman .body span {
+            position: absolute;
+            width: 3px;
+            height: 50px;
+            background: #c54c13;
+            top: 10px;
+        }
+        .snowman .body span:nth-child(1) {
+            transform: rotate(-45deg);
+            left: -10px;
+            height: 40px;
+        }
+        .snowman .body span:nth-child(2) {
+            transform: rotate(45deg);
+            right: 0;
+        }
     </style>
 </head>
 
 <body>
     <section id="winter">
         <div class="snowman">
-            <div class="layer body"></div>
             <div class="layer face">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="layer body">
                 <span></span>
                 <span></span>
             </div>
@@ -249,26 +352,57 @@
             <div class="layer">
                 <span></span>
                 <span></span>
+                <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
+                <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
             </div>
             <div class="layer">
                 <span></span>
                 <span></span>
+                <div class="circle"><i class="fa fa-circle" aria-hidden="true"></i></div>
+                <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
             </div>
             <div class="layer">
                 <span></span>
                 <span></span>
+                <div class="circle"><i class="fa fa-circle" aria-hidden="true"></i></div>
             </div>
             <div class="layer">
                 <span></span>
                 <span></span>
+                <div class="circle"><i class="fa fa-circle" aria-hidden="true"></i></div>
             </div>
             <div class="layer">
                 <span></span>
                 <span></span>
-                <div class="star"></div>
+                <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
             </div>
         </div>
     </section>
+    <script>
+        function snows() {
+            let count = 100;
+            let scene = document.querySelector('#winter');
+            let i = 0;
+            while (i < count) {
+                let snow = document.createElement('i');
+                snow.classList.add('snow');
+                let x = Math.floor(Math.random() * window.innerWidth);
+                let y = Math.floor(Math.random() * window.innerHeight);
+                let duration = Math.random() * 10;
+                let size = Math.random() * 5;
+
+                snow.style.left = x + 'px';
+                snow.style.top = y + 'px';
+                snow.style.width = 1 + size + 'px';
+                snow.style.height = 1 + size + 'px';
+
+                snow.style.animationDuration = 5 + duration + 's';
+                scene.appendChild(snow);
+                i++;
+            }
+        }
+        snows();
+    </script>
 </body>
 
 </html>
