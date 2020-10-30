@@ -272,6 +272,104 @@
             font-size: 1.5em;
             color: #fff;
         }
+        .skill .container {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 50px;
+            transition: 0.5s;
+        }
+        .skill .container:hover .content {
+            opacity: 0.05;
+        }
+        .skill .container .content {
+            position: relative;
+            width: 500px;
+            text-align: center;
+            transition: 0.5s;
+        }
+        .skill .container .content:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .skill .container .content:hover .skills {
+            background: linear-gradient(#616161 0%, #333 10%, #222);
+            border: 2px solid #000;
+        }
+        .skill .container .content:hover .progress {
+            animation: animatePercent 2s ease-in-out forwards;
+        }
+        .skill .container .content h2 {
+            color: #fff; 
+        }
+        .skill .container .content .skills {
+            position: relative;
+            display: flex;
+            margin: 20px 0;
+            padding: 24px 10px 18px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+        .skill .container .content .skills .Name {
+            position: relative;
+            width: 110px;
+            text-align: right;
+            color: #fff;
+            margin-top: -2px;
+            text-transform: uppercase;
+        }
+        .skill .container .content .skills .Value {
+            position: relative;
+            width: 40px;
+            text-align: left;
+            color: #fff;
+            margin-top: -2px;
+            text-transform: uppercase;
+        }
+
+        .skill .container .content .skills .percent {
+            position: relative;
+            width: calc(100% - 150px);
+            height: 20px;
+            margin: 0 10px;
+            border-radius: 10px;
+            background: #151515;
+            box-shadow: inset 0 0 10px #000;
+            overflow: hidden;
+        }
+
+        .skill .container .content .skills .percent .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: inset 0 0 2px #000;
+        }
+
+        @keyframes animatePercent {
+            from {
+                width: 0;
+
+            }
+        }
+        .skill .container .content .skills:nth-child(2) .percent .progress {
+            background: linear-gradient(45deg, #1fe6ff, #673AB7);
+        }
+
+        .skill .container .content .skills:nth-child(3) .percent .progress {
+            background: linear-gradient(45deg, #3bc0ff, #33ff00);
+        }
+
+        .skill .container .content .skills:nth-child(4) .percent .progress {
+            background: linear-gradient(45deg, #ffee54, #ff00ca);
+        }
+
+        .skill .container .content .skills:nth-child(5) .percent .progress {
+            background: linear-gradient(45deg, #22ffde, #2196F3);
+        }
     </style>
 </head>
 
@@ -328,8 +426,109 @@
     <section id="skill">
         <div class="skill">
             <div class="title"><span>M</span>y <span>S</span>kill</div>
-            
+            <div class="container">
+                <div class="content">
+                    <h2>Language</h2>
+                    <div class="skills">
+                        <span class="Name">Java</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <span class="Value">70%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">JavaScript</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 55%"></div>
+                        </div>
+                        <span class="Value">55%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">Python</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <span class="Value">30%</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <h2>Front-End</h2>
+                    <div class="skills">
+                        <span class="Name">Html</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <span class="Value">85%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">CSS</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <span class="Value">70%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">jQuery</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <span class="Value">70%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">React</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <span class="Value">50%</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <h2>Back-End</h2>
+                    <div class="skills">
+                        <span class="Name">Spring</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <span class="Value">70%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">Node.js</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <span class="Value">50%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">My-SQL</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <span class="Value">50%</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <h2>ETC</h2>
+                    <div class="skills">
+                        <span class="Name">AWS</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <span class="Value">30%</span>
+                    </div>
+                    <div class="skills">
+                        <span class="Name">HADOOP</span>
+                        <div class="percent">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <span class="Value">30%</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+    <section id="project"></section>
+    <section id="contact">
+        
     </section>
     <script>
         window.addEventListener('scroll', function() {
