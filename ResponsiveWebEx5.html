@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Web Ex5</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         * {
@@ -270,7 +271,7 @@
         }
         .skill .title span {
             font-size: 1.5em;
-            color: #fff;
+            color: #b20504;
         }
         .skill .container {
             display: flex;
@@ -369,6 +370,74 @@
 
         .skill .container .content .skills:nth-child(5) .percent .progress {
             background: linear-gradient(45deg, #22ffde, #2196F3);
+        }
+        .contact {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url("image/bg6.jpg");
+            background-size: cover;
+            overflow: hidden;
+            padding: 100px;
+        }
+        .contact .title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .contact .title span {
+            font-size: 1.5em;
+            color: #b20504;
+        }
+        .contact .container {
+            padding: 80px;
+            display: flex;
+        }
+        .contact .container .content:nth-of-type(1) {
+            width: 50%;
+            text-align: right;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .contact .container .content:nth-of-type(1) h1 {
+            font-family: consolas;
+        }
+        .contact .container .content:nth-of-type(2) {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding-top: 30px;
+        }
+        .contact .container .content .data {
+            margin-left: 25%;
+        }
+        .contact .container .content .data h2:hover {
+            color: #9c27b0;
+            cursor: pointer;
+        }
+        .email::before {
+            content: '\f0e0';
+            font-family: FontAwesome;
+            position: absolute;
+            font-size: 1.5em;
+            line-height: 1.5em;
+            transform: translateX(-33px);
+        }
+        .git::before {
+            content: '\f09b';
+            font-family: FontAwesome;
+            position: absolute;
+            font-size: 1.5em;
+            line-height: 1.5em;
+            transform: translateX(-33px);
+        }
+        .til::before {
+            content: '\f02d';
+            font-family: FontAwesome;
+            position: absolute;
+            font-size: 1.5em;
+            line-height: 1.5em;
+            transform: translateX(-33px);
         }
     </style>
 </head>
@@ -528,13 +597,40 @@
     </section>
     <section id="project"></section>
     <section id="contact">
-        
+        <div class="contact">
+            <div class="title"><span>C</span>ontact <span>M</span>e</div>
+            <div class="container">
+                <div class="content"><h1>Thank you <br> for watching</h1></div>
+                <div class="content">
+                    <div class="data email">
+                        <h2 onclick="copyText(1);">jkh2801@naver.com</h2>
+                    </div>
+                    <div class="data git">
+                        <h2 onclick="copyText(2);">https://github.com/jkh2801</h2>
+                    </div>
+                    <div class="data til">
+                        <h2 onclick="copyText(3);">https://velog.io/@jkh2801</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <script>
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('.nav');
             nav.classList.toggle("sticky", window.scrollY > 0);
         })
+        function copyText(a) {
+            var copyText =  document.createElement('textarea');
+            if(a == 1) copyText.value = "jkh2801@naver.com";
+            else if (a == 2) copyText.value = "https://github.com/jkh2801";
+            else copyText.value = "https://velog.io/@jkh2801";
+            document.body.appendChild(copyText);
+            copyText.select();
+            document.execCommand("copy");
+            alert("복사되었습니다.");
+            document.body.removeChild(copyText);
+        }
     </script>
 </body>
 
