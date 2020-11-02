@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home';
 import About from './components/About';
+import Skill from './components/Skill';
 import Nav from './components/Nav';
 import reportWebVitals from './reportWebVitals';
 
@@ -25,6 +26,11 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('about')
 );
-
+ReactDOM.render(
+  <React.StrictMode>
+    <Skill/>
+  </React.StrictMode>,
+  document.getElementById('skills')
+);
 
 reportWebVitals();
