@@ -10,16 +10,16 @@ import leaves from './image/leaves5.png';
 export default function Home(){
     return(
         <div className="banner">
-            <img src={leaves} className="leaves" />
+            <img src={leaves} className="leaves" alt=""/>
             <div className="set">
-                <div><img src={leave1} /></div>
-                <div><img src={leave2} /></div>
-                <div><img src={leave3} /></div>
-                <div><img src={leave4} /></div>
-                <div><img src={leave1} /></div>
-                <div><img src={leave2} /></div>
-                <div><img src={leave3} /></div>
-                <div><img src={leave4} /></div>
+                <div><img src={leave1} alt=""/></div>
+                <div><img src={leave2} alt=""/></div>
+                <div><img src={leave3} alt=""/></div>
+                <div><img src={leave4} alt=""/></div>
+                <div><img src={leave1} alt=""/></div>
+                <div><img src={leave2} alt=""/></div>
+                <div><img src={leave3} alt=""/></div>
+                <div><img src={leave4} alt=""/></div>
             </div>
             <h2><span>Welcome!!</span>&nbsp;&nbsp;&nbsp;<span>My-Portfolio</span></h2>
         </div>
