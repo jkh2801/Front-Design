@@ -21,8 +21,7 @@ export default function Home(){
                 <div><img src={leave3} /></div>
                 <div><img src={leave4} /></div>
             </div>
-            <h2>Welcome!!</h2>
-            <h2>My-Portfolio</h2>
+            <h2><span>Welcome!!</span>&nbsp;&nbsp;&nbsp;<span>My-Portfolio</span></h2>
         </div>
     )
 }
