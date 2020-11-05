@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Ex4</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: relative;
+            padding: 50px;
+            background: #111;
+        }
+
+        .container section {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .container section .sticky {
+            position: sticky;
+            top: 0;
+            min-height: 60px;
+            color: #fff;
+            font-size: 2em;
+            display: inline-flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: #ff1f6b;
+            padding: 0 20px;
+            font-weight: 600;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .container section:nth-child(2) .sticky {
+            background: #03a9f4;
+        }
+
+        .container section:nth-child(3) .sticky {
+            background: #2dea3c;
+        }
+
+        .container section:nth-child(4) .sticky {
+            background: #cb2ee6;
+        }
+
+        .container section .content {
+            padding: 20px 0;
+        }
+
+        .container section .content p {
+            color: #888;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section>
+            <div class="sticky">Pure CSS Sticky Post Title One</div>
+            <div class="content">
+                <p>The division of Europe into a number of independent states,
+                    connected, however, with each other, by the general resemblance of
+                    religion, language, and manners, is productive of the most
+                    beneficial consequences to the liberty of mankind. A modern tyrant,
+                    who should find no resistance either in his own breast, or in his
+                    people, would soon experience a gentle restraint from the example of
+                    his equals, the dread of present censure, the advice of his allies,
+                    and the apprehension of his enemies. The object of his displeasure,
+                    escaping from the narrow limits of his dominions, would easily
+                    obtain, in a happier climate, a secure refuge, a new fortune
+                    adequate to his merit, the freedom of complaints, and perhaps the
+                    means of revenge. But the empire of the Romans filled the world, and
+                    when that empire fell into the hands of a single person, the world
+                    became a safe and dreary prison for his enemies. The slave of
+                    Imperial despotism, whether he was condemned to drag his gilded
+                    chain in Rome and the senate, or to wear out a life or exile on the
+                    barren rock of Seriphus, or the frozen banks of the Danube, expected
+                    his fate in silent despair. To resist was fatal, and it was
+                    impossible to fly. On every side he was encompassed with a vast
+                    extent of sea and land, which he could never hope to traverse
+                    without being discovered, seized, and restored to his irritated
+                    master. Beyond the frontiers, his anxious view could discover
+                    nothing, except the ocean, inhospitable deserts, hostile tribes of
+                    barbarians, of fierce manners and unknown language, or dependent
+                    kings, who would gladly purchase the emperor's protection by the
+                    sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                    to the exiled Marcellus, “remember that you are equally within the
+                    power of the conqueror.”</p>
+            </div>
+        </section>
+        <section>
+            <div class="sticky">Pure CSS Sticky Post Title Two</div>
+            <div class="content">
+                <p>The division of Europe into a number of independent states,
+                    connected, however, with each other, by the general resemblance of
+                    religion, language, and manners, is productive of the most
+                    beneficial consequences to the liberty of mankind. A modern tyrant,
+                    who should find no resistance either in his own breast, or in his
+                    people, would soon experience a gentle restraint from the example of
+                    his equals, the dread of present censure, the advice of his allies,
+                    and the apprehension of his enemies. The object of his displeasure,
+                    escaping from the narrow limits of his dominions, would easily
+                    obtain, in a happier climate, a secure refuge, a new fortune
+                    adequate to his merit, the freedom of complaints, and perhaps the
+                    means of revenge. But the empire of the Romans filled the world, and
+                    when that empire fell into the hands of a single person, the world
+                    became a safe and dreary prison for his enemies. The slave of
+                    Imperial despotism, whether he was condemned to drag his gilded
+                    chain in Rome and the senate, or to wear out a life or exile on the
+                    barren rock of Seriphus, or the frozen banks of the Danube, expected
+                    his fate in silent despair. To resist was fatal, and it was
+                    impossible to fly. On every side he was encompassed with a vast
+                    extent of sea and land, which he could never hope to traverse
+                    without being discovered, seized, and restored to his irritated
+                    master. Beyond the frontiers, his anxious view could discover
+                    nothing, except the ocean, inhospitable deserts, hostile tribes of
+                    barbarians, of fierce manners and unknown language, or dependent
+                    kings, who would gladly purchase the emperor's protection by the
+                    sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                    to the exiled Marcellus, “remember that you are equally within the
+                    power of the conqueror.”</p>
+            </div>
+        </section>
+        <section>
+            <div class="sticky">Pure CSS Sticky Post Title Three</div>
+            <div class="content">
+                <p>The division of Europe into a number of independent states,
+                    connected, however, with each other, by the general resemblance of
+                    religion, language, and manners, is productive of the most
+                    beneficial consequences to the liberty of mankind. A modern tyrant,
+                    who should find no resistance either in his own breast, or in his
+                    people, would soon experience a gentle restraint from the example of
+                    his equals, the dread of present censure, the advice of his allies,
+                    and the apprehension of his enemies. The object of his displeasure,
+                    escaping from the narrow limits of his dominions, would easily
+                    obtain, in a happier climate, a secure refuge, a new fortune
+                    adequate to his merit, the freedom of complaints, and perhaps the
+                    means of revenge. But the empire of the Romans filled the world, and
+                    when that empire fell into the hands of a single person, the world
+                    became a safe and dreary prison for his enemies. The slave of
+                    Imperial despotism, whether he was condemned to drag his gilded
+                    chain in Rome and the senate, or to wear out a life or exile on the
+                    barren rock of Seriphus, or the frozen banks of the Danube, expected
+                    his fate in silent despair. To resist was fatal, and it was
+                    impossible to fly. On every side he was encompassed with a vast
+                    extent of sea and land, which he could never hope to traverse
+                    without being discovered, seized, and restored to his irritated
+                    master. Beyond the frontiers, his anxious view could discover
+                    nothing, except the ocean, inhospitable deserts, hostile tribes of
+                    barbarians, of fierce manners and unknown language, or dependent
+                    kings, who would gladly purchase the emperor's protection by the
+                    sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                    to the exiled Marcellus, “remember that you are equally within the
+                    power of the conqueror.”</p>
+            </div>
+        </section>
+        <section>
+            <div class="sticky">Pure CSS Sticky Post Title Four</div>
+            <div class="content">
+                <p>The division of Europe into a number of independent states,
+                    connected, however, with each other, by the general resemblance of
+                    religion, language, and manners, is productive of the most
+                    beneficial consequences to the liberty of mankind. A modern tyrant,
+                    who should find no resistance either in his own breast, or in his
+                    people, would soon experience a gentle restraint from the example of
+                    his equals, the dread of present censure, the advice of his allies,
+                    and the apprehension of his enemies. The object of his displeasure,
+                    escaping from the narrow limits of his dominions, would easily
+                    obtain, in a happier climate, a secure refuge, a new fortune
+                    adequate to his merit, the freedom of complaints, and perhaps the
+                    means of revenge. But the empire of the Romans filled the world, and
+                    when that empire fell into the hands of a single person, the world
+                    became a safe and dreary prison for his enemies. The slave of
+                    Imperial despotism, whether he was condemned to drag his gilded
+                    chain in Rome and the senate, or to wear out a life or exile on the
+                    barren rock of Seriphus, or the frozen banks of the Danube, expected
+                    his fate in silent despair. To resist was fatal, and it was
+                    impossible to fly. On every side he was encompassed with a vast
+                    extent of sea and land, which he could never hope to traverse
+                    without being discovered, seized, and restored to his irritated
+                    master. Beyond the frontiers, his anxious view could discover
+                    nothing, except the ocean, inhospitable deserts, hostile tribes of
+                    barbarians, of fierce manners and unknown language, or dependent
+                    kings, who would gladly purchase the emperor's protection by the
+                    sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                    to the exiled Marcellus, “remember that you are equally within the
+                    power of the conqueror.”</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
