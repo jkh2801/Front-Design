@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import About from './components/About';
 import Skill from './components/Skill';
+import Contact from './components/Contact';
 import reportWebVitals from './reportWebVitals';
 
 import {createStore} from 'redux';
@@ -37,5 +38,10 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('skills')
 );
-
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}><Contact/></Provider>
+  </React.StrictMode>,
+  document.getElementById('contact')
+);
 reportWebVitals();
