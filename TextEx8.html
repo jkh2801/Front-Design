@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Ex8</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        section h2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-transform: uppercase;
+            font-size: 25vw;
+            text-align: center;
+            font-weight: 800;
+            line-height: 0.85em;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.95);
+            mix-blend-mode: multiply;
+        }
+        section h2 span {
+            font-size: 0.4em;
+            line-height: 0.85em;
+
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <video src="video/bg1.mp4" autoplay></video>
+        <h2>Video in Text <br><span>Background - 2</span></h2>
+    </section>
+</body>
+</html>
