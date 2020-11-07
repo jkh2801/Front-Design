@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux';
 
 export default function Skill() {
     const skills = useSelector(state => state.dataReducer.skills)
-    console.log(skills);
     const list = skills.map(({content, skill}, index) => 
     <div className="content" key={index}>
         <h2>{content}</h2>
