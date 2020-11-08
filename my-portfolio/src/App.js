@@ -19,20 +19,7 @@ function App() {
       heights.push(s.offsetTop - 200)
     })
   })
-  window.addEventListener('scroll', function() {
-    const nav = document.querySelector('.nav')
-    nav.classList.toggle("sticky", window.scrollY > 0)
-    if(window.scrollY >= heights[next]) {
-      pre++
-      next++
-      console.log("??")
-    }
-    if(window.scrollY <= heights[pre]) {
-      pre--
-      next--
-      console.log("???")
-    }
-})
+  
   return (
     <div className="page">
       <header><Nav pre = {pre}/></header>
