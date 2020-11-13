@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Pop up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+        	margin: 0;
+	        padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background: #111;
+        }
+        section .box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: #f00;
+            margin: 10px;
+            overflow: hidden;
+        }
+        section .box .imgBx {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        section .box .imgBx.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+        section .box .imgBx img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        section .box .imgBx.active img {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            right: 50px;
+            bottom: 50px;
+            width: calc(100% - 100px);
+            height: calc(100% - 100px);
+        }
+        section .box .imgBx h2 {
+            opacity: 0;
+            visibility: hidden;
+        }
+        section .box .imgBx.active h2 {
+            opacity: 1;
+            visibility: visible;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 15px;
+            letter-spacing: 4px;
+        }
+        section .box .imgBx .content {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            left: 50px;
+            opacity: 0;
+            visibility: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            color: #fff;
+            transform: translateY(100%);
+        }
+        section .box .imgBx.active .content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: 0.5s;
+        }
+        section .box .imgBx .content h3 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="box">
+            <div class="imgBx">
+                <img src="image/bg1.jpg" alt="">
+                <h2>Click Again To Close</h2>
+                <div class="content">
+                    <h3>Image Caption One</h3>
+                    <p>First Image</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imgBx">
+                <img src="image/bg2.jpg" alt="">
+                <h2>Click Again To Close</h2>
+                <div class="content">
+                    <h3>Image Caption Two</h3>
+                    <p>Second Image</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imgBx">
+                <img src="image/bg3.jpg" alt="">
+                <h2>Click Again To Close</h2>
+                <div class="content">
+                    <h3>Image Caption Three</h3>
+                    <p>Third Image</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imgBx">
+                <img src="image/bg4.jpg" alt="">
+                <h2>Click Again To Close</h2>
+                <div class="content">
+                    <h3>Image Caption Four</h3>
+                    <p>Fourth Image</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imgBx">
+                <img src="image/bg5.jpg" alt="">
+                <h2>Click Again To Close</h2>
+                <div class="content">
+                    <h3>Image Caption Five</h3>
+                    <p>Fifth Image</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let imgBx = document.querySelectorAll('.imgBx')
+        imgBx.forEach(popup => popup.addEventListener('click',() => {
+            popup.classList.toggle('active')
+        }))
+    </script>
+</body>
+</html>
