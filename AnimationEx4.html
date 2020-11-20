@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex4</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Code Pro', monospace;
+        }
+        body {
+            overflow: hidden;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background: #0e0e0e;
+        }
+        section .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        section .container h2 {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #222;
+            font-size: 5em;
+            line-height: 0.9em;
+            letter-spacing: 4px;
+        }
+        section .container h2 span {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            animation: animate 5s linear infinite;
+        }
+        section .container h2 span.text2 {
+            animation-delay: -0.5s;
+            filter: hue-rotate(225deg);
+        }
+        section .container h2 span.text3 {
+            animation-delay: -1s;
+            filter: hue-rotate(225deg);
+        }
+        section .container h2 span.text4 {
+            animation-delay: -1.5s;
+            filter: hue-rotate(180deg);
+        }
+        @keyframes animate {
+            0%, 5%, 10.1%, 15.1%, 25.1%, 45%, 70.1%, 90%, 100% {
+                color: #222;
+                text-shadow: 0 0 0 #222;
+            }
+            5.1%, 10%, 15.2%, 25%, 45.1%, 70%, 90.1%, 95% {
+                color: #fff;
+                text-shadow: 0 0 10px #ff3177,
+                             0 0 20px #ff3177,
+                             0 0 40px #ff3177,
+                             0 0 80px #ff3177,
+                             0 0 160px #ff3177;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h2>pwhscws4d5wfrfshsw48d5aav3hjk</h2>
+            <h2>rhx<span class="text4">M</span>sg46sacxcptrhxmsg46saacxc</h2>
+            <h2>jas<span class="text4">u</span>sdvjas8sdv<span>C</span>dssdse3dssdse3</h2>
+            <h2>sda<span class="text4">h</span>84<span class="text2">online</span>4a<span>R</span>s5c21sws5c21sw</h2>
+            <h2>d8w<span class="text4">a</span>nvdd8wqnvd<span>E</span>s83s52ds83s52d</h2>
+            <h2>25e<span class="text4">m</span>vks25e2vk3<span>A</span>a1vamklalvamkl</h2>
+            <h2>wpo<span class="text4">m</span>ndswpoznds<span>T</span>hvkxswrhvkxswr</h2>
+            <h2>95s<span class="text4">a</span>c8595ssc85<span>I</span>rb<span class="text3">Tutorials</span>swz</h2>
+            <h2>uka<span class="text4">d</span>zp4ukalzp4<span>V</span>e2xee41e2xee41</h2>
+            <h2>ptrhxmsptrhxms<span>E</span>46sacxc46sacxc</h2>
+            <h2>jas8sdv2dssdse3jas8sdv2dssdse</h2>
+            <h2>ksv5echekjc2s5vkjuev5a25cveyn</h2>
+            <h2>ksv5echekjc2s5vkjuev5a25cveyn</h2>
+        </div>
+    </section>
+</body>
+</html>
