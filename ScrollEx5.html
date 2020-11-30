@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zooming</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        #header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url("image/bg1.jpg");
+            background-size: 160%;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        section {
+            padding: 100px;
+            color: #111;
+        }
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        section p {
+            font-size: 1.2em;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <section>
+        <h2>Background Size Chnage into Small when Scrolling</h2>
+        <p>The division of Europe into a number of independent states,
+            connected, however, with each other, by the general resemblance of
+            religion, language, and manners, is productive of the most
+            beneficial consequences to the liberty of mankind. A modern tyrant,
+            who should find no resistance either in his own breast, or in his
+            people, would soon experience a gentle restraint from the example of
+            his equals, the dread of present censure, the advice of his allies,
+            and the apprehension of his enemies. The object of his displeasure,
+            escaping from the narrow limits of his dominions, would easily
+            obtain, in a happier climate, a secure refuge, a new fortune
+            adequate to his merit, the freedom of complaints, and perhaps the
+            means of revenge. But the empire of the Romans filled the world, and
+            when that empire fell into the hands of a single person, the world
+            became a safe and dreary prison for his enemies. The slave of
+            Imperial despotism, whether he was condemned to drag his gilded
+            chain in Rome and the senate, or to wear out a life or exile on the
+            barren rock of Seriphus, or the frozen banks of the Danube, expected
+            his fate in silent despair. To resist was fatal, and it was
+            impossible to fly. On every side he was encompassed with a vast
+            extent of sea and land, which he could never hope to traverse
+            without being discovered, seized, and restored to his irritated
+            master. Beyond the frontiers, his anxious view could discover
+            nothing, except the ocean, inhospitable deserts, hostile tribes of
+            barbarians, of fierce manners and unknown language, or dependent
+            kings, who would gladly purchase the emperor's protection by the
+            sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+            to the exiled Marcellus, “remember that you are equally within the
+            power of the conqueror.”</p>
+            <p>The division of Europe into a number of independent states,
+                connected, however, with each other, by the general resemblance of
+                religion, language, and manners, is productive of the most
+                beneficial consequences to the liberty of mankind. A modern tyrant,
+                who should find no resistance either in his own breast, or in his
+                people, would soon experience a gentle restraint from the example of
+                his equals, the dread of present censure, the advice of his allies,
+                and the apprehension of his enemies. The object of his displeasure,
+                escaping from the narrow limits of his dominions, would easily
+                obtain, in a happier climate, a secure refuge, a new fortune
+                adequate to his merit, the freedom of complaints, and perhaps the
+                means of revenge. But the empire of the Romans filled the world, and
+                when that empire fell into the hands of a single person, the world
+                became a safe and dreary prison for his enemies. The slave of
+                Imperial despotism, whether he was condemned to drag his gilded
+                chain in Rome and the senate, or to wear out a life or exile on the
+                barren rock of Seriphus, or the frozen banks of the Danube, expected
+                his fate in silent despair. To resist was fatal, and it was
+                impossible to fly. On every side he was encompassed with a vast
+                extent of sea and land, which he could never hope to traverse
+                without being discovered, seized, and restored to his irritated
+                master. Beyond the frontiers, his anxious view could discover
+                nothing, except the ocean, inhospitable deserts, hostile tribes of
+                barbarians, of fierce manners and unknown language, or dependent
+                kings, who would gladly purchase the emperor's protection by the
+                sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                to the exiled Marcellus, “remember that you are equally within the
+                power of the conqueror.”</p>
+                <p>The division of Europe into a number of independent states,
+                    connected, however, with each other, by the general resemblance of
+                    religion, language, and manners, is productive of the most
+                    beneficial consequences to the liberty of mankind. A modern tyrant,
+                    who should find no resistance either in his own breast, or in his
+                    people, would soon experience a gentle restraint from the example of
+                    his equals, the dread of present censure, the advice of his allies,
+                    and the apprehension of his enemies. The object of his displeasure,
+                    escaping from the narrow limits of his dominions, would easily
+                    obtain, in a happier climate, a secure refuge, a new fortune
+                    adequate to his merit, the freedom of complaints, and perhaps the
+                    means of revenge. But the empire of the Romans filled the world, and
+                    when that empire fell into the hands of a single person, the world
+                    became a safe and dreary prison for his enemies. The slave of
+                    Imperial despotism, whether he was condemned to drag his gilded
+                    chain in Rome and the senate, or to wear out a life or exile on the
+                    barren rock of Seriphus, or the frozen banks of the Danube, expected
+                    his fate in silent despair. To resist was fatal, and it was
+                    impossible to fly. On every side he was encompassed with a vast
+                    extent of sea and land, which he could never hope to traverse
+                    without being discovered, seized, and restored to his irritated
+                    master. Beyond the frontiers, his anxious view could discover
+                    nothing, except the ocean, inhospitable deserts, hostile tribes of
+                    barbarians, of fierce manners and unknown language, or dependent
+                    kings, who would gladly purchase the emperor's protection by the
+                    sacrifice of an obnoxious fugitive. “Wherever you are,” said Cicero
+                    to the exiled Marcellus, “remember that you are equally within the
+                    power of the conqueror.”</p>
+    </section>
+    <script>
+        const bg = document.getElementById('header')
+        window.addEventListener('scroll', function() {
+            bg.style.backgroundSize = 160 - window.pageYOffset/12+'%'
+            bg.style.opacity = 1 - window.pageYOffset/700
+        })
+    </script>
+</body>
+</html>
