@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Ex7</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #161616;
+        }
+        section .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e51e2a;
+            clip-path: circle(70% at right -20%);
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            position: relative;
+            max-width: 150px;
+        }
+        header .navigation {
+            position: relative;
+            display: flex;
+        }
+        header .navigation.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e51e2a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        header .navigation li {
+            list-style: none;
+        }
+        header .navigation li a {
+            display: inline-block;
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            margin-left: 40px;
+        }
+        .content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content .textBox {
+            position: relative;
+            max-width: 600px;
+            margin-right: 20px;
+        }
+        .content .textBox h2 {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+            font-weight: 700;
+        }
+        .content .textBox p {
+            color: #fff;
+        }
+        .content .textBox a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: #e51e2a;
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .sci {
+            position: absolute;
+            bottom: 40px;
+            left: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sci li {
+            list-style: none;
+        }
+        .sci li a {
+            display: inline-block;
+            margin-left: 15px;
+            background: #222;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: 0.2s ease-in-out;
+        }
+        .sci li a:hover {
+            background: #e51e2a;
+            transform: translateY(-10px);
+        }
+        .sci li a img {
+            filter: invert(1);
+            transform: scale(0.5);
+        }
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 180px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+        }
+        .content .imgBox {
+            width: 500px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .content .imgBox img {
+            max-width: 150px;
+        }
+        .swiper-slide img {
+            position: absolute;
+            bottom: 0;
+            max-height: 100%;
+        }
+        .swiper-container-3d .swiper-slide-shadow-left,
+        .swiper-container-3d .swiper-slide-shadow-right {
+            background-image: none;
+        }
+        
+        @media (max-width: 991px) {
+            header {
+                padding: 40px;
+            }
+            section {
+                padding: 150px 40px;
+            }
+            .sci {
+                left: 40px;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .content .textBox,
+            .content .imgBox {
+                max-width: 100%;
+            }
+            .swiper-slide {
+                height: 300px;
+            }
+            header .navigation {
+                display: none;
+            }
+            header .navigation.active {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #e51e2a;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 10;
+            }
+            header .navigation li a {
+                margin: 10px 0;
+                font-size: 1.5em;
+                font-weight: 300;
+            }
+            .toggle {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                background: url(image/menu.png);
+                background-size: 30px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .toggle.active {
+                position: fixed;
+                right: 40px;
+                background: url(image/close.png);
+                background-size: 25px;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="circle"></div>
+        <header>
+            <a href="#"><img src="image/logo.png" alt=""></a>
+            <div class="toggle" onclick="toggleMenu()"></div>
+            <ul class="navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">What's New</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class="textBox">
+                <h2>Taste the Feeling</h2>
+                <p>Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="imgBox">
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="image/cocacola1.png" alt=""></div>
+                        <div class="swiper-slide"><img src="image/cocacola2.png" alt=""></div>
+                        <div class="swiper-slide"><img src="image/cocacola3.png" alt=""></div>
+                        <div class="swiper-slide"><img src="image/cocacola4.png" alt=""></div>
+                        <div class="swiper-slide"><img src="image/cocacola5.png" alt=""></div>
+                        <div class="swiper-slide"><img src="image/cocacola6.png" alt=""></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <ul class="sci">
+            <li><a href="#"><img src="image/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="image/twitter.png" alt=""></a></li>
+            <li><a href="#"><img src="image/instagram.png" alt=""></a></li>
+        </ul>
+    </section>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          loop: true
+        });
+
+
+
+        function toggleMenu () {
+            const menuToggle = document.querySelector('.toggle')
+            const navigation = document.querySelector('.navigation')
+            menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+      </script>
+</body>
+</html>
