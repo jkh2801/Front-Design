@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Ex1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #03a9f4;
+        }
+        .container {
+            padding: 40px;
+            background: #182b3c;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        .container h2 {
+            color: #fff;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: 500;
+            border-bottom: 2px solid #fff;
+        }
+        .container ul {
+            position: relative;
+        }
+        .container ul li {
+            position: relative;
+            list-style: none;
+            display: table;
+            margin: 10px 0;
+            padding-left: 34px;
+            padding-right: 5px;
+        }
+        .container ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 34px;
+            background: transparent;
+            border-radius: 34px;
+            transition: background 0.5s, width 0.5s;
+            transition-delay: 0.5s, 0s;
+            border: 2px solid #03a9f4;
+            box-sizing: border-box;
+        }
+        .container ul li:hover::before {
+            width: 100%;
+            background: #03a9f4;
+            transition-delay: 0s, 0.5s;
+        }
+        .container ul li::after {
+            content: '';
+            position: absolute;
+            top: 13px;
+            left: 12px;
+            width: 6px;
+            height: 6px;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: rotate(45deg);
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+        .container ul li:hover::after {
+            left: 24px;
+            transition-delay: 0.5s;
+            transform: rotate(45deg) scale(1.5);
+        }
+        .container ul li p {
+            position: relative;
+            z-index: 10;
+            padding: 5px 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>List Item Hover Effects</h2>
+        <ul>
+            <li><p>Lorem ipsum dolor sit amet</p></li>
+            <li><p>consectetur adipisicing</p></li>
+            <li><p>mollit anim id eest laborum</p></li>
+            <li><p>adipisicing elit, sed do eiusmod</p></li>
+            <li><p>labore et dolore magna</p></li>
+            <li><p>tempor incididunt ut</p></li>
+        </ul>
+    </div>
+</body>
+</html>
