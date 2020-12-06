@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Ex8</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            position: relative;
+            font-size: 2em;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+            transition: 0.5s;
+        }
+        header .toggle {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: url("image/menu.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            background-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header .toggle.active {
+            background: url("image/close.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            background-size: 30px;
+        }
+        header .toggle::before {
+            content: 'Menu';
+            position: absolute;
+            right: 45px;
+            text-transform: uppercase;
+            color: #111;
+            letter-spacing: 2px;
+            font-size: 14px;
+            padding: 2px 5px;
+            background: #fff;
+        }
+        header .toggle.active::before {
+            content: 'Close';
+        }
+        section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .glass {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            backdrop-filter: blur(15px);
+            z-index: 1;
+            box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+            transition: 0.5s;
+            transition-delay: 1s;
+        }
+        section.active .glass {
+            width: 100%;
+            backdrop-filter: blur(20px);
+            box-shadow: 10px 0 15px rgba(0, 0, 0, 0.5);
+            transition-delay: 0s;
+        }
+        section .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            transition: 0.5s;
+            transition-delay: 1s;
+        }
+        section.active .content {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-200px);
+            transition-delay: 0s;
+        }
+        section .content h2 {
+            position: relative;
+            color: #fff;
+            font-size: 10vw;
+            line-height: 0.55em;
+            text-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Dancing Script', cursive;
+        }
+        section .content h2 span {
+            font-size: 0.2em;
+            font-weight: 300;
+            letter-spacing: 5px;
+            background: #fff;
+            color: #111;
+            padding: 0 10px;
+            text-shadow: 0 5px 5px rgba(0 ,0 ,0 ,0);
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+        .sci {
+            position: absolute;
+            bottom: 40px;
+            right: 100px;
+            display: flex;
+            z-index: 100;
+        }
+        .sci li {
+            list-style: none;
+            margin: 5px;
+            padding: 0 6px;
+            background: #fff;
+            transition: 0.5s;
+            transition-delay: calc(0.2s * var(--i));
+        }
+        section.active .sci li {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+        }
+        .sci li a {
+            color: #111;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .navigation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+        .navigation li {
+            list-style: none;
+            text-align: center;
+            margin: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+            transform: translateX(200px);
+            transition-delay: calc(0.2s * var(--i));
+        }
+        section.active .navigation li {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0px);
+        }
+        .navigation li a {
+            color: #111;
+            font-size: 1.5em;
+            letter-spacing: 4px;
+            text-decoration: none;
+            font-weight: 300;
+            text-transform: uppercase;
+            background: #fff;
+            padding: 4px 10px;
+            display: inline-block;
+        }
+        .navigation li a:hover {
+            background: #111;
+            color: #fff;
+            letter-spacing: 10px;
+            text-transform: lowercase;
+        }
+        @media (max-width: 991px) {
+            header {
+                padding: 20px;
+            }
+            section .sci {
+                bottom: 20px;
+                right: 20px;
+            }
+            .glass {
+                width: 50%;
+            }
+            section .content h2 {
+                font-size: 18vw;
+            }
+            section .content h2 span {
+                font-size: 0.25em;
+                letter-spacing: 2px;
+                padding: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <a href="#" class="logo">Water.</a>
+            <div class="toggle" onclick="menuToggle();"></div>
+        </header>
+        <div class="glass"></div>
+        <div class="content">
+            <h2>Hapiness...<br><span>Crystal clear ocean water.</span></h2>
+        </div>
+        <video src="video/bg2.mp4" autoplay muted></video>
+        <ul class="sci">
+            <li style="--i:1"><a href="#">Facebook</a></li>
+            <li style="--i:2"><a href="#">Twitter</a></li>
+            <li style="--i:3"><a href="#">Instagram</a></li>
+        </ul>
+        <ul class="navigation">
+            <li style="--i:1"><a href="#">Home</a></li>
+            <li style="--i:2"><a href="#">About</a></li>
+            <li style="--i:3"><a href="#">Tour</a></li>
+            <li style="--i:4"><a href="#">Contact</a></li>
+        </ul>
+    </section>
+    <script>
+        function menuToggle() {
+            const toggleMenu = document.querySelector('.toggle')
+            const section = document.querySelector('section')
+            toggleMenu.classList.toggle('active')
+            section.classList.toggle('active')
+        }
+    </script>
+</body>
+</html>
