@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex9</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f00;
+            height: 200vh;
+        }
+        section {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f00;
+            mix-blend-mode: color-dodge;
+        }
+        section img#bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        section img#moon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        section img#cloud1 {
+            position: absolute;
+            top: 100px;
+            left: 50px;
+            max-width: 600px;
+            z-index: 2;
+        }
+        section img#cloud2 {
+            position: absolute;
+            top: 200px;
+            right: 50px;
+            max-width: 600px;
+            z-index: 2;
+        }
+        section img#santa {
+            position: absolute;
+            bottom: 50px;
+            left: -600px;
+            z-index: 1;
+            max-width: 600px;
+            transform: scale(0.5);
+        }
+        section .tree {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 266px;
+            background: url("image/tree.png");
+            background-position-y: 266px;
+            z-index: 10;
+        }
+        section .text {
+            position: absolute;
+            bottom: -400px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 6em;
+            z-index: 9;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <img src="image/bg21.jpg" alt="" id="bg">
+        <img src="image/moon.png" alt="" id="moon">
+        <img src="image/cloud1.png" alt="" id="cloud1">
+        <img src="image/cloud2.png" alt="" id="cloud2">
+        <img src="image/santa.png" alt="" id="santa">
+        <div class="tree"></div>
+        <h2 class="text">Happy Christmas</h2>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.to('#moon', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            scale: 1.5
+        })
+        gsap.to('#bg', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            scale: 1.1
+        })
+        gsap.to('#santa', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            scale: 1.2,
+            y: -500,
+            x: 2200
+        })
+        gsap.to('.tree', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: -500
+        })
+        gsap.to('#cloud1', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: -200
+        })
+        gsap.to('#cloud2', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: 300
+        })
+        gsap.to('.text', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            y: -800
+        })
+    </script>
+</body>
+</html>
