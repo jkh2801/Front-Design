@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountDown Ex3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #ff4e2b;
+            display: flex;
+            overflow: hidden;
+        }
+        .container .imgBx {
+            position: relative;
+            width: 70%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1b1b1b;
+        }
+        .container .imgBx img {
+            position: absolute;
+            width: 80%;
+            z-index: 2;
+        }
+        .container .countdownBx {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: calc(100% - 450px);
+        }
+        .container .countdownBx h2 {
+            text-align: center;
+            font-size: 1.5em;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 500;
+            line-height: 4em;
+        }
+        .container .countdownBx h2 span {
+            font-size: 6em;
+            font-weight: 700;
+        }
+        .container .countdownBx h2 span i {
+            font-style: initial;
+            color: #ff0;
+        }
+        .container .countdownBx .countdown {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .countdownBx .countdown div {
+            position: relative;
+            width: 100px;
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            font-weight: 500;
+            margin: 0 15px;
+            margin-top: -25px;
+        }
+        .container .countdownBx .countdown div::before {
+            content: 'text';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            color: #fff;
+            font-size: 0.35em;
+            font-weight: 500;
+            line-height: 35px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .container .countdownBx .countdown div#day::before {
+            content: 'Days';
+        }
+        .container .countdownBx .countdown div#hour::before {
+            content: 'hours';
+        }
+        .container .countdownBx .countdown div#minute::before {
+            content: 'minutes';
+        }
+        .container .countdownBx .countdown div#second::before {
+            content: 'seconds';
+        }
+        .container .countdownBx .countdown div#second,
+        .container .countdownBx .countdown div#second::before {
+            color: #ff0;
+        }
+        @media(max-width: 991px) {
+            .container .imgBx {
+                display: none;
+            }
+            .container .countdownBx {
+                width: 100%;
+            }
+        }
+        @media(max-width: 600px) {
+            .container .countdownBx h2 {
+                font-size: 1.1em;
+            }
+            .container .countdownBx .countdown {
+                height: 100px;
+            }
+            .container .countdownBx .countdown div {
+                width: 80px;
+                font-size: 2em;
+                margin: 0;
+                margin-top: -25px;
+            }
+        }
+        .container .imgBx i {
+            position: absolute;
+            background: #fff;
+            border-radius: 100%;
+            animation: animate linear infinite;
+            z-index: 0;
+        }
+        .container .imgBx i:nth-child(even) {
+            background: transparent;
+            border: 1px solid #fff;
+        }
+        @keyframes animate {
+            0% {
+                transform: translateY(-2000%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <iframe src="video/christmas.mp3" frameborder="0" allow="autoplay loop" id="audio" style="display: none;"></iframe>
+    <audio id="audio" autoplay loop>
+        <source src="video/christmas.mp3">
+    </audio>
+    <div class="container">
+        <div class="imgBx">
+            <img src="image/year_2021.jpg" alt="">
+        </div>
+        <div class="countdownBx">
+            <h2>Countdown to New Year<br><span>20<i>21</i></span></h2>
+            <div class="countdown">
+                <div id="day">NA</div>
+                <div id="hour">NA</div>
+                <div id="minute">NA</div>
+                <div id="second">NA</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const countDate = new Date('jan 1, 2021 00:00:00').getTime();
+
+        function newYear() {
+            const now = new Date().getTime();
+            gap = countDate - now;
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour *24;
+            const d = Math.floor(gap / day);
+            const h = Math.floor(gap % day / hour);
+            const m = Math.floor(gap % hour / minute);
+            const s = Math.floor(gap % minute / second);
+
+            document.getElementById('day').innerText = d;
+            document.getElementById('hour').innerText = h;
+            document.getElementById('minute').innerText = m;
+            document.getElementById('second').innerText = s;
+        }
+        setInterval(() => newYear(), 1000);
+        function bubbles() {
+            var count = 200
+            var section = document.querySelector('.imgBx')
+            var i = 0
+            while (i < count) {
+                var bubble = document.createElement('i')
+                var x = Math.floor(Math.random() * window.innerWidth)
+                var y = Math.floor(Math.random() * window.innerHeight)
+                var size = Math.random() * 10
+                bubble.style.left = x + 'px'
+                bubble.style.top = y +'px'
+                bubble.style.width = 1 + size +'px'
+                bubble.style.height = 1 + size + 'px'
+                bubble.style.animationDuration = 5 + size +'s'
+                bubble.style.animationDelay = -size + 's'
+                section.appendChild(bubble)
+                i++
+            }
+        }
+        bubbles()
+    </script>
+</body>
+</html>
