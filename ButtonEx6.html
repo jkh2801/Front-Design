@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Ex6</title>
+    <style>
+        * {
+	box-sizing: border-box;
+}
+body {
+	display: grid;
+	place-items:  center;
+	height: 100vh;
+}
+.button {
+	border: none;
+	display: block;
+	position: relative;
+	padding: 0.5em 2.2em;
+	font-size: 25px;
+	background: transparent;
+	cursor: pointer;
+	user-select: none;
+	color: royalblue;
+	overflow: hidden;
+}
+.button span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	z-index: -1;
+	border: 5px solid royalblue;
+}
+.button span::before {
+	content: '';
+	position: absolute;
+	width: 8%;
+	height: 500%;
+	background: white;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(-60deg);
+	transition: all .3s;
+}
+.button:hover span::before {
+	transform: translate(-50%, -50%) rotate(-90deg);
+	width: 100%;
+	background: royalblue;
+}
+.button:hover, .button:focus {
+	color: white;
+}
+    </style>
+</head>
+<body>
+    <button class="button">
+        Continue
+        <span></span>
+    </button>
+</body>
+</html>
