@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #191e38;
+            font-family: monospace;
+        }
+        .circle {
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(360deg) rotateX(15deg);
+        }
+        .circle .char {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ff005e;
+            color: #fff;
+            font-size: 4em;
+            padding: 5px 14px;
+            border-top: 15px solid #fff;
+            border-bottom: 15px solid #fff;
+            transform-style: preserve-3d;
+            transform-origin: center;
+            transform: rotateY(calc(var(--char-index) * 12deg)) translateZ(250px);
+            text-shadow: 500px 150px 0 rgba(255, 255, 255, 0.5),
+                         300px 150px 10px rgba(255, 255, 255, 0.5),
+                         150px 600px 0 rgba(255, 255, 255, 0.5),
+                         600px 50px 0 rgba(255, 255, 255, 0.5),
+                         400px 350px 0 rgba(255, 255, 255, 0.5),
+                         200px 500px 0 rgba(255, 255, 255, 0.5),
+                         500px -150px 0 rgba(255, 255, 255, 0.5),
+                         300px -150px 10px rgba(255, 255, 255, 0.5),
+                         150px -600px 0 rgba(255, 255, 255, 0.5),
+                         600px -50px 0 rgba(255, 255, 255, 0.5),
+                         400px -350px 0 rgba(255, 255, 255, 0.5),
+                         200px -500px 0 rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="circle" data-splitting>
+        Circle-Text-Animation-Effects-
+    </div>
+    <script src="js/splitting.js"></script>
+    <script>
+        Splitting();
+    </script>
+    <script>
+        let circle = document.querySelector('.circle')
+        window.onmousemove = function(e) {
+            let x = e.clientX/-2
+            circle.style.transform = "perspective(1000px) rotateY(" + x + "deg) rotateX(15deg)"
+        }
+    </script>
+</body>
+</html>

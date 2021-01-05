@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex15</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #673ab7;
+        }
+        .circle {
+            transform-style: preserve-3d;
+            animation: animate 8s linear infinite;
+        }
+        @keyframes animate {
+            0% {
+                transform: perspective(1000px) rotateY(360deg) rotateX(15deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateY(0deg) rotateX(15deg);
+            }
+        }
+        .circle .char {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            color: #35146f;
+            font-size: 4em;
+            padding: 5px 14px;
+            border-top: 4px solid #35146f;
+            border-bottom: 4px solid #35146f;
+            transform-style: preserve-3d;
+            transform-origin: center;
+            transform: rotateY(calc(var(--char-index) * 12deg)) translateZ(250px);
+        }
+    </style>
+</head>
+<body>
+    <div class="circle" data-splitting>
+        Circle-Text-Animation-Effects-
+    </div>
+    <script src="js/splitting.js"></script>
+    <script>
+        Splitting();
+    </script>
+</body>
+</html>
