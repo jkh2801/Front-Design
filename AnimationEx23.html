@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex23</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+        .container span {
+            width: 0.5vw;
+            height: 100%;
+            background: #fff;
+            border-top: 33.33vh solid #ff9933;
+            border-bottom: 33.33vh solid #138808;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container"></div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script>
+        for (let i = 0; i <= 200; i++) {
+            let bars = document.createElement('span')
+            document.querySelector('.container').appendChild(bars)
+        }
+
+        TweenMax.from('.container span', {
+            transform: "translateZ(1000px)",
+            zIndex: 100,
+            delay: 1,
+            stagger: {
+                from: "random",
+                amount: 10
+            }
+        })
+    </script>
+</body>
+</html>
