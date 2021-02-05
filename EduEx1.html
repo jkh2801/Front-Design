@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Ex1 (Align Text CSS Flex)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: consolas;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+        .container {
+            position: relative;
+            width: 930px;
+            height: 660px;
+            border: 2px soild #fff;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: inherit;
+        }
+        .container .box {
+            width: 280px;
+            height: 190px;
+            color: #fff;
+            border: 2px solid #fff;
+            margin-bottom: 20px;
+            padding: 10px;
+            display: flex;
+            font-size: 1.4em;
+            font-weight: 800;
+        }
+        .top-left {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .top-center {
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .top-right {
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        .center-left {
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .center-center {
+            justify-content: center;
+            align-items: center;
+        }
+        .center-right {
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .bottom-left {
+            justify-content: flex-start;
+            align-items: flex-end;
+        }
+        .bottom-center {
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .bottom-right {
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="box top-left">Top Left</div>
+            <div class="box top-center">Top Center</div>
+            <div class="box top-right">Top Right</div>
+            <div class="box center-left">Center Left</div>
+            <div class="box center-center">Center Center</div>
+            <div class="box center-right">Center Right</div>
+            <div class="box bottom-left">Bottom Left</div>
+            <div class="box bottom-center">Bottom Center</div>
+            <div class="box bottom-right">Bottom Right</div>
+        </div>
+    </section>
+</body>
+</html>
