@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Ex6</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #111;
+        }
+        section h2 {
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 8vw;
+        }
+        .toggle {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: #222 url("image/menu.png");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            z-index: 100000;
+        }
+        .toggle.active {
+            background: #222 url("image/close.png");
+            background-size: 25px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
+        .navigation.active {
+            visibility: visible;
+        }
+        .navigation span {
+            position: absolute;
+            top: -100%;
+            left: calc(25% * var(--i));
+            width: 25%;
+            height: 100%;
+            background: #de0611;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            transition: 0.25s;
+            transition-delay: calc(0.25s * var(--i));
+        }
+        .navigation.active span {
+            top: 0;
+        }
+        .navigation ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2;
+            transform: translateX(-100px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+        .navigation.active ul {
+            transform: translateX(0px);
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0.75s;
+        }
+        .navigation ul li {
+            list-style: none;
+        }
+        .navigation ul li a {
+            text-decoration: none;
+            font-size: 3em;
+            font-weight: 700;
+            color: #fff;
+            display: inline-block;
+            padding: 5px 20px;
+        }
+        .navigation ul li a:hover {
+            background: #fff;
+            color: #de0611;
+        }
+        @media (max-width: 767px) {
+            .navigation ul li a {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Curtain Layer Menu</h2>
+    </section>
+    <div class="toggle"></div>
+    <section class="navigation">
+        <span style="--i:0;"></span>
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </section>
+    <script>
+        const navigation = document.querySelector('.navigation')
+        document.querySelector('.toggle').onclick = function() {
+            this.classList.toggle('active')
+            navigation.classList.toggle('active')
+        }
+    </script>
+</body>
+</html>
