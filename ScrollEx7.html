@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Ex7</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #323232;
+        }
+        .bg {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #2bbaff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .bg h2 {
+            position: relative;
+            color: #fff;
+            font-size: 5em;
+        }
+        .SkewedOne {
+            position: absolute;
+            bottom: -100%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: #323232;
+            transform: skewY(-15deg);
+            transform-origin: top left;
+        }
+        .SkewedTwo {
+            position: absolute;
+            bottom: -100%;
+            right: 50%;
+            width: 100%;
+            height: 100%;
+            background: #323232;
+            transform: skewY(15deg);
+            transform-origin: top right;
+        }
+        section {
+            padding: 100px;
+        }
+        section h2 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        section p {
+            color: #fff;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <section class="bg">
+        <h2>Scroll to See Magic</h2>
+        <span class="SkewedOne"></span>
+        <span class="SkewedTwo"></span>
+    </section>
+    <section>
+        <h2>Also Watch Part 1 and 2 ... Link in Videeo Description</h2>
+        <p>
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            <br/>Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            <br/>Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications.
+        </p>
+    </section>
+    <script>
+        const SkewedOne = document.querySelector('.SkewedOne')
+        const SkewedTwo = document.querySelector('.SkewedTwo')
+        console.log(SkewedOne)
+        window.addEventListener('scroll', function() {
+            const value1 = -15 + window.scrollY / 45
+            const value2 = 15 + window.scrollY / -45
+            SkewedOne.style.transform = "skewY(" + value1 + "deg)"
+            SkewedTwo.style.transform = "skewY(" + value2 + "deg)"
+        })
+    </script>
+</body>
+</html>
