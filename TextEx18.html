@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Ex18</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        section {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #111;
+        }
+        section .text {
+            position: relative;
+            font-size: 3em;
+            color: #fff;
+        }
+        section .text span {
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 -60px 0 #fff,
+                         0 60px 0 #fff;
+            animation: animate 2s ease-in-out infinite;
+        }
+        @keyframes animate {
+            0% {
+                transform: translateY(70px);
+            }
+            50% {
+                transform: translateY(-70px);
+            }
+            100% {
+                transform: translateY(70px);
+            }
+        }
+        section .text2 {
+            position: relative;
+            font-size: 3em;
+            color: #fff;
+        }
+        section .text2 b {
+            position: relative;
+            display: inline-block;
+            animation: animate2 3s ease-in-out infinite;
+        }
+        @keyframes animate2 {
+            0% {
+                transform: translateY(0px);
+            }
+            25% {
+                transform: translateY(-100px);
+            }
+            50%, 100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2 class="text">Effects 01 : Wavy Text Animation</h2>
+    </section>
+    <section>
+        <h2 class="text2">Effects 02 : Wavy Text Animation</h2>
+    </section>
+    <script>
+        const text = document.querySelector('.text')
+        text.innerHTML = text.textContent.replace(/\S/g, "<span>$&</span>")
+        const text2 = document.querySelector('.text2')
+        text2.innerHTML = text2.textContent.replace(/\S/g, "<b>$&</b>")
+        const ele = document.querySelectorAll('span')
+        for (let i = 0; i < ele.length; i++) {
+            ele[i].style.animationDelay = i * 0.05 + 's'            
+        }
+        const ele2 = document.querySelectorAll('b')
+        for (let i = 0; i < ele.length; i++) {
+            ele2[i].style.animationDelay = i * 0.07 + 's'            
+        }
+    </script>
+</body>
+</html>
