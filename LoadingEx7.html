@@ -6,203 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Ex7</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: consolas;
         }
         section {
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            background: #557085;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            transition: 0.5s;
+            background: #001d10;
+            animation: animateBackgroundColor 10s linear infinite;
         }
-        section.active {
-            background: #3e3f39;
+        @keyframes animateBackgroundColor {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
         }
-        section .container {
+        .loading {
             position: relative;
-            width: 800px;
-            height: 500px;
-            background: #fff;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            width: 250px / 2;
+            height: 250px;
         }
-        section .container .user {
+        .loading .blocks {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
+            width: 5px;
+            height: 25px;
+            background: #050c09;
+            left: 50%;
+            border-radius: 8px;
+            transform: rotate(calc(18deg * var(--i)));
+            transform-origin: 0 125px;
+            animation: animate 1.9s ease-in-out infinite;
+            animation-delay: calc(0.05s * var(--i));
         }
-        section .container .user .imgBx {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            transition: 0.5s;
+        @keyframes animate {
+            0%, 50% {
+                background: #050c09;
+                box-shadow: none;
+            }
+            50.1%, 100% {
+                background: #0f0;
+                box-shadow: 0 0 5px #0f0,
+                            0 0 15px #0f0,
+                            0 0 30px #0f0,
+                            0 0 60px #0f0,
+                            0 0 90px #0f0;
+            }
         }
-        section .container .user .imgBx img {
+        h3 {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        section .container .user .formBx {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            transition: 0.5s;
-        }
-        section .container .user .formBx h2 {
-            font-size: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
             letter-spacing: 2px;
-            text-align: center;
-            width: 100%;
-            margin-bottom: 10px;
-            color: #555;
+            animation: animateText 2s ease-in-out infinite;
+            animation-delay: -1s;
         }
-        section .container .user .formBx input {
-            width: 100%;
-            padding: 10px;
-            background: #f5f5f5;
-            color: #333;
-            border: none;
-            outline: none;
-            box-shadow: none;
-            font-size: 14px;
-            margin: 8px 0;
-            letter-spacing: 1px;
-            font-weight: 300;
-        }
-        section .container .user .formBx input[type="submit"] {
-            max-width: 100px;
-            background: #677eff;
-            color: #fff;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: 0.5s;
-        }
-        section .container .user.signupBx .formBx input[type="submit"] {
-            background: #e73e49;
-        }
-        section .container .user .formBx .signup {
-            position: relative;
-            margin-top: 20px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: #555;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-        section .container .user .formBx .signup a {
-            font-weight: 600;
-            text-decoration: none;
-            color: #577eff;
-        }
-        section .container .signupBx {
-            pointer-events: none;
-        }
-        section .container.active .signupBx {
-            pointer-events: initial;
-        }
-        section .container .signupBx .formBx {
-            top: 100%;
-        }
-        section .container.active .signupBx .formBx {
-            top: 0;
-        }
-        section .container .signupBx .imgBx {
-            top: -100%;
-            transition: 0.5s;
-        }
-        section .container.active .signupBx .imgBx {
-            top: 0;
-        }
-        section .container .signinBx .formBx {
-            top: 0;
-        }
-        section .container.active .signinBx .formBx {
-            top: 100%;
-        }
-        section .container .signinBx .imgBx {
-            top: 0;
-            transition: 0.5s;
-        }
-        section .container.active .signinBx .imgBx {
-            top: -100%;
-        }
-        @media (max-width: 991px) {
-            section .container {
-                max-width: 400px;
+        @keyframes animateText {
+            0%, 50% {
+                color: #050c09;
+                text-shadow: none;
             }
-            section .container .imgBx {
-                display: none;
-            }
-            section .container .user .formBx {
-                width: 100%;
-            }
-            section .container.active .signinBx .formBx {
-                top: -100%;
+            50.1%, 100% {
+                color: #0f0;
+                text-shadow: 0 0 5px #0f0,
+                            0 0 15px #0f0,
+                            0 0 30px #0f0,
+                            0 0 60px #0f0,
+                            0 0 90px #0f0;
             }
         }
     </style>
 </head>
 <body>
     <section>
-        <div class="container">
-            <div class="user signinBx">
-                <div class="imgBx"><img src="image/bg1.jpg" alt=""></div>
-                <div class="formBx">
-                    <form action="">
-                        <h2>Sign In</h2>
-                        <input type="text" placeholder="Username">
-                        <input type="password" placeholder="Password">
-                        <input type="submit" value="Login">
-                        <p class="signup">don't have an account? <a href="#" onclick="toggleForm();">Sign up.</a></p>
-                    </form>
-                </div>
-            </div>
-            <div class="user signupBx">
-                <div class="formBx">
-                    <form action="">
-                        <h2>Create an account</h2>
-                        <input type="text" placeholder="Username">
-                        <input type="text" placeholder="Email Address">
-                        <input type="password" placeholder="Create Password">
-                        <input type="password" placeholder="Confirm Password">
-                        <input type="submit" value="Sign Up">
-                        <p class="signup">Already have an account? <a href="#" onclick="toggleForm();">Sign in.</a></p>
-                    </form>
-                </div>
-                <div class="imgBx"><img src="image/bg2.jpg" alt=""></div>
-            </div>
+        <div class="loading">
+            <div class="blocks" style="--i:1;"></div>
+            <div class="blocks" style="--i:2;"></div>
+            <div class="blocks" style="--i:3;"></div>
+            <div class="blocks" style="--i:4;"></div>
+            <div class="blocks" style="--i:5;"></div>
+            <div class="blocks" style="--i:6;"></div>
+            <div class="blocks" style="--i:7;"></div>
+            <div class="blocks" style="--i:8;"></div>
+            <div class="blocks" style="--i:9;"></div>
+            <div class="blocks" style="--i:10;"></div>
+            <div class="blocks" style="--i:11;"></div>
+            <div class="blocks" style="--i:12;"></div>
+            <div class="blocks" style="--i:13;"></div>
+            <div class="blocks" style="--i:14;"></div>
+            <div class="blocks" style="--i:15;"></div>
+            <div class="blocks" style="--i:16;"></div>
+            <div class="blocks" style="--i:17;"></div>
+            <div class="blocks" style="--i:18;"></div>
+            <div class="blocks" style="--i:19;"></div>
+            <div class="blocks" style="--i:20;"></div>
+            <h3>Loading</h3>
         </div>
     </section>
-    <script>
-        function toggleForm() {
-            container = document.querySelector('.container')
-            container.classList.toggle('active')
-            section = document.querySelector('.section')
-            section.classList.toggle('active')
-        }
-    </script>
 </body>
 </html>
