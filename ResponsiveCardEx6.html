@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .card {
+            position: relative;
+            width: 600px;
+            height: 350px;
+            margin: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(45deg, #1a2f3f, #7094ce);
+            transition: 0.5s;
+        }
+        .container .card img {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 400px;
+            transition: 0.5s;
+        }
+        .container .card:hover img {
+            left: 73%;
+            height: 500px;
+        }
+        .container .card .content {
+            position: relative;
+            width: 50%;
+            left: 20%;
+            padding: 20px 20px 20px 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+        }
+        .container .card:hover .content {
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+        .container .card .content h2 {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 2.2em;
+            line-height: 1em;
+        }
+        .container .card .content p {
+            color: #fff;
+        }
+        .container .card .content a {
+            position: relative;
+            color: #111;
+            background: #fff;
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 991px) {
+            .container .card {
+                width: auto;
+                max-width: 600px;
+                align-items: flex-start;
+            }
+            .container .card:hover {
+                height: 600px;
+            }
+            .container .card:hover img {
+                left: 50%;
+                height: 350px;
+            }
+            .container .card .content {
+                width: 100%;
+                left: 0;
+                padding: 40px;
+            }
+        }
+        @media (max-width: 767px) {
+            .container {
+                flex-direction: column;
+            }
+            .container .card {
+                margin: 40px 20px;
+            }
+        }
+        @media (max-width: 420px) {
+            .container .card .content {
+                padding: 30px;
+            }
+            .container .card:hover img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <h2>Nathan Drake</h2>
+                <p>Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces </p>
+                <a href="#">Read More</a>
+            </div>
+            <img src="image/nathan.png" alt="">
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2>Sam Drake</h2>
+                <p>Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces </p>
+                <a href="#">Read More</a>
+            </div>
+            <img src="image/sam.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
