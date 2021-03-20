@@ -1,0 +1,3803 @@
+{
+    "dataset": [
+        {
+            "2021-01-01 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:24"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.9,
+                        "day_avg": 21.4,
+                        "night_avg": 18.8,
+                        "diff": 2.5,
+                        "max": 24,
+                        "min": 17.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 33,
+                        "night_avg": 32,
+                        "max": 36,
+                        "min": 29
+                    },
+                    "GrhHdm": {
+                        "avg": 11.55,
+                        "day_avg": 12.43,
+                        "night_avg": 10.96,
+                        "max": 14.34,
+                        "min": 10.15
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0.2
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 11.4,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 27,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-02 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:25"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.8,
+                        "day_avg": 20.6,
+                        "night_avg": 19.3,
+                        "diff": 1.3,
+                        "max": 21.3,
+                        "min": 17.3
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 30,
+                        "day_avg": 28,
+                        "night_avg": 31,
+                        "max": 33,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 12,
+                        "day_avg": 12.88,
+                        "night_avg": 11.4,
+                        "max": 13.59,
+                        "min": 10.22
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0.2
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 11.2,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 26,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-03 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:26"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.7,
+                        "day_avg": 21.2,
+                        "night_avg": 18.7,
+                        "diff": 2.5,
+                        "max": 23.4,
+                        "min": 17
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 30,
+                        "day_avg": 30,
+                        "night_avg": 30,
+                        "max": 34,
+                        "min": 28
+                    },
+                    "GrhHdm": {
+                        "avg": 11.81,
+                        "day_avg": 12.85,
+                        "night_avg": 11.11,
+                        "max": 15.1,
+                        "min": 9.85
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0.2
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 11.1,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.9
+                    },
+                    "RT_soil_WC": {
+                        "avg": 26,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-04 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:27"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.9,
+                        "day_avg": 21.4,
+                        "night_avg": 19,
+                        "diff": 2.4,
+                        "max": 24.3,
+                        "min": 17.1
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 31,
+                        "day_avg": 32,
+                        "night_avg": 31,
+                        "max": 36,
+                        "min": 27
+                    },
+                    "GrhHdm": {
+                        "avg": 11.82,
+                        "day_avg": 12.83,
+                        "night_avg": 11.13,
+                        "max": 15.89,
+                        "min": 9.85
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.4,
+                        "min": 0.2,
+                        "diff": 0.2
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 10.9,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 25,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-05 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:28"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20,
+                        "day_avg": 20.3,
+                        "night_avg": 19.7,
+                        "diff": 0.6,
+                        "max": 22.3,
+                        "min": 16.1
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 28,
+                        "night_avg": 30,
+                        "max": 35,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 12.11,
+                        "day_avg": 12.57,
+                        "night_avg": 11.8,
+                        "max": 14.59,
+                        "min": 9.74
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.2,
+                        "diff": 0.3
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 10.8,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 24,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-06 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:29"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 17.6,
+                        "day_avg": 18.2,
+                        "night_avg": 17.1,
+                        "diff": 1.1,
+                        "max": 20.2,
+                        "min": 15.2
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 29,
+                        "night_avg": 29,
+                        "max": 34,
+                        "min": 27
+                    },
+                    "GrhHdm": {
+                        "avg": 10.58,
+                        "day_avg": 11.08,
+                        "night_avg": 10.25,
+                        "max": 12.69,
+                        "min": 8.99
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.4,
+                        "min": 0.1,
+                        "diff": 0.3
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 10.7,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 16
+                    },
+                    "RT_soil_WC": {
+                        "avg": 24,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-07 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:30"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 16.3,
+                        "day_avg": 16,
+                        "night_avg": 16.5,
+                        "diff": -0.6,
+                        "max": 19.2,
+                        "min": 11.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 28,
+                        "day_avg": 27,
+                        "night_avg": 28,
+                        "max": 36,
+                        "min": 23
+                    },
+                    "GrhHdm": {
+                        "avg": 10.07,
+                        "day_avg": 9.97,
+                        "night_avg": 10.14,
+                        "max": 11.79,
+                        "min": 6.65
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.4,
+                        "min": 0.1,
+                        "diff": 0.3
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 12,
+                        "diff": 3.7
+                    },
+                    "RT_soil_temp": {
+                        "avg": 14.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 31,
+                        "diff": 20
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-08 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:30"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 14.7,
+                        "day_avg": 15.2,
+                        "night_avg": 14.3,
+                        "diff": 0.9,
+                        "max": 16.2,
+                        "min": 13.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 26,
+                        "day_avg": 26,
+                        "night_avg": 26,
+                        "max": 28,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 9.28,
+                        "day_avg": 9.58,
+                        "night_avg": 9.07,
+                        "max": 10.35,
+                        "min": 8.35
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.2,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 14,
+                        "diff": 0.6
+                    },
+                    "RT_soil_temp": {
+                        "avg": 13.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 41,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-09 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:31"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 15.1,
+                        "day_avg": 15.9,
+                        "night_avg": 14.5,
+                        "diff": 1.4,
+                        "max": 17.5,
+                        "min": 12.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 27,
+                        "day_avg": 26,
+                        "night_avg": 27,
+                        "max": 30,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 9.44,
+                        "day_avg": 10.01,
+                        "night_avg": 9.05,
+                        "max": 11.18,
+                        "min": 7.96
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.2,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 13.8,
+                        "diff": 0.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 13.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 40,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-10 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:32"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 16.6,
+                        "day_avg": 17.7,
+                        "night_avg": 15.8,
+                        "diff": 1.9,
+                        "max": 20.2,
+                        "min": 13.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 30,
+                        "night_avg": 28,
+                        "max": 32,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 10,
+                        "day_avg": 10.6,
+                        "night_avg": 9.58,
+                        "max": 11.89,
+                        "min": 8.35
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.1,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 13.7,
+                        "diff": 4.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 15.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 39,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-11 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:33"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 18.6,
+                        "day_avg": 19.4,
+                        "night_avg": 18.1,
+                        "diff": 1.3,
+                        "max": 21.3,
+                        "min": 15.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 30,
+                        "day_avg": 33,
+                        "night_avg": 29,
+                        "max": 36,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 11.06,
+                        "day_avg": 11.18,
+                        "night_avg": 10.98,
+                        "max": 12.87,
+                        "min": 9.38
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.1,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 14.1,
+                        "diff": 2.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 16.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 41,
+                        "diff": 6
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-12 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:47",
+                        "sunset": "17:34"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 21,
+                        "day_avg": 21.8,
+                        "night_avg": 20.5,
+                        "diff": 1.2,
+                        "max": 23.2,
+                        "min": 18.8
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 30,
+                        "day_avg": 31,
+                        "night_avg": 29,
+                        "max": 33,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 12.77,
+                        "day_avg": 13.1,
+                        "night_avg": 12.55,
+                        "max": 13.93,
+                        "min": 11.66
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.2,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 15.1,
+                        "diff": 2.7
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.6
+                    },
+                    "RT_soil_WC": {
+                        "avg": 44,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-13 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:46",
+                        "sunset": "17:35"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.7,
+                        "day_avg": 24.7,
+                        "night_avg": 23,
+                        "diff": 1.7,
+                        "max": 26.7,
+                        "min": 21.1
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 33,
+                        "night_avg": 31,
+                        "max": 35,
+                        "min": 30
+                    },
+                    "GrhHdm": {
+                        "avg": 14.46,
+                        "day_avg": 15.04,
+                        "night_avg": 14.05,
+                        "max": 16.76,
+                        "min": 12.53
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.2,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 14.9,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20.9
+                    },
+                    "RT_soil_WC": {
+                        "avg": 42,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-14 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:46",
+                        "sunset": "17:36"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.5,
+                        "day_avg": 24.3,
+                        "night_avg": 23,
+                        "diff": 1.3,
+                        "max": 26.1,
+                        "min": 21
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 29,
+                        "night_avg": 30,
+                        "max": 32,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 14.95,
+                        "day_avg": 15.79,
+                        "night_avg": 14.36,
+                        "max": 18.07,
+                        "min": 12.67
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.2,
+                        "min": 0.2,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 14.9,
+                        "diff": 5
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 41,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-15 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:46",
+                        "sunset": "17:37"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.5,
+                        "day_avg": 27.3,
+                        "night_avg": 24.2,
+                        "diff": 3.1,
+                        "max": 28.7,
+                        "min": 22
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 37,
+                        "night_avg": 34,
+                        "max": 38,
+                        "min": 32
+                    },
+                    "GrhHdm": {
+                        "avg": 15.3,
+                        "day_avg": 16.51,
+                        "night_avg": 14.46,
+                        "max": 17.93,
+                        "min": 12.61
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 15.4,
+                        "diff": 2.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 43,
+                        "diff": 5
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-16 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:46",
+                        "sunset": "17:38"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20.6,
+                        "day_avg": 21.7,
+                        "night_avg": 19.9,
+                        "diff": 1.7,
+                        "max": 22.8,
+                        "min": 18
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 31,
+                        "day_avg": 30,
+                        "night_avg": 31,
+                        "max": 34,
+                        "min": 28
+                    },
+                    "GrhHdm": {
+                        "avg": 12.36,
+                        "day_avg": 13.21,
+                        "night_avg": 11.78,
+                        "max": 14.32,
+                        "min": 10.46
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16,
+                        "diff": 2.8
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-17 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:45",
+                        "sunset": "17:39"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 18.6,
+                        "day_avg": 19,
+                        "night_avg": 18.4,
+                        "diff": 0.6,
+                        "max": 20.4,
+                        "min": 16.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 30,
+                        "day_avg": 28,
+                        "night_avg": 30,
+                        "max": 33,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 11.15,
+                        "day_avg": 11.58,
+                        "night_avg": 10.86,
+                        "max": 12.56,
+                        "min": 9.87
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.2,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 15.8,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-18 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:45",
+                        "sunset": "17:40"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20.3,
+                        "day_avg": 21.6,
+                        "night_avg": 19.5,
+                        "diff": 2.1,
+                        "max": 23.2,
+                        "min": 17.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 35,
+                        "night_avg": 32,
+                        "max": 37,
+                        "min": 29
+                    },
+                    "GrhHdm": {
+                        "avg": 11.68,
+                        "day_avg": 12.26,
+                        "night_avg": 11.27,
+                        "max": 13.56,
+                        "min": 10.01
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.2,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16,
+                        "diff": 3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-19 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:44",
+                        "sunset": "17:42"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 17.4,
+                        "day_avg": 18.2,
+                        "night_avg": 16.8,
+                        "diff": 1.4,
+                        "max": 19.5,
+                        "min": 15
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 28,
+                        "night_avg": 30,
+                        "max": 32,
+                        "min": 25
+                    },
+                    "GrhHdm": {
+                        "avg": 10.5,
+                        "day_avg": 11.2,
+                        "night_avg": 10.01,
+                        "max": 12.48,
+                        "min": 8.87
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.3,
+                        "diff": 2.7
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 46,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-20 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:44",
+                        "sunset": "17:43"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 18.6,
+                        "day_avg": 19.7,
+                        "night_avg": 17.7,
+                        "diff": 1.9,
+                        "max": 22.2,
+                        "min": 15.5
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 34,
+                        "night_avg": 31,
+                        "max": 37,
+                        "min": 28
+                    },
+                    "GrhHdm": {
+                        "avg": 10.71,
+                        "day_avg": 11.2,
+                        "night_avg": 10.36,
+                        "max": 12.7,
+                        "min": 9.12
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.2,
+                        "diff": 2.9
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 46,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-21 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:43",
+                        "sunset": "17:44"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 22.9,
+                        "day_avg": 23.8,
+                        "night_avg": 22.3,
+                        "diff": 1.5,
+                        "max": 26,
+                        "min": 20.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 37,
+                        "day_avg": 34,
+                        "night_avg": 40,
+                        "max": 51,
+                        "min": 32
+                    },
+                    "GrhHdm": {
+                        "avg": 12.73,
+                        "day_avg": 14.14,
+                        "night_avg": 11.72,
+                        "max": 16.54,
+                        "min": 10.2
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 21.9
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-22 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:43",
+                        "sunset": "17:45"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 24.9,
+                        "day_avg": 25.9,
+                        "night_avg": 24.1,
+                        "diff": 1.8,
+                        "max": 28,
+                        "min": 22.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 47,
+                        "day_avg": 49,
+                        "night_avg": 46,
+                        "max": 52,
+                        "min": 41
+                    },
+                    "GrhHdm": {
+                        "avg": 11.97,
+                        "day_avg": 12.33,
+                        "night_avg": 11.71,
+                        "max": 14.16,
+                        "min": 9.96
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.3,
+                        "diff": 1.3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 24.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 46,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-23 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:42",
+                        "sunset": "17:46"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 26.8,
+                        "day_avg": 28.3,
+                        "night_avg": 25.7,
+                        "diff": 2.5,
+                        "max": 30.2,
+                        "min": 24
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 39,
+                        "day_avg": 39,
+                        "night_avg": 39,
+                        "max": 41,
+                        "min": 37
+                    },
+                    "GrhHdm": {
+                        "avg": 15.57,
+                        "day_avg": 16.82,
+                        "night_avg": 14.67,
+                        "max": 18.74,
+                        "min": 12.69
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.4,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 26.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 46,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-24 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:42",
+                        "sunset": "17:47"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.7,
+                        "day_avg": 26.8,
+                        "night_avg": 24.9,
+                        "diff": 1.9,
+                        "max": 28.9,
+                        "min": 23.2
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 35,
+                        "night_avg": 35,
+                        "max": 38,
+                        "min": 33
+                    },
+                    "GrhHdm": {
+                        "avg": 15.4,
+                        "day_avg": 16.39,
+                        "night_avg": 14.69,
+                        "max": 18.74,
+                        "min": 13.29
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.3,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.2,
+                        "diff": 2.3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-25 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:41",
+                        "sunset": "17:48"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25,
+                        "day_avg": 26.4,
+                        "night_avg": 24,
+                        "diff": 2.5,
+                        "max": 29.1,
+                        "min": 21.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 34,
+                        "day_avg": 34,
+                        "night_avg": 34,
+                        "max": 37,
+                        "min": 31
+                    },
+                    "GrhHdm": {
+                        "avg": 15.17,
+                        "day_avg": 16.51,
+                        "night_avg": 14.18,
+                        "max": 19.57,
+                        "min": 12.58
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16,
+                        "diff": 2.9
+                    },
+                    "RT_soil_temp": {
+                        "avg": 24.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 45,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-26 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:40",
+                        "sunset": "17:49"
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 24.4,
+                        "day_avg": 24.8,
+                        "night_avg": 24.2,
+                        "diff": 0.6,
+                        "max": 26.8,
+                        "min": 18.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 40,
+                        "day_avg": 43,
+                        "night_avg": 38,
+                        "max": 54,
+                        "min": 34
+                    },
+                    "GrhHdm": {
+                        "avg": 13.25,
+                        "day_avg": 12.94,
+                        "night_avg": 13.49,
+                        "max": 14.75,
+                        "min": 7.29
+                    }
+                },
+                "Grh_climate_etc": {},
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.2,
+                        "diff": 1.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 46,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-27 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:40",
+                        "sunset": "17:50"
+                    },
+                    "OutTemp": {
+                        "avg": 4.3,
+                        "day_avg": 7.1,
+                        "night_avg": 2.7,
+                        "diff": 4.4
+                    },
+                    "OutRad_sum": {
+                        "max": 1136
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 21.8,
+                        "day_avg": 21.8,
+                        "night_avg": 21.8,
+                        "diff": 0,
+                        "max": 24.7,
+                        "min": 12.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 34,
+                        "day_avg": 33,
+                        "night_avg": 35,
+                        "max": 41,
+                        "min": 16
+                    },
+                    "GrhHdm": {
+                        "avg": 12.53,
+                        "day_avg": 12.81,
+                        "night_avg": 12.33,
+                        "max": 17.62,
+                        "min": 8.12
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 440,
+                        "max": 525,
+                        "min": 361
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.6,
+                        "diff": 3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 22.2
+                    },
+                    "RT_soil_WC": {
+                        "avg": 47,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-28 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:39",
+                        "sunset": "17:51"
+                    },
+                    "OutTemp": {
+                        "avg": -0.4,
+                        "day_avg": 1.7,
+                        "night_avg": -1.9,
+                        "diff": 3.7
+                    },
+                    "OutRad_sum": {
+                        "max": 1136
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.9,
+                        "day_avg": 20.5,
+                        "night_avg": 19.4,
+                        "diff": 1.1,
+                        "max": 23.8,
+                        "min": 5.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 34,
+                        "night_avg": 32,
+                        "max": 42,
+                        "min": 19
+                    },
+                    "GrhHdm": {
+                        "avg": 11.52,
+                        "day_avg": 11.92,
+                        "night_avg": 11.23,
+                        "max": 14.11,
+                        "min": 4.57
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 449,
+                        "max": 637,
+                        "min": 348
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.4,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 47,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-29 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:38",
+                        "sunset": "17:52"
+                    },
+                    "OutTemp": {
+                        "avg": -4.9,
+                        "day_avg": -3.5,
+                        "night_avg": -5.8,
+                        "diff": 2.3
+                    },
+                    "OutRad_sum": {
+                        "max": 1177
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 16.6,
+                        "day_avg": 16.7,
+                        "night_avg": 16.5,
+                        "diff": 0.2,
+                        "max": 19.4,
+                        "min": 5.8
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 28,
+                        "night_avg": 29,
+                        "max": 35,
+                        "min": 19
+                    },
+                    "GrhHdm": {
+                        "avg": 10.08,
+                        "day_avg": 10.29,
+                        "night_avg": 9.93,
+                        "max": 12.38,
+                        "min": 4.76
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 437,
+                        "max": 595,
+                        "min": 345
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.5,
+                        "diff": 1.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 2
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-30 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:37",
+                        "sunset": "17:54"
+                    },
+                    "OutTemp": {
+                        "avg": 1.1,
+                        "day_avg": 5.4,
+                        "night_avg": -2.1,
+                        "diff": 7.6
+                    },
+                    "OutRad_sum": {
+                        "max": 1179
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20.5,
+                        "day_avg": 23,
+                        "night_avg": 18.7,
+                        "diff": 4.2,
+                        "max": 27.2,
+                        "min": 16
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 34,
+                        "night_avg": 31,
+                        "max": 39,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 12.12,
+                        "day_avg": 13.71,
+                        "night_avg": 10.93,
+                        "max": 17.11,
+                        "min": 8.46
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 465,
+                        "max": 605,
+                        "min": 357
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-01-31 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:37",
+                        "sunset": "17:55"
+                    },
+                    "OutTemp": {
+                        "avg": 5.1,
+                        "day_avg": 8.3,
+                        "night_avg": 2.8,
+                        "diff": 5.5
+                    },
+                    "OutRad_sum": {
+                        "max": 948
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 22.7,
+                        "day_avg": 24.2,
+                        "night_avg": 21.6,
+                        "diff": 2.6,
+                        "max": 28.8,
+                        "min": 18.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 34,
+                        "day_avg": 34,
+                        "night_avg": 33,
+                        "max": 37,
+                        "min": 27
+                    },
+                    "GrhHdm": {
+                        "avg": 13.51,
+                        "day_avg": 14.66,
+                        "night_avg": 12.64,
+                        "max": 18.79,
+                        "min": 10.91
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 469,
+                        "max": 570,
+                        "min": 330
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.6,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 22.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-01 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:36",
+                        "sunset": "17:56"
+                    },
+                    "OutTemp": {
+                        "avg": 8.2,
+                        "day_avg": 9.8,
+                        "night_avg": 6.9,
+                        "diff": 2.9
+                    },
+                    "OutRad_sum": {
+                        "max": 950
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.7,
+                        "day_avg": 27.2,
+                        "night_avg": 24.6,
+                        "diff": 2.6,
+                        "max": 30.3,
+                        "min": 18.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 39,
+                        "day_avg": 41,
+                        "night_avg": 38,
+                        "max": 51,
+                        "min": 32
+                    },
+                    "GrhHdm": {
+                        "avg": 14.55,
+                        "day_avg": 15.51,
+                        "night_avg": 13.82,
+                        "max": 18.79,
+                        "min": 7.78
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 450,
+                        "max": 588,
+                        "min": 342
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.4,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 47,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-02 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:35",
+                        "sunset": "17:57"
+                    },
+                    "OutTemp": {
+                        "avg": -1.8,
+                        "day_avg": -1.5,
+                        "night_avg": -2,
+                        "diff": 0.5
+                    },
+                    "OutRad_sum": {
+                        "max": 1276
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 18.5,
+                        "day_avg": 17.7,
+                        "night_avg": 19.1,
+                        "diff": -1.4,
+                        "max": 22.2,
+                        "min": 4.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 27,
+                        "night_avg": 31,
+                        "max": 36,
+                        "min": 15
+                    },
+                    "GrhHdm": {
+                        "avg": 11.23,
+                        "day_avg": 11.22,
+                        "night_avg": 11.23,
+                        "max": 13.07,
+                        "min": 4.53
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 449,
+                        "max": 556,
+                        "min": 323
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.6,
+                        "diff": 1.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 4
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-03 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:34",
+                        "sunset": "17:58"
+                    },
+                    "OutTemp": {
+                        "avg": -1.8,
+                        "day_avg": -0.1,
+                        "night_avg": -3.1,
+                        "diff": 2.9
+                    },
+                    "OutRad_sum": {
+                        "max": 1280
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19,
+                        "day_avg": 19.4,
+                        "night_avg": 18.8,
+                        "diff": 0.6,
+                        "max": 21.6,
+                        "min": 13.3
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 31,
+                        "day_avg": 31,
+                        "night_avg": 31,
+                        "max": 37,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 11.25,
+                        "day_avg": 11.55,
+                        "night_avg": 11.02,
+                        "max": 13.74,
+                        "min": 7.37
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 469,
+                        "max": 653,
+                        "min": 332
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-04 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:33",
+                        "sunset": "17:59"
+                    },
+                    "OutTemp": {
+                        "avg": -0.3,
+                        "day_avg": 0.6,
+                        "night_avg": -1,
+                        "diff": 1.6
+                    },
+                    "OutRad_sum": {
+                        "max": 1296
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19,
+                        "day_avg": 18.8,
+                        "night_avg": 19.1,
+                        "diff": -0.2,
+                        "max": 20.9,
+                        "min": 10.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 33,
+                        "night_avg": 34,
+                        "max": 38,
+                        "min": 21
+                    },
+                    "GrhHdm": {
+                        "avg": 10.79,
+                        "day_avg": 10.87,
+                        "night_avg": 10.73,
+                        "max": 13.27,
+                        "min": 6.32
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 466,
+                        "max": 633,
+                        "min": 353
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 0
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-05 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:32",
+                        "sunset": "18:00"
+                    },
+                    "OutTemp": {
+                        "avg": 1.2,
+                        "day_avg": 4.1,
+                        "night_avg": -1,
+                        "diff": 5.2
+                    },
+                    "OutRad_sum": {
+                        "max": 1297
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20.5,
+                        "day_avg": 22.1,
+                        "night_avg": 19.2,
+                        "diff": 2.9,
+                        "max": 26.3,
+                        "min": 17.1
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 34,
+                        "night_avg": 32,
+                        "max": 38,
+                        "min": 29
+                    },
+                    "GrhHdm": {
+                        "avg": 11.9,
+                        "day_avg": 12.87,
+                        "night_avg": 11.15,
+                        "max": 16.59,
+                        "min": 9.9
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 470,
+                        "max": 651,
+                        "min": 302
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 3.3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-06 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:31",
+                        "sunset": "18:01"
+                    },
+                    "OutTemp": {
+                        "avg": 5.4,
+                        "day_avg": 7.3,
+                        "night_avg": 3.9,
+                        "diff": 3.3
+                    },
+                    "OutRad_sum": {
+                        "max": 1175
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.9,
+                        "day_avg": 25.4,
+                        "night_avg": 22.8,
+                        "diff": 2.6,
+                        "max": 28.3,
+                        "min": 19.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 35,
+                        "night_avg": 34,
+                        "max": 39,
+                        "min": 31
+                    },
+                    "GrhHdm": {
+                        "avg": 14.14,
+                        "day_avg": 15.24,
+                        "night_avg": 13.29,
+                        "max": 18.52,
+                        "min": 11.12
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 480,
+                        "max": 601,
+                        "min": 382
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 0.7
+                    },
+                    "RT_soil_temp": {
+                        "avg": 22.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-07 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:30",
+                        "sunset": "18:02"
+                    },
+                    "OutTemp": {
+                        "avg": 5.8,
+                        "day_avg": 7.8,
+                        "night_avg": 4.2,
+                        "diff": 3.6
+                    },
+                    "OutRad_sum": {
+                        "max": 928
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 24.8,
+                        "day_avg": 26.7,
+                        "night_avg": 23.3,
+                        "diff": 3.5,
+                        "max": 29.8,
+                        "min": 19.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 34,
+                        "day_avg": 33,
+                        "night_avg": 34,
+                        "max": 41,
+                        "min": 28
+                    },
+                    "GrhHdm": {
+                        "avg": 15.18,
+                        "day_avg": 17.07,
+                        "night_avg": 13.7,
+                        "max": 20.78,
+                        "min": 9.82
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 458,
+                        "max": 576,
+                        "min": 342
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 2.3
+                    },
+                    "RT_soil_temp": {
+                        "avg": 24.9
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-08 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:29",
+                        "sunset": "18:04"
+                    },
+                    "OutTemp": {
+                        "avg": -1.8,
+                        "day_avg": 0.2,
+                        "night_avg": -3.4,
+                        "diff": 3.6
+                    },
+                    "OutRad_sum": {
+                        "max": 1329
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.1,
+                        "day_avg": 19.3,
+                        "night_avg": 19,
+                        "diff": 0.3,
+                        "max": 21.9,
+                        "min": 7.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 28,
+                        "day_avg": 27,
+                        "night_avg": 29,
+                        "max": 33,
+                        "min": 14
+                    },
+                    "GrhHdm": {
+                        "avg": 11.79,
+                        "day_avg": 12.21,
+                        "night_avg": 11.46,
+                        "max": 14.53,
+                        "min": 6
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 455,
+                        "max": 590,
+                        "min": 278
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.5,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.2
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-09 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:28",
+                        "sunset": "18:05"
+                    },
+                    "OutTemp": {
+                        "avg": -1,
+                        "day_avg": 2.4,
+                        "night_avg": -3.6,
+                        "diff": 6
+                    },
+                    "OutRad_sum": {
+                        "max": 1372
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.3,
+                        "day_avg": 20.1,
+                        "night_avg": 18.7,
+                        "diff": 1.4,
+                        "max": 22.1,
+                        "min": 16
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 31,
+                        "night_avg": 28,
+                        "max": 35,
+                        "min": 24
+                    },
+                    "GrhHdm": {
+                        "avg": 11.63,
+                        "day_avg": 12.01,
+                        "night_avg": 11.34,
+                        "max": 14.32,
+                        "min": 9.06
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 467,
+                        "max": 635,
+                        "min": 287
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 1.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 18.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-10 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:27",
+                        "sunset": "18:06"
+                    },
+                    "OutTemp": {
+                        "avg": 1.9,
+                        "day_avg": 5.1,
+                        "night_avg": -0.7,
+                        "diff": 5.8
+                    },
+                    "OutRad_sum": {
+                        "max": 1378
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 21,
+                        "day_avg": 22.6,
+                        "night_avg": 19.8,
+                        "diff": 2.8,
+                        "max": 26.4,
+                        "min": 17.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 34,
+                        "night_avg": 31,
+                        "max": 43,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 12.39,
+                        "day_avg": 13.31,
+                        "night_avg": 11.65,
+                        "max": 16.71,
+                        "min": 9.52
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 458,
+                        "max": 583,
+                        "min": 262
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 3.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 20
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-11 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:26",
+                        "sunset": "18:07"
+                    },
+                    "OutTemp": {
+                        "avg": 5.2,
+                        "day_avg": 8.8,
+                        "night_avg": 2.4,
+                        "diff": 6.4
+                    },
+                    "OutRad_sum": {
+                        "max": 1127
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23,
+                        "day_avg": 24.6,
+                        "night_avg": 21.7,
+                        "diff": 2.9,
+                        "max": 28.5,
+                        "min": 17.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 31,
+                        "night_avg": 33,
+                        "max": 36,
+                        "min": 18
+                    },
+                    "GrhHdm": {
+                        "avg": 14.1,
+                        "day_avg": 15.85,
+                        "night_avg": 12.69,
+                        "max": 20.85,
+                        "min": 10.43
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 426,
+                        "max": 595,
+                        "min": 246
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 4.6
+                    },
+                    "RT_soil_temp": {
+                        "avg": 22.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-12 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:25",
+                        "sunset": "18:08"
+                    },
+                    "OutTemp": {
+                        "avg": 6.7,
+                        "day_avg": 10.6,
+                        "night_avg": 3.6,
+                        "diff": 7
+                    },
+                    "OutRad_sum": {
+                        "max": 1267
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.3,
+                        "day_avg": 24.7,
+                        "night_avg": 22.1,
+                        "diff": 2.6,
+                        "max": 27.3,
+                        "min": 20.6
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 30,
+                        "night_avg": 33,
+                        "max": 36,
+                        "min": 16
+                    },
+                    "GrhHdm": {
+                        "avg": 14.27,
+                        "day_avg": 15.81,
+                        "night_avg": 13.02,
+                        "max": 20.75,
+                        "min": 12.12
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 424,
+                        "max": 541,
+                        "min": 303
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 22.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 2
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-13 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:24",
+                        "sunset": "18:09"
+                    },
+                    "OutTemp": {
+                        "avg": 7,
+                        "day_avg": 11.4,
+                        "night_avg": 3.4,
+                        "diff": 8
+                    },
+                    "OutRad_sum": {
+                        "max": 1331
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.4,
+                        "day_avg": 24.8,
+                        "night_avg": 22.3,
+                        "diff": 2.5,
+                        "max": 28.1,
+                        "min": 20.1
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 31,
+                        "day_avg": 29,
+                        "night_avg": 32,
+                        "max": 36,
+                        "min": 13
+                    },
+                    "GrhHdm": {
+                        "avg": 14.68,
+                        "day_avg": 16.16,
+                        "night_avg": 13.48,
+                        "max": 22.44,
+                        "min": 11.68
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 433,
+                        "max": 559,
+                        "min": 315
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 3.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-14 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:23",
+                        "sunset": "18:10"
+                    },
+                    "OutTemp": {
+                        "avg": 9.2,
+                        "day_avg": 13.1,
+                        "night_avg": 6,
+                        "diff": 7.1
+                    },
+                    "OutRad_sum": {
+                        "max": 1337
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.7,
+                        "day_avg": 27.6,
+                        "night_avg": 24.1,
+                        "diff": 3.5,
+                        "max": 30.2,
+                        "min": 22.5
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 33,
+                        "night_avg": 36,
+                        "max": 46,
+                        "min": 25
+                    },
+                    "GrhHdm": {
+                        "avg": 15.67,
+                        "day_avg": 17.82,
+                        "night_avg": 13.9,
+                        "max": 21.42,
+                        "min": 11.58
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 468,
+                        "max": 578,
+                        "min": 317
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.7,
+                        "diff": 1.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.2
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-15 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:22",
+                        "sunset": "18:11"
+                    },
+                    "OutTemp": {
+                        "avg": 3.2,
+                        "day_avg": 3.2,
+                        "night_avg": 3.1,
+                        "diff": 0.1
+                    },
+                    "OutRad_sum": {
+                        "max": 778
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 22.6,
+                        "day_avg": 22.8,
+                        "night_avg": 22.4,
+                        "diff": 0.3,
+                        "max": 25.2,
+                        "min": 11.3
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 40,
+                        "day_avg": 40,
+                        "night_avg": 39,
+                        "max": 46,
+                        "min": 21
+                    },
+                    "GrhHdm": {
+                        "avg": 12.06,
+                        "day_avg": 12.17,
+                        "night_avg": 11.97,
+                        "max": 15.16,
+                        "min": 6.38
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 455,
+                        "max": 619,
+                        "min": 283
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.5,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-16 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:21",
+                        "sunset": "18:12"
+                    },
+                    "OutTemp": {
+                        "avg": -2,
+                        "day_avg": -0.2,
+                        "night_avg": -3.5,
+                        "diff": 3.3
+                    },
+                    "OutRad_sum": {
+                        "max": 782
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 19.5,
+                        "day_avg": 19.9,
+                        "night_avg": 19.1,
+                        "diff": 0.8,
+                        "max": 23.5,
+                        "min": 7.2
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 35,
+                        "night_avg": 32,
+                        "max": 55,
+                        "min": 25
+                    },
+                    "GrhHdm": {
+                        "avg": 11.27,
+                        "day_avg": 11.38,
+                        "night_avg": 11.17,
+                        "max": 13.68,
+                        "min": 3.71
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 474,
+                        "max": 815,
+                        "min": 394
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 5.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.5
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-17 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:19",
+                        "sunset": "18:13"
+                    },
+                    "OutTemp": {
+                        "avg": -6,
+                        "day_avg": -5.1,
+                        "night_avg": -6.8,
+                        "diff": 1.7
+                    },
+                    "OutRad_sum": {
+                        "max": 1116
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 17.6,
+                        "day_avg": 17.7,
+                        "night_avg": 17.6,
+                        "diff": 0.1,
+                        "max": 20.2,
+                        "min": 4.2
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 29,
+                        "night_avg": 29,
+                        "max": 36,
+                        "min": 15
+                    },
+                    "GrhHdm": {
+                        "avg": 10.69,
+                        "day_avg": 10.88,
+                        "night_avg": 10.54,
+                        "max": 12.98,
+                        "min": 4.36
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 465,
+                        "max": 754,
+                        "min": 310
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 2.9
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.2
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-18 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:18",
+                        "sunset": "18:14"
+                    },
+                    "OutTemp": {
+                        "avg": -4.7,
+                        "day_avg": -2.6,
+                        "night_avg": -6.4,
+                        "diff": 3.8
+                    },
+                    "OutRad_sum": {
+                        "max": 1390
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 17.6,
+                        "day_avg": 18,
+                        "night_avg": 17.2,
+                        "diff": 0.8,
+                        "max": 20.7,
+                        "min": 8.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 30,
+                        "night_avg": 29,
+                        "max": 37,
+                        "min": 17
+                    },
+                    "GrhHdm": {
+                        "avg": 10.63,
+                        "day_avg": 10.9,
+                        "night_avg": 10.4,
+                        "max": 13.72,
+                        "min": 5.73
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 489,
+                        "max": 843,
+                        "min": 368
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.3,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 3.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 17.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-19 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:17",
+                        "sunset": "18:15"
+                    },
+                    "OutTemp": {
+                        "avg": 2.4,
+                        "day_avg": 5.4,
+                        "night_avg": -0.1,
+                        "diff": 5.4
+                    },
+                    "OutRad_sum": {
+                        "max": 1469
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 20.2,
+                        "day_avg": 21.3,
+                        "night_avg": 19.2,
+                        "diff": 2.1,
+                        "max": 24.6,
+                        "min": 17.3
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 36,
+                        "night_avg": 31,
+                        "max": 39,
+                        "min": 27
+                    },
+                    "GrhHdm": {
+                        "avg": 11.61,
+                        "day_avg": 11.97,
+                        "night_avg": 11.31,
+                        "max": 15.36,
+                        "min": 9.52
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 480,
+                        "max": 800,
+                        "min": 350
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 3.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 19.7
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-20 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:16",
+                        "sunset": "18:16"
+                    },
+                    "OutTemp": {
+                        "avg": 9.3,
+                        "day_avg": 12.5,
+                        "night_avg": 6.6,
+                        "diff": 5.9
+                    },
+                    "OutRad_sum": {
+                        "max": 1470
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 24.8,
+                        "day_avg": 27.1,
+                        "night_avg": 22.8,
+                        "diff": 4.4,
+                        "max": 30.1,
+                        "min": 21
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 35,
+                        "night_avg": 34,
+                        "max": 37,
+                        "min": 26
+                    },
+                    "GrhHdm": {
+                        "avg": 14.94,
+                        "day_avg": 16.98,
+                        "night_avg": 13.21,
+                        "max": 20.61,
+                        "min": 11.77
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 469,
+                        "max": 618,
+                        "min": 360
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.4,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 17,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 24.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 2
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-21 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:14",
+                        "sunset": "18:17"
+                    },
+                    "OutTemp": {
+                        "avg": 14.6,
+                        "day_avg": 18.7,
+                        "night_avg": 11.1,
+                        "diff": 7.6
+                    },
+                    "OutRad_sum": {
+                        "max": 1469
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 27.1,
+                        "day_avg": 28.6,
+                        "night_avg": 25.7,
+                        "diff": 2.9,
+                        "max": 30.2,
+                        "min": 23.5
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 33,
+                        "day_avg": 33,
+                        "night_avg": 34,
+                        "max": 37,
+                        "min": 20
+                    },
+                    "GrhHdm": {
+                        "avg": 17.28,
+                        "day_avg": 18.94,
+                        "night_avg": 15.88,
+                        "max": 23.17,
+                        "min": 13.6
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 455,
+                        "max": 566,
+                        "min": 395
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.4,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 26.1
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-22 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:13",
+                        "sunset": "18:18"
+                    },
+                    "OutTemp": {
+                        "avg": 10.4,
+                        "day_avg": 14,
+                        "night_avg": 7.3,
+                        "diff": 6.7
+                    },
+                    "OutRad_sum": {
+                        "max": 1471
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 26.3,
+                        "day_avg": 28.2,
+                        "night_avg": 24.6,
+                        "diff": 3.6,
+                        "max": 30.4,
+                        "min": 21.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 34,
+                        "day_avg": 34,
+                        "night_avg": 33,
+                        "max": 37,
+                        "min": 17
+                    },
+                    "GrhHdm": {
+                        "avg": 16.48,
+                        "day_avg": 18.3,
+                        "night_avg": 14.92,
+                        "max": 23.99,
+                        "min": 12.54
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 465,
+                        "max": 562,
+                        "min": 358
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.6,
+                        "diff": 0.9
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.8
+                    },
+                    "RT_soil_WC": {
+                        "avg": 48,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-23 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:12",
+                        "sunset": "18:20"
+                    },
+                    "OutTemp": {
+                        "avg": 1.8,
+                        "day_avg": 4.2,
+                        "night_avg": -0.3,
+                        "diff": 4.5
+                    },
+                    "OutRad_sum": {
+                        "max": 1434
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 21.5,
+                        "day_avg": 22.4,
+                        "night_avg": 20.8,
+                        "diff": 1.6,
+                        "max": 25.9,
+                        "min": 13.8
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 27,
+                        "day_avg": 26,
+                        "night_avg": 27,
+                        "max": 31,
+                        "min": 9
+                    },
+                    "GrhHdm": {
+                        "avg": 13.84,
+                        "day_avg": 14.72,
+                        "night_avg": 13.08,
+                        "max": 20.19,
+                        "min": 9.7
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 469,
+                        "max": 667,
+                        "min": 341
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 3.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 21.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-24 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:11",
+                        "sunset": "18:21"
+                    },
+                    "OutTemp": {
+                        "avg": 3.5,
+                        "day_avg": 6.6,
+                        "night_avg": 0.7,
+                        "diff": 5.9
+                    },
+                    "OutRad_sum": {
+                        "max": 1435
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.4,
+                        "day_avg": 25.4,
+                        "night_avg": 21.6,
+                        "diff": 3.8,
+                        "max": 29.2,
+                        "min": 19.3
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 27,
+                        "day_avg": 24,
+                        "night_avg": 30,
+                        "max": 33,
+                        "min": 11
+                    },
+                    "GrhHdm": {
+                        "avg": 15.52,
+                        "day_avg": 18.11,
+                        "night_avg": 13.28,
+                        "max": 24.18,
+                        "min": 11.92
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 478,
+                        "max": 574,
+                        "min": 345
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 3.4
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.3
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-25 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:09",
+                        "sunset": "18:22"
+                    },
+                    "OutTemp": {
+                        "avg": 3.6,
+                        "day_avg": 6,
+                        "night_avg": 1.5,
+                        "diff": 4.5
+                    },
+                    "OutRad_sum": {
+                        "max": 1150
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 23.7,
+                        "day_avg": 25.3,
+                        "night_avg": 22.4,
+                        "diff": 2.9,
+                        "max": 28.5,
+                        "min": 20.9
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 29,
+                        "night_avg": 35,
+                        "max": 43,
+                        "min": 25
+                    },
+                    "GrhHdm": {
+                        "avg": 14.56,
+                        "day_avg": 16.63,
+                        "night_avg": 12.75,
+                        "max": 20.47,
+                        "min": 11.36
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 494,
+                        "max": 608,
+                        "min": 383
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 0.1
+                    },
+                    "RT_soil_temp": {
+                        "avg": 23.2
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-26 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:08",
+                        "sunset": "18:23"
+                    },
+                    "OutTemp": {
+                        "avg": 9.7,
+                        "day_avg": 12,
+                        "night_avg": 7.8,
+                        "diff": 4.2
+                    },
+                    "OutRad_sum": {
+                        "max": 1414
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.7,
+                        "day_avg": 26.6,
+                        "night_avg": 24.8,
+                        "diff": 1.7,
+                        "max": 29.9,
+                        "min": 21.4
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 35,
+                        "day_avg": 35,
+                        "night_avg": 35,
+                        "max": 44,
+                        "min": 16
+                    },
+                    "GrhHdm": {
+                        "avg": 15.63,
+                        "day_avg": 16.51,
+                        "night_avg": 14.84,
+                        "max": 23.2,
+                        "min": 11.7
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 446,
+                        "max": 564,
+                        "min": 327
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 17,
+                        "diff": 2.9
+                    },
+                    "RT_soil_temp": {
+                        "avg": 24.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 3
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-27 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:07",
+                        "sunset": "18:24"
+                    },
+                    "OutTemp": {
+                        "avg": 9.8,
+                        "day_avg": 11.9,
+                        "night_avg": 8,
+                        "diff": 4
+                    },
+                    "OutRad_sum": {
+                        "max": 1503
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 26.1,
+                        "day_avg": 27.6,
+                        "night_avg": 24.8,
+                        "diff": 2.8,
+                        "max": 30.3,
+                        "min": 20.7
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 29,
+                        "day_avg": 27,
+                        "night_avg": 31,
+                        "max": 35,
+                        "min": 16
+                    },
+                    "GrhHdm": {
+                        "avg": 17.45,
+                        "day_avg": 19.45,
+                        "night_avg": 15.67,
+                        "max": 24.34,
+                        "min": 13.5
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 420,
+                        "max": 605,
+                        "min": 303
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.4,
+                        "diff": 0
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.9,
+                        "diff": 0.2
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.9
+                    },
+                    "RT_soil_WC": {
+                        "avg": 50,
+                        "diff": 1
+                    }
+                }
+            }
+        },
+        {
+            "2021-02-28 00:00:00": {
+                "Outside_weather": {
+                    "Sun": {
+                        "sunrise": "07:05",
+                        "sunset": "18:25"
+                    },
+                    "OutTemp": {
+                        "avg": 6.9,
+                        "day_avg": 8,
+                        "night_avg": 5.9,
+                        "diff": 2.1
+                    },
+                    "OutRad_sum": {
+                        "max": 1507
+                    }
+                },
+                "Grh_temp": {
+                    "RT_temp": {
+                        "avg": 25.8,
+                        "day_avg": 27,
+                        "night_avg": 24.7,
+                        "diff": 2.3,
+                        "max": 30.3,
+                        "min": 22.2
+                    }
+                },
+                "Grh_humidity": {
+                    "RT_hum": {
+                        "avg": 32,
+                        "day_avg": 30,
+                        "night_avg": 33,
+                        "max": 37,
+                        "min": 25
+                    },
+                    "GrhHdm": {
+                        "avg": 16.57,
+                        "day_avg": 18.11,
+                        "night_avg": 15.19,
+                        "max": 22.77,
+                        "min": 12.93
+                    }
+                },
+                "Grh_climate_etc": {
+                    "GrhCo2": {
+                        "avg": 416,
+                        "max": 525,
+                        "min": 264
+                    }
+                },
+                "Slab": {
+                    "RT_soil_EC": {
+                        "avg": 0.4,
+                        "max": 0.4,
+                        "min": 0.3,
+                        "diff": 0.1
+                    },
+                    "RT_root_loadcell": {
+                        "avg": 16.8,
+                        "diff": 4.8
+                    },
+                    "RT_soil_temp": {
+                        "avg": 25.4
+                    },
+                    "RT_soil_WC": {
+                        "avg": 49,
+                        "diff": 2
+                    }
+                }
+            }
+        }
+    ]
+}
