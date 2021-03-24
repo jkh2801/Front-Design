@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex33</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        section img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <img src="" alt="background" id="background">
+    </section>
+    <script src="js/rainyday.min.js"></script>
+    <script>
+        function rain() {
+            const image = document.getElementById('background')
+            image.onload = function() {
+                var rainyDay = new RainyDay({
+                    image: this,
+                    blur: 10,
+                    fps: 40
+                })
+                RainyDay.rain([
+                    [5, 2, 2]
+                ], 0)
+            }
+            image.src = 'image/bg3.jpg'
+        }
+        rain()
+    </script>
+</body>
+</html>
