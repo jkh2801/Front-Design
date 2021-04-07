@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Ex2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .container .box {
+            position: relative;
+            width: 50%;
+            height: 50vh;
+            filter: grayscale(1);
+            border: 4px solid #000;
+        }
+        .container .box:hover {
+            filter: grayscale(0);
+        }
+        .container .box video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <video src="video/bg.mp4" type="video/mp4" loop class="clip" muted></video>
+        </div>
+        <div class="box">
+            <video src="video/bg1.mp4" type="video/mp4" loop class="clip" muted></video>
+        </div>
+        <div class="box">
+            <video src="video/bg2.mp4" type="video/mp4" loop class="clip" muted></video>
+        </div>
+        <div class="box">
+            <video src="video/bg.mp4" type="video/mp4" loop class="clip" muted></video>
+        </div>
+    </div>
+    <script>
+        const clip = document.querySelectorAll('.clip')
+        clip.forEach(e => {
+            e.addEventListener('mouseenter', function(i) {
+                e.play()
+            })
+            e.addEventListener('mouseout', function(i) {
+                e.pause()
+            })
+        })
+    </script>
+</body>
+</html>
