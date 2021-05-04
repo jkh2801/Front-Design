@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex40</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        .container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .container video:nth-child(2) {
+            mix-blend-mode: screen;
+            filter: brightness(2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video src="video/woman.mp4" type="video/mp4" autoplay muted loop></video>
+        <video src="video/ink.mp4" type="video/mp4" autoplay muted loop></video>
+    </div>
+</body>
+</html>
