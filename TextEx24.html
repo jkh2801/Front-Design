@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Ex24</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1200px;
+            flex-direction: column;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container .buttons {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+        .container .buttons .btn {
+            padding: 0 10px;
+            display: inline-flex;
+            background: #ddd;
+            color: #fff;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .container .buttons .btn.active {
+            background: #444;
+        }
+        .container .buttons .btn:nth-child(2) {
+            font-size: 1.5em;
+        }
+        .container .buttons .btn:nth-child(3) {
+            font-size: 2em;
+        }
+        .container .content {
+            font-size: 1em;
+            color: #444;
+        }
+        .container .content h2,
+        .container .content p {
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <span class="btn active" onclick="document.getElementById('text').style.fontSize = '1em'">A</span>
+            <span class="btn" onclick="document.getElementById('text').style.fontSize = '1.25em'">A</span>
+            <span class="btn" onclick="document.getElementById('text').style.fontSize = '1.75em'">A</span>
+        </div>
+        <div class="content" id="text">
+            <h2>Change Font Size</h2>
+            <p>
+                Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+                Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+                Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+            </p>
+        </div>
+    </div>
+    <script>
+        let buttons = document.querySelector('.buttons')
+        let btn = buttons.querySelectorAll('.btn')
+        btn.forEach((e, i) => {
+            e.addEventListener('click', function(){
+                let current = document.getElementsByClassName('active')
+                current[0].classList = current[0].className.replace('active', '')
+                this.className += ' active'
+            })
+        })
+    </script>
+</body>
+</html>
