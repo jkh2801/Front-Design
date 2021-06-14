@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Ex14</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(90deg, #49aeff, #ff4c89);
+        }
+        .circle {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(90deg, #49aeff, #ff4c89);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle i {
+            position: absolute;
+            background: linear-gradient(90deg, #49aeff, #ff4c89);
+            z-index: 2;
+            inset: -5px;
+            filter: blur(50px);
+            border-radius: 50%;
+        }
+        .circle i:nth-child(4) {
+            background: #fff;
+            z-index: 3;
+            inset: 5px;
+        }
+        .circle j {
+            position: absolute;
+            inset: -5px;
+            z-index: 2;
+            border-radius: 50%;
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.25),
+                        inset 20px 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        .circle h2 {
+            position: relative;
+            z-index: 20;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            line-height: 1.1em;
+            color: #646464;
+        }
+        .circle h2 span {
+            font-weight: 700;
+            font-size: 2em;
+            line-height: 1em;
+            letter-spacing: 0;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="circle">
+            <i></i><i></i><i></i><i></i>
+            <j></j>
+            <h2>How to Make<br><span>Abstract</span><br>Background</h2>
+        </div>
+    </section>
+</body>
+</html>
