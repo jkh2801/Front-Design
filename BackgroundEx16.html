@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Ex16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('image/bg29.png');
+            background-size: cover;
+            background-position: center;
+            cursor: url('image/aim1.png'), pointer;
+        }
+        section:active {
+            cursor: url('image/aim2.png'), pointer;
+        }
+        .bullet {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('image/hole.png');
+            pointer-events: none;
+            transform: translate(30px, 30px);
+        }
+        .blood {
+            position: absolute;
+            display: inline-block;
+            width: 400px;
+            height: 400px;
+            z-index: 1000;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: fadeOut 4s linear infinite;
+            background-size: cover;
+        }
+        @keyframes fadeOut {
+            0%, 50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <audio src="video/sound.wav" id="audio" autoplay="false"></audio>
+    </section>
+    <script>
+        document.addEventListener('click', e => {
+            let body = document.querySelector('body')
+            let bullet = document.createElement('span')
+            bullet.classList.add('bullet')
+            let x = e.offsetX
+            let y = e.offsetY
+            bullet.style.left = x + 'px'
+            bullet.style.top = y + 'px'
+            body.appendChild(bullet)
+            let sound = document.getElementById('audio')
+            sound.play()
+            let images = [
+                'url(image/redSplatter1.png)',
+                'url(image/redSplatter2.png)',
+                'url(image/redSplatter3.png)',
+                'url(image/redSplatter4.png)',
+            ]
+            let blood = document.createElement('span')
+            blood.classList.add('blood')
+            let bg = images[Math.floor(Math.random() * images.length)]
+            blood.style.backgroundImage = bg
+            blood.style.left= Math.random() * innerWidth + 'px'
+            blood.style.top = Math.random() * innerHeight + 'px'
+            body.appendChild(blood)
+            setTimeout(() => {
+                bullet.remove()
+                blood.remove()
+            }, 4000)
+        })
+    </script>
+</body>
+</html>
