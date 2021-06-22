@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Ex17</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, #fff, transparent);
+            z-index: 10000;
+        }
+        section img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        section img#man {
+            transform-origin: bottom;
+        }
+        #text {
+            position: relative;
+            color: #fff;
+            font-size: 10vw;
+        }
+        .sec {
+            position: relative;
+            padding: 100px;
+        }
+        .sec h2 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #20496a;
+        }
+        .sec p {
+            font-size: 1.2em;
+            color: #20496a;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <img src="image/bg30.jpg" alt="" id="bg">
+        <h2 id="text">Mountains</h2>
+        <img src="image/men3.png" alt="" id="man">
+        <img src="image/cloud9.png" alt="" id="clouds_1">
+        <img src="image/cloud10.png" alt="" id="clouds_2">
+        <img src="image/mountain_left.png" alt="" id="mountain_left">
+        <img src="image/mountain_right.png" alt="" id="mountain_right">
+    </section>
+    <div class="sec">
+        <h2>ScrollTrigger is Awesome</h2>
+        <p>
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+            Vue.js (commonly referred to as Vue; pronounced /vjuː/, like "view") is an open-source model–view–viewmodel JavaScript framework for building user interfaces and single-page applications. It was created by Evan You, and is maintained by him and the rest of the active core team members coming from various companies such as Netlify and Netguru.
+        </p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.to('#bg', {
+            scrollTrigger : {
+                scrub: 1
+            },
+            scale: 1.5
+        })
+        gsap.to('#man', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            scale: 0.5
+        })
+        gsap.to('#mountain_left', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: -500
+        })
+        gsap.to('#mountain_right', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: 500
+        })
+        gsap.to('#clouds_1', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: 200
+        })
+        gsap.to('#clouds_2', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            x: -200
+        })
+        gsap.to('#text', {
+            scrollTrigger: {
+                scrub: 1
+            },
+            y: 500
+        })
+    </script>
+</body>
+</html>
