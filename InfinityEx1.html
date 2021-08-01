@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Ex1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #262e31;
+        }
+        .all-holder {
+            width: 280px;
+            height: 150px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .all-holder .paths {
+            width: 150px;
+            height: 150px;
+            border: 20px solid #bbb;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .all-holder .right {
+            transform: translateX(100%);
+            left: -20px;
+        }
+        .semi-circle-holder {
+            filter: drop-shadow(0 0 10px) blur(10px);
+        }
+        .semi-circle-holder > div {
+            position: absolute;
+            clip: rect(0, 150px, 75px, 0);
+        }
+        .semi-circle-holder > div > div {
+            width: 150px;
+            height: 150px;
+            border: 20px solid;
+            border-color: yellow yellow transparent transparent;
+            border-radius: 50%;
+            transform: rotate(135deg);
+            animation: rotate 3s linear infinite;
+        }
+        @keyframes rotate {
+            50%, 100% {
+                transform: rotate(calc(360deg + 135deg));
+            }
+        }
+        .semi-circle-holder .bottomRight-semiCircle {
+            transform: translateX(100%) scale(1, -1);
+            left: -20px;
+        }
+        .semi-circle-holder .bottomRight-semiCircle > div {
+            animation-delay: 0.75s;
+        }
+        .semi-circle-holder .topRight-semiCircle {
+            transform: translateX(100%) scale(-1, 1);
+            left: -20px;
+        }
+        .semi-circle-holder .topRight-semiCircle > div {
+            animation-delay: 1.5s;
+        }
+        .semi-circle-holder .bottomLeft-semiCircle {
+            transform: scale(-1);
+        }
+        .semi-circle-holder .bottomLeft-semiCircle > div {
+            animation-delay: 2.25s;
+        }
+    </style>
+</head>
+<body>
+    <div class="all-holder">
+        <div class="paths"></div>
+        <div class="paths right"></div>
+        <div class="semi-circle-holder">
+            <div class="topLeft-semiCircle">
+                <div></div>
+            </div>
+            <div class="bottomLeft-semiCircle">
+                <div></div>
+            </div>
+            <div class="bottomRight-semiCircle">
+                <div></div>
+            </div>
+            <div class="topRight-semiCircle">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
