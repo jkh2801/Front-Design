@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollEx12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #212f48;
+        }
+        .box {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+        }
+        .box img {
+            width: 100%;
+            transition: 15s;
+        }
+        .box:hover img {
+            transform: translateY(calc(-100% + 400px));
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="image/webpage.jpg" alt="">
+    </div>
+</body>
+</html>
