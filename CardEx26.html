@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Ex26</title>
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(315deg, #ffec61, #f321d7);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(315deg, #ffec61, #f321d7);
+            filter: blur(25px);
+            transform: translateY(30px) scale(0.9);
+        }
+        h2 {
+            position: relative;
+            color: #fff;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Gradient Box Shadow</h2>
+    </div>
+</body>
+</html>
