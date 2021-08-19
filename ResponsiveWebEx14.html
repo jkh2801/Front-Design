@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Ex14</title>
+    <style>
+           @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        * {
+        	margin: 0;
+	        padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        :root {
+            --black: #2f2f2f;
+            --white: #fff;
+            --red: #f83038;
+        }
+        .main {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(#1c1c1c, #323232);
+            padding: 30px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .main::before {
+            content: 'Adventure';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16vw;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            max-width: 80px;
+        }
+        .navigation {
+            display: flex;
+        }
+        .navigation li {
+            list-style: none;
+        }
+        .navigation li a {
+            position: relative;
+            color: var(--white);
+            margin-left: 40px;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+        .navigation li a:hover {
+            color: var(--red);
+        }
+        .content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+            z-index: 1;
+        }
+        .content h2 {
+            font-size: 5em;
+            font-weight: 300;
+            color: var(--white);
+            text-align: center;
+        }
+        .content h2 span {
+            font-weight: 700;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 36px;
+            margin-top: 20px;
+            border-radius: 50px;
+            font-size: 1.25em;
+            transition: 0.25s;
+        }
+        .btn:hover {
+            letter-spacing: 4px;
+        }
+        .bike {
+            max-width: 80%;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sci {
+            display: flex;
+        }
+        .sci li {
+            list-style: none;
+        }
+        .sci li a {
+            color: var(--white);
+            font-size: 2em;
+            margin-right: 20px;
+            transition: 0.25s;
+        }
+        .sci li a:hover {
+            color: var(--red);
+        }
+        .dots {
+            display: flex;
+        }
+        .dots .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .dots .dot.active {
+            background: var(--white);
+        }
+        .slider .slides {
+            position: absolute;
+            top: 60%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 100px;
+            transition: 0.25s;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .slider .slides.active {
+            opacity: 1;
+            top: 50%;
+        }
+        .slider .slides h2 {
+            color: var(--white);
+            font-size: 3em;
+        }
+        .slider .slides h2:last-child {
+            text-align: end;
+        }
+        .slider .slides h2 span {
+            color: var(--red);
+            font-size: 0.5em;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+
+    </style>
+</head>
+<body>
+    <section class="main">
+        <header>
+            <a href="#"><img src="image/logo5.png" alt=""></a>
+            <ul class="navigation">
+                <li><a href="#">Top Features</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <h2>Ready To <span>Race</span></h2>
+            <a href="#" class="btn">Ride Now</a>
+            <img src="image/bike.png" alt="" class="bike">
+        </div>
+        <div class="slider">
+            <div class="slides active">
+                <h2><span>Engine</span><br>599 ccc</h2>
+                <h2><span>Max Speed</span>260 Kmph</h2>
+            </div>
+            <div class="slides">
+                <h2><span>Mileage</span><br>14 Kmpl</h2>
+                <h2><span>0-100 Kmph</span>4 Seconds</h2>
+            </div>
+            <div class="slides">
+                <h2><span>Wheels</span><br>17-Inch Alloy</h2>
+                <h2><span>Tyre Type</span>Tubeless</h2>
+            </div>
+        </div>
+        <div class="footer">
+            <ul class="sci">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            </ul>
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        const slides = document.querySelectorAll('.slides')
+        const dots = document.querySelectorAll('.dot')
+        const setActive = (i) => {
+            for(slide of slides) {
+                slide.classList.remove('active')
+                slides[i].classList.add('active')
+            }
+            for(dot of dots) {
+                dot.classList.remove('active')
+                dots[i].classList.add('active')
+            }
+        }
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].addEventListener('click', () => {
+                setActive(i)
+            })
+        }
+    </script>
+</body>
+</html>
