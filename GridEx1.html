@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Ex1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #333;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 20px auto;
+            columns: 3;
+            column-gap: 40px;
+        }
+
+        .container .box {
+            width: 100%;
+            margin: 0 0 20px;
+            padding: 10px;
+            background: #fff;
+            overflow: hidden;
+            break-inside: avoid;
+        }
+
+        .container .box img {
+            max-width: 100%;
+        }
+
+        .container .box h2 {
+            margin: 10px 0 0;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        .container .box p {
+            margin: 0;
+            padding: 0 0 10px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                columns: 3;
+                width: calc(100% - 40px);
+                box-sizing: border-box;
+                padding: 20px 20px 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                columns: 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <img src="image/bg1.jpg">
+            <h2>Title Goes Here</h2>
+            <p>GoGoasdfs asdf asd asdf sadf adfasdf d</p>
+        </div>
+        <div class="box">
+            <img src="image/bg2.jpg">
+            <h2>Title Goes Here</h2>
+            <p>GoGo</p>
+        </div>
+        <div class="box">
+            <img src="image/bg3.jpg">
+            <h2>Title Goes Here</h2>
+            <p>GoGo</p>
+        </div>
+        <div class="box">
+            <img src="image/bg4.jpg">
+            <h2>Title Goes Here</h2>
+            <p>GoGo</p>
+        </div>
+        <div class="box">
+            <img src="image/bg5.jpg">
+            <h2>Title Goes Here</h2>
+            <p>GoGo</p>
+        </div>
+    </div>
+</body>
+
+</html>
