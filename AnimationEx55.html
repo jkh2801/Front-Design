@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Animation Ex55</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+        }
+        svg {
+            position: absolute;
+            width: 400px;
+            fill: none;
+        }
+        svg:nth-child(2) {
+            filter: blur(40px);
+        }
+        svg path {
+            d: path("M0,25 C150,110 150,-60 300,25");
+            stroke: #ff0092;
+            stroke-width: 50;
+            stroke-linecap: round;
+            transform: translate(50px, 50%);
+            animation: animate 2s ease-in-out infinite;
+        }
+        @keyframes animate {
+            0% {
+                stroke: #ff0092;
+                d: path("M0,25 C150,110 150,-60 300,25");
+            }
+            50% {
+                stroke: #00ff00;
+                d: path("M0,25 C150,-50 140,110 300,25");
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg>
+        <path></path>
+    </svg>
+    <svg>
+        <path></path>
+    </svg>
+</body>
+</html>
