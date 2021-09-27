@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Animation Ex58</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #eaeef0;
+        }
+        .scene {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            background: #eaeef0;
+            border-radius: 20px;
+            box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.9),
+                        8px 8px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .sun {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffff5b,
+                        0 0 60px #ffff5b,
+                        0 0 80px #ffff5b,
+                        0 0 100px #ffff5b;
+        }
+        .road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #333;
+        }
+        .road::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: #0d9e0d;
+        }
+        .road::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, transparent 0, transparent 50%, #fff 50%, #fff 100%);
+            background-size: 20px;
+            animation: animateRoad 0.2s linear infinite;
+        }
+        @keyframes animateRoad {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: -20px;
+            }
+        }
+        .fa-shuttle-van {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #fff;
+            font-size: 3.5em;
+            -webkit-text-stroke: 2px #000;
+            z-index: 10;
+            animation: animateVan 0.2s linear infinite;
+        }
+        @keyframes animateVan {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(1px);
+            }
+        }
+        .fa-cloud {
+            position: absolute;
+            top: calc(15px * var(--i));
+            left: calc(15px * var(--i));
+            font-size: 2.5em;
+            color: #fff;
+            -webkit-text-stroke: 2px #000;
+            z-index: 1;
+            animation: animateClouds 3.5s linear infinite;
+            animation-delay: calc(-3s * var(--i));
+        }
+        @keyframes animateClouds {
+            0% {
+                transform: translateX(350px);
+            }
+            100% {
+                transform: translateX(-350px);
+            }
+        }
+    </style> 
+</head>
+<body>
+    <div class="scene">
+        <i class="fa fa-shuttle-van"></i>
+        <i class="fa fa-cloud" style="--i:0;"></i>
+        <i class="fa fa-cloud" style="--i:1;"></i>
+        <i class="fa fa-cloud" style="--i:2;"></i>
+        <i class="fa fa-cloud" style="--i:3;"></i>
+        <i class="fa fa-cloud" style="--i:4;"></i>
+        <i class="fa fa-cloud" style="--i:5;"></i>
+        <div class="sun"></div>
+        <div class="road"></div>
+    </div>
+</body>
+</html>
