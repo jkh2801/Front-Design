@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Ex29</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #262626;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, transparent, #0004);
+        }
+        .container .box {
+            position: relative;
+            width: 320px;
+            height: 400px;
+            background: #444;
+            margin: 0 20px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #2da2ff 25%, #444 25%, #444 50%, #2da2ff 50%, #2da2ff 75%, #444 75%, #444 100%);
+            background-size: 40px 40px;
+            filter: grayscale(1);
+            animation: animateBg 0.5s linear infinite;
+            animation-play-state: paused;
+        }
+        .container .box:nth-child(2) {
+            background: linear-gradient(135deg, #ff61ae 25%, #444 25%, #444 50%, #ff61ae 50%, #ff61ae 75%, #444 75%, #444 100%);
+            background-size: 40px 40px;
+        }
+        .container .box:hover {
+            animation-play-state: running;
+            filter: grayscale(0);
+        }
+        @keyframes animateBg {
+            0% {
+                background-position: 0;
+            }
+            100% {
+                background-position: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+</html>
