@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfinityEx 2</title>
+    <style>
+        :root {
+        --bgColor: #2c2c54; 
+        --pathColor: #b33939; 
+        --path2Color: #ff5252; 
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: var(--bgColor);
+            height: 100vh;
+        }
+        .stage {
+            align-items: center;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            width: 100%;
+        }
+
+            .stage path {
+            stroke-opacity: 0.85;
+            stroke-dasharray: 30;
+        }
+
+            .path {
+            animation: dash 5s linear normal infinite;
+            stroke: var(--pathColor);
+        }
+
+            .path2 {
+            animation: dash 3s linear reverse infinite;
+            stroke: var(--path2Color);
+        }
+
+            @keyframes dash {
+            from {
+                stroke-dashoffset: 120;
+            }
+            to {
+                stroke-dashoffset: 240;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <svg class="infinity" height="70%" width="80%" viewBox="0 0 300 200">
+            <path d="M 50 100 
+                        C 50 50 100 50 150 100 
+                        C 200 150 250 150 250 100 
+                        C 250 50 200 50 150 100 
+                        C 100 150 50 150 50 100  z" class="path" stroke-width="10" stroke="aquamarine" fill="transparent" stroke-linecap="round"/>
+            <path d="M 50 100 
+                        C 50 50 100 50 150 100 
+                        C 200 150 250 150 250 100 
+                        C 250 50 200 50 150 100 
+                        C 100 150 50 150 50 100  z" class="path2" stroke-width="10" stroke="pink" fill="transparent"  stroke-linecap="round"/>
+        </svg>
+    </div>
+</body>
+</html>
