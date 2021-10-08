@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Ex3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: black;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            font-size: 24px;
+            position: relative;
+            height: 2em;
+            width: 3.75em;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+        }
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+        }
+        .top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            width: 2em;
+            height: 1em;
+            z-index: 1;
+        }
+        .top-left::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 0.25em solid transparent;
+            border-top-color: yellow;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            box-sizing: border-box;
+            animation: clockwise 1s linear infinite, opacity 2s linear -2000ms infinite;
+        }
+        .top-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            width: 2em;
+            height: 1em;
+            z-index: 1;
+        }
+        .top-right::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 0.25em solid transparent;
+            border-top-color: yellow;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            box-sizing: border-box;
+            animation: anti-clockwise 1s linear infinite,
+            opacity 2s linear -1000ms infinite;
+        }
+        .bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            width: 2em;
+            height: 1em;
+            z-index: 1;
+        }
+        .bottom-left::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border: 0.25em solid transparent;
+            border-top-color: yellow;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            box-sizing: border-box;
+            animation: clockwise 1s linear infinite, opacity 2s linear -500ms infinite;
+        }
+        .bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+            width: 2em;
+            height: 1em;
+            z-index: 1;
+        }
+        .bottom-right::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 0.25em solid transparent;
+            border-top-color: yellow;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            box-sizing: border-box;
+            animation: anti-clockwise 1s linear infinite,
+            opacity 2s linear -1500ms infinite;
+        }
+        @keyframes clockwise {
+            0% {
+                transform: rotate(-45deg);
+            }
+            100% {
+                transform: rotate(315deg);
+            }
+        }
+
+        @keyframes anti-clockwise {
+            0% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(-315deg);
+            }
+        }
+
+        @keyframes opacity {
+            0% {
+                opacity: 1;
+            }
+            25% {
+                opacity: 1;
+            }
+            26% {
+                opacity: 0;
+            }
+            75% {
+                opacity: 0;
+            }
+            76% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-left"></div>
+        <div class="top-right"></div>
+        <div class="bottom-left"></div>
+        <div class="bottom-right"></div>
+      </div>
+</body>
+</html>
