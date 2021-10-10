@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BackgroundEx20</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #111; 
+    }
+    .star {
+        font-size: 50px;
+        color: #D62732;
+        position: absolute;
+    }
+
+    .sphere { 
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #EBA32E;
+        border: 1px solid yellow;
+        box-shadow:0px 0px 150px darkorange,
+                    -10px -10px 50px yellow inset,
+                    20px 20px 50px white inset;
+    }
+
+    .container-stars {
+        position: relative;
+    }
+
+    .centered {
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+    }
+
+    #container-four-stars div:nth-of-type(1) {
+        top: 30px;
+        left: 45px;
+    }
+
+    #container-four-stars div:nth-of-type(2) {
+        top: 95px;
+        left: 45px;
+    }
+
+    #container-four-stars div:nth-of-type(3) {
+        top: 30px;
+        left: 112px;
+    }
+
+    #container-four-stars div:nth-of-type(4) {
+        top: 95px;
+        left: 112px;
+    }
+    </style>
+</head>
+<body>
+    <div id="four-stars-sphere" class="sphere centered">
+        <div id="container-four-stars" class="container-stars">
+          <div class="star">★</div>
+          <div class="star">★</div>
+          <div class="star">★</div>
+          <div class="star">★</div>
+        </div>
+      </div>
+</body>
+</html>
