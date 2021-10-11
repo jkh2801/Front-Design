@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfinityEx4</title>
+    <style>
+        :root {
+            --bgColor: #02021a;
+            --dot-color: #fff;
+            --dot-size: 12px;
+            --line-width: 2px;
+            --line-style: dotted;
+            --line-color: #1f1f4d;
+            --loop-size: 240px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bgColor);
+            background-image:
+                linear-gradient(
+                    lighten(var(--bgColor), 2%),
+                    darken(var(--bgColor), 2%)
+                )
+            ;
+        }
+        .loop {
+            position: relative;
+            /* height: var(--loop-size); */
+            /* width: calc((var(--loop-size)*2*1.20710556)-(var(--line-width)*1.5)); */
+            width: 576px;
+            height: 235px;
+        }
+        .loop::before,
+        .loop::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            /* height: var(--loop-size);
+            width: var(--loop-size);
+            border: var(--line-width) var(--line-style) var(--line-color); */
+            width: 235px;
+            height: 235px;
+            border: 2px solid #1f1f4d;
+            border-radius: 50% 50% 50% 0;
+        }
+        .loop::before {
+            left: 0;
+		    transform: rotate(225deg);
+        }
+        .loop::after {
+            right: 0;
+		    transform: rotate(45deg);
+        }
+        .loop__tracer {
+            position: absolute;
+		    z-index: 2;
+            top: 0;
+            left: 50%;
+            /* height: var(--loop-size);
+            width: var(--loop-size);
+            margin-left: var(--loop-size) / 2; */
+            width: 235px;
+            height: 235px;
+            margin-left: -120px;
+            transform: rotate(-225deg);
+            animation-name: trace-container;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-duration: 6s;
+        }
+        .loop__tracer::before {
+            content: '';
+			position: absolute;
+			display: block;
+			top: 50%;
+			left: 50%;
+			/* margin-top: -(var(--dot-offset));
+			margin-left: -(var(--dot-offset));
+			height: var(--dot-size);
+			width: var(--dot-size);
+			background-color: var(--dot-color); */
+            margin-top: -6px;
+			margin-left: -6px;
+			height: 12px;
+			width: 12px;
+            background-color: #fff;
+			border-radius: 50%;
+			/* box-shadow: 0 0 (var(--dot-size)*2) (var(--dot-size)/4) var(--dot-color); */
+            box-shadow: 0 0 24px 3px #fff;
+			animation-name: trace-dot;
+			animation-duration: inherit;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+        }
+        .one {
+            animation-duration: 7s;
+        }
+        .two {
+            animation-duration: 9s;
+        }
+        .three {
+            animation-duration: 13s;
+        }
+        /* @keyframes trace-container {
+            0%  { margin-left: var(--loop-size) / -2; transform: rotate(-225deg) }
+            8.3333333% { margin-left: calc(-((var(--loop-size)*1.20710556)-(var(--line-width)/1.5))); transform: rotate(-225deg) }
+            41.666666% { margin-left: calc(-((var(--loop-size)*1.20710556)-(var(--line-width)/1.5))); transform: rotate(45deg) }
+            58.333333% { margin-left: calc((var(--loop-size)*0.20710556)-(var(--line-width)/1.5)); transform: rotate(45deg) }
+            91.666666% { margin-left: calc((var(--loop-size)*0.20710556)-(var(--line-width)/1.5)); transform: rotate(-225deg) }
+        }
+
+        @keyframes trace-dot {
+            0% { margin-top: -(var(--dot-size) / 2)}
+            8.3333333% { margin-top: calc((-var(--loop-size) / 2)-(var(--dot-size) / 2))}
+            41.666666% { margin-top: calc((-var(--loop-size) / 2)-(var(--dot-size) / 2))}
+            58.333333% { margin-top: calc((var(--loop-size) / 2)-(var(--dot-size) / 2))}
+            91.666666% { margin-top: calc((var(--loop-size) / 2)-(var(--dot-size) / 2))}
+        } */
+        @keyframes trace-container {
+            0%  { margin-left: -120px; transform: rotate(-225deg) }
+            8.3333333% { margin-left: -288.3720010667px; transform: rotate(-225deg) }
+            41.666666% { margin-left: -288.3720010667px; transform: rotate(45deg) }
+            58.333333% { margin-left: 48.3720010667px; transform: rotate(45deg) }
+            91.666666% { margin-left: 48.3720010667px; transform: rotate(-225deg) }
+        }
+        @keyframes trace-dot {
+            0% { margin-top: -6px}
+            8.3333333% { margin-top: -126px}
+            41.666666% { margin-top: -126px}
+            58.333333% { margin-top: 114px}
+            91.666666% { margin-top: 114px}
+        }
+    </style>
+</head>
+<body>
+    <div class="loop">
+        <div class="loop__tracer one"></div>
+        <div class="loop__tracer two"></div>
+        <div class="loop__tracer three"></div>
+    </div>
+</body>
+</html>
