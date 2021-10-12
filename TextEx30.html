@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextEx30</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+        body {
+            background: #3da1d1;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .congrats {
+            position: absolute;
+            top: 140px;
+            width: 550px;
+            height: 100px;
+            padding: 20px 10px;
+            text-align: center;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        h1 {
+            transform-origin: 50% 50%;
+            font-size: 50px;
+            font-family: 'Sigmar One', cursive;
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .blob {
+            height: 50px;
+            width: 50px;
+            color: #ffcc00;
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            z-index: 1;
+            font-size: 30px;
+            display: none;	
+        }
+    </style>
+</head>
+<body>
+    <div class="congrats">
+        <h1>Congratulations!</h1>
+    </div>
+    <script>
+        var numberOfStars = 20;
+        const congrats = document.querySelector('.congrats')
+        for (var i = 0; i < numberOfStars; i++) {
+            let bolbs = document.createElement('div')
+            bolbs.classList.add('blob')
+            bolbs.classList.add('fa')
+            bolbs.classList.add('fa-star')
+            congrats.appendChild(bolbs);
+        }	
+    </script>
+</body>
+</html>
