@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex63</title>
+    <style>
+        body {
+            background: #141414;
+        }
+
+        .main {
+            display: grid;
+            justify-content: center;
+            height: 500px;
+        }
+
+        .main svg {
+            height: inherit;
+        }
+
+        .dash-line {
+            stroke-dashoffset: 100px;
+            stroke-dasharray: 5px 10px;
+            animation: data 2s linear forwards infinite;
+        }
+
+        @keyframes data {
+            from {
+                stroke-dashoffset: 100px;
+            }
+
+            to {
+                stroke-dashoffset: 0px;
+            }
+        }
+
+
+
+        /*------------ junction 1 start -------------*/
+
+
+        .circle1 {
+            animation: travel1 10s linear forwards infinite;
+        }
+
+        @keyframes travel1 {
+            0% {
+                transform: translate(95px, 255px);
+            }
+
+            50% {
+                transform: translate(495px, 25px);
+            }
+
+            100% {
+                transform: translate(95px, 255px);
+            }
+        }
+
+        .circle2 {
+            animation: travel2 10s linear forwards infinite;
+        }
+
+        @keyframes travel2 {
+            0% {
+                transform: translate(95px, 255px);
+            }
+
+            50% {
+                transform: translate(895px, 255px);
+            }
+
+            100% {
+                transform: translate(95px, 255px);
+            }
+        }
+
+        .circle3 {
+            animation: travel3 10s linear forwards infinite;
+        }
+
+        @keyframes travel3 {
+            0% {
+                transform: translate(95px, 255px);
+            }
+
+            50% {
+                transform: translate(895px, 735px);
+            }
+
+            100% {
+                transform: translate(95px, 255px);
+            }
+        }
+
+
+        .circle4 {
+            animation: travel4 10s linear forwards infinite;
+        }
+
+        @keyframes travel4 {
+            0% {
+                transform: translate(95px, 255px);
+            }
+
+            50% {
+                transform: translate(495px, 960px);
+            }
+
+            100% {
+                transform: translate(95px, 255px);
+            }
+        }
+
+        .circle5 {
+            animation: travel5 10s linear forwards infinite;
+        }
+
+        @keyframes travel5 {
+            0% {
+                transform: translate(95px, 255px);
+            }
+
+            50% {
+                transform: translate(95px, 735px);
+            }
+
+            100% {
+                transform: translate(95px, 255px);
+            }
+        }
+
+        /*------------ junction 2 start -------------*/
+
+        .circle6 {
+            animation: travel6 10s linear forwards infinite;
+        }
+
+        @keyframes travel6 {
+            0% {
+                transform: translate(95px, 735px);
+            }
+
+            50% {
+                transform: translate(95px, 255px);
+            }
+
+            100% {
+                transform: translate(95px, 735px);
+            }
+        }
+
+        .circle7 {
+            animation: travel7 10s linear forwards infinite;
+        }
+
+        @keyframes travel7 {
+            0% {
+                transform: translate(95px, 735px);
+            }
+
+            50% {
+                transform: translate(495px, 20px);
+            }
+
+            100% {
+                transform: translate(95px, 735px);
+            }
+        }
+
+        .circle8 {
+            animation: travel8 10s linear forwards infinite;
+        }
+
+        @keyframes travel8 {
+            0% {
+                transform: translate(95px, 735px);
+            }
+
+            50% {
+                transform: translate(895px, 255px);
+            }
+
+            100% {
+                transform: translate(95px, 735px);
+            }
+        }
+
+        .circle9 {
+            animation: travel9 10s linear forwards infinite;
+        }
+
+        @keyframes travel9 {
+            0% {
+                transform: translate(95px, 735px);
+            }
+
+            50% {
+                transform: translate(895px, 735px);
+            }
+
+            100% {
+                transform: translate(95px, 735px);
+            }
+        }
+
+        .circle10 {
+            animation: travel10 10s linear forwards infinite;
+        }
+
+        @keyframes travel10 {
+            0% {
+                transform: translate(95px, 735px);
+            }
+
+            50% {
+                transform: translate(495px, 960px);
+            }
+
+            100% {
+                transform: translate(95px, 735px);
+            }
+        }
+
+
+        /*------------ junction 3 start -------------*/
+
+        .circle11 {
+            animation: travel11 10s linear forwards infinite;
+        }
+
+        @keyframes travel11 {
+            0% {
+                transform: translate(495px, 960px);
+            }
+
+            50% {
+                transform: translate(95px, 735px);
+            }
+
+            100% {
+                transform: translate(495px, 960px);
+            }
+        }
+
+        .circle12 {
+            animation: travel12 10s linear forwards infinite;
+        }
+
+        @keyframes travel12 {
+            0% {
+                transform: translate(495px, 960px);
+            }
+
+            50% {
+                transform: translate(95px, 255px);
+            }
+
+            100% {
+                transform: translate(495px, 960px);
+            }
+        }
+
+        .circle13 {
+            animation: travel13 10s linear forwards infinite;
+        }
+
+        @keyframes travel13 {
+            0% {
+                transform: translate(495px, 960px);
+            }
+
+            50% {
+                transform: translate(495px, 25px);
+            }
+
+            100% {
+                transform: translate(495px, 960px);
+            }
+        }
+
+
+        .circle14 {
+            animation: travel14 10s linear forwards infinite;
+        }
+
+        @keyframes travel14 {
+            0% {
+                transform: translate(495px, 960px);
+            }
+
+            50% {
+                transform: translate(895px, 255px);
+            }
+
+            100% {
+                transform: translate(495px, 960px);
+            }
+        }
+
+        .circle15 {
+            animation: travel15 10s linear forwards infinite;
+        }
+
+        @keyframes travel15 {
+            0% {
+                transform: translate(495px, 960px);
+            }
+
+            50% {
+                transform: translate(895px, 735px);
+            }
+
+            100% {
+                transform: translate(495px, 960px);
+            }
+        }
+
+        /*------------ junction 4 start -------------*/
+
+
+        .circle16 {
+            animation: travel16 10s linear forwards infinite;
+        }
+
+        @keyframes travel16 {
+            0% {
+                transform: translate(895px, 735px);
+            }
+
+            50% {
+                transform: translate(495px, 960px);
+            }
+
+            100% {
+                transform: translate(895px, 735px);
+            }
+        }
+
+
+        .circle17 {
+            animation: travel17 10s linear forwards infinite;
+        }
+
+        @keyframes travel17 {
+            0% {
+                transform: translate(895px, 735px);
+            }
+
+            50% {
+                transform: translate(95px, 735px);
+            }
+
+            100% {
+                transform: translate(895px, 735px);
+            }
+        }
+
+        .circle18 {
+            animation: travel18 10s linear forwards infinite;
+        }
+
+        @keyframes travel18 {
+            0% {
+                transform: translate(895px, 735px);
+            }
+
+            50% {
+                transform: translate(95px, 255px);
+            }
+
+            100% {
+                transform: translate(895px, 735px);
+            }
+        }
+
+
+        .circle19 {
+            animation: travel19 10s linear forwards infinite;
+        }
+
+        @keyframes travel19 {
+            0% {
+                transform: translate(895px, 735px);
+            }
+
+            50% {
+                transform: translate(495px, 25px);
+            }
+
+            100% {
+                transform: translate(895px, 735px);
+            }
+        }
+
+        .circle20 {
+            animation: travel20 10s linear forwards infinite;
+        }
+
+        @keyframes travel20 {
+            0% {
+                transform: translate(895px, 735px);
+            }
+
+            50% {
+                transform: translate(895px, 255px);
+            }
+
+            100% {
+                transform: translate(895px, 735px);
+            }
+        }
+
+
+        /*------------ junction 5 start -------------*/
+
+
+        .circle21 {
+            animation: travel21 10s linear forwards infinite;
+        }
+
+        @keyframes travel21 {
+            0% {
+                transform: translate(895px, 255px);
+            }
+
+            50% {
+                transform: translate(895px, 735px);
+            }
+
+            100% {
+                transform: translate(895px, 255px);
+            }
+        }
+
+
+        .circle22 {
+            animation: travel22 10s linear forwards infinite;
+        }
+
+        @keyframes travel22 {
+            0% {
+                transform: translate(895px, 255px);
+            }
+
+            50% {
+                transform: translate(495px, 960px);
+            }
+
+            100% {
+                transform: translate(895px, 255px);
+            }
+        }
+
+        .circle23 {
+            animation: travel23 10s linear forwards infinite;
+        }
+
+        @keyframes travel23 {
+            0% {
+                transform: translate(895px, 255px);
+            }
+
+            50% {
+                transform: translate(95px, 735px);
+            }
+
+            100% {
+                transform: translate(895px, 255px);
+            }
+        }
+
+
+        .circle24 {
+            animation: travel24 10s linear forwards infinite;
+        }
+
+        @keyframes travel24 {
+            0% {
+                transform: translate(895px, 255px);
+            }
+
+            50% {
+                transform: translate(95px, 255px);
+            }
+
+            100% {
+                transform: translate(895px, 255px);
+            }
+        }
+
+        .circle25 {
+            animation: travel25 10s linear forwards infinite;
+        }
+
+        @keyframes travel25 {
+            0% {
+                transform: translate(895px, 255px);
+            }
+
+            50% {
+                transform: translate(495px, 25px);
+            }
+
+            100% {
+                transform: translate(895px, 255px);
+            }
+        }
+
+
+
+        /*------------ junction 6 start -------------*/
+
+
+        .circle26 {
+            animation: travel26 10s linear forwards infinite;
+        }
+
+        @keyframes travel26 {
+            0% {
+                transform: translate(495px, 25px);
+            }
+
+            50% {
+                transform: translate(895px, 255px);
+            }
+
+            100% {
+                transform: translate(495px, 25px);
+            }
+        }
+
+
+        .circle27 {
+            animation: travel27 10s linear forwards infinite;
+        }
+
+        @keyframes travel27 {
+            0% {
+                transform: translate(495px, 25px);
+            }
+
+            50% {
+                transform: translate(895px, 735px);
+            }
+
+            100% {
+                transform: translate(495px, 25px);
+            }
+        }
+
+        .circle28 {
+            animation: travel28 10s linear forwards infinite;
+        }
+
+        @keyframes travel28 {
+            0% {
+                transform: translate(495px, 25px);
+            }
+
+            50% {
+                transform: translate(495px, 960px);
+            }
+
+            100% {
+                transform: translate(495px, 25px);
+            }
+        }
+
+
+        .circle29 {
+            animation: travel29 10s linear forwards infinite;
+        }
+
+        @keyframes travel29 {
+            0% {
+                transform: translate(495px, 25px);
+            }
+
+            50% {
+                transform: translate(95px, 735px);
+            }
+
+            100% {
+                transform: translate(495px, 25px);
+            }
+        }
+
+        .circle30 {
+            animation: travel30 10s linear forwards infinite;
+        }
+
+        @keyframes travel30 {
+            0% {
+                transform: translate(495px, 25px);
+            }
+
+            50% {
+                transform: translate(95px, 255px);
+            }
+
+            100% {
+                transform: translate(495px, 25px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"
+            viewBox="0 0 1000 1000">
+            <defs>
+                <clipPath id="clip-line-animation">
+                    <rect width="1000" height="1000" />
+                </clipPath>
+            </defs>
+            <g id="line-animation" clip-path="url(#clip-line-animation)">
+                <rect width="1000" height="1000" fill="#141414" />
+                <circle id="Ellipse_7" data-name="Ellipse 7" cx="467" cy="467" r="467" transform="translate(33 33)"
+                    fill="none" stroke="#22eff6" stroke-width="1" />
+                <g class="dash-line" id="Group_118" data-name="Group 118">
+                    <path id="Path_263" data-name="Path 263"
+                        d="M-1855,967l-399.172-703.809h799.12l-799.12,475.926L-1855,31.365Z" transform="translate(2355)"
+                        fill="none" stroke="#fff" stroke-width="1" />
+                    <path id="Path_264" data-name="Path 264"
+                        d="M-1455.052,738l-400.923,227.489L-2254.172,738V260.464L-1855.976,30l400.923,230.463Z"
+                        transform="translate(2355)" fill="none" stroke="#fff" stroke-width="1" />
+                    <path id="Path_265" data-name="Path 265" d="M-2255,738h798.584L-2255,260.464"
+                        transform="translate(2355)" fill="none" stroke="#fff" stroke-width="1" />
+                    <path id="Path_266" data-name="Path 266" d="M-1855.708,33l400.656,706.117"
+                        transform="translate(2355)" fill="none" stroke="#fff" stroke-width="1" />
+                    <path id="Path_267" data-name="Path 267" d="M-1456.416,260.464-1858.7,966.853"
+                        transform="translate(2355)" fill="none" stroke="#fff" stroke-width="1" />
+                </g>
+                <path id="Path_268" data-name="Path 268" d="M-1855.026,33" transform="translate(2355)" fill="none"
+                    stroke="#707070" stroke-width="1" />
+
+                <circle class="circle circle1" id="Ellipse_14" data-name="Ellipse 14" cx="5" cy="5" r="5"
+                    transform="translate(96 270)" fill="#22eff6" />
+                <circle class="circle circle2" id="Ellipse_15" data-name="Ellipse 15" cx="5" cy="5" r="5"
+                    transform="translate(107 262)" fill="#22eff6" />
+                <circle class="circle circle3" id="Ellipse_16" data-name="Ellipse 16" cx="5" cy="5" r="5"
+                    transform="translate(110 248)" fill="#22eff6" />
+                <circle class="circle circle4" id="Ellipse_17" data-name="Ellipse 17" cx="5" cy="5" r="5"
+                    transform="translate(102 722)" fill="#22eff6" />
+                <circle class="circle circle5" id="Ellipse_18" data-name="Ellipse 18" cx="5" cy="5" r="5"
+                    transform="translate(108 733)" fill="#22eff6" />
+                <circle class="circle circle6" id="Ellipse_19" data-name="Ellipse 19" cx="5" cy="5" r="5"
+                    transform="translate(484 956)" fill="#22eff6" />
+                <circle class="circle circle7" id="Ellipse_20" data-name="Ellipse 20" cx="5" cy="5" r="5"
+                    transform="translate(495 950)" fill="#22eff6" />
+                <circle class="circle circle8" id="Ellipse_21" data-name="Ellipse 21" cx="5" cy="5" r="5"
+                    transform="translate(505 955)" fill="#22eff6" />
+                <circle class="circle circle9" id="Ellipse_22" data-name="Ellipse 22" cx="5" cy="5" r="5"
+                    transform="translate(883 733)" fill="#22eff6" />
+                <circle class="circle circle10" id="Ellipse_23" data-name="Ellipse 23" cx="5" cy="5" r="5"
+                    transform="translate(888 722)" fill="#22eff6" />
+                <circle class="circle circle11" id="Ellipse_24" data-name="Ellipse 24" cx="5" cy="5" r="5"
+                    transform="translate(895 267)" fill="#22eff6" />
+                <circle class="circle circle12" id="Ellipse_25" data-name="Ellipse 25" cx="5" cy="5" r="5"
+                    transform="translate(885 263)" fill="#22eff6" />
+                <circle class="circle circle13" id="Ellipse_26" data-name="Ellipse 26" cx="5" cy="5" r="5"
+                    transform="translate(884 249)" fill="#22eff6" />
+                <circle class="circle circle14" id="Ellipse_27" data-name="Ellipse 27" cx="5" cy="5" r="5"
+                    transform="translate(501 39)" fill="#22eff6" />
+                <circle class="circle circle15" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle16" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle17" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle18" id="Ellipse_23" data-name="Ellipse 23" cx="5" cy="5" r="5"
+                    transform="translate(888 722)" fill="#22eff6" />
+                <circle class="circle circle19" id="Ellipse_24" data-name="Ellipse 24" cx="5" cy="5" r="5"
+                    transform="translate(895 267)" fill="#22eff6" />
+                <circle class="circle circle20" id="Ellipse_25" data-name="Ellipse 25" cx="5" cy="5" r="5"
+                    transform="translate(885 263)" fill="#22eff6" />
+                <circle class="circle circle21" id="Ellipse_26" data-name="Ellipse 26" cx="5" cy="5" r="5"
+                    transform="translate(884 249)" fill="#22eff6" />
+                <circle class="circle circle22" id="Ellipse_27" data-name="Ellipse 27" cx="5" cy="5" r="5"
+                    transform="translate(501 39)" fill="#22eff6" />
+                <circle class="circle circle23" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle24" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle25" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle26" id="Ellipse_26" data-name="Ellipse 26" cx="5" cy="5" r="5"
+                    transform="translate(884 249)" fill="#22eff6" />
+                <circle class="circle circle27" id="Ellipse_27" data-name="Ellipse 27" cx="5" cy="5" r="5"
+                    transform="translate(501 39)" fill="#22eff6" />
+                <circle class="circle circle28" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle29" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <circle class="circle circle30" id="Ellipse_28" data-name="Ellipse 28" cx="5" cy="5" r="5"
+                    transform="translate(488 38)" fill="#22eff6" />
+                <g id="Group_119" data-name="Group 119">
+                    <circle id="Ellipse_8" data-name="Ellipse 8" cx="16" cy="16" r="16" transform="translate(484 17)"
+                        fill="#fff" />
+                    <circle id="Ellipse_9" data-name="Ellipse 9" cx="16" cy="16" r="16" transform="translate(484 951)"
+                        fill="#fff" />
+                    <circle id="Ellipse_10" data-name="Ellipse 10" cx="16" cy="16" r="16" transform="translate(84 244)"
+                        fill="#fff" />
+                    <circle id="Ellipse_11" data-name="Ellipse 11" cx="16" cy="16" r="16" transform="translate(884 722)"
+                        fill="#fff" />
+                    <circle id="Ellipse_12" data-name="Ellipse 12" cx="16" cy="16" r="16" transform="translate(884 244)"
+                        fill="#fff" />
+                    <circle id="Ellipse_13" data-name="Ellipse 13" cx="16" cy="16" r="16" transform="translate(84 722)"
+                        fill="#fff" />
+                </g>
+            </g>
+        </svg>
+
+    </div>
+</body>
+
+</html>
