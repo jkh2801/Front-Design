@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimationEx64</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: skyblue;
+            animation: changeColour 40s infinite linear;
+        }
+
+        #textHelp {
+            font-variant: small-caps;
+            font-family: Verdana, sans-serif;
+            font-size: 3em;
+            white-space: nowrap;
+            color: whitesmoke;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 2em);
+            transition: 3s ease;
+        }
+
+        @keyframes changeColour {
+
+            0%,
+            100% {
+                background-color: skyblue;
+            }
+
+            33% {
+                background-color: rgb(159, 148, 224);
+            }
+
+            66% {
+                background-color: rgb(16, 16, 16);
+            }
+        }
+
+        #scene {
+            perspective: 200em;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(8deg) rotateZ(-50deg);
+            font-size: 12px;
+        }
+
+        #scene div {
+            transform-style: preserve-3d;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floor {
+            transform: translateY(9em) rotateX(82deg);
+            width: 35em;
+            height: 50em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(50deg,
+                    rgba(100, 100, 100, 0.3) -50%,
+                    rgba(255, 255, 255, 0.5) 100%);
+        }
+
+        #floor::before {
+            content: "";
+            position: absolute;
+            width: 110%;
+            height: 4em;
+            background-color: rgba(255, 250, 250, 0.205);
+            box-shadow: rgba(255, 250, 250, 0.205) 0 0 4em 4em;
+            transform: rotateZ(20deg);
+            top: -13em;
+            animation: glare 40s linear infinite;
+        }
+
+        @keyframes glare {
+            to {
+                top: 70em;
+            }
+        }
+
+        #floor::after {
+            content: "";
+            position: absolute;
+            background-color: white;
+            width: 99.7%;
+            height: 0.4em;
+            top: 50em;
+            transform: translateZ(-0.13em) rotateX(90deg);
+        }
+
+        #reflection-cover {
+            position: absolute;
+            width: 70em;
+            height: 168em;
+            clip-path: polygon(0% 0%,
+                    0% 100%,
+                    25% 100%,
+                    25% 35%,
+                    75% 35%,
+                    75% 65%,
+                    25% 65%,
+                    25% 100%,
+                    100% 100%,
+                    100% 0%);
+            background-color: skyblue;
+            animation: changeColour 40s infinite linear;
+        }
+
+        #cube-1 {
+            width: 10em;
+            height: 10em;
+            transform: translateZ(14em);
+            animation: rotashion 12s infinite ease-in-out;
+        }
+
+        @keyframes rotashion {
+            to {
+                transform: translateZ(14em) rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+            }
+        }
+
+        #cube-2 {
+            width: 10em;
+            height: 10em;
+            transform: translateZ(-9em);
+            animation: rotashion-2 12s infinite ease-in-out;
+        }
+
+        @keyframes rotashion-2 {
+            to {
+                transform: translateZ(-9em) rotateX(-360deg) rotateY(-360deg) rotateZ(0deg);
+            }
+        }
+
+        #cube-1 div,
+        #cube-2 div {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(245, 245, 245, 0.2);
+            box-shadow: rgba(255, 255, 255, 0.3) 0 0 0.2em 0.6em inset;
+        }
+
+        .face-top {
+            transform: translateZ(5em);
+        }
+
+        .face-left {
+            transform: translateX(-5em) rotateY(-90deg);
+        }
+
+        .face-right {
+            transform: translateX(5em) rotateY(90deg);
+        }
+
+        .face-back {
+            transform: translateY(5em) rotateX(90deg);
+        }
+
+        .face-front {
+            transform: translateY(-5em) rotateX(-90deg);
+        }
+
+        .face-bottom {
+            transform: translateZ(-5em);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scene">
+        <div id="floor">
+            <div id="cube-1">
+                <div class="face-top"></div>
+                <div class="face-left"></div>
+                <div class="face-right"></div>
+                <div class="face-back"></div>
+                <div class="face-front"></div>
+                <div class="face-bottom"></div>
+            </div>
+            <div id="cube-2">
+                <div class="face-top"></div>
+                <div class="face-left"></div>
+                <div class="face-right"></div>
+                <div class="face-back"></div>
+                <div class="face-front"></div>
+                <div class="face-bottom"></div>
+            </div>
+            <div id="reflection-cover"></div>
+        </div>
+    </div>
+    <h1 id="textHelp">Move Mouse Over Me</h1>
+    <script>
+        document.addEventListener("mousemove", function (e) {
+            const sceneElement = document.getElementById("scene");
+            let posX = parseInt((e.x / sceneElement.clientWidth) * 100);
+            let midX = document.body.offsetWidth / 2;
+            sceneElement.style.transform =
+                "rotateY(" +
+                ((posX - 50) / 50) * 20 +
+                "deg)  rotateZ(" +
+                ((50 - posX) / 50) * 90 +
+                "deg)";
+            document.getElementById("textHelp").style.opacity = 0;
+        });
+
+    </script>
+</body>
+
+</html>
