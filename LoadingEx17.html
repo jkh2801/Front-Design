@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoadingEx17</title>
+    <style>
+        body {
+            background-image: linear-gradient(to right, #8E2DE2, #4A00E0);
+            height: 100vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .loading1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 8px solid;
+            border-color: white transparent transparent;
+            /* border-color: white rgba(255,255,255,0.1) rgba(255,255,255,0.1); */
+            animation: spin 1s ease infinite;
+        }
+
+        .loading2 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border-top: 8px solid;
+            /*border-right: 8px solid; */
+            border-color: white transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading3 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 8px solid;
+            border-color: white transparent white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(359deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading1"></div>
+
+    <div class="loading2"></div>
+
+    <div class="loading3"></div>
+
+</body>
+
+</html>
