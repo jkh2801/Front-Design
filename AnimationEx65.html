@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex65</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 3000px;
+            perspective-origin: top;
+            overflow: hidden;
+            margin: 0;
+            background: black;
+        }
+
+
+        #box {
+            transform-style: preserve-3d;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-origin: center;
+            animation: turn 10s linear infinite;
+        }
+
+        @keyframes turn {
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 120px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.5);
+            font-family: "Courier New", Courier, monospace;
+            box-shadow: inset 0 0 4px black;
+        }
+
+        .front {
+            transform: translateZ(100px);
+            border-radius: 50%;
+            background-color: rgba(250, 235, 215, 0.795);
+            animation: frontSpin 1s linear infinite;
+        }
+
+        @keyframes frontSpin {
+            to {
+                transform: translateZ(100px) rotateZ(-360deg);
+            }
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(100px);
+            background-color: rgba(241, 9, 9, 0.26);
+            animation: ghost 1s linear infinite;
+        }
+
+        @keyframes ghost {
+
+            from,
+            19% {
+                opacity: 0;
+            }
+
+            19%,
+            19.1% {
+                opacity: 1;
+            }
+
+            19.1%,
+            30% {
+                opacity: 0;
+            }
+
+            30%,
+            31% {
+                opacity: 1;
+            }
+
+            31%,
+            to {
+                opacity: 0;
+            }
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(100px);
+            background-color: rgba(133, 106, 74, 0.541);
+            animation: leanForward 0.3s step-end alternate infinite;
+        }
+
+        @keyframes leanForward {
+
+            from,
+            33% {
+                /* transform-origin: unset; */
+                transform: rotateY(90deg) translateZ(100px);
+            }
+
+            33%,
+            66% {
+                transform-origin: bottom;
+                transform: rotateY(90deg) translateZ(100px) rotateX(-90deg);
+            }
+
+            66%,
+            to {
+                transform-origin: bottom;
+                transform: rotateY(90deg) translateZ(100px) rotateX(-180deg);
+            }
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(100px);
+            background-color: rgba(255, 255, 255, 0.24);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(100px);
+            background-color: rgba(210, 105, 30, 0.507);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+            background-color: rgba(111, 89, 212, 0.507);
+        }
+    </style>
+</head>
+
+<body>
+    <section id="box">
+        <div class="face front">1</div>
+        <div class="face back">3</div>
+        <div class="face right">4</div>
+        <div class="face left">2</div>
+        <div class="face top">5</div>
+        <div class="face bottom">6</div>
+    </section>
+</body>
+
+</html>
