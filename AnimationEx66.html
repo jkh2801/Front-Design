@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AnimationEx66</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: consolas;
+			}
+			body {
+				margin: 10px;
+				width: 100vw;
+				background: #262434;
+				color: #48efbb;
+				overflow-x: hidden;
+			}
+			main {
+				margin: 0 0 0 68px;
+			}
+			.reset {
+				display: none;
+			}
+			.typ {
+				border-right: 2px solid #fe8073;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			.tab {
+				padding: 0 0 0 4ch;
+			}
+			.tab2 {
+				padding: 0 0 0 8ch;
+			}
+			span {
+				color: #fe8073;
+			}
+			.ff {
+				color: #97baaf;
+			}
+			.dark {
+				color: #e0474a;
+			}
+			.class {
+				color: #ffce55;
+			}
+			.id {
+				color: #00f8f6;
+			}
+			.key {
+				color: #c975d7;
+				font-style: italic;
+			}
+
+			#typ1,
+			#typ1 span {
+				animation: typ1 0.2s steps(2), curs 0.4s infinite alternate-reverse;
+			}
+			@keyframes typ1 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 2ch;
+				}
+			}
+			#typ1::before {
+				content: "1";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: numb 0.3s;
+			}
+
+			#typ2,
+			#typ2 span {
+				animation: typ2 1s steps(10) 0.4s, curs 0.4s infinite alternate-reverse, display 0.4s;
+			}
+			@keyframes typ2 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 10ch;
+				}
+			}
+			#typ2::before {
+				content: "2";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 0.4s, numb 1.2s 0.4s;
+			}
+
+			#typ3,
+			#typ3 span {
+				animation: typ3 1.1s steps(11) 1.6s, curs 0.4s infinite alternate-reverse, display 1.6s;
+			}
+			@keyframes typ3 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 11ch;
+				}
+			}
+			#typ3::before {
+				content: "3";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 1.6s, numb 1.3s 1.6s;
+			}
+
+			#typ4,
+			#typ4 span {
+				animation: typ4 2.2s steps(22) 2.9s, curs 0.4s infinite alternate-reverse, display 2.9s;
+			}
+			@keyframes typ4 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 22ch;
+				}
+			}
+			#typ4::before {
+				content: "4";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 2.9s, numb 2.4s 2.9s;
+			}
+
+			#typ5,
+			#typ5 span {
+				animation: fin 0.1s steps(1) 5.3s, curs 0.4s infinite alternate-reverse, display 5.3s;
+			}
+			#typ5::before {
+				content: "5";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 5.3s, numb 0.3s 5.3s;
+			}
+
+			#typ6,
+			#typ6 span {
+				animation: typ6 0.5s steps(5) 5.6s, curs 0.4s infinite alternate-reverse, display 5.6s;
+			}
+			@keyframes typ6 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 5ch;
+				}
+			}
+			#typ6::before {
+				content: "6";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 5.6s, numb 0.7s 5.6s;
+			}
+
+			#typ7,
+			#typ7 span {
+				animation: typ7 1.3s steps(13) 6.3s, curs 0.4s infinite alternate-reverse, display 6.3s;
+			}
+			@keyframes typ7 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 13ch;
+				}
+			}
+			#typ7::before {
+				content: "7";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 6.3s, numb 1.5s 6.3s;
+			}
+
+			#typ8,
+			#typ8 span {
+				animation: typ8 1.3s steps(13) 7.8s, curs 0.4s infinite alternate-reverse, display 7.8s;
+			}
+			@keyframes typ8 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 13ch;
+				}
+			}
+			#typ8::before {
+				content: "8";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 7.8s, numb 1.5s 7.8s;
+			}
+
+			#typ9,
+			#typ9 span {
+				animation: typ9 2s steps(20) 9.4s, curs 0.4s infinite alternate-reverse, display 9.4s;
+			}
+			@keyframes typ9 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 20ch;
+				}
+			}
+			#typ9::before {
+				content: "9";
+				color: #97baaf;
+				position: absolute;
+				left: 4ch;
+				animation: display 9.4s, numb 2.2s 9.4s;
+			}
+
+			#typ10,
+			#typ10 span {
+				animation: typ10 1.5s steps(15) 11.6s, curs 0.4s infinite alternate-reverse, display 11.6s;
+			}
+			@keyframes typ10 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 15ch;
+				}
+			}
+			#typ10::before {
+				content: "10";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 11.6s, numb 1.7s 11.6s;
+			}
+
+			#typ11,
+			#typ11 span {
+				animation: typ11 1.9s steps(19) 13.3s, curs 0.4s infinite alternate-reverse, display 13.3s;
+			}
+			@keyframes typ11 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 19ch;
+				}
+			}
+			#typ11::before {
+				content: "11";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 13.3s, numb 2.1s 13.3s;
+			}
+
+			#typ12,
+			#typ12 span {
+				animation: fin 0.2s steps(1) 15.4s, curs 0.4s infinite alternate-reverse, display 15.4s;
+			}
+			#typ12::before {
+				content: "12";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 15.4s, numb 0.4s 15.4s;
+			}
+
+			#typ13,
+			#typ13 span {
+				animation: typ13 0.5s steps(5) 15.8s, curs 0.4s infinite alternate-reverse, display 15.8s;
+			}
+			@keyframes typ13 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 5ch;
+				}
+			}
+			#typ13::before {
+				content: "13";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 15.8s, numb 0.7s 15.8s;
+			}
+
+			#typ14,
+			#typ14 span {
+				animation: typ14 3.3s steps(33) 16.5s, curs 0.4s infinite alternate-reverse, display 16.5s;
+			}
+			@keyframes typ14 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 33ch;
+				}
+			}
+			#typ14::before {
+				content: "14";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 16.5s, numb 3.5s 16.5s;
+			}
+
+			#typ15,
+			#typ15 span {
+				animation: typ15 1.7s steps(17) 20s, curs 0.4s infinite alternate-reverse, display 20s;
+			}
+			@keyframes typ15 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 17ch;
+				}
+			}
+			#typ15::before {
+				content: "15";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 20s, numb 1.9s 20s;
+			}
+
+			#typ16,
+			#typ16 span {
+				animation: typ16 2s steps(20) 21.9s, curs 0.4s infinite alternate-reverse, display 21.9s;
+			}
+			@keyframes typ16 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 20ch;
+				}
+			}
+			#typ16::before {
+				content: "16";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 21.9s, numb 2.2s 21.9s;
+			}
+
+			#typ17,
+			#typ17 span {
+				animation: fin 0.1s steps(1) 24.1s, curs 0.4s infinite alternate-reverse, display 24.1s;
+			}
+			#typ17::before {
+				content: "17";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 24.1s, numb 0.3s 24.1s;
+			}
+
+			#typ18,
+			#typ18 span {
+				animation: typ18 0.5s steps(5) 24.5s, curs 0.4s infinite alternate-reverse, display 24.5s;
+			}
+			@keyframes typ18 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 5ch;
+				}
+			}
+			#typ18::before {
+				content: "18";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 24.5s, numb 0.7s 24.5s;
+			}
+
+			#typ19,
+			#typ19 span {
+				animation: typ19 6.5s steps(65) 25.2s, curs 0.4s infinite alternate-reverse, display 25.2s;
+			}
+			@keyframes typ19 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 65ch;
+				}
+			}
+			#typ19::before {
+				content: "19";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 25.2s, numb 6.7s 25.2s;
+			}
+
+			#typ20,
+			#typ20 span {
+				animation: fin 0.1s steps(1) 31.9s, curs 0.4s infinite alternate-reverse, display 31.9s;
+			}
+			#typ20::before {
+				content: "20";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 31.9s, numb 0.3s 31.9s;
+			}
+
+			#typ21,
+			#typ21 span {
+				animation: typ21 1.5s steps(15) 32.2s, curs 0.4s infinite alternate-reverse, display 32.2s;
+			}
+			@keyframes typ21 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 15ch;
+				}
+			}
+			#typ21::before {
+				content: "21";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 32.2s, numb 1.7s 32.2s;
+			}
+
+			#typ22,
+			#typ22 span {
+				animation: typ22 0.3s steps(3) 33.9s, curs 0.4s infinite alternate-reverse, display 33.9s;
+			}
+			@keyframes typ22 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 3ch;
+				}
+			}
+			#typ22::before {
+				content: "22";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 33.9s, numb 0.5s 33.9s;
+			}
+
+			#typ23,
+			#typ23 span {
+				animation: typ23 0.9s steps(9) 34.4s, curs 0.4s infinite alternate-reverse, display 34.4s;
+			}
+			@keyframes typ23 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 9ch;
+				}
+			}
+			#typ23::before {
+				content: "23";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 34.4s, numb 1.1s 34.4s;
+			}
+
+			#typ24,
+			#typ24 span {
+				animation: fin 0.1s steps(1) 35.5s, curs 0.4s infinite alternate-reverse, display 35.5s;
+			}
+			#typ24::before {
+				content: "24";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 35.5s, numb 0.3s 35.5s;
+			}
+
+			#typ25,
+			#typ25 span {
+				animation: typ25 0.5s steps(5) 35.8s, curs 0.4s infinite alternate-reverse, display 35.8s;
+			}
+			@keyframes typ25 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 5ch;
+				}
+			}
+			#typ25::before {
+				content: "25";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 35.8s, numb 0.7s 35.8s;
+			}
+
+			#typ26,
+			#typ26 span {
+				animation: typ26 1.1s steps(11) 36.5s, curs 0.4s infinite alternate-reverse, display 36.5s;
+			}
+			@keyframes typ26 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 11ch;
+				}
+			}
+			#typ26::before {
+				content: "26";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 36.5s, numb 1.3s 36.5s;
+			}
+
+			#typ27,
+			#typ27 span {
+				animation: fin 0.1s steps(1) 37.8s, curs 0.4s infinite alternate-reverse, display 37.8s;
+			}
+			#typ27::before {
+				content: "27";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 37.8s, numb 0.3s 37.8s;
+			}
+
+			#typ28,
+			#typ28 span {
+				animation: fin 0.1s steps(1) 38.1s, curs 0.4s infinite alternate-reverse, display 38.1s;
+			}
+			#typ28::before {
+				content: "28";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 38.1s, numb 0.3s 38.1s;
+			}
+			#typ29,
+			#typ29 span {
+				animation: typ29 1.6s steps(16) 38.4s, curs 0.4s infinite alternate-reverse, display 38.4s;
+			}
+			@keyframes typ29 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 16ch;
+				}
+			}
+			#typ29::before {
+				content: "29";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 38.4s, numb 1.8s 38.4s;
+			}
+
+			#typ30,
+			#typ30 span {
+				animation: typ30 0.3s steps(3) 40.2s, curs 0.4s infinite alternate-reverse, display 40.2s;
+			}
+			@keyframes typ30 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 5ch;
+				}
+			}
+			#typ30::before {
+				content: "30";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 40.2s, numb 0.7s 40.2s;
+			}
+
+			#typ31,
+			#typ31 span {
+				animation: typ31 2.6s steps(26) 40.7s, curs 0.4s infinite alternate-reverse, display 40.7s;
+			}
+			@keyframes typ31 {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 26ch;
+				}
+			}
+			#typ31::before {
+				content: "31";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 40.7s, numb 2.8s 40.7s;
+			}
+
+			#typ32,
+			#typ32 span {
+				animation: fin 0.1s steps(1) 43.5s, curs 0.4s infinite alternate-reverse, display 43.5s;
+			}
+			#typ32::before {
+				content: "32";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 43.5s, numb 0.3s 43.5s;
+			}
+
+			#typ33,
+			#typ33 span {
+				width: 1ch;
+				animation: fin 0.1s steps(1) 43.8s, curs 0.4s infinite alternate-reverse, display 43.8s;
+			}
+			#typ33::before {
+				content: "33";
+				color: #97baaf;
+				position: absolute;
+				left: 3ch;
+				animation: display 43.8s, numb 0.3s infinite 43.8s;
+			}
+
+			@keyframes fin {
+				0% {
+					width: 0;
+				}
+				100% {
+					width: 1ch;
+				}
+			}
+			@keyframes display {
+				0% {
+					color: transparent;
+					border: none;
+				}
+				100% {
+					color: transparent;
+					border: none;
+				}
+			}
+			@keyframes curs {
+				0% {
+					border-color: transparent;
+				}
+			}
+			@keyframes numb {
+				0% {
+					color: white;
+				}
+				100% {
+					color: white;
+				}
+			}
+			#rst {
+				padding: 8px 12px;
+				background-color: transparent;
+				font-family: consolas;
+				border: 1px solid #fff;
+				border-radius: 4px;
+				font-size: 1.2em;
+				color: #fff;
+				position: fixed;
+				inset: auto 5% 5% auto;
+				cursor: pointer;
+				transition: 0.2s;
+				z-index: 1000;
+			}
+			#rst:hover {
+				text-shadow: 0 0 8px #fff, 0 0 16px #fff, 0 0 24px #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div id="typ1" class="typ">*<span class="ff">{</span></div>
+
+			<div id="typ2" class="typ tab">margin<span class="ff">:</span> <span>0</span><span class="ff">;</span></div>
+
+			<div id="typ3" class="typ tab">padding<span class="ff">:</span> <span>0</span><span class="ff">;</span></div>
+
+			<div id="typ4" class="typ tab">font-family<span class="ff">: consolas;</span></div>
+
+			<div id="typ5" class="typ">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ6" class="typ">body<span class="ff">{</span></div>
+
+			<div id="typ7" class="typ tab">
+				margin<span class="ff">: <span>10px</span>; </span>
+			</div>
+
+			<div id="typ8" class="typ tab">
+				width<span class="ff">: <span>100vw</span>; </span>
+			</div>
+
+			<div id="typ9" class="typ tab">
+				background<span class="ff">: <span>#262434</span>; </span>
+			</div>
+
+			<div id="typ10" class="typ tab">
+				color<span class="ff">: <span>#48efbb</span>; </span>
+			</div>
+
+			<div id="typ11" class="typ tab">
+				overflow-x<span class="ff">: <span class="dark">hidden</span>; </span>
+			</div>
+
+			<div id="typ12" class="typ">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ13" class="typ"><span class="class">.typ</span><span class="ff">{</span></div>
+
+			<div id="typ14" class="typ tab">
+				border-right<span class="ff"
+					>: <span>2px <span class="dark">solid </span> #fe8073</span>;
+				</span>
+			</div>
+
+			<div id="typ15" class="typ tab">
+				overflow<span class="ff">: <span class="dark">hidden</span>; </span>
+			</div>
+
+			<div id="typ16" class="typ tab">
+				white-space<span class="ff">: <span class="dark">nowrap</span>; </span>
+			</div>
+
+			<div id="typ17" class="typ">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ18" class="typ"><span class="id">#typ</span><span class="ff">{</span></div>
+
+			<div id="typ19" class="typ tab">
+				animation<span class="ff"
+					>: typ <span>.6s</span> <span class="id">steps</span><span class="ff">(<span>6</span>), curs </span>
+					<span>.4s</span>
+					<span class="dark">infinite alternate-reverse</span>;
+				</span>
+			</div>
+
+			<div id="typ20" class="typ">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ21" class="typ">
+				<span class="class">@keyframes</span>
+				<span class="key">typ</span><span class="ff">{</span>
+			</div>
+
+			<div id="typ22" class="typ tab">
+				<span class="ff">0%{</span>
+			</div>
+
+			<div id="typ23" class="typ tab2">
+				width<span class="ff">: <span>0</span>; </span>
+			</div>
+
+			<div id="typ24" class="typ tab">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ25" class="typ tab">
+				<span class="ff">100%{</span>
+			</div>
+
+			<div id="typ26" class="typ tab2">
+				width<span class="ff">: <span>6ch</span>; </span>
+			</div>
+
+			<div id="typ27" class="typ tab">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ28" class="typ">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ29" class="typ">
+				<span class="class">@keyframes</span>
+				<span class="key">curs</span><span class="ff">{</span>
+			</div>
+
+			<div id="typ30" class="typ tab">
+				<span class="ff">0%{</span>
+			</div>
+
+			<div id="typ31" class="typ tab2">
+				border-color<span class="ff">: <span class="dark">transparent</span>; </span>
+			</div>
+
+			<div id="typ32" class="typ tab">
+				<span class="ff">}</span>
+			</div>
+
+			<div id="typ33" class="typ">
+				<span class="ff">}</span>
+			</div>
+			<button id="rst">Reset</button>
+		</main>
+		<script>
+			const resetBtn = document.getElementById("rst");
+			const list = document.querySelectorAll("div");
+			resetBtn.addEventListener("click", () => {
+				list.forEach((e) => e.classList.add("reset"));
+				setTimeout(() => {
+					list.forEach((e) => e.classList.remove("reset"));
+				}, 1);
+			});
+		</script>
+	</body>
+</html>
