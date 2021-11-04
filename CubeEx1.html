@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cube Ex1</title>
+		<style>
+			body {
+				background: #ddd;
+			}
+			.wrapper {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				perspective: 1500px;
+			}
+			.box-area {
+				position: relative;
+				transform-style: preserve-3d;
+				animation: rotate 10s linear infinite;
+			}
+			@keyframes rotate {
+				0% {
+					transform: rotate3d(0, 1, 0, 0);
+				}
+				100% {
+					transform: rotate3d(1, 0, 1, 360deg);
+				}
+			}
+			.box {
+				position: absolute;
+				width: 400px;
+				height: 400px;
+				border: 2px solid #262626;
+			}
+			.box-front {
+				transform: translateX(-200px) translateY(-200px) translateZ(200px);
+				background: #ff000080;
+			}
+			.box-back {
+				transform: translateX(-200px) translateY(-200px) translateZ(-200px);
+				background: #00ff0080;
+			}
+			.box-right {
+				transform: translateY(-200px) rotateY(90deg);
+				background: #0000ff80;
+			}
+			.box-left {
+				transform: translateX(-400px) translateY(-200px) rotateY(90deg);
+				background: #ffff0080;
+			}
+			.box-bottom {
+				transform: translateX(-200px) rotateX(90deg);
+				background: #ff00ff80;
+			}
+			.box-top {
+				transform: translateX(-200px) translateY(-400px) rotateX(90deg);
+				background: #00ffff80;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="box-area">
+				<div class="box box-front"></div>
+				<div class="box box-right"></div>
+				<div class="box box-back"></div>
+				<div class="box box-left"></div>
+				<div class="box box-top"></div>
+				<div class="box box-bottom"></div>
+			</div>
+		</div>
+	</body>
+</html>
