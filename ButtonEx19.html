@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Button Ex19</title>
+		<style>
+			@keyframes spread {
+				0% {
+					width: 0;
+					height: 0;
+					opacity: 1;
+				}
+
+				100% {
+					width: 500px;
+					height: 500px;
+					opacity: 0;
+				}
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--maincolor: #86a8e7;
+				--darkcolor: #7f7fd5;
+				--brightcolor: #f7f7f7;
+			}
+
+			.container {
+				position: relative;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+			}
+
+			.container .btn {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				border: none;
+				background-color: var(--maincolor);
+				box-shadow: 0px 1px 10px rgba(2 37 201/ 0.2);
+				transition: transform 0.2s ease-out;
+				z-index: 10;
+				cursor: pointer;
+			}
+
+			.container .btn:hover {
+				transform: scale(1.1);
+			}
+
+			.container .btn:active {
+				transform: scale(1);
+			}
+
+			.container .btn::before {
+				content: "CLICK";
+				color: var(--brightcolor);
+				font-family: "Sriracha", cursive;
+				font-weight: 400;
+				font-size: 12px;
+			}
+
+			.container .wave_wrap {
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.container .wave_wrap .wave {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				border: 10px solid var(--brightcolor);
+				border-radius: 50%;
+				filter: blur(15px);
+				box-shadow: inset 6px 6px 15px rgba(2 37 201/ 1), 6px 6px 15px rgba(2 37 201/ 1), inset calc(6px * -1) calc(6px * -1) 15px rgba(2 37 201/ 0.2), calc(6px * -1) calc(6px * -1) 15px rgba(2 37 201/ 0.2);
+				animation: spread;
+				animation-duration: 3s;
+				animation-timing-function: cubic-bezier(0, 0.2, 0.8, 1);
+				animation-iteration-count: infinite;
+			}
+
+			.container .wave_wrap .wave:nth-child(2) {
+				animation-delay: -1s;
+			}
+
+			.container .wave_wrap .wave:nth-child(3) {
+				animation-delay: -2s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<button class="btn"></button>
+			<div class="wave_wrap">
+				<div class="wave"></div>
+				<div class="wave"></div>
+				<div class="wave"></div>
+			</div>
+		</div>
+	</body>
+</html>
