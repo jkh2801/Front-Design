@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ThreeDEx5</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: radial-gradient(#eac4ff, #9e57c5);
+				overflow: hidden;
+			}
+			.stairs {
+				position: relative;
+				width: 500px;
+				height: 300px;
+				transform-style: preserve-3d;
+				transform: rotateX(-30deg) rotateY(160deg);
+				animation: animate 10s linear infinite;
+			}
+			@keyframes animate {
+				0% {
+					transform: rotateX(-30deg) rotateY(0deg);
+				}
+				100% {
+					transform: rotateX(-30deg) rotateY(360deg);
+				}
+			}
+			.stairs .base {
+				position: absolute;
+				top: 0;
+				left: 60px;
+				width: 360px;
+				height: 300px;
+				background: #a54bcf;
+				transform: rotateX(90deg) translateZ(-150px) scale(1.25);
+				filter: blur(20px);
+				opacity: 0.5;
+			}
+			.stairs .step {
+				position: absolute;
+				left: calc(60px * var(--j));
+				bottom: 0;
+				width: 60px;
+				height: calc(60px * var(--j));
+				transform-style: preserve-3d;
+			}
+			.stairs .step::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 60px;
+				height: 300px;
+				background: #cf8df1;
+				transform: rotateX(90deg) translateZ(150px);
+			}
+			.stairs .step:hover::before {
+				filter: brightness(1.1);
+				cursor: pointer;
+			}
+			.stairs .step::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 300px;
+				height: 60px;
+				background: #ae52dd;
+				transform: rotateY(90deg) translateZ(-150px);
+			}
+			.stairs .step i {
+				position: absolute;
+				display: block;
+				width: 60px;
+				height: 100%;
+				background: #a54bcf;
+				transform-style: preserve-3d;
+			}
+			.stairs .step i:nth-child(1) {
+				transform: translateZ(150px);
+			}
+			.stairs .step i:nth-child(2) {
+				transform: translateZ(-150px);
+			}
+			.stairs .step:last-child i:nth-child(2)::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 300px;
+				height: 100%;
+				background: #a54bcf;
+				transform: rotateY(90deg) translate3d(-150px, 0, -100px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="stairs">
+			<div class="base"></div>
+			<div class="step" style="--j: 1">
+				<i></i>
+				<i></i>
+			</div>
+			<div class="step" style="--j: 2">
+				<i></i>
+				<i></i>
+			</div>
+			<div class="step" style="--j: 3">
+				<i></i>
+				<i></i>
+			</div>
+			<div class="step" style="--j: 4">
+				<i></i>
+				<i></i>
+			</div>
+			<div class="step" style="--j: 5">
+				<i></i>
+				<i></i>
+			</div>
+			<div class="step" style="--j: 6">
+				<i></i>
+				<i></i>
+			</div>
+		</div>
+	</body>
+</html>
