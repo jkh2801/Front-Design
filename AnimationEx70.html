@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AnimationEx 70</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+			* {
+				font-family: "Poppins", sans-serif;
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #f8f8f8;
+			}
+			.card {
+				position: relative;
+				width: 300px;
+				height: 400px;
+				background: #fff;
+				border-radius: 20px;
+				box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+			}
+			.card span {
+				position: absolute;
+				top: -10px;
+				left: -10px;
+				width: 150px;
+				height: 150px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
+			.card span::before {
+				content: "Best Value";
+				position: absolute;
+				width: 150%;
+				height: 40px;
+				background: #62baea;
+				transform: rotate(-45deg) translateY(-20px);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: #fff;
+				letter-spacing: 0.1em;
+				box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+			}
+			.card span::after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 10px;
+				height: 10px;
+				background: #4a98bf;
+				z-index: -1;
+				box-shadow: 140px -140px #4a98bf;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card"><span></span></div>
+	</body>
+</html>
