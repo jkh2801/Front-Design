@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AnimationEx71</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+			body {
+				background: #444670;
+			}
+			#slider {
+				font-family: Montserrat, Sans-Serif;
+				font-size: 12px;
+				margin: 0 auto;
+				background: #090a26;
+				box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+				user-select: none;
+				-moz-user-select: none;
+				-khtml-user-select: none;
+				-webkit-user-select: none;
+				-o-user-select: none;
+			}
+			#slider #slider-circle {
+				cursor: n-resize;
+			}
+			#slider #slider-big-value {
+				font-size: 38px;
+				fill: white;
+			}
+			#slider .num {
+				fill: white;
+				transition: all 0.4s;
+			}
+			#slider .num.hl {
+				font-size: 20px;
+				fill: MediumTurquoise;
+			}
+			#slider .tick {
+				stroke: rgba(255, 255, 255, 1);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="slider" class="slider-temp"></div>
+		<script>
+			// Sorry, I am quite bad at naming variables!
+			class Slider {
+				constructor(options) {
+					this.sliderDOM = document.querySelector(options.selector);
+					this.selector = options.selector;
+					this.width = options.width;
+					this.height = options.height;
+					this.bigValue = options.bigValue;
+					this.marg = this.height * 0.05;
+					this.radius = this.height * 0.01875;
+					this.pathX = options.pathX ? this.width * options.pathX : this.width * 0.4;
+					this.initPos = this.height / 2;
+					this.d = `s 0 ${this.height * 0.02} -${this.height * 0.02} ${this.height * 0.035} s -${this.height * 0.0275} ${this.height * 0.045} 0 ${this.height * 0.065} q ${this.height * 0.02} ${this.height * 0.0125} ${this.height * 0.02} ${
+						this.height * 0.0325
+					}`;
+					this.hl = null;
+					this.prevPageY = null;
+					this.curveHeight = this.height * 0.1325;
+					this.gradient = options.gradient;
+					this.init(options.initValue);
+				}
+				fullPath(pageY) {
+					return `M ${this.pathX} 0 v ${pageY} ${this.d} v ${this.height - pageY - this.curveHeight}`;
+				}
+				formatPerc(p) {
+					return `• ${p}%`;
+				}
+				makeSVG(tag, attrs) {
+					let el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+					for (let k in attrs) el.setAttribute(k, attrs[k]);
+					return el;
+				}
+				create() {
+					this.sliderDOM.style.width = this.width + "px";
+					this.sliderDOM.style.height = this.height + "px";
+					this.sliderSVG = this.makeSVG("svg", {
+						width: this.width,
+						height: this.height,
+					});
+					let defs = this.makeSVG("defs");
+					let linearGradient = this.makeSVG("linearGradient", {
+						id: "gradient",
+						x1: "0%",
+						y1: "0%",
+						x2: "0%",
+						y2: "100%",
+					});
+					defs.appendChild(linearGradient);
+					for (let grad of this.gradient) {
+						linearGradient.appendChild(
+							this.makeSVG("stop", {
+								offset: grad.offset,
+								"stop-color": grad.color,
+							})
+						);
+					}
+
+					this.sliderSVG.appendChild(defs);
+					this.sliderDOM.appendChild(this.sliderSVG);
+
+					// create curve
+					this.curve = this.makeSVG("path", {
+						d: this.fullPath(-this.curveHeight),
+						"stroke-width": "2",
+						fill: "transparent",
+						stroke: "url(#gradient)",
+						id: "slider-curve",
+					});
+					this.sliderSVG.appendChild(this.curve);
+
+					// create circle
+					this.circle = this.makeSVG("circle", {
+						cx: this.pathX + this.radius / 2,
+						cy: 0,
+						r: this.radius,
+						stroke: "darkgrey",
+						"stroke-width": "4",
+						fill: "white",
+						id: "slider-circle",
+					});
+					this.sliderSVG.appendChild(this.circle);
+
+					// create bigValue
+					if (this.bigValue.enabled) {
+						this.bigValueElement = this.makeSVG("text", {
+							x: this.width * this.bigValue.x,
+							y: this.height * this.bigValue.y,
+							"dominant-baseline": "middle",
+							id: `slider-big-value`,
+						});
+						this.sliderSVG.appendChild(this.bigValueElement);
+					}
+
+					// create ticks and ladder
+					let h = this.marg;
+					let step = (this.height - this.marg * 2) / 50;
+					let it = 0;
+					for (let i = 0; i <= 50; i++, h += step) {
+						let point = this.sliderSVG.createSVGPoint();
+						point.x = this.pathX - this.height * 0.045;
+						point.y = h;
+
+						for (let j = 0; j < this.width; j++) {
+							point.x = point.x + 1;
+							if (this.curve.isPointInStroke(point)) {
+								break;
+							}
+						}
+
+						let line;
+						if (it % 5) {
+							line = this.makeSVG("line", {
+								x1: point.x - 10,
+								y1: h,
+								x2: point.x - 3,
+								y2: h,
+								"stroke-width": 0.5,
+								stroke: `lightgrey`,
+								class: "tick",
+							});
+						} else {
+							let num = this.makeSVG("text", {
+								x: 20,
+								y: h,
+								"dominant-baseline": "middle",
+								class: "num",
+								id: `n${100 - it * 2}`,
+							});
+							num.textContent = this.formatPerc(100 - it * 2);
+							this.sliderSVG.appendChild(num);
+
+							line = this.makeSVG("line", {
+								x1: point.x - 13,
+								y1: h,
+								x2: point.x - 3,
+								y2: h,
+								"stroke-width": 0.5,
+								class: "tick",
+							});
+						}
+						it += 1;
+						this.sliderSVG.appendChild(line);
+					}
+					this.ticks = document.querySelectorAll(`${this.selector} .tick`);
+
+					// Circle events
+					let self = this;
+					function onMouseMove(event) {
+						if (event.offsetY < self.marg || event.offsetY > self.height - self.marg) return;
+
+						self.setLadder(null, event.offsetY);
+					}
+					this.circle.onmousedown = function (event) {
+						document.addEventListener("mousemove", onMouseMove);
+					};
+					document.onmouseup = function (e) {
+						document.removeEventListener("mousemove", onMouseMove);
+						self.circle.onmouseup = null;
+					};
+					this.circle.ondragstart = function () {
+						return false;
+					};
+				}
+				setLadder(perc, pageY) {
+					if (!perc) perc = 100 - Math.round((100 * (pageY - this.marg)) / (this.height - this.marg * 2));
+					if (!pageY) pageY = (this.height - this.marg * 2) * ((100 - perc) / 100) + this.marg;
+
+					if (!this.prevPageY) this.prevPageY = pageY;
+
+					this.circle.setAttribute("cy", pageY);
+
+					if (this.bigValue.enabled) this.bigValueElement.textContent = perc + "%";
+
+					let d2 = this.fullPath(pageY - this.curveHeight * 0.5);
+					this.curve.setAttribute("d", d2);
+
+					// position ticks
+					this.ticks.forEach((tick) => {
+						const tickY = Number(tick.getAttribute("y1"));
+						if (tickY < pageY - this.curveHeight || tickY > pageY + this.curveHeight || tickY < this.prevPageY - this.curveHeight || tickY > this.prevPageY + this.curveHeight) return;
+
+						let point = this.sliderSVG.createSVGPoint();
+						point.x = this.pathX - this.height * 0.045;
+						point.y = tickY;
+
+						for (let j = 0; j < this.width; j++) {
+							point.x = point.x + 1;
+							if (this.curve.isPointInStroke(point)) {
+								break;
+							}
+						}
+						tick.setAttribute("x1", point.x - (Number(tick.getAttribute("x2")) - Number(tick.getAttribute("x1"))) - 3);
+						tick.setAttribute("x2", point.x - 3);
+					});
+
+					if (!this.hl || Math.abs(perc - this.hl.floor) >= 10) {
+						const floor = Math.floor(perc / 10) * 10;
+						if (this.hl) {
+							this.hl.floorElement.classList.remove("hl");
+							this.hl.floorElement.setAttribute("y", this.hl.pos);
+							this.hl.floorElement.textContent = this.formatPerc(this.hl.floor);
+						}
+						let floorElement = document.querySelector(`${this.selector} #n${floor}`);
+
+						// deactivate animations for the initial value
+						if (!this.hl) floorElement.style.transition = "all 0s";
+						floorElement.classList.add("hl");
+						this.hl = { floorElement, pos: floorElement.getAttribute("y"), floor };
+					}
+					this.hl.floorElement.textContent = this.formatPerc(perc);
+
+					const topN = document.querySelector(`${this.selector} #n${this.hl.floor + 10}`);
+					const belowN = document.querySelector(`${this.selector} #n${this.hl.floor - 10}`);
+
+					const boundTop = this.hl.floor == 100 ? this.marg : Number(topN.getAttribute("y")) + topN.getBoundingClientRect().height / 2 + this.hl.floorElement.getBoundingClientRect().height / 2;
+					const boundBelow = this.hl.floor == 0 ? this.height - this.marg : Number(belowN.getAttribute("y")) - belowN.getBoundingClientRect().height / 2 - this.hl.floorElement.getBoundingClientRect().height / 2;
+
+					if (pageY < boundTop) this.hl.floorElement.setAttribute("y", boundTop);
+					else if (pageY > boundBelow) this.hl.floorElement.setAttribute("y", boundBelow);
+					else this.hl.floorElement.setAttribute("y", pageY);
+
+					this.prevPageY = pageY;
+				}
+				init(p = 50) {
+					this.create();
+					this.setLadder(p);
+				}
+			}
+			let slider = new Slider({
+				selector: "#slider",
+				width: 350,
+				height: 401,
+				pathX: 0.4, // .4 by default
+				initValue: 50, // 50 by default
+				gradient: [
+					{
+						offset: "20%",
+						color: "MediumVioletRed",
+					},
+					{
+						offset: "30%",
+						color: "MediumTurquoise",
+					},
+					{
+						offset: "80%",
+						color: "MediumTurquoise",
+					},
+					{
+						offset: "90%",
+						color: "MediumVioletRed",
+					},
+				],
+				bigValue: {
+					enabled: true,
+					x: 0.6,
+					y: 0.5,
+				},
+			});
+		</script>
+	</body>
+</html>
