@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex73</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				background: #000;
+				overflow: hidden;
+				height: 100vh;
+			}
+			i {
+				position: absolute;
+				height: 200px;
+				background: linear-gradient(transparent, #fff);
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				animation: animate 5s linear infinite;
+			}
+			i:nth-child(3n + 1) {
+				background: linear-gradient(transparent, #0ff);
+			}
+			i:nth-child(3n + 2) {
+				background: linear-gradient(transparent, #0f0);
+			}
+			i:nth-child(3n + 3) {
+				background: linear-gradient(transparent, #f00);
+			}
+			@keyframes animate {
+				0% {
+					transform: translateY(-200px);
+				}
+				100% {
+					transform: translateY(calc(100vh + 200px));
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			function rain() {
+				let amount = 200;
+				let body = document.querySelector("body");
+				let i = 0;
+				while (i < amount) {
+					let drop = document.createElement("i");
+					let size = Math.random() * 5;
+					let posX = Math.floor(Math.random() * window.innerWidth);
+					let delay = Math.random() * -20;
+					let duration = Math.random() * 5;
+
+					drop.style.width = 0.2 + size + "px";
+					drop.style.left = posX + "px";
+					drop.style.animationDelay = delay + "s";
+					drop.style.animationDuration = 1 + duration + "s";
+					body.appendChild(drop);
+					i++;
+				}
+			}
+			rain();
+		</script>
+	</body>
+</html>
