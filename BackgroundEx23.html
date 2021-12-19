@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Background Ex23</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: consolas;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #232323;
+			}
+			span {
+				position: relative;
+				display: inline-block;
+				width: 80px;
+				height: 80px;
+				padding: 8px 15px;
+				margin: 8px 4px;
+				border-radius: 10px;
+				background: linear-gradient(180deg, #282828, #202020);
+				box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.15), inset 0 -8px 8px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0, 0, 0, 0.75), 10px 20px 25px rgba(0, 0, 0, 0.4);
+				overflow: hidden;
+			}
+			span:last-child {
+				width: 100%;
+			}
+			span::before {
+				content: "";
+				position: absolute;
+				top: 3px;
+				left: 4px;
+
+				bottom: 14px;
+				right: 12px;
+				background: linear-gradient(90deg, #232323, #4a4a4a);
+				border-radius: 10px;
+				box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.25), 10px 5px 10px rgba(0, 0, 0, 0.15);
+				border-left: 1px solid #0004;
+				border-bottom: 1px solid #0004;
+				border-top: 1px solid #0009;
+			}
+			span i {
+				position: relative;
+				color: #fff;
+				font-size: normal;
+				text-transform: uppercase;
+				font-size: 1.5em;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<span><i>C</i></span>
+			<span><i>S</i></span>
+			<span><i>S</i></span
+			><br />
+			<span><i>O</i></span>
+			<span><i>N</i></span>
+			<span><i>L</i></span>
+			<span><i>Y</i></span
+			><br />
+			<span><i></i></span>
+		</div>
+	</body>
+</html>
