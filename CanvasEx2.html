@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex2</title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				font-family: sans-serif;
+				color: white;
+				font-size: 10pt;
+			}
+
+			#canvas {
+				position: fixed;
+			}
+
+			h3 {
+				margin: 0.5rem 0 0.2rem 0;
+			}
+
+			#controls {
+				text-align: center;
+				margin: 0.8rem;
+				padding: 0.8rem;
+				position: fixed;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				border: 1px solid white;
+			}
+
+			.control {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0.3rem 0;
+				justify-content: space-between;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="controls">
+			<h3>Controls</h3>
+			<div class="control">
+				<label id="square-range-label" for="square-range"></label>
+				<input type="range" id="squares-range" />
+			</div>
+			<div class="control">
+				<label id="wave-range-label" for="wave-range"></label>
+				<input type="range" id="wave-range" />
+			</div>
+			<div class="control">
+				<label id="accel-range-label" for="accel-range"></label>
+				<input type="range" id="accel-range" />
+			</div>
+			<div class="control">
+				<button id="pause-btn">Pause</button>
+			</div>
+		</div>
+
+		<canvas id="canvas"></canvas>
+		<script>
+			const SQUARES_MIN = 10;
+			const SQUARES_MAX = 5000;
+			const WAVE_MIN = 1;
+			const WAVE_MAX = 10;
+			const ACCEL_MIN = 1;
+			const ACCEL_MAX = 10;
+
+			function randF(min, max) {
+				return Math.random() * max + min;
+			}
+
+			function updateLabel(text, selector, amount = "", padding = 0) {
+				const label = document.querySelector(selector);
+				label.innerText = `${text} (${String(amount).padStart(padding, "0")}):`;
+			}
+
+			function initButton(world) {
+				const pauseBtn = document.getElementById("pause-btn");
+				pauseBtn.addEventListener("click", function () {
+					world.isPlaying = !world.isPlaying;
+					pauseBtn.innerText = world.isPlaying ? "Pause" : "Play";
+					window.requestAnimationFrame(() => step(world));
+				});
+			}
+
+			function initSquaresRange(world) {
+				const squaresRange = document.getElementById("squares-range");
+				squaresRange.min = SQUARES_MIN;
+				squaresRange.max = SQUARES_MAX;
+				squaresRange.value = world.squareAmount;
+				updateLabel("Points", "#square-range-label", world.squareAmount, 4);
+				squaresRange.addEventListener("input", function (e) {
+					world.squareAmount = e.target.value;
+					updateLabel("Points", "#square-range-label", world.squareAmount, 4);
+				});
+			}
+
+			function initWaveRange(world) {
+				const waveRange = document.getElementById("wave-range");
+				waveRange.min = WAVE_MIN;
+				waveRange.max = WAVE_MAX;
+				waveRange.value = world.waveAmount;
+				updateLabel("Wave", "#wave-range-label", world.waveAmount, 2);
+				waveRange.addEventListener("input", function (e) {
+					world.waveAmount = e.target.value;
+					updateLabel("Wave", "#wave-range-label", world.waveAmount, 2);
+				});
+			}
+
+			function initAccelRange(world) {
+				const accelRange = document.getElementById("accel-range");
+				accelRange.min = ACCEL_MIN;
+				accelRange.max = ACCEL_MAX;
+				accelRange.value = world.accelAmount;
+				updateLabel("Accel", "#accel-range-label", world.accelAmount, 2);
+				accelRange.addEventListener("input", function (e) {
+					world.accelAmount = e.target.value;
+					updateLabel("Accel", "#accel-range-label", world.accelAmount, 2);
+				});
+			}
+
+			function initControls(world) {
+				initButton(world);
+				initSquaresRange(world);
+				initWaveRange(world);
+				initAccelRange(world);
+			}
+
+			function makeSquare(xMin, xMax, yMin, yMax) {
+				return {
+					x: randF(xMin, xMax),
+					y: randF(yMin, yMax),
+					vy: -1,
+					vx: 0,
+					width: 3,
+					height: 3,
+					fps: 0,
+				};
+			}
+
+			function createWorld() {
+				const canvas = document.getElementById("canvas");
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+				const ctx = canvas.getContext("2d");
+				const squareAmount = 1000;
+				const squares = new Array(squareAmount).fill(null).map(() => makeSquare(0, canvas.width, 0, canvas.height));
+				return {
+					isPlaying: true,
+					canvas,
+					ctx,
+					squares,
+					squareAmount,
+					waveAmount: 1,
+					accelAmount: 1,
+				};
+			}
+
+			function fillBackground(ctx) {
+				ctx.fillStyle = "black";
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+			}
+
+			function updateSquares(squares, waveAmount, accelAmount) {
+				for (let i = 0; i < squares.length; i++) {
+					squares[i].x += squares[i].vx;
+					squares[i].y += squares[i].vy;
+					squares[i].vy += -(0.1 * Math.random() * accelAmount);
+					squares[i].vx = Math.sin(squares[i].vy) * waveAmount;
+					if (squares[i].y + squares[i].height < 0) {
+						squares[i] = makeSquare(0, world.canvas.width, 0, world.canvas.height);
+					}
+				}
+			}
+
+			function update(world) {
+				updateSquares(world.squares, world.waveAmount, world.accelAmount);
+				const squareDiff = world.squareAmount - world.squares.length;
+				if (squareDiff < 0) {
+					world.squares = world.squares.slice(0, world.squareAmount);
+				}
+				if (squareDiff > 0) {
+					const newSquares = new Array(squareDiff).fill(null).map(() => makeSquare(0, world.canvas.width, 0, world.canvas.height));
+					world.squares = [...world.squares, ...newSquares];
+				}
+				return world;
+			}
+
+			function squareColor(square) {
+				const MAX_SPEED = 10;
+				const MAX_COLOR_VALUE = 256;
+				const speedIntensity = Math.abs(square.vy % MAX_SPEED) / MAX_SPEED;
+				const colorBySpeed = Math.floor(speedIntensity * MAX_COLOR_VALUE);
+				const r = 180;
+				const b = colorBySpeed;
+				const g = colorBySpeed;
+				return `#${r.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}`;
+			}
+
+			function drawSquares(ctx, squares) {
+				for (const s of squares) {
+					ctx.fillStyle = squareColor(s);
+					ctx.fillRect(s.x, s.y, s.width, s.height);
+				}
+			}
+
+			function drawDebug(canvas, ctx, fps) {
+				ctx.fillStyle = "white";
+				ctx.font = "normal 16pt Arial";
+
+				ctx.fillText(Math.round(fps * 10) / 10 + " fps", canvas.width - 100, 20);
+			}
+
+			function draw(world) {
+				fillBackground(world.ctx);
+				drawSquares(world.ctx, world.squares);
+				drawDebug(world.canvas, world.ctx, world.fps);
+			}
+
+			let lastCalledTime = performance.now();
+			function step(world) {
+				// pause
+				if (!world.isPlaying) return;
+
+				const delta = (performance.now() - lastCalledTime) / 1000;
+				lastCalledTime = performance.now();
+				world.fps = 1 / delta;
+
+				// main logic
+				update(world);
+				draw(world);
+				window.requestAnimationFrame(() => step(world));
+			}
+
+			const world = createWorld();
+			window.addEventListener("resize", () => {
+				world.canvas.width = window.innerWidth;
+				world.canvas.height = window.innerHeight;
+			});
+			initControls(world);
+			window.requestAnimationFrame(() => step(world));
+		</script>
+	</body>
+</html>
