@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calendar Ex3</title>
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Quicksand", sans-serif;
+			}
+			body {
+				background: #f1fbff;
+			}
+			.calendar {
+				padding: 20px 40px;
+			}
+			.months-container {
+				justify-content: center;
+				gap: 40px;
+			}
+			.calendar .months-container .month-container {
+				background: #fff;
+				padding: 20px;
+				min-width: 280px;
+				box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+			}
+			.calendar table.month th.month-title {
+				color: #5a8990;
+				font-size: 1.9em;
+				font-weight: 200;
+				font-family: "Dancing Script", cursive;
+			}
+			table.month td:first-child,
+			table.month td:last-child,
+			table.month thead tr:nth-child(2) th:first-child,
+			table.month thead tr:nth-child(2) th:last-child {
+				color: #f75c90;
+			}
+			.calendar table.month td.day .day-content {
+				padding: 6px 8px;
+			}
+			.calendar table.month th.day-header {
+				color: #777;
+				font-size: 0.9em;
+				font-weight: 700;
+			}
+			.month tr td {
+				font-size: 0.9em;
+				font-weight: 500;
+				color: #777;
+			}
+			table.month td.day .day-content:hover {
+				background: #f75c90;
+				color: #fff;
+			}
+			.calendar .calendar-header {
+				border: none;
+			}
+			.calendar .calendar-header table th:hover {
+				background: transparent;
+			}
+			.calendar .calendar-header .year-title {
+				font-size: 4em;
+				color: #f75c90;
+				font-family: "Dancing Script", cursive;
+			}
+			.calendar .calendar-header .year-neighbor {
+				font-size: 2.25em;
+			}
+			.calendar .calendar-header .year-neighbor2 {
+				font-size: 1em;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="calendar"></div>
+		<script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
+		<script>
+			new Calendar(document.querySelector(".calendar"));
+		</script>
+	</body>
+</html>
