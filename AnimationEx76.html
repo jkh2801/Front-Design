@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex76</title>
+		<style>
+			body {
+				background-color: #222;
+				overflow: hidden;
+			}
+
+			.container {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				height: 100vh;
+			}
+
+			svg {
+				stroke: #eee;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="tetrahedron"></div>
+			<div class="icosahedron"></div>
+			<div class="cube"></div>
+			<div class="octahedron"></div>
+		</div>
+		<script>
+			const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+			const solidsArr = ["tetrahedron", "cube", "octahedron", "icosahedron"];
+			const solids = Array.from(document.querySelectorAll("." + solidsArr.join(", .")));
+			const viewBoxWidth = 40;
+
+			svg.setAttribute("width", "100%");
+			svg.setAttribute("height", "100%");
+			svg.setAttribute("viewBox", `-20 -20 ${viewBoxWidth} ${viewBoxWidth}`);
+			polygon.setAttribute("style", `fill: none; stroke-width: ${(viewBoxWidth / 256).toString()}`);
+
+			const solidsData = {};
+
+			const initSolid = (name) => {
+				const v = viewBoxWidth / 4;
+				const vo = v + v / 2;
+				const gr = (vo * (Math.sqrt(5) - 1)) / 2; // golden ratio
+
+				const polyData = {
+					tetrahedron: {
+						vertices: [
+							[v, v, v],
+							[-v, -v, v],
+							[v, -v, -v],
+							[-v, v, -v],
+						],
+						faces: [
+							[0, 1, 2],
+							[0, 3, 1],
+							[3, 2, 0],
+							[2, 3, 1],
+						],
+					},
+					cube: {
+						vertices: [
+							[v, v, v],
+							[-v, v, v],
+							[-v, -v, v],
+							[v, -v, v],
+							[v, v, -v],
+							[-v, v, -v],
+							[-v, -v, -v],
+							[v, -v, -v],
+						],
+						faces: [
+							[0, 1, 2, 3],
+							[1, 0, 4, 5],
+							[2, 1, 5, 6],
+							[3, 2, 6, 7],
+							[0, 3, 7, 4],
+							[7, 6, 5, 4],
+						],
+					},
+					octahedron: {
+						vertices: [
+							[vo, 0, 0],
+							[0, vo, 0],
+							[0, 0, vo],
+							[0, -vo, 0],
+							[0, 0, -vo],
+							[-vo, 0, 0],
+						],
+						faces: [
+							[0, 1, 2],
+							[0, 2, 3],
+							[0, 3, 4],
+							[0, 4, 1],
+							[5, 2, 1],
+							[5, 3, 2],
+							[5, 4, 3],
+							[5, 1, 4],
+						],
+					},
+					icosahedron: {
+						vertices: [
+							[gr, 0, vo],
+							[-gr, 0, vo],
+							[gr, 0, -vo],
+							[-gr, 0, -vo],
+							[0, vo, gr],
+							[0, vo, -gr],
+							[0, -vo, gr],
+							[0, -vo, -gr],
+							[vo, gr, 0],
+							[vo, -gr, 0],
+							[-vo, gr, 0],
+							[-vo, -gr, 0],
+						],
+						faces: [
+							[0, 1, 4],
+							[1, 0, 6],
+							[2, 3, 5],
+							[3, 2, 7],
+							[4, 5, 8],
+							[5, 4, 10],
+							[6, 7, 11],
+							[7, 6, 9],
+							[8, 9, 0],
+							[9, 8, 2],
+							[10, 11, 3],
+							[11, 10, 1],
+						],
+					},
+				};
+
+				return [polyData[name].vertices, polyData[name].faces];
+			};
+
+			for (const e of solidsArr) {
+				const data = initSolid(e);
+				solidsData[e] = {
+					vertices: data[0],
+					faces: data[1],
+				};
+			}
+
+			const solidMatch = (target) => {
+				const regex = new RegExp(solidsArr.join("|"));
+				const name = target.className.match(regex)[0];
+				return [regex.test(name), name];
+			};
+
+			const createFaces = (name, num) => {
+				const newPolygon = polygon.cloneNode(true);
+				newPolygon.setAttribute(
+					"points",
+					solidsData[name].faces[num]
+						.map((e) => solidsData[name].vertices[e])
+						.map(([x, y, _z]) => [x, y])
+						.toString()
+				);
+				return newPolygon;
+			};
+
+			const render = (target, name) => {
+				const targetSvg = target.querySelector("svg");
+				targetSvg.innerHTML = "";
+				solidsData[name].faces.forEach((_x, i) => targetSvg.appendChild(createFaces(name, i)));
+			};
+
+			solids.forEach((solid) => {
+				const [matched, name] = solidMatch(solid);
+				if (matched) {
+					const newSvg = svg.cloneNode(true);
+					solid.appendChild(newSvg);
+					render(solid, name);
+				}
+			});
+
+			const rotate = (name, deg) => {
+				const clc = (Math.PI / 180) * deg;
+				const cos = Math.cos(clc);
+				const sin = Math.sin(clc);
+				solidsData[name].vertices = solidsData[name].vertices.map(([x, y, z]) => [x, cos * y - sin * z, sin * y + cos * z]); // rotate on x axis
+				solidsData[name].vertices = solidsData[name].vertices.map(([x, y, z]) => [cos * x - sin * y, sin * x + cos * y, z]); // rotate on z axis
+			};
+
+			const rotateSolids = (forward = 1) => {
+				setInterval(() => {
+					solids.forEach((solid) => {
+						const [matched, name] = solidMatch(solid);
+						if (matched) {
+							rotate(name, forward === 1 ? 5 : -5);
+							render(solid, name);
+						}
+					});
+				}, 100);
+			};
+
+			rotateSolids();
+		</script>
+	</body>
+</html>
