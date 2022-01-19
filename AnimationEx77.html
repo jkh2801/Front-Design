@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex77</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				min-height: 100vh;
+				overflow: hidden;
+				background: #fff;
+			}
+			.container {
+				position: relative;
+				display: flex;
+				flex-wrap: wrap;
+				transform-style: preserve-3d;
+				perspective: 1000px;
+			}
+			.container .block {
+				position: relative;
+				width: 2vw;
+				height: 2vw;
+				background: url("image/iocrops.jpg");
+				background-size: cover;
+				background-attachment: fixed;
+				background-position: center;
+				/* background: #f00;
+				border: 1px solid #111; */
+				transform-style: preserve-3d;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container"></div>
+		<script src="js/anime.min.js"></script>
+		<script>
+			let container = document.querySelector(".container");
+			for (let i = 0; i < 1500; i++) {
+				let block = document.createElement("div");
+				block.classList.add("block");
+				container.appendChild(block);
+			}
+
+			let block = document.querySelectorAll(".block");
+			let animation = anime.timeline({
+				targets: block,
+				easing: "easeInOutExpo",
+				loop: true,
+				delay: anime.stagger(10, { start: 50 }),
+			});
+
+			animation
+				.add({
+					scale: 0,
+					translateX: function () {
+						return anime.random(360, 2100);
+					},
+					translateY: function () {
+						return anime.random(360, -2100);
+					},
+					rotate: function () {
+						return anime.random(-360, 360);
+					},
+					duration: function () {
+						return anime.random(500, 3000);
+					},
+				})
+				.add({
+					scale: 1,
+					translateX: 0,
+					translateY: 0,
+					rotate: 0,
+					duration: function () {
+						return anime.random(500, 3000);
+					},
+				});
+		</script>
+	</body>
+</html>
