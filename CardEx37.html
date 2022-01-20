@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Card Ex38</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #eaf6ff;
+			}
+			.card {
+				position: relative;
+				width: 300px;
+				height: 400px;
+				background: #fff;
+				border-radius: 10px;
+				box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25), -10px -10px 30px rgba(9, 148, 255, 0.1), inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+				padding: 20px;
+			}
+			.card .imgBx {
+				position: relative;
+				width: 100%;
+				height: 200px;
+				border-radius: 6px;
+				overflow: hidden;
+			}
+			.card .imgBx img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.card .content {
+				width: 100%;
+				padding: 30px 20px;
+				display: grid;
+				place-items: center;
+			}
+			.card .content h3 {
+				color: #0994ff;
+				text-align: center;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+			}
+			.card .content h3 span {
+				font-size: 0.8em;
+				font-weight: 500;
+				color: #333;
+				text-transform: initial;
+			}
+			.card .content .sci {
+				position: relative;
+				display: flex;
+				margin-top: 15px;
+				justify-content: center;
+			}
+			.card .content .sci li {
+				list-style: none;
+			}
+			.card .content .sci li a {
+				position: relative;
+				width: 45px;
+				height: 45px;
+				margin: 0 8px;
+				display: grid;
+				place-items: center;
+				text-decoration: none;
+				background: #fff;
+				color: #0994ff;
+				font-size: 1.15em;
+				border-radius: 15px;
+				box-shadow: 5px 5px 10px rgba(9, 148, 255, 0.25), -2px -2px 5px rgba(9, 148, 255, 0.05), inset -2px -2px 5px rgba(9, 148, 255, 0.25);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card">
+			<div class="imgBx">
+				<img src="image/face1.jpg" alt="" />
+			</div>
+			<div class="content">
+				<div>
+					<h3>David Hammer <br /><span>Front Develeper</span></h3>
+					<ui class="sci">
+						<li>
+							<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa-brands fa-twitter"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa-brands fa-instagram"></i></a>
+						</li>
+					</ui>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
