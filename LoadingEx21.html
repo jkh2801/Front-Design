@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Loading Ex21</title>
+		<style>
+			body {
+				align-items: center;
+				display: flex;
+				height: 100vh;
+				justify-content: center;
+				margin: 0;
+			}
+			.circles {
+				height: 90vmin;
+				position: relative;
+				width: 90vmin;
+			}
+			.circles div {
+				background-color: dodgerblue;
+				border-radius: 50%;
+				height: 100%;
+				opacity: 0;
+				position: absolute;
+				width: 100%;
+				animation: growAndFade 3s infinite ease-out;
+			}
+			.circles .circle1 {
+				animation-delay: 1s;
+			}
+			.circles .circle2 {
+				animation-delay: 2s;
+			}
+			.circles .circle3 {
+				animation-delay: 3s;
+			}
+			@keyframes growAndFade {
+				0% {
+					opacity: 0.25;
+					transform: scale(0);
+				}
+				100% {
+					opacity: 0;
+					transform: scale(1);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="circles">
+			<div class="circle1"></div>
+			<div class="circle2"></div>
+			<div class="circle3"></div>
+		</div>
+	</body>
+</html>
