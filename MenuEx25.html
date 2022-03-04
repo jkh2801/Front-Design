@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menu Ex25</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #222237;
+			}
+			.menu {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.menu .toggle {
+				position: absolute;
+				width: 75px;
+				height: 75px;
+				background: #fff;
+				border-radius: 50%;
+				color: #222327;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 3em;
+				cursor: pointer;
+				transition: 0.5s;
+			}
+			.menu .toggle.active {
+				transform: rotate(315deg);
+				box-shadow: 0 0 0 68px #fff;
+				background: #222237;
+				color: #fff;
+			}
+			.menu li {
+				position: absolute;
+				left: 10px;
+				list-style: none;
+				transform: rotate(calc(360deg / 8 * var(--i))) translateX(40px);
+				transform-origin: 140px;
+				visibility: hidden;
+				opacity: 0;
+				transition: 0.5s;
+				z-index: 10;
+			}
+			.menu.active li {
+				visibility: visible;
+				opacity: 1;
+			}
+			.menu li a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 55px;
+				height: 55px;
+				font-size: 1.75em;
+				color: #222327;
+				transform: rotate(calc(360deg / -8 * var(--i)));
+				border-radius: 50%;
+			}
+			.menu.active li.active {
+				transform: rotate(calc(360deg / 8 * var(--i))) translateX(12px);
+			}
+			.indicator {
+				position: absolute;
+				left: calc(50% + 2.5px);
+				width: 100px;
+				height: 1px;
+				transform-origin: right;
+				pointer-events: none;
+				transition: 0.5s;
+			}
+			.indicator::before {
+				content: "";
+				position: absolute;
+				top: -27.5px;
+				left: 72px;
+				width: 55px;
+				height: 55px;
+				background: #222237;
+				box-shadow: 0 0 0 6px #29fd53;
+				border-radius: 50%;
+				transition: 0.5s;
+				opacity: 0;
+			}
+			.menu.active .indicator::before {
+				opacity: 1;
+				top: -27.5px;
+				left: -27.5px;
+				background: #29fd53;
+				box-shadow: 0 0 0 6px #222237;
+			}
+			.menu li:nth-child(2).active ~ .indicator {
+				transform: translateX(-103px) rotate(0);
+			}
+			.menu li:nth-child(3).active ~ .indicator {
+				transform: translateX(-103px) rotate(45deg);
+			}
+			.menu li:nth-child(4).active ~ .indicator {
+				transform: translateX(-103px) rotate(90deg);
+			}
+			.menu li:nth-child(5).active ~ .indicator {
+				transform: translateX(-103px) rotate(135deg);
+			}
+			.menu li:nth-child(6).active ~ .indicator {
+				transform: translateX(-103px) rotate(180deg);
+			}
+			.menu li:nth-child(7).active ~ .indicator {
+				transform: translateX(-103px) rotate(225deg);
+			}
+			.menu li:nth-child(8).active ~ .indicator {
+				transform: translateX(-103px) rotate(270deg);
+			}
+			.menu li:nth-child(9).active ~ .indicator {
+				transform: translateX(-103px) rotate(315deg);
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="menu">
+			<div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
+			<li style="--i: 0">
+				<a href="#"><ion-icon name="home-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 1">
+				<a href="#"><ion-icon name="person-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 2">
+				<a href="#"><ion-icon name="settings-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 3">
+				<a href="#"><ion-icon name="mail-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 4">
+				<a href="#"><ion-icon name="videocam-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 5">
+				<a href="#"><ion-icon name="key-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 6">
+				<a href="#"><ion-icon name="game-controller-outline"></ion-icon></a>
+			</li>
+			<li style="--i: 7">
+				<a href="#"><ion-icon name="camera-outline"></ion-icon></a>
+			</li>
+			<div class="indicator"></div>
+		</ul>
+		<script>
+			let menuToggle = document.querySelector(".toggle");
+			let menu = document.querySelector(".menu");
+			menuToggle.onclick = function () {
+				menu.classList.toggle("active");
+				menuToggle.classList.toggle("active");
+			};
+
+			const list = document.querySelectorAll("li");
+			function activeLink() {
+				list.forEach((item) => {
+					item.classList.remove("active");
+					this.classList.add("active");
+				});
+			}
+			list.forEach((item) => item.addEventListener("click", activeLink));
+		</script>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body>
+</html>
