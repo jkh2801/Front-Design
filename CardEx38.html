@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Card Ex38</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: linear-gradient(#4ba9e9, #4ba9e9 50%, #fff 50%, #fff 100%);
+			}
+			.card {
+				position: absolute;
+				width: 300px;
+				height: 380px;
+				background: #000;
+				box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+				display: flex;
+				overflow: hidden;
+				transition: 0.5s ease-in-out;
+			}
+			.card:hover {
+				width: 600px;
+			}
+			.card .imgBx {
+				position: relative;
+				min-width: 300px;
+				height: 100%;
+				background: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				z-index: 2;
+			}
+			.card .imgBx img {
+				max-width: 250px;
+				transition: 0.5s ease-in-out;
+			}
+			.card:hover .imgBx img {
+				transform: rotate(-35deg) translateX(-20px);
+			}
+			.card .details {
+				position: absolute;
+				left: 0;
+				min-width: 300px;
+				height: 100%;
+				background: #4ba9e9;
+				display: flex;
+				justify-content: center;
+				/* align-items: center; */
+				padding: 20px;
+				flex-direction: column;
+				z-index: 1;
+			}
+			.card:hover .details {
+				left: 300px;
+			}
+			.card .details::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				width: 0;
+				height: 0;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-left: 10px solid #fff;
+			}
+			.card .details h3 {
+				color: #fff;
+				text-transform: uppercase;
+				font-weight: 600;
+				font-size: 1.5em;
+				line-height: 1em;
+			}
+			.card .details h3 span {
+				font-size: 0.65em;
+				font-weight: 300;
+				text-transform: none;
+				opacity: 0.85;
+			}
+			.card .details h4 {
+				color: #fff;
+				text-transform: uppercase;
+				font-weight: 600;
+				font-size: 0.9em;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				line-height: 1em;
+			}
+			.card .details p {
+				color: #fff;
+				opacity: 0.85;
+				font-size: 0.8em;
+			}
+			.card .details .size {
+				display: flex;
+				gap: 10px;
+			}
+			.card .details .size li {
+				list-style: none;
+				color: #fff;
+				font-size: 0.9em;
+				width: 40px;
+				height: 40px;
+				border: 2px solid #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-weight: 500;
+				opacity: 0.65;
+				cursor: pointer;
+			}
+			.card .details .size li:hover {
+				color: #4ba9e9;
+				background: #fff;
+				opacity: 1;
+			}
+			.card .details .group {
+				position: relative;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 20px;
+			}
+			.card .details .group h2 {
+				color: #fff;
+				font-weight: 600;
+				font-size: 2em;
+			}
+			.card .details .group h2 sup {
+				font-weight: 300;
+			}
+			.card .details .group h2 small {
+				font-size: 0.75em;
+			}
+			.card .details .group a {
+				display: inline-flex;
+				padding: 10px 25px;
+				background: #fff;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-weight: 500;
+				color: #4ba9e9;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card">
+			<div class="imgBx">
+				<img src="image/shoe1.jpg" alt="" />
+			</div>
+			<div class="details">
+				<h3>Nike Air Max<br /><span>Men's Shoe</span></h3>
+				<h4>Produce Details</h4>
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit, Deleniti, quae.</p>
+				<h4>Size</h4>
+				<ul class="size">
+					<li>36</li>
+					<li>38</li>
+					<li>40</li>
+					<li>42</li>
+					<li>44</li>
+				</ul>
+				<div class="group">
+					<h2><sup>$</sup>199 <small>.99</small></h2>
+					<a href="#">Buy Now</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
