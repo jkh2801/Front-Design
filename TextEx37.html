@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Text Ex37</title>
+		<style>
+			body {
+				color: #444;
+				font-family: Arial, sans-serif;
+				overflow: hidden;
+			}
+
+			.page {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+			}
+
+			.container {
+				padding: 0 2rem;
+			}
+
+			.phrase-wrapper {
+				margin-bottom: 1.2rem;
+			}
+
+			.phrase {
+				font-size: 2rem;
+				display: flex;
+			}
+
+			.phrase.phrase--transparent {
+				opacity: 0;
+			}
+
+			.phrase span {
+				display: block;
+				opacity: 0;
+				transform: translateX(0.25rem);
+				transition-duration: 0.25s;
+				transition-property: opacity, transform;
+			}
+
+			.phrase span.show {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<div class="container">
+				<div class="phrase-wrapper">
+					<div class="phrase phrase--transparent">Lorem ipsum dolor animation</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			// TODO: make this feature mobile friendly
+			// TODO: remove spans after animation ends (unwrap letters)
+
+			const phrase = document.querySelector(".phrase");
+
+			const wrapLetters = () => {
+				const letters = phrase.innerText.split("");
+				const newInnerHTML = letters.reduce((result, letter) => {
+					if (letter === " ") letter = "&nbsp;";
+					return result + `<span>${letter}</span>`;
+				}, ``);
+				phrase.innerHTML = newInnerHTML;
+			};
+
+			wrapLetters();
+
+			const animate = () => {
+				phrase.classList.remove("phrase--transparent");
+				const spans = phrase.querySelectorAll("span");
+				spans.forEach((span, index) => {
+					setTimeout(() => span.classList.add("show"), index * 100);
+				});
+			};
+
+			animate();
+		</script>
+	</body>
+</html>
