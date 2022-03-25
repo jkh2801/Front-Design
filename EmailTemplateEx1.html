@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Email Template</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #f7f7f7;
+			}
+			.wrapper {
+				position: relative;
+				width: 50%;
+				min-width: 500px;
+				background: #08c7bd;
+				padding: 40px 20px;
+			}
+			.wrapper::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 24px;
+				background: linear-gradient(-135deg, #f7f7f7 12px, transparent 0%), linear-gradient(135deg, #f7f7f7 12px, transparent 0%);
+				background-size: 24px;
+			}
+			.wrapper::after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 24px;
+				background: linear-gradient(-45deg, #f7f7f7 12px, transparent 0%), linear-gradient(45deg, #f7f7f7 12px, transparent 0%);
+				background-size: 24px;
+			}
+			.container {
+				background: #fff;
+				min-height: 600px;
+				border-radius: 10px;
+			}
+			.logoBox {
+				height: 100px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 40px;
+				padding: 30px 0 10px;
+				border-bottom: 1px solid #c7c7c7;
+			}
+			.box {
+				margin: 20px 40px;
+				font-weight: 700;
+			}
+			.head {
+				margin-bottom: 10px;
+			}
+			.row {
+				display: flex;
+				border-bottom: 1px solid #d3d3d3;
+			}
+			.table .row:last-child {
+				border-bottom: none;
+			}
+			.infoBox {
+				width: 200px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				font-size: 14px;
+				height: 60px;
+			}
+
+			.table {
+				margin-top: 20px;
+				border-top: 1px solid #555;
+				border-bottom: 1px solid #555;
+			}
+			.btnBox {
+				width: calc(100% - 200px);
+				height: 60px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.btn {
+				min-width: 100px;
+				width: 50%;
+				height: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-decoration: none;
+				color: #222;
+				font-weight: 400;
+				border-radius: 5px;
+				border: 1px solid #08c7bd;
+				transition: 0.5s;
+			}
+			.btn:hover {
+				background: #08c7bd;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="container">
+				<div class="logoBox">
+					<img src="image/iofarmLogo.png" alt="" />
+				</div>
+				<div class="box">
+					<div class="head">유재영님이 요청하신 다운로드 리스트 입니다.</div>
+					<div class="table"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function addTableInfo() {
+				const table = document.querySelector(".table");
+				const info = [
+					{
+						nodeNameForUser: "밀양 대농지 0101",
+						startDate: "2022.03.01",
+						endDate: "2022.03.25",
+						link: "#",
+					},
+					{
+						nodeNameForUser: "밀양 대농지 0102",
+						startDate: "2022.03.01",
+						endDate: "2022.03.25",
+						link: "#",
+					},
+					{
+						nodeNameForUser: "밀양 대농지 0103",
+						startDate: "2022.03.01",
+						endDate: "2022.03.25",
+						link: "#",
+					},
+					{
+						nodeNameForUser: "밀양 대농지 0104",
+						startDate: "2022.03.01",
+						endDate: "2022.03.25",
+						link: "#",
+					},
+				];
+				info.forEach((item) => {
+					const row = document.createElement("div");
+					row.classList.add("row");
+					const infoBox = document.createElement("div");
+					infoBox.classList.add("infoBox");
+					const nodeName = document.createElement("span");
+					const date = document.createElement("span");
+					nodeName.innerText = item.nodeNameForUser;
+					date.innerText = item.startDate + " ~ " + item.endDate;
+					infoBox.appendChild(nodeName);
+					infoBox.appendChild(date);
+					const btnBox = document.createElement("div");
+					btnBox.classList.add("btnBox");
+					const a = document.createElement("a");
+					a.classList.add("btn");
+					a.setAttribute("href", item.link);
+					a.innerText = "Download";
+					btnBox.appendChild(a);
+					row.appendChild(infoBox);
+					row.appendChild(btnBox);
+					table.appendChild(row);
+				});
+			}
+			addTableInfo();
+		</script>
+	</body>
+</html>
