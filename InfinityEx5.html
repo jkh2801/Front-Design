@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Infinity Ex5</title>
+		<style>
+			body {
+				background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="homepage-canvas"></canvas>
+		<script>
+			// Variables
+			const canvas = document.getElementById("homepage-canvas");
+			const width = (canvas.width = window.innerWidth);
+			const height = (canvas.height = window.innerHeight);
+			const ctx = canvas.getContext("2d");
+
+			const startingPositions = [0, 1, 2, 3];
+			const startionPositionSize = startingPositions.length;
+			const nodeStartingDeviation = 0;
+			const nodeCount = (width / 1920) * 1024;
+			const alphaIncrement = 0.03;
+			let nodes = [];
+			const ball_color = {
+				r: 0,
+				g: 67,
+				b: 194,
+			};
+			let originX = -1;
+			let originY = -1;
+			let domain = 0;
+			const originRadius = 64;
+			const waveHeight = 200;
+			const connectionDistanceThreshold = 256;
+			let counter = 0;
+			let spacing = Math.floor(width / nodeCount);
+
+			// Setup Canvas
+			window.addEventListener("resize", function (e) {
+				console.log("Window Resize...");
+				initialize();
+			});
+			window.requestAnimationFrame(render);
+			ctx.fillStyle = "#1D1D1D";
+			ctx.fillRect(0, 0, width, height);
+
+			// Set A Timeout Before Starting
+			window.setTimeout(initialize, 4);
+
+			function initialize() {
+				nodes = [];
+				for (let i = 1; i <= nodeCount; i++) {
+					nodes.push(createNode(i));
+					counter += ((90 / 180) * Math.PI) / 9;
+					domain += 1;
+				}
+			}
+
+			// Render
+			function render() {
+				ctx.clearRect(0, 0, width, height);
+				renderNodes();
+				updateNodes();
+				populateNodes();
+				window.requestAnimationFrame(render);
+			}
+
+			function renderOrigin() {}
+
+			function renderNodes() {
+				Array.prototype.forEach.call(nodes, function (b) {
+					if (!b.hasOwnProperty("type")) {
+						ctx.fillStyle = "rgba(" + b.color.r + "," + b.color.g + "," + b.color.b + "," + b.alpha + ")";
+						ctx.beginPath();
+						ctx.arc(b.x, b.y, 10, 0, Math.PI * 2, true);
+						ctx.closePath();
+						ctx.fill();
+					}
+				});
+			}
+
+			function populateNodes() {
+				if (nodes.length < nodeCount) {
+					domain = 0;
+					nodes.push(createNode(0));
+				}
+			}
+
+			function createNode(i) {
+				const min = 0;
+				const max = 10;
+				var angle = (360 / width) * i;
+				var rad = (angle * Math.PI) / 180;
+				var a = 2;
+				const percent = (i * spacing) / width;
+				return {
+					x: getXAxisLocation() + (a * Math.cos(rad)) / (1 + Math.sin(rad) * Math.sin(rad)),
+					y: getYAxisLocation() + (a * Math.sin(rad) * Math.cos(rad)) / (1 + Math.sin(rad) * Math.sin(rad)),
+					index: i,
+					vx: getRandomSpeed(0)[0],
+					vy: getRandomSpeed(0)[1],
+					r: nodeStartingDeviation,
+					alpha: 1,
+					color: { r: percent * 100, g: percent * 100, b: percent * 100 },
+					phase: getRandom(min, max),
+					connected: false,
+				};
+			}
+
+			// Update balls
+			function updateNodes() {
+				const new_balls = [];
+				Array.prototype.forEach.call(nodes, function (b) {
+					const percent = (b.index * spacing) / width;
+					b.index += 10;
+					var angle = (360 / width) * b.index;
+					var rad = (angle * Math.PI) / 180;
+					var a = 200;
+					b.x = getXAxisLocation() + (a * Math.cos(rad)) / (1 + Math.sin(rad) * Math.sin(rad));
+					b.y = getYAxisLocation() + (a * Math.sin(rad) * Math.cos(rad)) / (1 + Math.sin(rad) * Math.sin(rad));
+
+					if (b.x > -50 && b.x < width + 50 && b.y > -50 && b.y < height + 50) {
+						new_balls.push(b);
+					}
+					b.color = { r: percent * 10, g: percent * 100, b: percent * 100 };
+					// console.log(b.alpha);
+				});
+
+				nodes = new_balls.slice(0);
+			}
+
+			function getRandomSpeed() {
+				const min = -1;
+				const max = 1;
+				return [getRandom(min, max), getRandom(min, max)];
+			}
+
+			function getRandom(min, max) {
+				return Math.random() * (max - min) + min;
+			}
+
+			function getXAxisLocation() {
+				const centerX = width / 2;
+				return getRandom(centerX - nodeStartingDeviation, centerX + nodeStartingDeviation);
+			}
+
+			function getYAxisLocation() {
+				const centerY = height / 2;
+				return getRandom(centerY - nodeStartingDeviation, centerY + nodeStartingDeviation);
+			}
+		</script>
+	</body>
+</html>
