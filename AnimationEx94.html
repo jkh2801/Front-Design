@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex94</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #333;
+				overflow: hidden;
+			}
+			.box {
+				position: relative;
+				width: 600px;
+				height: 600px;
+			}
+			.box span {
+				position: absolute;
+				inset: 0;
+				transform: rotate(calc(45deg * var(--i)));
+			}
+			.box span::before {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 350px;
+				height: 400px;
+				background: url("image/bulb_off.jpg");
+				background-size: cover;
+				background-position: center;
+				transform: translateX(-50%) translateY(-100px) scale(0.5);
+				animation: animate 2s steps(1) infinite;
+				animation-delay: calc(0.1s * var(--i));
+			}
+			@keyframes animate {
+				0%,
+				100% {
+					background: url("image/bulb_off.jpg");
+				}
+				50% {
+					background: url("image/bulb_on.jpg");
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span style="--i: 0"></span>
+			<span style="--i: 1"></span>
+			<span style="--i: 2"></span>
+			<span style="--i: 3"></span>
+			<span style="--i: 4"></span>
+			<span style="--i: 5"></span>
+			<span style="--i: 6"></span>
+			<span style="--i: 7"></span>
+		</div>
+	</body>
+</html>
