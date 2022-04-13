@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menu Ex27</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Ubuntu", sans-serif;
+			}
+			body {
+				min-height: 100vh;
+				background: linear-gradient(45deg, #4e65ff, #92effd);
+			}
+			.navigation {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				width: 120px;
+				height: 60px;
+				background: #fff;
+				box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+				display: flex;
+				justify-content: space-between;
+				transition: height 0.5s, width 0.5s;
+				transition-delay: 0s, 0.75s;
+			}
+			.navigation.active {
+				width: 300px;
+				height: 400px;
+				transition: width 0.5s, height 0.5s;
+				transition-delay: 0s, 0.75s;
+			}
+			.navigation .userBx {
+				position: relative;
+				width: 60px;
+				height: 60px;
+				background: #fff;
+				display: flex;
+				align-items: center;
+				overflow: hidden;
+				transition: 0.5s;
+				transition-delay: 0.5s;
+			}
+			.navigation.active .userBx {
+				width: calc(100% - 60px);
+				transition-delay: 0s;
+			}
+			.navigation .userBx .username {
+				white-space: nowrap;
+				color: #555;
+				font-size: 1.1em;
+			}
+			.navigation .userBx .imgBx {
+				position: relative;
+				min-width: 60px;
+				height: 60px;
+				overflow: hidden;
+				border-radius: 50%;
+				border: 10px solid #fff;
+			}
+			.navigation .userBx .imgBx img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.navigation .menuToggle {
+				position: relative;
+				width: 60px;
+				height: 60px;
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.navigation .menuToggle::before {
+				content: "";
+				position: absolute;
+				width: 32px;
+				height: 2px;
+				background: #555;
+				transform: translateY(-10px);
+				box-shadow: 0 10px #555;
+				transition: 0.5s;
+			}
+			.navigation .menuToggle::after {
+				content: "";
+				position: absolute;
+				width: 32px;
+				height: 2px;
+				background: #555;
+				transform: translateY(10px);
+				transition: 0.5s;
+			}
+			.navigation.active .menuToggle::before {
+				transform: translateY(0px) rotate(45deg);
+				box-shadow: 0 0 #555;
+			}
+			.navigation.active .menuToggle::after {
+				transform: translateY(0px) rotate(-45deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navigation">
+			<div class="userBx">
+				<div class="imgBx">
+					<img src="image/user.png" alt="" />
+				</div>
+				<p class="username">Alina Smith</p>
+			</div>
+			<div class="menuToggle"></div>
+		</div>
+		<script>
+			let menuToggle = document.querySelector(".menuToggle");
+			let navigation = document.querySelector(".navigation");
+			menuToggle.onclick = function () {
+				navigation.classList.toggle("active");
+			};
+		</script>
+	</body>
+</html>
