@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Typing Ex1</title>
+		<style>
+			@keyframes typing {
+				0% {
+					width: 0px;
+				}
+				100% {
+					width: 100%;
+				}
+			}
+
+			@keyframes blinking {
+				0%,
+				100% {
+					border-color: transparent;
+				}
+				50% {
+					border-color: #9778d7;
+				}
+			}
+
+			body {
+				display: flex;
+				justify-content: center;
+				background-color: hsla(258, 55%, 86%, 0.2);
+			}
+
+			h1 {
+				--typing-steps: 14;
+				margin: 3rem auto;
+				overflow: hidden;
+				white-space: nowrap;
+				letter-spacing: 3px;
+				border-right: 3px solid #9778d7;
+				animation: typing 2s steps(var(--typing-steps)), blinking 0.7s steps(1) infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<h1 style="--typing-steps: 17">Typing animation!</h1>
+		</div>
+	</body>
+</html>
