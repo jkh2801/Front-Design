@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Estimate Ex1</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Noto Sans KR", sans-serif;
+			}
+			.number {
+				font-family: "Roboto", sans-serif;
+				letter-spacing: 0;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #f6f7fb;
+			}
+			.container {
+				width: 850px;
+				border-radius: 10px;
+				background: #fff;
+				overflow: hidden;
+			}
+			.headBox {
+				padding: 40px 40px 0;
+			}
+			.headBox .imgBox img {
+				width: 40px;
+				height: 40px;
+			}
+			.titleBox {
+				display: flex;
+				justify-content: space-between;
+			}
+			.titleBox .title {
+				letter-spacing: 0.2em;
+				font-size: 30px;
+				font-weight: 700;
+			}
+			.titleBox .subTitle {
+				font-size: 20px;
+				font-weight: 500;
+			}
+			.table {
+				margin-top: 40px;
+			}
+			.table .header {
+				border-bottom: 2px solid #000;
+				height: 40px;
+			}
+			.table .row {
+				display: grid;
+				grid-template-columns: 50px 1fr 50px 150px 150px;
+				justify-items: center;
+				align-items: center;
+			}
+			.table .header .itemNum {
+				width: 100%;
+			}
+			.table .header .itemName {
+				width: 90%;
+			}
+			.table .header div {
+				font-size: 16px;
+				font-weight: 700;
+			}
+			.table .body {
+				border-bottom: 1px solid #d0d0d0;
+			}
+			.table .body:last-child {
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="headBox">
+				<div class="imgBox"><img src="image/calculator.gif" alt="" /></div>
+				<div class="titleBox">
+					<div>
+						<p class="title">견적서</p>
+						<p class="subTitle">기본세트</p>
+					</div>
+					<div>발행일자 : <span class="number">2022.05.05</span></div>
+				</div>
+				<div class="table">
+					<div class="header row">
+						<div class="itemNum number">No.</div>
+						<div class="itemName number">항목</div>
+						<div class="number">수량</div>
+						<div class="number">단가</div>
+						<div class="number">금액</div>
+					</div>
+					<div class="body"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
