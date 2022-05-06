@@ -63,10 +63,10 @@
 				justify-items: center;
 				align-items: center;
 			}
-			.table .header .itemNum {
+			.table .itemNum {
 				width: 100%;
 			}
-			.table .header .itemName {
+			.table .itemName {
 				width: 90%;
 			}
 			.table .header div {
@@ -78,6 +78,115 @@
 			}
 			.table .body:last-child {
 				border: none;
+			}
+			.table .body .node {
+				height: 60px;
+			}
+			.table .body .node div {
+				font-size: 16px;
+				font-weight: 700;
+			}
+			.table .body .sensor {
+				height: 60px;
+				border-top: 1px solid #d0d0d0;
+				background: #f6f7fb80;
+			}
+
+			.table .body .sensor .itemName {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+			}
+			.table .body .sensor .itemName .title {
+				font-size: 14px;
+				font-weight: 500;
+			}
+			.table .body .sensor .itemName .subTitle {
+				font-size: 12px;
+				color: #7d7d7d;
+			}
+			.table .body .sensor .price {
+				font-size: 16px;
+				font-weight: 700;
+			}
+			.priceBox {
+				height: 80px;
+				border-top: 2px solid #000;
+				gap: 2px;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+			}
+			.priceBox .costInfo {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+			}
+			.priceBox .costInfo .title {
+				width: 150px;
+				font-weight: 700;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.priceBox .costInfo .price {
+				width: 150px;
+				font-weight: 700;
+				text-align: end;
+				padding-right: 30px;
+			}
+			.footBox {
+				padding: 30px 70px;
+				background: #384153;
+				color: #fff;
+				position: relative;
+			}
+			.footBox .textBox1 {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+			.footBox .textBox1 .provider {
+				font-size: 16px;
+				font-weight: 500;
+			}
+			.footBox .textBox1 .businessNum {
+				font-size: 12px;
+				font-weight: 300;
+			}
+			.footBox .textBox2 {
+				margin-top: 20px;
+			}
+			.footBox .textBox2 .grid {
+				display: grid;
+				grid-template-columns: 300px 1fr;
+			}
+			.footBox .textBox2 .grid p {
+				font-size: 12px;
+				font-weight: 300;
+			}
+			.footBox .totalPriceBox {
+				position: absolute;
+				right: 40px;
+				top: 20px;
+				color: #54dfd1;
+				display: flex;
+				align-items: center;
+			}
+			.footBox .totalPriceBox .title {
+				width: 150px;
+				font-size: 16px;
+				font-weight: 700;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.footBox .totalPriceBox .price {
+				width: 150px;
+				text-align: end;
+				padding-right: 10px;
+				font-size: 24px;
+				font-weight: 700;
 			}
 		</style>
 	</head>
@@ -96,11 +205,58 @@
 					<div class="header row">
 						<div class="itemNum number">No.</div>
 						<div class="itemName number">항목</div>
-						<div class="number">수량</div>
-						<div class="number">단가</div>
-						<div class="number">금액</div>
+						<div>수량</div>
+						<div>단가</div>
+						<div>금액</div>
 					</div>
-					<div class="body"></div>
+					<div class="body">
+						<div class="row node">
+							<div class="itemNum number">01</div>
+							<div class="itemName">Test</div>
+							<div class="number">1</div>
+							<div class="number">10,000원</div>
+							<div class="number">10,000원</div>
+						</div>
+						<div class="row sensor">
+							<div></div>
+							<div class="itemName">
+								<span class="title">센서</span>
+								<span class="subTitle">측정항목 : 배지무게 ( 최대 50kg )</span>
+							</div>
+							<div></div>
+							<div class="number price">10,000원</div>
+						</div>
+					</div>
+				</div>
+				<div class="priceBox">
+					<div class="costInfo">
+						<div class="title">공급가액</div>
+						<div class="number price">100,000원</div>
+					</div>
+					<div class="costInfo">
+						<div class="title">부가세액</div>
+						<div class="number price">10,000원</div>
+					</div>
+				</div>
+			</div>
+			<div class="footBox">
+				<div class="textBox1">
+					<p class="provider">XXX</p>
+					<p class="businessNum">사업자등록번호 : <span class="number">xxx-xx-xx-xxxxxxx</span></p>
+				</div>
+				<div class="textBox2">
+					<div class="grid">
+						<p>대표자 : XXX</p>
+						<p>연락처 : <span class="number">xxx-xxxx-xxxx</span></p>
+					</div>
+					<div class="grid">
+						<p>소재지 : XXXXX XXXX XXX XXXXXXXXXXXXXXXXXXXXX</p>
+						<p>이메일 : <span class="number">xxxxxxx@xxxxxxxx</span></p>
+					</div>
+				</div>
+				<div class="totalPriceBox">
+					<div class="title">총 견적 금액</div>
+					<div class="price number">110,000원</div>
 				</div>
 			</div>
 		</div>
