@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Font Ex1</title>
+		<style>
+			@font-face {
+				font-family: "Roboto Flex";
+				src: url("https://digitalupgrade.com/images/misc/RobotoFlex-VariableFont_GRADXTRAYOPQYTASYTDEYTFIYTLCYTUCopszslntwdthwght.woff2") format("woff2");
+				font-weight: 1 999;
+				font-style: oblique -10deg 360deg;
+				font-stretch: 0% 999%;
+			}
+
+			@keyframes varifont {
+				0% {
+					font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+					letter-spacing: 20px;
+					font-size: 200pt;
+				}
+
+				50% {
+					font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+					font-size: 100pt;
+					letter-spacing: 5px;
+				}
+
+				100% {
+					font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+					font-size: 200pt;
+					letter-spacing: 20px;
+				}
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				font-family: "Roboto Flex", sans-serif;
+			}
+
+			body,
+			html {
+				-webkit-text-size-adjust: 100%;
+				-webkit-tap-highlight-color: transparent;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizeLegibility;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100vh;
+				overflow: hidden;
+				background: black;
+				margin: 0;
+			}
+
+			h1 {
+				position: absolute;
+				font-size: 90pt;
+				margin: 0;
+				padding: 5px;
+				color: transparent;
+				background: url("image/bg25.jpg");
+				background-size: cover;
+				background-position: center;
+				background-clip: text;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				filter: brightness(1.5) saturate(120%);
+				text-transform: uppercase;
+				animation: varifont 4s ease infinite;
+			}
+
+			/*----------------------------------------------------------------------------------*/
+			/*  Below is for making the animation responsive without just transform:scaling it. */
+			/*----------------------------------------------------------------------------------*/
+
+			@media (max-width: 1340px) {
+				@keyframes varifont {
+					0% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						letter-spacing: 20px;
+						font-size: 160pt;
+					}
+
+					50% {
+						font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+						font-size: 70pt;
+						letter-spacing: 5px;
+					}
+
+					100% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						font-size: 160pt;
+						letter-spacing: 20px;
+					}
+				}
+			}
+
+			@media (max-width: 1020px) {
+				@keyframes varifont {
+					0% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						letter-spacing: 20px;
+						font-size: 130pt;
+					}
+
+					50% {
+						font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+						font-size: 56pt;
+						letter-spacing: 2px;
+					}
+
+					100% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						font-size: 130pt;
+						letter-spacing: 20px;
+					}
+				}
+			}
+
+			@media (max-width: 770px) {
+				@keyframes varifont {
+					0% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						letter-spacing: 20px;
+						font-size: 110pt;
+					}
+
+					50% {
+						font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+						font-size: 50pt;
+						letter-spacing: 2px;
+					}
+
+					100% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						font-size: 110pt;
+						letter-spacing: 20px;
+					}
+				}
+			}
+
+			@media (max-width: 650px) {
+				@keyframes varifont {
+					0% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						letter-spacing: 10px;
+						font-size: 70pt;
+					}
+
+					50% {
+						font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+						font-size: 30pt;
+						letter-spacing: 2px;
+					}
+
+					100% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						font-size: 70pt;
+						letter-spacing: 10px;
+					}
+				}
+			}
+
+			@media (max-width: 450px) {
+				@keyframes varifont {
+					0% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						letter-spacing: 10px;
+						font-size: 50pt;
+					}
+
+					50% {
+						font-variation-settings: "wght" 1000, "slnt" -20, "wdth" 120, "opsz" 144, "GRAD" 50, "XTRA" 603, "YOPQ" 100, "YTAS" 854, "YTDE" -98, "YTFI" 788, "YTLC" 570, "YTUC" 760;
+						font-size: 22pt;
+						letter-spacing: 2px;
+					}
+
+					100% {
+						font-variation-settings: "wght" 100, "slnt" 10, "wdth" 25, "opsz" 40, "GRAD" 0, "XTRA" 350, "YOPQ" 79, "YTAS" 750, "YTDE" -305, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+						font-size: 50pt;
+						letter-spacing: 10px;
+					}
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>testing</h1>
+	</body>
+</html>
