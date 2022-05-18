@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ResponsiveWeb Ex16</title>
+		<style>
+			.section-wrapper {
+				width: 100%;
+				height: 734px;
+				overflow: hidden;
+				position: relative;
+				background-color: #f3f4fd;
+			}
+			.section-wrapper .container {
+				position: relative;
+				height: 100%;
+			}
+			.section-wrapper .shielding-layer {
+				content: "";
+				width: 67%;
+				height: 169%;
+				position: absolute;
+				top: -37%;
+				left: -6%;
+				z-index: 3;
+				pointer-events: none;
+				transform: rotate(16deg);
+			}
+			.section-wrapper .shielding-layer:before {
+				content: "";
+				width: 71%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 3;
+				background-color: rgba(249, 249, 254, 0.97);
+			}
+			.section-wrapper .shielding-layer:after {
+				pointer-events: none;
+				content: "";
+				width: calc(29% + 1px);
+				height: 100%;
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: 3;
+				background: linear-gradient(90deg, rgba(249, 249, 254, 0.97) 0, rgba(249, 249, 254, 0));
+			}
+			.section-wrapper:before {
+				content: "";
+				width: 100%;
+				height: 119px;
+				pointer-events: none;
+				background: linear-gradient(180deg, rgba(254, 254, 255, 0), #fff);
+				bottom: 0;
+				left: 0;
+				position: absolute;
+				z-index: 2;
+			}
+			.section-wrapper .box {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				height: 100%;
+				z-index: 100;
+			}
+			.section-wrapper .content {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				width: 44%;
+				max-width: 600px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 4;
+			}
+			.section-wrapper .content .title {
+				font-size: 32px;
+				color: rgba(0, 0, 0, 0.8);
+				line-height: 48px;
+				text-align: left;
+			}
+			.section-wrapper .content .feature-list {
+				margin: 18px 0 24px;
+				font-size: 14px;
+				color: rgba(0, 0, 0, 0.7);
+				line-height: 20px;
+			}
+			.section-wrapper .content .btn {
+				padding: 14px 28px;
+				font-size: 18px;
+				color: #fff;
+				line-height: 27px;
+				display: inline-block;
+			}
+			.section-wrapper .template-wall {
+				width: 100%;
+				display: flex;
+				align-items: flex-start;
+				transform: rotate(16deg);
+				text-align: right;
+			}
+			.section-wrapper .template-wall .column {
+				display: flex;
+				flex-direction: column;
+				margin: 0 10px;
+				transform-style: preserve-3d;
+			}
+			.section-wrapper .template-wall .column:nth-child(2n) {
+				-webkit-animation: myimg-data-v-4d0e073a 15s linear infinite;
+				animation: myimg-data-v-4d0e073a 15s linear infinite;
+			}
+			.section-wrapper .template-wall .column:nth-child(odd) {
+				-webkit-animation: myimg-data-v-4d0e073a 30s linear infinite;
+				animation: myimg-data-v-4d0e073a 30s linear infinite;
+			}
+			.section-wrapper .template-wall .column:hover {
+				z-index: 100;
+				-webkit-animation-play-state: paused;
+				animation-play-state: paused;
+			}
+			.section-wrapper .wall-box {
+				display: inline-block;
+				position: relative;
+				-webkit-backface-visibility: hidden;
+				backface-visibility: hidden;
+			}
+			.section-wrapper .wall-box .icon {
+				width: 214px;
+				margin: 25px 10px;
+				cursor: pointer;
+				transition: all 0.2s;
+			}
+			.section-wrapper .wall-box .hoverable:hover {
+				transform: scale(1.2);
+			}
+			.btn {
+				background-color: rgba(0, 0, 0, 0.8);
+				cursor: pointer;
+				text-align: center;
+				color: #fff;
+				border-radius: 6px;
+				font-family: Poppins, "Segoe UI", Avenir, Helvetica, Arial, sans-serif;
+				font-weight: 600;
+				transition: transform 0.3s ease-in-out;
+			}
+			@-webkit-keyframes myimg-data-v-4d0e073a {
+				0% {
+					transform: translateY(0);
+				}
+				to {
+					transform: translateY(-50%);
+				}
+			}
+			@keyframes myimg-data-v-4d0e073a {
+				0% {
+					transform: translateY(0);
+				}
+				to {
+					transform: translateY(-50%);
+				}
+			}
+			@media screen and (max-width: 992px) {
+				.template-wall .column:hover {
+					-webkit-animation-play-state: running !important;
+					animation-play-state: running !important;
+				}
+				.shelter {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+				}
+				.home-template-wrapper {
+					height: 744px;
+					padding-bottom: 0;
+				}
+				.home-template-wrapper .shielding-layer {
+					display: none;
+				}
+				.home-template-wrapper:after {
+					position: absolute;
+					width: 100%;
+					height: 508px;
+					top: 0;
+					left: 0;
+					content: "";
+					background: linear-gradient(177deg, #f5f6ff, rgba(255, 255, 255, 0.95) 60%, rgba(252, 252, 252, 0));
+					opacity: 0.95;
+				}
+				.home-template-wrapper:before {
+					display: none;
+				}
+				.home-template-wrapper .box {
+					height: auto;
+				}
+				.home-template-wrapper .content {
+					width: 88%;
+					height: auto;
+					justify-content: flex-start;
+					align-items: center;
+					left: 50%;
+					transform: translateX(-50%);
+					margin-left: 0;
+					max-width: -webkit-max-content;
+					max-width: -moz-max-content;
+					max-width: max-content;
+				}
+				.home-template-wrapper .content .title {
+					margin-top: 44px;
+					font-size: 24px;
+					line-height: 34px;
+					text-align: center;
+				}
+				.home-template-wrapper .content .feature-list {
+					margin: 12px 0 20px;
+					font-size: 14px;
+					line-height: 22px;
+					text-align: center;
+				}
+				.home-template-wrapper .content .btn {
+					padding: 0 28px;
+					box-sizing: border-box;
+					font-size: 14px;
+					margin-bottom: 181px;
+					height: 48px;
+					line-height: 48px;
+				}
+				.home-template-wrapper .template-wall {
+					transform: rotate(16deg) translateX(-200px);
+				}
+			}
+			@media screen and (min-width: 1366px) {
+				.content {
+					margin-left: calc(50% - 600px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="section-wrapper">
+			<div class="shielding-layer"></div>
+			<div class="container">
+				<div class="template-wall">
+					<div class="column index-0">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/9@1x.990444d.jpg" style="width: 163px; height: 92px; margin-right: 5px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img src="https://website-prod.cache.wpscdn.com/img/Male1@1x.5a3e820.png" style="width: 96px; height: 147px; margin-right: 30px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/1@1x.84992b2.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/16@1x.5009da5.jpg" style="width: 163px; height: 92px; margin-right: -20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/7@1x.1457dfa.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/9@1x.990444d.jpg" style="width: 163px; height: 92px; margin-right: 5px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src="https://website-prod.cache.wpscdn.com/img/Male1@1x.5a3e820.png" style="width: 96px; height: 147px; margin-right: 30px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/1@1x.84992b2.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/16@1x.5009da5.jpg" style="width: 163px; height: 92px; margin-right: -20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-1">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/12@1x.b8d6639.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/4@1x.33dfa4d.jpg" style="width: 164px; height: 93px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src"https://website-prod.cache.wpscdn.com/img/Female@1x.dd4fce8.png" style="width: 93px; height: 158px; margin-right: 17px;">
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/15@1x.5c37a74.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/5@1x.8dd3375.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/12@1x.b8d6639.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/4@1x.33dfa4d.jpg" style="width: 164px; height: 93px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src"https://website-prod.cache.wpscdn.com/img/Female@1x.dd4fce8.png" style="width: 93px; height: 158px; margin-right: 17px;">
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/15@1x.5c37a74.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-2">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/6@1x.5e44689.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/18@1x.19566dc.jpg" style="width: 109px; height: 154px; margin-right: 15px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/20@1x.b8babe7.jpg" style="width: 163px; height: 92px; margin-right: 2px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/2@1x.ce907d6.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/3@1x.af48646.jpg" style="width: 163px; height: 92px; margin-right: 4px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/6@1x.5e44689.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/18@1x.19566dc.jpg" style="width: 109px; height: 154px; margin-right: 15px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/20@1x.b8babe7.jpg" style="width: 163px; height: 92px; margin-right: 2px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 4px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-3">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/17@1x.393393a.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/8@1x.3b3cff6.jpg" style="width: 163px; height: 92px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/10@1x.60c6f26.jpg" style="width: 168px; height: 97px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/14@1x.cfcca3c.jpg" style="width: 163px; height: 92px; margin-right: 7px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/9@1x.990444d.jpg" style="width: 163px; height: 92px; margin-right: 5px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/17@1x.393393a.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/8@1x.3b3cff6.jpg" style="width: 163px; height: 92px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/10@1x.60c6f26.jpg" style="width: 168px; height: 97px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/14@1x.cfcca3c.jpg" style="width: 163px; height: 92px; margin-right: 7px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 5px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-4">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src"https://website-prod.cache.wpscdn.com/img/Male1@1x.5a3e820.png" style="width: 96px; height: 147px; margin-right: 30px;">
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/1@1x.84992b2.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/16@1x.5009da5.jpg" style="width: 163px; height: 92px; margin-right: -20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/7@1x.1457dfa.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/12@1x.b8d6639.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src="https://website-prod.cache.wpscdn.com/img/Male1@1x.5a3e820.png" style="width: 96px; height: 147px; margin-right: 30px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/1@1x.84992b2.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: -20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-5">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/4@1x.33dfa4d.jpg" style="width: 164px; height: 93px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src"https://website-prod.cache.wpscdn.com/img/Female@1x.dd4fce8.png" style="width: 93px; height: 158px; margin-right: 17px;">
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/15@1x.5c37a74.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/5@1x.8dd3375.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/6@1x.5e44689.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/4@1x.33dfa4d.jpg" style="width: 164px; height: 93px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon" src="https://website-prod.cache.wpscdn.com/img/Female@1x.dd4fce8.png" style="width: 93px; height: 158px; margin-right: 17px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/15@1x.5c37a74.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-6">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/18@1x.19566dc.jpg" style="width: 109px; height: 154px; margin-right: 15px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/20@1x.b8babe7.jpg" style="width: 163px; height: 92px; margin-right: 2px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/2@1x.ce907d6.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/3@1x.af48646.jpg" style="width: 163px; height: 92px; margin-right: 4px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/17@1x.393393a.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/18@1x.19566dc.jpg" style="width: 109px; height: 154px; margin-right: 15px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 2px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 163px; height: 92px; margin-right: 4px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/lazy_default_img.a0c4927.jpg" style="width: 109px; height: 154px; margin-right: 10px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+					<div class="column index-7">
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/8@1x.3b3cff6.jpg" style="width: 163px; height: 92px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/10@1x.60c6f26.jpg" style="width: 168px; height: 97px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/8@1x.3b3cff6.jpg" style="width: 163px; height: 92px; margin-right: 20px" />
+							<div class="shelter"></div>
+						</div>
+						<div class="wall-box">
+							<img alt="perfectcod" class="icon hoverable" src="https://website-prod.cache.wpscdn.com/img/10@1x.60c6f26.jpg" style="width: 168px; height: 97px; margin-right: 0px" />
+							<div class="shelter"></div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<h2 class="title font-title">Hello Background animation</h2>
+					<p class="feature-list font-desc">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu quam auctor enim porttitor molestie. Cras malesuada urna eget suscipit accumsan. Nullam ac ex condimentum, sagittis orci id, ultrices massa. Vestibulum vitae ligula
+						maximus, efficitur nisl id, condimentum odio. Vivamus libero nibh, sollicitudin maximus mollis ac, ullamcorper at risus. Donec lacinia pulvinar arcu a luctus.
+					</p>
+					<div class="btn font-title">Check Now</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
