@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex6</title>
+		<style>
+			html {
+				font-size: 62.5%;
+				scroll-behavior: smooth;
+			}
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: inherit;
+			}
+			body {
+				box-sizing: border-box;
+				font-size: 1.6rem;
+				overflow: hidden;
+			}
+
+			#canvas {
+				color: whitesmoke;
+				background: blanchedalmond;
+				height: 100vh;
+				width: 100vw;
+				cursor: crosshair;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			//////////////////////// DECLARING CONSTANTS ////////////////////////
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d"); // makes 2d methods available on the canvas
+			let circlesArray = [];
+			const prefersReducesMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			// setting canvas up
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			const mouseCoords = {
+				x: undefined,
+				y: undefined,
+			};
+			let noOfCirclesBursted = 0;
+
+			//////////////////////// HELPER FUNCTIONS ////////////////////////
+			const randomNum = (max = 1, min = 0) => min + Math.floor(Math.random() * (max - min + 1));
+
+			const randomRGB = () => `rgb(${randomNum(255)}, ${randomNum(255)}, ${randomNum(255)})`;
+			const getDistance = (p1Coords, p2Coords) => {
+				const xDistanceSqrd = Math.pow(p1Coords.x - p2Coords.x, 2);
+				const yDistanceSqrd = Math.pow(p1Coords.y - p2Coords.y, 2);
+
+				return Math.sqrt(xDistanceSqrd + yDistanceSqrd);
+			};
+
+			////////////////////// CLASS TO GENERATE CIRCLE //////////////////////
+			const Circle = class {
+				// 1. PRIVATE FIELDS
+				#x;
+				#y;
+				#dx;
+				#dy;
+				#radius;
+				#startAngle = 0;
+				#endAngle = 2 * Math.PI;
+				#colour = randomRGB();
+
+				// setting vals if they are passed during instantiation
+				constructor(xCoordinate = 10, yCoordinate = 10, radius = 10, xVelocity = 1, yVelocity = 1) {
+					this.#x = xCoordinate;
+					this.#y = yCoordinate;
+					this.#dx = xVelocity;
+					this.#dy = yVelocity;
+					this.#radius = radius;
+				}
+
+				// 2. PRIVATE METHODS
+				// to detect if touches edges
+				#touchesEdges(coord, maxCoordLength) {
+					return coord < this.#radius || coord > maxCoordLength - this.#radius;
+				}
+
+				// 3. PUBLIC METHODS
+				//   function that'll draw a circle with the vals given
+				draw() {
+					ctx.beginPath();
+					ctx.arc(this.#x, this.#y, this.#radius, this.#startAngle, this.#endAngle);
+					ctx.strokeStyle = this.#colour;
+					ctx.fillStyle = this.#colour;
+					ctx.stroke();
+					ctx.fill();
+				}
+
+				//   function that'll move the circle to a new position
+				move() {
+					// logic for moving the circle
+					this.#x += this.#dx;
+					this.#y += this.#dy;
+
+					// logic for bouncing off the walls(basically, changing direction if touches walls)
+					if (this.#touchesEdges(this.#x, canvas.width)) this.#dx = -this.#dx;
+					if (this.#touchesEdges(this.#y, canvas.height)) this.#dy = -this.#dy;
+					// if(getDistance(this.))
+
+					// drawing circle on canvas
+					this.draw();
+				}
+
+				//   function to burst circles if they're in contact with the click
+				burst(coords) {
+					const circleCoords = { x: this.#x, y: this.#y };
+					//     making circle very small and still in case it is hovered on
+					if (getDistance(coords, circleCoords) < this.#radius) {
+						this.#radius = 0;
+						this.#dx = 0;
+						this.#dy = 0;
+						this.#x = 0;
+						this.#y = 0;
+
+						noOfCirclesBursted++;
+					}
+				}
+			};
+
+			////////////////////// FUNCTION TO MOVE/DRAW CIRCLES ///////////////////////
+			const animate = () => {
+				// clearing the canvas (so that on next call, the previous circle is cleared)
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				// moving every circle in circleArray
+				circlesArray.forEach((circle) => circle.move());
+
+				// recursively calling this function
+				window.requestAnimationFrame(animate);
+			};
+			const display = () => circlesArray.forEach((circle) => circle.draw());
+
+			//////////////////////// INIT FUNCTION ////////////////////////
+			const init = () => {
+				// clearing circles in the array, if any:
+				circlesArray = [];
+				//   GENERATING CIRCLES
+				for (let i = 0; i < 50; i++) {
+					const radius = randomNum(50, 10);
+					const xCoordinate = randomNum(canvas.width - radius, radius);
+					const yCoordinate = randomNum(canvas.height - radius, radius);
+					const xVelocity = randomNum(2, 1);
+					const yVelocity = randomNum(2, 1);
+
+					const circle = new Circle(xCoordinate, yCoordinate, radius, xVelocity, yVelocity);
+
+					circlesArray.push(circle);
+				}
+
+				// MOVING/DRAWING CIRCLES
+				if (prefersReducesMotion) display();
+				else animate();
+			};
+
+			//////////////////////// INVOKING INIT ON EVENTS ////////////////////////
+			window.addEventListener("resize", () => {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+				init();
+			});
+			window.addEventListener("load", init);
+
+			//////////////////////// MOUSE EVENT ////////////////////////
+			const mousemoveHandler = (e) => {
+				const coords = { x: e.x, y: e.y };
+				circlesArray.forEach((circle) => circle.burst(coords));
+
+				if (noOfCirclesBursted === circlesArray.length) {
+					canvas.removeEventListener("mousemove", mousemoveHandler);
+					window.alert("you did it!");
+				}
+			};
+			canvas.addEventListener("mousemove", mousemoveHandler);
+		</script>
+	</body>
+</html>
