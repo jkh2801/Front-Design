@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Ex107</title>
+    <style>
+        :root {
+            --animation-duration: 7.4s;
+            --animation: var(--animation-duration) infinite 1s ease-out;
+            --c-brown-dark: #74482c;
+            --c-brown-light: #c28b60;
+            --c-brown-normal: #92613f;
+            --c-dark: #000;
+            --c-gray: #bdc5d5;
+            --c-light: #fff;
+            --c-pink: #fbb5d1;
+            --c-silver-dark: #708a8e;
+            --c-silver-light: #9eb3b8;
+        }
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #d8e0ee;
+        }
+        .animation {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 530px;
+            justify-content: flex-end;
+            position: relative;
+            width: 344px;
+        }
+        @keyframes toaster {
+            0%, 62% {
+                transform: none;
+            }
+            64% {
+                transform: scaleY(1.04);
+            }
+            66%, 76% {
+                transform: scaleY(0.94);
+                transform-origin: bottom center;
+            }
+            78% {
+                transform: scaleY(1.18);
+            }
+            79% {
+                transform: translateY(-44px);
+            }
+            82% {
+                transform: none;
+            }
+            84% {
+                transform-origin: bottom left;
+                transform: rotate(-2deg) translateY(-2px);
+            }
+            86% {
+                transform: none;
+            }
+            88% {
+                transform-origin: bottom right;
+                transform: rotate(1deg) translateY(-1px);
+            }
+            90% {
+                transform: none;
+            }
+        }
+        .toaster {
+            --w-toaster: 344px;
+            --h-toaster: 194px;
+            --b-toaster-base: var(--c-silver-light);
+            --b-toaster-shadow: var(--c-silver-dark);
+            --b-toaster-reflex: var(--c-light);
+            height: calc(var(--h-toaster) + 14px);
+            position: relative;
+            width: var(--w-toaster);
+            animation: toaster var(--animation);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toaster-base {
+            position: absolute;
+            top: 0;
+            width: var(--w-toaster);
+            height: var(--h-toaster);
+            background: #708a8e;
+            border-radius: 40px 40px 22px 22px;
+        }
+        .toaster-base::before, .toaster-base::after {
+            content: "";
+            position: absolute;
+        }
+        .toaster-base::before {
+            background: var(--b-toaster-base);
+            border-radius: 40px 40px 22px 22px;
+            height: 100%;
+            right: 0;
+            top: 0;
+            width: 284px;
+        }
+        .toaster-base::after {
+            background: #242c2d;
+            border-radius: 10px;
+            height: 110px;
+            left: 20px;
+            top: 44px;
+            width: 12px;
+        }
+        .toaster-switch {
+            --w-toaster-switch: 60px;
+            --h-toaster-switch: 12px;
+            background: #242c2d;
+            border-radius: 10px;
+            height: var(--h-toaster-switch);
+            left: -10px;
+            position: absolute;
+            top: 80px;
+            width: var(--w-toaster-switch);
+            animation: toasterSwitch var(--animation);
+        }
+        @keyframes toasterSwitch {
+            0%, 30% {
+                transform: none;
+            }
+            33%, 79% {
+                transform: translateY(40px);
+            }
+            80%, 81% {
+                transform: translateY(-14px) scaleY(4);
+                transform-origin: top;
+            }
+            83%, 84% {
+                transform: translateY(-14px);
+            }
+            90% {
+                transform: none;
+            }
+        }
+        .toaster-switch::before {
+            content: "";
+            position: absolute;
+            width: calc(var(--w-toaster-switch) - 14px);
+            height: 100%;
+            background: #4c5964;
+            border-radius: 10px;
+        }
+        @keyframes toasterFace {
+            0%, 81%, 83% {
+                transform: none;
+            }
+            82% {
+                transform: scaleY(1.4);
+                transform-origin: top;
+            }
+        }
+        .toaster-face {
+            width: 194px;
+            height: 64px;
+            position: absolute;
+            top: 58px;
+            right: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: toasterFace var(--animation);
+        }
+        .toaster-checks {
+            width: 100%;
+            position: absolute;
+            bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .toaster-check {
+            width: 22px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fbb5d1;
+        }
+        .toaster-eyes {
+            position: absolute;
+            display: flex;
+            justify-content: space-around;
+        }
+        .toaster-eye {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            margin: 0 12px;
+        }
+        @keyframes toasterEyeOpen {
+            0%, 39% {
+                transform: none;
+                opacity: 1;
+                animation-timing-function: step-end;
+            }
+            40%, 42% {
+                opacity: 0;
+                transform: scaleY(0.8);
+                animation-timing-function: step-end;
+            }
+            43% {
+                opacity: 1;
+                transform: scaleY(0.8);
+            }
+            44%, 64% {
+                opacity: 1;
+                transform: none;
+                height: 100%;
+            }
+            65%, 80% {
+                height: 60%;
+                border-radius: 180px;
+            }
+            81% {
+                height: 100%;
+            }
+        }
+        .toaster-eye-open {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: toasterEyeOpen var(--animation);
+        }
+        @keyframes toasterEyeOpenIris {
+            0%, 4%, 100% {
+                transform: none;
+            }
+            5%, 11% {
+                transform: translateY(-16px);
+            }
+            12%, 52% {
+                transform: none;
+            }
+            54%, 55% {
+                transform: translateX(4px);
+            }
+            57%, 59% {
+                transform: translateX(-4px);
+            }
+            62%, 64% {
+                transform: none;
+            }
+            65%, 80% {
+                transform: translateY(-4px);
+            }
+            81% {
+                transform: none;
+            }
+        }
+        .toaster-eye-open-iris {
+            width: 44px;
+            height: 44px;
+            background: #000;
+            border-radius: 50%;
+            animation: toasterEyeOpenIris var(--animation);
+        }
+        @keyframes toasterEyeClosed {
+            0%, 59% {
+                opacity: 1;
+            }
+            60%, 100% {
+                opacity: 0;
+            }
+        }
+        .toaster-eye-closed {
+            position: absolute;
+            top: 50%;
+            width: 64px;
+            height: 8px;
+            margin-top: -4px;
+            background: #000;
+            animation: toasterEyeClosed var(--animation);
+        }
+        @keyframes toasterMouth {
+            0%, 64%, 81% {
+                transform: none;
+                height: 10px;
+            }
+            65%, 80% {
+                height: 3px;
+                transform: translateY(-16px);
+            }
+        }
+        .toaster-mouth {
+            position: absolute;
+            bottom: 16px;
+            width: 16px;
+            height: 10px;
+            background: #141414;
+            border-radius: 4px 4px 16px 16px;
+            overflow: hidden;
+            animation: toasterMouth var(--animation);
+        }
+        .toaster-mouth::before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 3px;
+            border-radius: 4px 4px 12px 12px;
+            left: 5px;
+            bottom: 3px;
+            background: #f591b8;
+        }
+        .toaster-foot {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            padding: 0 12px;
+            justify-content: space-around;
+        }
+        .toaster-pad {
+            width: 48px;
+            height: 14px;
+            background: #000;
+            position: relative;
+            border-radius: 0 0 10px 10px;
+        }
+        .toaster-pad::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: calc(100% - 12px);
+            height: 100%;
+            background: #252d2e;
+            border-radius: inherit;
+        }
+        .toaster-reflex {
+            position: absolute;
+            top: 72px;
+            right: 8px;
+            width: 10px;
+            height: 28px;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .toaster-reflex-top {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 32px;
+            height: 48px;
+            z-index: 1;
+        }
+        .toaster-reflex-top::before, .toaster-reflex-top:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        .toaster-reflex-top::before {
+            top: 0;
+            left: -5px;
+        }
+        .toaster-reflex-top::after {
+            bottom: -5px;
+            height: 20px;
+            right: 0;
+        }
+        .toaster-reflex-top-rounded {
+            background: blue;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 10px solid #fff;
+            border-top-right-radius: 60px;
+            border-left: 0;
+            border-bottom: 0;
+        }
+        .shadow {
+            position: relative;
+            width: 330px;
+            height: 10px;
+            background: #bdc5d5;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+        @keyframes bread {
+            0%, 30% {
+                transform: none;
+            }
+            33%, 62% {
+                transform: translateY(86px);
+            }
+            64% {
+                transform: translateY(86px) scaleY(1.06);
+            }
+            66%, 80% {
+                transform-origin: bottom;
+                transform: translateY(86px) scaleY(0.9);
+            }
+            83% {
+                transform: translateY(-160px) scaleY(1.3);
+            }
+            86%, 88% {
+                transform-origin: top;
+                transform: translateY(-160px) scaleY(0.9);
+            }
+            93% {
+                transform: none;
+            }
+        }
+        .bread {
+            --c-bread-base: var(--c-brown-light);
+            --c-bread-outline: var(--c-brown-normal);
+            --c-bread-side: var(--c-brown-dark);
+            position: relative;
+            width: 204px;
+            height: 164px;
+            margin: 0 64px 0 auto;
+            margin-bottom: -54px;
+            animation: bread var(--animation);
+        }
+        .bread-base {
+            background: var(--c-bread-base);
+            border-radius: 12px;
+            border: 8px solid var(--c-bread-outline);
+            box-shadow: -16px 0 0 0 var(--c-bread-side);
+            height: 100%;
+            position: absolute;
+            right: 16px;
+            width: 156px;
+        }
+        .bread-top {
+            background: var(--c-bread-base);
+            border-radius: 20px;
+            border-radius: 20px;
+            border: 8px solid var(--c-bread-outline);
+            box-shadow: -16px 0 0 0 var(--c-bread-side);
+            height: 32px;
+            margin-bottom: -8px;
+            margin-left: 4px;
+            position: absolute;
+            right: 0;
+            width: 188px;
+        }
+        .bread-top::before, .bread-top::after {
+            content: "";
+            position: absolute;
+        }
+        .bread-top::before {
+            bottom: -10px;
+            right: 16px;
+            width: 140px;
+            height: 12px;
+            background: #c28b60;
+        }
+        .bread-face {
+            width: 120px;
+            height: 64px;
+            position: absolute;
+            top: 32px;
+            right: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bread-eyes {
+            position: absolute;
+            top: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .bread-eye {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            margin: 0 8px;
+        }
+        @keyframes breadEyeOpen {
+            0%, 18% {
+                transform: none;
+                opacity: 1;
+                animation-timing-function: step-end;
+            }
+            20%, 22% {
+                opacity: 0;
+                transform: scaleY(0.8);
+                animation-timing-function: step-end;
+            }
+            23%, 24% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        .bread-eye-open {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: breadEyeOpen var(--animation);
+        }
+        @keyframes breadEyeOpenIris {
+            0%, 7% {
+                transform: none;
+            }
+            8%, 14% {
+                transform: translateY(8px);
+            }
+            15%, 100% {
+                transform: none;
+            }
+        }
+        .bread-eye-open-iris {
+            --c-bread-eye-open-iris: var(--c-dark);
+            --w-bread-eye-open-iris: 24px;
+            --h-bread-eye-open-iris: var(--w-bread-eye-open-iris);
+            width: var(--w-bread-eye-open-iris);
+            height: var(--h-bread-eye-open-iris);
+            background: var(--c-bread-eye-open-iris);
+            border-radius: 50%;
+            animation: breadEyeOpenIris var(--animation);
+        }
+        .bread-eye-closed {
+            position: absolute;
+            top: 50%;
+            width: 48px;
+            height: 6px;
+            margin-top: -3px;
+            background: #000;
+        }
+        .bread-mouth {
+            position: absolute;
+            bottom: 22px;
+            width: 10px;
+            height: 6px;
+            border-radius: 50%;
+            border-bottom: 2px solid #141414;
+        }
+        @keyframes breadBrow {
+            0%, 29% {
+                transform: none;
+            }
+            32%, 36% {
+                transform: translateY(-6px);
+            }
+            37%, 80% {
+                transform: none;
+            }
+            87%, 88% {
+                transform: translateY(-12px);
+            }
+            89% {
+                transform: none;
+            }
+        }
+        .bread-brows {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 0;
+            width: 76px;
+            animation: breadBrow var(--animation);
+        }
+        .bread-brow {
+            background: #74482c;
+            border-radius: 50%;
+            height: 6px;
+            width: 10px;
+        }
+        .bread-flecks {
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+        }
+        .bread-fleck {
+            background: #74482c;
+            border-radius: 50%;
+            height: 3px;
+            position: relative;
+            width: 3px;
+        }
+        .bread-fleck::before, .bread-fleck::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #74482c;
+        }
+        .bread-fleck::before {
+            top: -6px;
+            left: 2px;
+        }
+        .bread-fleck::after {
+            top: -2px;
+            left: 6px;
+        }
+        .bread-fleck:last-of-type {
+            transform: scaleX(-1);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="animation">
+        <div class="bread">
+          <div class="bread-base"></div>
+            <div class="bread-top"></div>
+            <div class="bread-face">
+              <div class="bread-brows">
+                <div class="bread-brow"></div>
+                <div class="bread-brow"></div>
+              </div>
+              <div class="bread-eyes">
+                <div class="bread-eye">
+                  <div class="bread-eye-closed"></div>
+                  <div class="bread-eye-open">
+                    <div class="bread-eye-open-iris"></div>
+                  </div>
+                </div>
+                <div class="bread-eye">
+                  <div class="bread-eye-closed"></div>
+                  <div class="bread-eye-open">
+                    <div class="bread-eye-open-iris"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bread-mouth"></div>
+              <div class="bread-flecks">
+                <div class="bread-fleck"></div>
+                <div class="bread-fleck"></div>
+              </div>
+            </div>
+          </div>
+          <div class="toaster">
+            <div class="toaster-base"></div>
+            <div class="toaster-switch"></div>
+            <div class="toaster-face">
+              <div class="toaster-checks">
+                <div class="toaster-check"></div>
+                <div class="toaster-check"></div>
+              </div>
+              <div class="toaster-eyes">
+                <div class="toaster-eye">
+                  <div class="toaster-eye-closed"></div>
+                  <div class="toaster-eye-open">
+                    <div class="toaster-eye-open-iris"></div>
+                  </div>
+                </div>
+                <div class="toaster-eye">
+                  <div class="toaster-eye-closed"></div>
+                  <div class="toaster-eye-open">
+                    <div class="toaster-eye-open-iris"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="toaster-mouth"></div>
+            </div>
+            <div class="toaster-foot">
+              <div class="toaster-pad"></div>
+              <div class="toaster-pad"></div>
+              <div class="toaster-pad"></div>
+              <div class="toaster-pad"></div>
+            </div>
+            <div class="toaster-reflex"></div>
+            <div class="toaster-reflex-top">
+              <div class="toaster-reflex-top-rounded"></div>
+            </div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+</body>
+</html>
