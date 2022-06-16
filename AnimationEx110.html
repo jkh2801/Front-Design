@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex110</title>
+		<style>
+			:root {
+				--color-a: oldlace;
+				--color-b: midnightblue;
+			}
+			html,
+			body {
+				margin: 0;
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+			}
+			body {
+				display: grid;
+				place-items: center;
+				background: lightskyblue;
+			}
+			svg {
+				width: 80vmin;
+				height: 80vmin;
+			}
+		</style>
+	</head>
+	<body>
+		<svg id="svg">
+			<style>
+				.positive .bg,
+				.negative .fg {
+					fill: var(--color-a, white);
+				}
+				.positive .fg,
+				.negative .bg {
+					fill: var(--color-b, black);
+				}
+			</style>
+			<defs>
+				<path id="x" d="M10,0 h10 v10 h10 v10 h-10 v10 h-10 v-10 h-10 v-10 h10 z" />
+				<mask id="mask">
+					<rect x="-1" y="-1" width="202" height="202" fill="white" />
+					<rect y="-1" width="100" height="202" fill="black">
+						<animate attributeName="x" values="-100;300" keyTimes="0;1" dur="10s" repeatCount="indefinite" />
+					</rect>
+					<rect y="-1" width="100" height="202" fill="black">
+						<animate attributeName="x" values="100;300;-100;100" keyTimes="0;0.5;0.5;1" dur="10s" repeatCount="indefinite" />
+					</rect>
+				</mask>
+				<pattern id="pattern" x="0" y="0" width="200" height="100" patternUnits="userSpaceOnUse">
+					<g class="positive">
+						<rect class="bg" x="-100" y="-100" width="400" height="400" />
+						<g id="fg" class="fg">
+							<g id="fg-row">
+								<g id="fg-block">
+									<g transform="translate(-30 -30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.25;0.25;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-20 0)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.05;0.3;0.3;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-10 30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.1;0.35;0.35;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(0 60)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.15;0.4;0.4;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(10 -10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.2;0.45;0.45;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(20 20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.25;0.5;0.5;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(30 50)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.3;0.55;0.55;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(40 -20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.35;0.6;0.6;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(50 10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.4;0.65;0.65;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(60 40)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.45;0.7;0.7;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(70 -30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.5;0.75;0.75;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(80 0)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.55;0.8;0.8;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(90 30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.6;0.85;0.85;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(100 60)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.65;0.9;0.9;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(110 -10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.7;0.95;0.95;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(120 20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;90 15 15;0 15 15;0 15 15" keyTimes="0;0.75;1;1;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(130 50)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="72 15 15;90 15 15;0 15 15;0 15 15;72 15 15" keyTimes="0;0.05;0.05;0.8;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(140 -20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="54 15 15;90 15 15;0 15 15;0 15 15;54 15 15" keyTimes="0;0.1;0.1;0.85;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(150 10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="36 15 15;90 15 15;0 15 15;0 15 15;36 15 15" keyTimes="0;0.15;0.15;0.9;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(160 40)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="18 15 15;90 15 15;0 15 15;0 15 15;18 15 15" keyTimes="0;0.2;0.2;0.95;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+								</g>
+								<use href="#fg-block" transform="translate(200 0)" />
+							</g>
+							<use href="#fg-row" transform="translate(0 100)" />
+						</g>
+					</g>
+					<g class="negative" mask="url(#mask)">
+						<rect class="bg" x="-100" y="-100" width="400" height="400" />
+						<g class="fg">
+							<g id="bg-row">
+								<g id="bg-block">
+									<g transform="translate(-130 -80)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.25;0.25;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-120 -50)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.05;0.3;0.3;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-110 -20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.1;0.35;0.35;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-100 10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.15;0.4;0.4;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(-90 -60)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.2;0.45;0.45;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-80 -30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.25;0.5;0.5;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-70 0)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.3;0.55;0.55;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(-60 -70)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.35;0.6;0.6;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-50 -40)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.4;0.65;0.65;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-40 -10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.45;0.7;0.7;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(-30 -80)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.5;0.75;0.75;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-20 -50)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.55;0.8;0.8;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(-10 -20)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.6;0.85;0.85;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(0 10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.65;0.9;0.9;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(10 -60)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.7;0.95;0.95;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(20 -30)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="0 15 15;0 15 15;-90 15 15;0 15 15;0 15 15" keyTimes="0;0.75;1;1;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(30 0)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="-72 15 15;-90 15 15;0 15 15;0 15 15;-72 15 15" keyTimes="0;0.05;0.05;0.8;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+
+									<g transform="translate(40 -70)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="-54 15 15;-90 15 15;0 15 15;0 15 15;-54 15 15" keyTimes="0;0.1;0.1;0.85;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(50 -40)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="-36 15 15;-90 15 15;0 15 15;0 15 15;-36 15 15" keyTimes="0;0.15;0.15;0.9;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+									<g transform="translate(60 -10)">
+										<use href="#x"><animateTransform attributeName="transform" type="rotate" values="-18 15 15;-90 15 15;0 15 15;0 15 15;-18 15 15" keyTimes="0;0.2;0.2;0.95;1" dur="5s" repeatCount="indefinite" /></use>
+									</g>
+								</g>
+								<use href="#bg-block" transform="translate(200 0)" />
+							</g>
+							<use href="#bg-row" transform="translate(0 100)" />
+						</g>
+						<!--<rect width="200" height="200" fill="red"/>-->
+					</g>
+				</pattern>
+			</defs>
+			<rect x="0" y="0" width="100%" height="100%" fill="url(#pattern)" />
+		</svg>
+	</body>
+</html>
