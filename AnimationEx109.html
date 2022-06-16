@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex109</title>
+		<style>
+			body {
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			const iterations = 100;
+			const vertices = 1000;
+			const phiPeriod = 500;
+			const rhoPeriod = 100000;
+			let alpha = 0;
+			let phi = 0.5;
+			let rho = 0;
+			const scale = 0.2;
+
+			let animating = true;
+			let direction = 1;
+			const canvas = document.createElement("canvas");
+			document.body.appendChild(canvas);
+			const context = canvas.getContext("2d");
+			const slice = (Math.PI * 2) / vertices;
+			let width, height, centerX, centerY, radius;
+
+			const raf = window.requestAnimationFrame;
+
+			let time = performance.now() / 1000;
+			resize();
+			tick();
+
+			window.addEventListener("resize", resize, false);
+			document.addEventListener("mousedown", mouseDown, false);
+
+			function drawLine(iterations, theta, x, y, context, func) {
+				do {
+					const value = alpha + iterations * theta + iterations * iterations * phi + iterations * iterations * iterations * rho;
+					x += (Math.sin(value) / iterations) * radius;
+					y += (Math.cos(value) / iterations) * radius;
+				} while (--iterations);
+				func.call(context, x, y);
+			}
+
+			function drawSpiral() {
+				context.clearRect(0, 0, width, height);
+				context.beginPath();
+				let i = vertices;
+				let theta = 0;
+				drawLine(iterations, theta, centerX, centerY, context, context.moveTo);
+				while (--i) {
+					theta -= slice;
+					drawLine(iterations, theta, centerX, centerY, context, context.lineTo);
+				}
+				context.closePath();
+				context.stroke();
+			}
+
+			function draw(deltaTime) {
+				if (deltaTime === null || deltaTime === undefined || isNaN(deltaTime)) deltaTime = 0;
+				phi += ((Math.PI * deltaTime) / phiPeriod) * direction;
+				rho += ((Math.PI * deltaTime) / rhoPeriod) * direction * -1;
+				drawSpiral();
+			}
+
+			function tick() {
+				const now = performance.now() / 1000;
+				draw(now - time);
+				time = now;
+				if (animating) raf(tick);
+			}
+
+			function resize(e) {
+				width = window.innerWidth;
+				height = window.innerHeight;
+				centerX = width / 2;
+				centerY = height / 2;
+				canvas.width = width;
+				canvas.height = height;
+				radius = Math.min(width, height) * scale;
+				if (!animating) drawSpiral();
+			}
+
+			function mouseDown(e) {
+				e.stopPropagation();
+				e.preventDefault();
+
+				animating = !animating;
+				if (animating) {
+					time = performance.now() / 1000;
+					direction *= -1;
+					tick();
+				}
+			}
+		</script>
+	</body>
+</html>
