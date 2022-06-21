@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex10</title>
+		<style>
+			body {
+				box-sizing: border-box;
+			}
+
+			canvas {
+				display: block;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			let width, height, pixelRatio;
+
+			/**
+			 * Canvas
+			 */
+			const canvas = document.getElementById("canvas");
+
+			const updateCanvasSize = () => {
+				const { innerWidth, innerHeight, devicePixelRatio } = window;
+
+				pixelRatio = Math.min(devicePixelRatio, 2);
+				width = canvas.width = innerWidth * pixelRatio;
+				height = canvas.height = innerHeight * pixelRatio;
+
+				canvas.style.width = innerWidth + "px";
+				canvas.style.height = innerHeight + "px";
+			};
+			window.addEventListener("resize", updateCanvasSize);
+			updateCanvasSize();
+
+			/**
+			 * Context
+			 */
+			const ctx = canvas.getContext("2d");
+
+			/**
+			 * Color
+			 */
+			const colors = ["#D762D9", "#B150F2", "#883DF2", "#3113F2"];
+
+			/**
+			 * Particle
+			 */
+			const Particle = {
+				init: function (x, y, vx, vy, radius, color) {
+					return { x, y, vx, vy, radius, color };
+				},
+				update: function (p) {
+					p.x += p.vx;
+					p.y += p.vy;
+				},
+				draw: function (p) {
+					ctx.strokeStyle = "#fff";
+					ctx.fillStyle = p.color;
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
+					ctx.fill();
+					ctx.stroke();
+				},
+			};
+
+			/**
+			 * Init
+			 */
+			let particles = [];
+			const interval = 10;
+			const maxParticle = 200;
+			let frameCount = 0;
+
+			/**
+			 * addParticle
+			 */
+			function addParticle() {
+				const vx = randomInt(-8, 8);
+				const vy = randomInt(-8, 8);
+				const radius = randomInt(10, 24);
+				const color = colors[Math.round(Math.random() * colors.length)];
+				const particle = Particle.init(width / 2, height / 2, vx, vy, radius * 2, color);
+				particles.push(particle);
+			}
+
+			/**
+			 * Render
+			 */
+			requestAnimationFrame(function tick(timestamp) {
+				ctx.clearRect(0, 0, width, height);
+
+				if (frameCount % interval === 0 && particles.length < maxParticle) {
+					addParticle();
+				}
+
+				particles.forEach((p) => {
+					Particle.draw(p);
+					Particle.update(p);
+				});
+
+				frameCount++;
+
+				requestAnimationFrame(tick);
+			});
+
+			/**
+			 * randomInt
+			 */
+			function randomInt(min, max) {
+				if (min > 0 && max > 0) {
+					return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+				}
+				if (min < 0 && max > 0) {
+					const a = Math.random() * min;
+					const b = Math.random() * max;
+					return a + b;
+				}
+			}
+		</script>
+	</body>
+</html>
