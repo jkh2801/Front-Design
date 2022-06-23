@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex11</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				min-height: 100vh;
+				margin: 0;
+				overflow: hidden;
+			}
+
+			#canvas {
+				width: 100%;
+				height: auto;
+				object-fit: contain;
+
+				/* Working with pointer events, this must be set to 'none' else mobile browsers will catch the pointer for various actions */
+				touch-action: none;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			/*********
+			 * made by Matthias Hurrle (@atzedent)
+			 */
+
+			/** @type {HTMLCanvasElement} */
+			const canvas = window.canvas;
+			const ctx = canvas.getContext("2d");
+			const dpr = window.devicePixelRatio;
+			const d = 24;
+
+			let isDrawing = false;
+			let isMoving = false;
+			let rects = [];
+
+			function resize() {
+				canvas.width = window.innerWidth * dpr;
+				canvas.height = window.innerHeight * dpr;
+			}
+
+			function draw() {
+				const { width, height } = canvas;
+				const dx = width / d;
+				const dy = height / d;
+
+				for (let i = dx; i < width; i += dx) {
+					ctx.beginPath();
+					ctx.moveTo(i, 0);
+					ctx.lineTo(i, height);
+					ctx.stroke();
+				}
+
+				for (let i = dy; i < height; i += dy) {
+					ctx.beginPath();
+					ctx.moveTo(0, i);
+					ctx.lineTo(width, i);
+					ctx.stroke();
+				}
+
+				for (let rect of rects) {
+					const [x, y] = rect;
+					ctx.fillRect(x * dx, y * dy, dx, dy);
+				}
+			}
+
+			function fillRect(x, y) {
+				const rect = getRect(x, y);
+				const [x0, y0] = rect;
+				const idx = rects.findIndex(([a, b]) => x0 === a && y0 === b);
+
+				if (idx > -1) {
+					if (!isMoving) {
+						rects.splice(idx, 1);
+					}
+				} else {
+					rects.push(rect);
+				}
+			}
+
+			function getRect(x, y) {
+				const { width, height } = canvas;
+				const dx = width / d;
+				const dy = height / d;
+				const x0 = ~~(x / dx);
+				const y0 = ~~(y / dy);
+
+				return [x0, y0];
+			}
+
+			function animate() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				draw();
+			}
+
+			function loop() {
+				animate();
+
+				requestAnimationFrame(loop);
+			}
+
+			function init() {
+				resize();
+				loop();
+			}
+
+			init();
+
+			window.onresize = resize;
+
+			canvas.onpointerdown = (e) => {
+				isDrawing = true;
+				isMoving = false;
+
+				fillRect(e.clientX * dpr, e.clientY * dpr);
+			};
+
+			canvas.onpointermove = (e) => {
+				if (!isDrawing) return;
+
+				isMoving = true;
+
+				fillRect(e.clientX * dpr, e.clientY * dpr);
+			};
+
+			canvas.onpointerup = () => {
+				isDrawing = false;
+				isMoving = false;
+			};
+		</script>
+	</body>
+</html>
