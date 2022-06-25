@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex12</title>
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+				position: fixed;
+			}
+			canvas {
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			var Boids = [];
+			var can = document.getElementById("canvas");
+			var ctx = can.getContext("2d");
+			can.width = window.innerWidth;
+			can.height = window.innerHeight;
+			var center = { x: Math.random() * can.width, y: Math.random() * can.height };
+			var center2 = { x: Math.random() * can.width, y: Math.random() * can.height };
+			var center3 = { x: Math.random() * can.width, y: Math.random() * can.height };
+			var center4 = { x: Math.random() * can.width, y: Math.random() * can.height };
+			var center5 = { x: Math.random() * can.width, y: Math.random() * can.height };
+			function Clear() {
+				ctx.fillStyle = "rgba(33,0,53,0.06)";
+				ctx.fillRect(0, 0, can.width, can.height);
+			}
+			function dis(x, y, x2, y2) {
+				var xl = x2 - x;
+				var yl = y2 - y;
+				return Math.sqrt(xl ** 2 + yl ** 2);
+			}
+			function map(val, min, max, min2, max2) {
+				var diff1 = max - min;
+				var diff2 = max2 - min2;
+				return (diff2 / diff1) * val;
+			}
+			function randFrom(min, max, t) {
+				if (t == "exact") {
+					return Math.random() * (max - min) + min;
+				} else {
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+			}
+			function randBet(c1, c2) {
+				var nArr = [c1, c2];
+				return nArr[randFrom(0, 1)];
+			}
+			var m = { x: can.width / 2, y: can.height / 2, r: 500 };
+			function Vector(x, y) {
+				this.x = x;
+				if (x == undefined) {
+					this.x = 0;
+				}
+				this.y = y;
+				if (y == undefined) {
+					this.y = 0;
+				}
+				this.mag = function () {
+					return dis(0, 0, this.x, this.y);
+				};
+				this.dir = function () {
+					if (this.mag() !== 0) {
+						return Math.atan2(this.y, this.x);
+					}
+				};
+				this.add = function (v) {
+					this.x += v.x;
+					this.y += v.y;
+				};
+				this.sub = function (v) {
+					this.x -= v.x;
+					this.y -= v.y;
+				};
+				this.mult = function (n) {
+					this.x *= n;
+					this.y *= n;
+				};
+				this.div = function (n) {
+					this.x /= n;
+					this.y /= n;
+				};
+				this.makeMag = function (m) {
+					if (this.mag() !== 0) {
+						this.div(this.mag());
+						this.mult(m);
+					} else {
+						return;
+					}
+				};
+				this.limit = function (l) {
+					if (this.mag() > l) {
+						this.makeMag(l);
+					} else {
+						return;
+					}
+				};
+				this.connect = function (v) {
+					ctx.beginPath();
+					ctx.moveTo(this.x, this.y);
+					ctx.lineTo(v.x, v.y);
+					ctx.stroke();
+				};
+				this.get = function () {
+					return new Vector(this.x, this.y);
+				};
+			}
+			var PVector = {
+				add: function (v1, v2) {
+					return new Vector(v1.x + v2.x, v1.y + v2.y);
+				},
+				sub: function (v1, v2) {
+					return new Vector(v1.x - v2.x, v1.y - v2.y);
+				},
+				rand: function () {
+					var ran = randFrom(0, 2 * Math.PI, "exact");
+					return new Vector(Math.cos(ran), Math.sin(ran));
+				},
+			};
+			function Vehicle(x, y, r, c) {
+				this.pos = new Vector(x, y);
+				this.r = r;
+				this.c = c;
+				this.vel = new Vector();
+				this.acc = new Vector();
+				this.l = randFrom(3, 25);
+				this.applyForce = function (force) {
+					var f = force.get();
+					this.acc.add(f);
+				};
+				this.upd = function () {
+					ctx.strokeStyle = c;
+					var f1 = PVector.sub(this.pos, center);
+					var rotf1 = new Vector(-f1.y, f1.x);
+					rotf1.makeMag(150 / dis(this.pos.x, this.pos.y, center.x, center.y));
+					if (dis(this.pos.x, this.pos.y, center.x, center.y) !== 0) {
+						this.applyForce(rotf1);
+					}
+					var f2 = PVector.sub(this.pos, center2);
+					var rotf2 = new Vector(f2.y, -f2.x);
+					rotf2.makeMag(150 / dis(this.pos.x, this.pos.y, center2.x, center2.y));
+					if (dis(this.pos.x, this.pos.y, center2.x, center2.y) !== 0) {
+						this.applyForce(rotf2);
+					}
+					var f3 = PVector.sub(this.pos, center3);
+					var rotf3 = new Vector(-f3.y, f3.x);
+					rotf3.makeMag(150 / dis(this.pos.x, this.pos.y, center3.x, center3.y));
+					if (dis(this.pos.x, this.pos.y, center3.x, center3.y) !== 0) {
+						this.applyForce(rotf3);
+					}
+					var f4 = PVector.sub(this.pos, center4);
+					var rotf4 = new Vector(f4.y, -f4.x);
+					rotf4.makeMag(150 / dis(this.pos.x, this.pos.y, center4.x, center4.y));
+					if (dis(this.pos.x, this.pos.y, center4.x, center4.y) !== 0) {
+						this.applyForce(rotf4);
+					}
+					var f5 = PVector.sub(this.pos, center5);
+					var rotf5 = new Vector(f5.y, -f5.x);
+					rotf5.makeMag(150 / dis(this.pos.x, this.pos.y, center5.x, center5.y));
+					if (dis(this.pos.x, this.pos.y, center5.x, center5.y) !== 0) {
+						this.applyForce(rotf5);
+					}
+					this.vel.add(this.acc);
+					this.vel.limit(1);
+					ctx.lineWidth = this.r;
+					//ctx.lineCap = "round";
+					ctx.beginPath();
+					ctx.moveTo(this.pos.x, this.pos.y);
+					this.pos.add(this.vel);
+					ctx.lineTo(this.pos.x, this.pos.y);
+					ctx.stroke();
+					this.l -= 0.5;
+					if (this.l <= 0) {
+						this.vel = new Vector(0, 0);
+						this.pos.x = randFrom(0, can.width);
+						this.pos.y = randFrom(0, can.height);
+						this.l = randFrom(3, 35);
+					}
+					this.acc.mult(0);
+				};
+			}
+			var field = [];
+			var fieldpos = [];
+			function gameMake() {
+				var No = 1200;
+				var rad = 1;
+				var cols = ["cyan", "orange", "yellow"];
+				for (var i = 0; i < No; i++) {
+					var x = randFrom(rad, can.width - rad, "exact");
+					var y = randFrom(rad, can.height - rad, "exact");
+					Boids.push(new Vehicle(x, y, rad, cols[Math.floor(Math.random() * cols.length)]));
+				}
+			}
+			function gameMove() {
+				requestAnimationFrame(gameMove);
+				Clear();
+				for (var i = 0; i < Boids.length; i++) {
+					Boids[i].upd();
+				}
+			}
+			gameMake();
+			gameMove();
+		</script>
+	</body>
+</html>
