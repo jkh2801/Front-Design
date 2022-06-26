@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex13</title>
+		<style>
+			body {
+				text-align: center;
+				background: #333;
+			}
+
+			.box {
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<canvas id="canvas"></canvas>
+		</div>
+		<script>
+			console.clear();
+
+			let canvas = document.getElementById("canvas");
+			let ctx = canvas.getContext("2d");
+			let width = (canvas.width = 800);
+			let height = (canvas.height = 800);
+			let animation = requestAnimationFrame(draw);
+
+			window.addEventListener("keydown", (e) => {
+				if (e.keyCode === 32) {
+					console.log("stopped");
+					e.preventDefault();
+					cancelAnimationFrame(animation);
+					animation = null;
+				}
+			});
+
+			class Position {
+				constructor(x, y, propsX, fill, stroke, radius, xid, yid) {
+					this.id = this.genUuid();
+					this.x = x;
+					this.y = y;
+					this.xid = xid;
+					this.yid = yid;
+					this.fill = fill;
+					this.stroke = stroke;
+					this.radius = radius;
+					this.rad = 0;
+					this.start = {
+						x: x,
+						y: y,
+					};
+					this.propsX = { ...propsX, direction: 1 };
+					this.linePoints = [];
+					this.linePointsMaxLength = 100;
+				}
+				genUuid() {
+					return "xxx-xxx".replace(/[x]/g, (c) => (Math.random() * 9).toFixed(0));
+				}
+				updateX() {
+					this.x += this.propsX.direction * this.propsX.freq;
+					if (this.x > this.start.x + this.propsX.amp || this.x < this.start.x - this.propsX.amp) {
+						this.propsX.direction *= -1;
+					}
+				}
+				updateY() {
+					this.y += this.propsY.direction * this.propsY.freq;
+					if (this.y > this.start.y + this.propsY.amp || this.y < this.start.y - this.propsY.amp) {
+						this.propsY.direction *= -1;
+					}
+				}
+				updateCirc(posArr) {
+					if (this.xid && this.yid) {
+						let x = posArr.find((d) => d.id === this.xid).x;
+						let y = posArr.find((d) => d.id === this.yid).y;
+						this.x = x;
+						this.y = y;
+
+						this.updateLine();
+
+						return;
+					}
+					let props = this.propsX;
+					this.rad += props.direction * props.freq;
+					this.y = Math.sin(this.rad * Math.PI) * props.amp + this.start.y;
+					this.x = Math.cos(this.rad * Math.PI) * props.amp + this.start.x;
+
+					this.updateLine();
+				}
+				updateLine() {
+					this.linePoints.push({ x: this.x, y: this.y });
+					if (this.linePoints.length > this.linePointsMaxLength) {
+						this.linePoints.shift();
+					}
+					this.drawLine();
+					circle(this.x, this.y, this.radius, this.fill);
+				}
+				drawLine() {
+					if (this.linePoints.length < 3) {
+						var b = this.linePoints[0];
+						ctx.beginPath();
+						ctx.arc(b.x, b.y, ctx.lineWidth / 2, 0, Math.PI * 2, !0);
+						ctx.fill();
+						ctx.closePath();
+
+						return;
+					}
+
+					ctx.beginPath();
+					ctx.moveTo(this.linePoints[0].x, this.linePoints[0].y);
+					for (var i = 1; i < this.linePoints.length - 2; i++) {
+						var c = (this.linePoints[i].x + this.linePoints[i + 1].x) / 2;
+						var d = (this.linePoints[i].y + this.linePoints[i + 1].y) / 2;
+						ctx.quadraticCurveTo(this.linePoints[i].x, this.linePoints[i].y, c, d);
+					}
+					// For the last 2 points
+					ctx.quadraticCurveTo(this.linePoints[i].x, this.linePoints[i].y, this.linePoints[i + 1].x, this.linePoints[i + 1].y);
+					ctx.strokeStyle = this.stroke;
+					ctx.stroke();
+					ctx.closePath();
+				}
+			}
+
+			let colors = ["#ff0000", "#f56a00", "#fdcf00", "#99ff00", "#00ff62", "#00ffff", "#006fff", "#8400ff", "#b100fc", "#de00f2"];
+			let positions = [];
+			let grid = new Grid(10, 10, true);
+			grid.setup();
+			let colHeaders = [];
+			let rowHeaders = [];
+			let pos = null;
+			let newPos = null;
+
+			function draw() {
+				ctx.clearRect(0, 0, width, height);
+				// outside stroke
+				ctx.strokeStyle = "purple";
+				ctx.strokeRect(0, 0, width, height);
+
+				grid.draw();
+
+				grid.positions.forEach((p) => p.updateCirc(grid.positions));
+
+				animation = requestAnimationFrame(draw);
+			}
+
+			function circle(x, y, r, fill, stroke = "transparent") {
+				ctx.beginPath();
+				ctx.fillStyle = fill;
+				ctx.strokeStyle = stroke;
+				ctx.arc(x, y, r, 0, 2 * Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				ctx.stroke();
+				ctx.closePath();
+			}
+
+			function line(x1, y1, x2, y2, lineWidth, strokeColor) {
+				ctx.beginPath();
+				ctx.lineWidth = lineWidth;
+				ctx.strokeStyle = strokeColor;
+				ctx.moveTo(x1, y1);
+				ctx.lineTo(x2, y2);
+				ctx.stroke();
+				ctx.closePath();
+			}
+
+			// blend two hex colors together by an amount
+			function blendColors(colorA, colorB, amount) {
+				const [rA, gA, bA] = colorA.match(/\w\w/g).map((c) => parseInt(c, 16));
+				const [rB, gB, bB] = colorB.match(/\w\w/g).map((c) => parseInt(c, 16));
+				const r = Math.round(rA + (rB - rA) * amount)
+					.toString(16)
+					.padStart(2, "0");
+				const g = Math.round(gA + (gB - gA) * amount)
+					.toString(16)
+					.padStart(2, "0");
+				const b = Math.round(bA + (bB - bA) * amount)
+					.toString(16)
+					.padStart(2, "0");
+				return "#" + r + g + b;
+			}
+
+			function Grid(sizeX, sizeY, headers) {
+				// setup grid positions
+				let gridPadding = 10;
+				// get column and row widths for 5 plus 1 for "header"
+				let columns = headers ? sizeX + 1 : sizeX;
+				let rows = headers ? sizeY + 1 : sizeY;
+				// grid math
+				let columnWidth = +(width / columns).toFixed(2);
+				let rowWidth = +(height / rows).toFixed(2);
+				// positions array initilaizing to return
+				this.positions = [];
+
+				this.setup = () => {
+					let initPos = [];
+					for (let c = 1; c <= columns; c++) {
+						let gridx = columnWidth * c;
+						let colPos = +(gridx - columnWidth / 2).toFixed(2);
+
+						initPos.push([]);
+						// draw rows
+						for (let r = 1; r <= rows; r++) {
+							let gridy = rowWidth * r;
+							let rowPos = +(gridy - rowWidth / 2).toFixed(2);
+
+							initPos[c - 1].push({ x: colPos, y: rowPos });
+						}
+					}
+
+					let rowHeaders = [];
+					let colHeaders = [];
+					let pos = null;
+					let newPos = null;
+					for (let col in initPos) {
+						if (col == 0) {
+							for (let row in initPos[col]) {
+								if (row > 0) {
+									// row headers
+									pos = initPos[col][row];
+									newPos = new Position(pos.x, pos.y, { freq: 0.01 * row, amp: 30 }, "white", colors[row - 1], 5);
+									rowHeaders.push(newPos);
+									this.positions.push(newPos);
+								}
+							}
+						} else {
+							// column headers
+							pos = initPos[col][0];
+							newPos = new Position(pos.x, pos.y, { freq: 0.01 * col, amp: 30 }, "white", colors[col - 1], 5);
+							colHeaders.push(newPos);
+							this.positions.push(newPos);
+
+							// inner grid
+							for (let row in initPos[col]) {
+								if (row > 0) {
+									pos = initPos[col][row];
+									newPos = new Position(pos.x, pos.y, { freq: 0.01 * col, amp: 20 }, "white", blendColors(colors[col - 1], colors[row - 1], 0.5), 3, colHeaders[col - 1].id, rowHeaders[row - 1].id);
+									this.positions.push(newPos);
+								}
+							}
+						}
+					}
+
+					console.log(this.positions);
+				};
+
+				this.draw = () => {
+					// draw columns
+					for (let c = 1; c <= columns; c++) {
+						let gridx = columnWidth * c;
+						line(gridx, 0, gridx, height, 0.5, "teal");
+					}
+					for (let r = 1; r <= rows; r++) {
+						let gridy = rowWidth * r;
+						line(0, gridy, width, gridy, 0.5, "teal");
+					}
+				};
+
+				return this;
+			}
+		</script>
+	</body>
+</html>
