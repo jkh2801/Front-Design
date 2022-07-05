@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex17</title>
+		<style>
+			canvas {
+				position: fixed;
+			}
+			body {
+				overflow: none;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			var can = document.getElementById("canvas");
+			var ctx = can.getContext("2d");
+			can.width = window.innerWidth;
+			can.height = window.innerHeight;
+			can.style.background = "black";
+			var p = [];
+			function Clear() {
+				ctx.clearRect(0, 0, can.width, can.height);
+			}
+			var m = { x: can.width / 2, y: 0, r: 70 };
+			can.onmousemove = function (event) {
+				m.x = event.clientX;
+				m.y = event.clientY;
+			};
+			function Vector(x, y) {
+				this.x = x;
+				if (x == undefined) {
+					this.x = 0;
+				}
+				this.y = y;
+				if (y == undefined) {
+					this.y = 0;
+				}
+				this.mag = function () {
+					return Math.sqrt(this.x ** 2 + this.y ** 2);
+				};
+				this.dir = function () {
+					return Math.atan2(this.y, this.x);
+				};
+				this.add = function (v) {
+					this.x += v.x;
+					this.y += v.y;
+				};
+				this.sub = function (v) {
+					this.x -= v.x;
+					this.y -= v.y;
+				};
+				this.mult = function (n) {
+					this.x *= n;
+					this.y *= n;
+				};
+				this.div = function (n) {
+					this.x /= n;
+					this.y /= n;
+				};
+				this.makeMag = function (m) {
+					if (this.mag() !== 0) {
+						this.div(this.mag());
+						this.mult(m);
+					} else {
+						return;
+					}
+				};
+				this.limit = function (l) {
+					if (this.mag() > l) {
+						this.makeMag(l);
+					} else {
+						return;
+					}
+				};
+				this.connect = function (v) {
+					ctx.beginPath();
+					ctx.moveTo(this.x, this.y);
+					ctx.lineTo(v.x, v.y);
+					ctx.stroke();
+				};
+				this.get = function () {
+					return new Vector(this.x, this.y);
+				};
+			}
+			var PVector = {
+				add: function (v1, v2) {
+					return new Vector(v1.x + v2.x, v1.y + v2.y);
+				},
+				sub: function (v1, v2) {
+					return new Vector(v1.x - v2.x, v1.y - v2.y);
+				},
+			};
+			function particle(x, y, c) {
+				this.pos = new Vector(x, y);
+				this.vel = new Vector();
+				this.acc = new Vector();
+				var f = 20;
+				var e = 0.05;
+				this.upd = function () {
+					ctx.fillStyle = c;
+					ctx.beginPath();
+					ctx.arc(this.pos.x, this.pos.y, 1, 0, 2 * Math.PI);
+					ctx.fill();
+					ctx.closePath();
+					var push = PVector.sub(this.pos, m);
+					var p = push.mag();
+					push.makeMag(((m.r - p) / m.r) * f);
+					if (Math.sqrt((this.pos.x - m.x) ** 2 + (this.pos.y - m.y) ** 2) < m.r) {
+						this.vel = push;
+					} else {
+						this.vel = new Vector((x - this.pos.x) * e, (y - this.pos.y) * e);
+					}
+					this.vel.add(this.acc);
+					this.pos.add(this.vel);
+					this.acc.mult(0);
+				};
+			}
+			function gameMake() {
+				var grd = ctx.createLinearGradient(0, 0, can.width, 0);
+				grd.addColorStop(0, "cyan");
+				grd.addColorStop(1, "magenta");
+
+				var h = 90;
+				var text = "Soft Text";
+				var w = text.length * 50;
+				ctx.fillStyle = "rgba(0,0,0,0)";
+				ctx.fillRect(0, 0, w, h);
+				ctx.fillStyle = "white";
+				ctx.font = h + "px Arial";
+				ctx.fillText(text, 0, 70);
+				var img = ctx.getImageData(0, 0, w, h);
+				for (var x = 0; x < w; x += 2) {
+					for (var y = 0; y < h; y += 2) {
+						if (img.data[y * 4 * w + x * 4 + 3] > 128) {
+							p.push(new particle(x * 1.5 + can.width / 2 - w / 2, y * 1.5 + can.height / 2 - h / 2, grd));
+						}
+					}
+				}
+				console.log(p.length);
+			}
+			function gameMove() {
+				requestAnimationFrame(gameMove);
+				Clear();
+				ctx.textAlign = "center";
+				ctx.strokeStyle = "white";
+				ctx.font = "40px Calibri";
+				ctx.strokeText("Use the mouse to push the text particles around", can.width / 2, 60);
+				for (var i = 0; i < p.length; i++) {
+					p[i].upd();
+				}
+			}
+			gameMake();
+			gameMove();
+		</script>
+	</body>
+</html>
