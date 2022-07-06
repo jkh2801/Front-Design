@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Svg Ex2</title>
+		<style>
+			html {
+				background-color: rgb(40, 40, 40);
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<svg id="main" viewBox="0 0 1000 1000">
+			<path id="yellow" d="M675 300 L600 375 L490 375 L600 375 L675 300" fill="transparent" stroke="#FFD800" stroke-width="3" />
+			<path id="blue2" d="M170 205 L270 330 L310 300 L400 300 L310 300 L270 330 L170 205" fill="transparent" stroke="#57D6FF" stroke-width="3" />
+			<path id="blue3" d="M265 240 L310 300 L400 300 L310 300 L265 240" fill="transparent" stroke="#57D6FF" stroke-width="3" />
+			<path id="pink" d="M625 275 L625 360 L725 475 L725 525 L750 550 L750 575 L750 550 L725 525 L725 475 L625 360 L625 275" fill="transparent" stroke="#DB6EA6" stroke-width="3" />
+			<path id="teal" d="M390 140 L370 140 L245 240 L260 260 L245 240 L370 140 L390 140" fill="transparent" stroke="#96CACB" stroke-width="3" />
+			<path id="yellow2" d="M160 480 L160 420 L230 350 L230 260 L260 260 L230 260 L230 350 L160 420 L160 480" fill="transparent" stroke="#FFD800" stroke-width="3" />
+
+			<path id="circle" d="M300, 300 a 50,50 0 1,1 300,0 a 50,50 0 1,1 -300,0" fill="transparent" stroke="#9B6F43" stroke-width="3" />
+
+			<path id="purple" d="M240 100 L240 160 L310 250 L450 250 L500 300 L500 330 L650 500 L750 500 L700 550 L750 500 L650 500 L500 330 L500 300 L450 250 L310 250 L240 160 L240 100" fill="transparent" stroke="#810A81" stroke-width="3" />
+			<path id="red" d="M200 600 L200 500 L480 260 L500 260 L620 150 L610 140 L620 150 L500 260 L480 260 L200 500 L200 600" fill="transparent" stroke="#EF161F" stroke-width="3" />
+			<path id="blue" d="M700 200 L600 300 L420 300 L410 310 L230 310 L170 240 L170 100 L170 240 L230 310 L410 310 L420 300 L600 300 L700 200" fill="transparent" stroke="#0179BF" stroke-width="3" />
+			<path id="green" d="M400 50 L400 80 L430 110 L430 200 L600 380 L600 470 L625 500 L600 525 L600 550 L600 525 L625 500 L600 470 L600 380 L430 200 L430 110 L400 80 L400 50" fill="transparent" stroke="#9ACD02" stroke-width="3" />
+			<path id="orange" d="M520 30 L520 230 L510 240 L510 360 L360 480 L360 600 L360 480 L510 360 L510 240 L520 230 L520 30" fill="transparent" stroke="#EC921B" stroke-width="3" />
+			<path id="grey" d="M430 40 L430 70 L390 100 L390 165 L420 200 L400 220 L400 350 L480 440 L480 590 L420 640 L480 590 L480 440 L400 350 L400 220 L420 200 L390 165 L390 100 L430 70 L430 40" fill="transparent" stroke="#9A9A9A" stroke-width="3" />
+			<path id="green2" d="M280 50 L280 100 L380 220 L380 260 L580 470 L580 530 L600 550 L620 550 L600 550 L580 530 L580 470 L380 260 L380 220 L280 100 L280 50" fill="transparent" stroke="#29BF27" stroke-width="3" />
+
+			<circle cx="0" cy="0" r="5" stroke="#9B6F43" stroke-width="3" fill="transparent">
+				<animateMotion dur="10s" repeatCount="indefinite">
+					<mpath xlink:href="#circle" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#810A81" stroke-width="3" fill="transparent">
+				<animateMotion dur="14s" repeatCount="indefinite">
+					<mpath xlink:href="#purple" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#EF161F" stroke-width="3" fill="transparent">
+				<animateMotion dur="18s" repeatCount="indefinite">
+					<mpath xlink:href="#red" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#0179BF" stroke-width="3" fill="transparent">
+				<animateMotion dur="24s" repeatCount="indefinite">
+					<mpath xlink:href="#blue" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#9ACD02" stroke-width="3" fill="transparent">
+				<animateMotion dur="16s" repeatCount="indefinite">
+					<mpath xlink:href="#green" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#EC921B" stroke-width="3" fill="transparent">
+				<animateMotion dur="26s" repeatCount="indefinite">
+					<mpath xlink:href="#orange" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#9A9A9A" stroke-width="3" fill="transparent">
+				<animateMotion dur="30s" repeatCount="indefinite">
+					<mpath xlink:href="#grey" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#29BF27" stroke-width="3" fill="transparent">
+				<animateMotion dur="28s" repeatCount="indefinite">
+					<mpath xlink:href="#green2" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#DB6EA6" stroke-width="3" fill="transparent">
+				<animateMotion dur="12s" repeatCount="indefinite">
+					<mpath xlink:href="#pink" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#FFD800" stroke-width="3" fill="transparent">
+				<animateMotion dur="10s" repeatCount="indefinite">
+					<mpath xlink:href="#yellow" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#57D6FF" stroke-width="3" fill="transparent">
+				<animateMotion dur="8s" repeatCount="indefinite">
+					<mpath xlink:href="#blue2" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#FFD800" stroke-width="3" fill="transparent">
+				<animateMotion dur="10s" repeatCount="indefinite">
+					<mpath xlink:href="#yellow2" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#96CACB" stroke-width="3" fill="transparent">
+				<animateMotion dur="6s" repeatCount="indefinite">
+					<mpath xlink:href="#teal" />
+				</animateMotion>
+			</circle>
+
+			<circle cx="0" cy="0" r="5" stroke="#57D6FF" stroke-width="3" fill="transparent">
+				<animateMotion dur="6s" repeatCount="indefinite">
+					<mpath xlink:href="#blue3" />
+				</animateMotion>
+			</circle>
+		</svg>
+	</body>
+</html>
