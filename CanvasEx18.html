@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex18</title>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			class Vector {
+				constructor(x = 0, y = 0) {
+					this.x = x;
+					this.y = y;
+				}
+				distance(other) {
+					return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
+				}
+			}
+
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			const isPressed = false;
+			mouseDownPosition = new Vector(0, 0);
+			mousePosition = new Vector(0, 0);
+			mouseUpPosition = new Vector(0, 0);
+			onMouseDown = (e) => {
+				isPressed = true;
+				mouseDownPosition = new Vector(e.clientX, e.clientY);
+			};
+
+			onMouseMove = (e) => {
+				mousePosition = new Vector(e.clientX, e.clientY);
+			};
+
+			onMouseUp = (e) => {
+				isPressed = false;
+				mouseUpPosition = new Vector(e.clientX, e.clientY);
+			};
+			play = () => {
+				window.addEventListener("mousedown", onMouseDown);
+				window.addEventListener("mousemove", onMouseMove);
+				window.addEventListener("mouseup", onMouseUp);
+				handleRequestFrame = window.requestAnimationFrame(onEnterFrame);
+			};
+
+			pause = () => {
+				if (handleRequestFrame === null) {
+					return;
+				}
+
+				window.cancelAnimationFrame(handleRequestFrame);
+			};
+			onEnterFrame = () => {
+				handleRequestFrame = window.requestAnimationFrame(this.onEnterFrame);
+			};
+			class DragArea {
+				constructor(position) {
+					this.position = position;
+				}
+				update() {
+					this.position = mouseDownPosition;
+				}
+				render(context) {
+					if (!isPressed) {
+						return;
+					}
+
+					ctx.beginPath();
+					ctx.strokeStyle = "#00ff00";
+					ctx.lineWidth = 2;
+					ctx.rect(this.position.x, this.position.y, mousePosition.x - this.position.x, mousePosition.y - this.position.y);
+					ctx.stroke();
+				}
+			}
+			const dragArea = new DragArea(new Vector(0, 0));
+		</script>
+	</body>
+</html>
