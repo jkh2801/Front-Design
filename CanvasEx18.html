@@ -5,10 +5,21 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Canvas Ex18</title>
+		<style>
+			body {
+				overflow: hidden;
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
 		<script>
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			units = [];
+			selectedUnits = [];
 			class Vector {
 				constructor(x = 0, y = 0) {
 					this.x = x;
@@ -17,19 +28,125 @@
 				distance(other) {
 					return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
 				}
+				angleBetween(other) {
+					return Math.atan2(other.y - this.y, other.x - this.x);
+				}
+			}
+			class DragArea {
+				position;
+				constructor(position) {
+					this.position = position;
+				}
+				update() {
+					this.position = mouseDownPosition;
+				}
+				render() {
+					if (!isPressed) {
+						return;
+					}
+
+					ctx.beginPath();
+					ctx.strokeStyle = "#00ff00";
+					ctx.lineWidth = 2;
+					ctx.rect(this.position.x, this.position.y, mousePosition.x - this.position.x, mousePosition.y - this.position.y);
+					ctx.stroke();
+				}
+			}
+			function drawEllipse(x, y, w, h) {
+				const kappa = 0.5522848,
+					ox = (w / 2) * kappa,
+					oy = (h / 2) * kappa,
+					xe = x + w,
+					ye = y + h,
+					xm = x + w / 2,
+					ym = y + h / 2;
+				ctx.beginPath();
+				ctx.moveTo(x, ym);
+				ctx.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+				ctx.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+				ctx.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+				ctx.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+				ctx.closePath();
+				ctx.stroke();
+			}
+			class Unit {
+				position;
+				radius;
+				speed;
+				movement = false;
+				targetPosition = new Vector(0, 0);
+				isSelected = false;
+				constructor(position) {
+					this.position = position;
+					this.radius = 15;
+					this.speed = 100;
+				}
+
+				update() {
+					for (let i = 0; i < units.length; i++) {
+						const unit = units[i];
+						if (this !== unit) {
+							const distance = this.position.distance(unit.position);
+							const length = this.radius + unit.radius;
+							if (distance <= length) {
+								const force = length - distance;
+								const angle = this.position.angleBetween(unit.position);
+
+								this.position.x -= Math.cos(angle) * force;
+								this.position.y -= Math.sin(angle) * force;
+							}
+						}
+					}
+
+					if (this.movement) {
+						const angle = this.position.angleBetween(this.targetPosition);
+						this.position.x += Math.cos(angle) * this.speed * 0.05;
+						this.position.y += Math.sin(angle) * this.speed * 0.05;
+						if (this.position.distance(this.targetPosition) <= 10) {
+							this.movement = false;
+						}
+					}
+				}
+
+				render() {
+					if (this.isSelected) {
+						ctx.beginPath();
+						ctx.lineWidth = 2;
+						ctx.strokeStyle = "#0f0";
+						drawEllipse(this.position.x - this.radius, this.position.y + this.radius * 0.75, this.radius * 2, this.radius * 0.75);
+					}
+
+					ctx.beginPath();
+					ctx.fillStyle = "#000";
+					ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+					ctx.fill();
+				}
 			}
 
-			const canvas = document.getElementById("canvas");
-			const ctx = canvas.getContext("2d");
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
-			const isPressed = false;
-			mouseDownPosition = new Vector(0, 0);
-			mousePosition = new Vector(0, 0);
-			mouseUpPosition = new Vector(0, 0);
+			let isPressed = false;
+			let mouseDownPosition = new Vector(0, 0);
+			let mousePosition = new Vector(0, 0);
+			let mouseUpPosition = new Vector(0, 0);
+			const dragArea = new DragArea(new Vector(0, 0));
+
+			units.push(new Unit(new Vector(canvas.width * 0.1, canvas.height * 0.5)));
+			units.push(new Unit(new Vector(canvas.width * 0.2, canvas.height * 0.5)));
+			units.push(new Unit(new Vector(canvas.width * 0.3, canvas.height * 0.5)));
+			units.push(new Unit(new Vector(canvas.width * 0.4, canvas.height * 0.5)));
+			units.push(new Unit(new Vector(canvas.width * 0.5, canvas.height * 0.5)));
 			onMouseDown = (e) => {
-				isPressed = true;
-				mouseDownPosition = new Vector(e.clientX, e.clientY);
+				e.preventDefault();
+				e.stopPropagation();
+				console.log("onMouseDown");
+				if (e.button === 0) {
+					isPressed = true;
+					mouseDownPosition = new Vector(e.clientX, e.clientY);
+				} else if (e.button === 2) {
+					for (let i = 0; i < selectedUnits.length; i++) {
+						selectedUnits[i].movement = true;
+						selectedUnits[i].targetPosition = new Vector(e.clientX, e.clientY);
+					}
+				}
 			};
 
 			onMouseMove = (e) => {
@@ -37,10 +154,39 @@
 			};
 
 			onMouseUp = (e) => {
+				if (e.button !== 0) {
+					return;
+				}
+				console.log("onMouseUp");
 				isPressed = false;
 				mouseUpPosition = new Vector(e.clientX, e.clientY);
+
+				const startX = Math.min(mouseDownPosition.x, mouseUpPosition.x);
+				const endX = Math.max(mouseDownPosition.x, mouseUpPosition.x);
+
+				const startY = Math.min(mouseDownPosition.y, mouseUpPosition.y);
+				const endY = Math.max(mouseDownPosition.y, mouseUpPosition.y);
+
+				selectedUnits = units.filter((entity) => {
+					return entity.position.x >= startX && entity.position.x <= endX && entity.position.y >= startY && entity.position.y <= endY;
+				});
+
+				for (let i = 0; i < units.length; i++) {
+					units[i].isSelected = false;
+				}
+
+				for (let i = 0; i < selectedUnits.length; i++) {
+					selectedUnits[i].isSelected = true;
+				}
 			};
 			play = () => {
+				window.addEventListener(
+					"contextmenu",
+					(e) => {
+						e.preventDefault();
+					},
+					false
+				);
 				window.addEventListener("mousedown", onMouseDown);
 				window.addEventListener("mousemove", onMouseMove);
 				window.addEventListener("mouseup", onMouseUp);
@@ -55,28 +201,17 @@
 				window.cancelAnimationFrame(handleRequestFrame);
 			};
 			onEnterFrame = () => {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				dragArea.update();
+				dragArea.render();
+				units.forEach((unit) => {
+					unit.update();
+					unit.render();
+				});
 				handleRequestFrame = window.requestAnimationFrame(this.onEnterFrame);
 			};
-			class DragArea {
-				constructor(position) {
-					this.position = position;
-				}
-				update() {
-					this.position = mouseDownPosition;
-				}
-				render(context) {
-					if (!isPressed) {
-						return;
-					}
 
-					ctx.beginPath();
-					ctx.strokeStyle = "#00ff00";
-					ctx.lineWidth = 2;
-					ctx.rect(this.position.x, this.position.y, mousePosition.x - this.position.x, mousePosition.y - this.position.y);
-					ctx.stroke();
-				}
-			}
-			const dragArea = new DragArea(new Vector(0, 0));
+			play();
 		</script>
 	</body>
 </html>
