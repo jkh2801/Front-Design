@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex19</title>
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				background-color: rgb(234, 227, 218);
+			}
+
+			body {
+				margin: 0;
+			}
+
+			canvas {
+				display: block;
+				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			const $ = (e) => document.querySelector(e);
+			const $$ = (e) => document.querySelectorAll(e);
+
+			var canvas = $("#canvas");
+			var ctx = canvas.getContext("2d");
+
+			const screenWidth = 256,
+				screenHeight = 256;
+			var pixelRatio = window.devicePixelRatio;
+			canvas.width = screenWidth * pixelRatio;
+			canvas.height = screenHeight * pixelRatio;
+			canvas.style.width = `${screenWidth}px`;
+			canvas.style.height = `${screenHeight}px`;
+			ctx.scale(pixelRatio, pixelRatio);
+			// AA creates annoying visible lines with the fillRect() tiling
+			// when coords are not a 4x multiple
+			ctx.imageSmoothingEnabled = false;
+
+			const tilePerScreenLine = 16; // square ratio screen
+			const tileSize = screenWidth / tilePerScreenLine; // 16px in this context
+
+			const worldWidth = 3 * 8 * 2; // 48 tiles
+			const worldHeight = 2 * 8 * 2; // 32 tiles
+			const worldSize = worldWidth * worldHeight;
+
+			const map = // 3x2 blocks, at 1:2 scale (8x8 characters block encode for 16x16 tiles block)
+				"..........................##..................#." +
+				"..#.@.................#.......................#." +
+				".....#............##.........##...........##...." +
+				"....###......................#.................." +
+				"......................................##........" +
+				"...............................#####............" +
+				".........##....................................." +
+				"...#.............###............................";
+
+			const fps = 60.0;
+			var frames = 0;
+
+			var world;
+			var cursor = null; // unit id (index in the playerUnits array)
+			var playerUnits = [];
+
+			var cursorPosition = { x: 0, y: 0 }; // pixels (camera)
+			const cameraSpeed = 2; // pixels per frame
+			var cameraPosition = { x: 0, y: 0 }; // pixels (world)
+
+			const orderEnum = { idle: 0, move: 1, attack: 2 };
+
+			const unitData = {
+				position: { x: 0, y: 0 }, // pixels (world)
+				speed: 1,
+				isMoving: 0,
+				direction: { x: 0, y: 0 }, // -1, 0, 1
+				moveTarget: 0, // index in grid
+				recomputePath: false,
+				path: [],
+				astarGraph: [],
+				order: orderEnum.idle,
+			};
+
+			// Tiling helpers
+			const pixToTile = (p) => ({ x: Math.floor(p.x / tileSize), y: Math.floor(p.y / tileSize) });
+			const tileToPix = (p) => ({ x: p.x * tileSize, y: p.y * tileSize });
+			const alignPixToTile = (p) => tileToPix(pixToTile(p));
+			const pixToIndex = (p) => tileToIndex(pixToTile(p));
+			const tileToIndex = (p) => p.y * worldWidth + p.x;
+			const indexToTile = (i) => ({ x: i % worldWidth, y: Math.floor(i / worldWidth) });
+			const indexToPix = (p) => tileToPix(indexToTile(p));
+
+			const transformToCamera = (worldPosition) => ({
+				x: worldPosition.x - cameraPosition.x,
+				y: worldPosition.y - cameraPosition.y,
+			});
+
+			const transformToWorld = (viewPosition) => ({
+				x: cameraPosition.x + viewPosition.x,
+				y: cameraPosition.y + viewPosition.y,
+			});
+
+			const comparePosition = (p1, p2) => p1.x == p2.x && p1.y == p2.y;
+
+			// taxicab
+			// position in pixels
+			function distancePosition(p1, p2) {
+				let a = pixToTile(p1);
+				let b = pixToTile(p2);
+				return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+			}
+
+			function isInBounds(p, mode = "pixels") {
+				let boundW = worldWidth;
+				let boundH = worldHeight;
+				if (mode == "pixels") {
+					boundW *= tileSize;
+					boundH *= tileSize;
+				}
+
+				return p.x >= 0 && p.x < boundW && p.y >= 0 && p.y < boundH;
+			}
+
+			function isInBoundsWindow(t) {
+				let tileCamera = pixToTile(cameraPosition);
+				let windowTileBoundX = tileCamera.x + tilePerScreenLine + 1;
+				let windowTileBoundY = tileCamera.y + tilePerScreenLine + 1;
+				return t.x >= tileCamera.x && t.y >= tileCamera.y && t.x < windowTileBoundX && t.y < windowTileBoundY;
+			}
+
+			function getNeighbors(i, radius) {
+				let neighbors = [];
+				let tile = indexToTile(i);
+
+				for (let y = -radius; y <= radius; y++) {
+					for (let x = -radius; x <= radius; x++) {
+						let neighborTile = { x: 0, y: 0 };
+						neighborTile.x = tile.x + x;
+						neighborTile.y = tile.y + y;
+
+						if (isInBounds(neighborTile, "tile")) {
+							neighbors.push(tileToIndex(neighborTile));
+						}
+					}
+				}
+
+				return neighbors;
+			}
+
+			function clearFog(i, radius) {
+				let neighbors = getNeighbors(i, radius);
+				neighbors.forEach((v) => (world[v].fog = false));
+			}
+
+			function decodeMap(i) {
+				let scale = 2;
+				let t = indexToTile(i);
+				let i8x8 = Math.floor(t.y / scale) * (worldWidth / scale) + Math.floor(t.x / scale);
+				return [map[i8x8], i8x8];
+			}
+
+			function initWorld() {
+				return Array.from(new Array(worldSize)).map((_, i) => {
+					let pos = tileToPix(indexToTile(i));
+					let d = decodeMap(i)[0];
+					return {
+						x: pos.x,
+						y: pos.y,
+						wall: d == "#" ? true : false,
+						fog: true,
+					};
+				});
+			}
+
+			function initUnits() {
+				let placed = [];
+				world.forEach((_, i) => {
+					let [d, i8x8] = decodeMap(i);
+
+					if (d == "@" && !placed.includes(i8x8)) {
+						spawnUnit(i);
+						placed.push(i8x8);
+					}
+				});
+			}
+
+			// Priority queue as a min-heap (binary tree) implementation with an array
+			// lowest number has a higher priority (min = 0)
+			// if two objects have the same priority, order is undefined between them
+			// internal structure: [(priority, value)]
+
+			const swap = (a, m, n) => ([a[m], a[n]] = [a[n], a[m]]);
+			const left = (i) => 2 * i + 1;
+			const right = (i) => 2 * i + 2;
+			const parent = (i) => Math.floor((i - 1) / 2);
+			const exists = (i, s) => i < s;
+			const isleaf = (i, s) => !exists(left(i), s) && !exists(right(i), s);
+
+			function siftup(bintree, i) {
+				let pnode = i;
+				while (pnode > 0) {
+					pnode = parent(i);
+					if (bintree[i][0] < bintree[pnode][0]) {
+						swap(bintree, i, pnode);
+						i = pnode;
+					} else {
+						break;
+					}
+				}
+			}
+
+			function siftdown(bintree, i) {
+				let s = bintree.length;
+				while (!isleaf(i, s)) {
+					// smallest between the triplet: i, and the two children
+					let lidx = left(i);
+					let ridx = right(i);
+
+					let priority = bintree[i][0];
+					let lpriority = exists(lidx, s) ? bintree[lidx][0] : priority + 1;
+					let rpriority = exists(ridx, s) ? bintree[ridx][0] : priority + 1;
+					let [maxidx, maxpriority] = lpriority < rpriority ? [lidx, lpriority] : [ridx, rpriority];
+					if (maxpriority < priority) {
+						swap(bintree, i, maxidx);
+						i = maxidx;
+					} else {
+						break;
+					}
+				}
+			}
+
+			function dequeue(bintree) {
+				let value = bintree[0][1];
+				swap(bintree, 0, bintree.length - 1);
+				bintree.pop();
+				siftdown(bintree, 0);
+				return value;
+			}
+
+			function enqueue(bintree, value, priority) {
+				bintree.push([priority, value]);
+				siftup(bintree, bintree.length - 1);
+			}
+
+			// g: grid
+			// v: index
+			// return: [index]
+			// Von Neumann neighborhood
+			function neighbors(g, v) {
+				let n = [];
+				let directions = [
+					{ x: 0, y: -tileSize }, //n
+					{ x: 0, y: tileSize }, //e
+					{ x: tileSize, y: 0 }, //s
+					{ x: -tileSize, y: 0 }, //w
+				];
+
+				directions.forEach((_, idx) => {
+					let neighbor = { x: 0, y: 0 };
+					neighbor.x = g[v].x + directions[idx].x;
+					neighbor.y = g[v].y + directions[idx].y;
+					let i = pixToIndex(neighbor);
+					if (isInBounds(neighbor) && !g[i].wall) {
+						n.push(i);
+					}
+				});
+
+				return n;
+			}
+
+			function heuristic(p1, p2) {
+				return distancePosition(p1, p2);
+			}
+
+			// g: grid (mutable)
+			// v: index
+			// t: target index
+			function astarSearch(g, v, t) {
+				let q = [];
+				enqueue(q, v, 0);
+				while (q.length != 0) {
+					v = dequeue(q);
+					if (!g[v].visited) {
+						g[v].visited = true;
+
+						if (v == t) {
+							break; // early exit
+						}
+
+						let n = neighbors(g, v);
+						n.forEach((e) => {
+							if (!g[e].visited) {
+								let newcost = g[v].cost + 1;
+								let priority = newcost + heuristic(g[t], g[e]);
+								g[e].cost = newcost;
+								g[e].from = v;
+								enqueue(q, e, priority);
+							}
+						});
+					}
+				}
+			}
+
+			function astarReset(mobile) {
+				mobile.astarGraph.forEach((v) => {
+					v.visited = false;
+					v.from = -1;
+					v.cost = -1;
+				});
+				mobile.path = [];
+			}
+
+			function moveNext(mobile, next) {
+				if (!mobile.isMoving) {
+					mobile.isMoving = true;
+
+					let dx = next.x - mobile.position.x;
+					let dy = next.y - mobile.position.y;
+
+					if (Math.abs(dx) > Math.abs(dy)) {
+						mobile.direction.x = Math.sign(dx);
+						mobile.direction.y = 0;
+					} else {
+						mobile.direction.y = Math.sign(dy);
+						mobile.direction.x = 0;
+					}
+				}
+
+				if (mobile.isMoving) {
+					if (next.x == mobile.position.x && next.y == mobile.position.y) {
+						mobile.isMoving = false;
+						mobile.path.pop();
+					} else {
+						mobile.position.x += mobile.speed * mobile.direction.x;
+						mobile.position.y += mobile.speed * mobile.direction.y;
+					}
+				}
+			}
+
+			function computeNewPath(mobile) {
+				let initialPositionIdx = pixToIndex(mobile.position);
+
+				astarReset(mobile);
+				astarSearch(mobile.astarGraph, initialPositionIdx, mobile.moveTarget);
+
+				let i = mobile.moveTarget;
+				while (i != initialPositionIdx) {
+					mobile.path.push(i);
+					i = mobile.astarGraph[i].from;
+					if (i == -1) {
+						mobile.path = [];
+						break;
+					}
+				}
+			}
+
+			function moveUnit(unit) {
+				if (unit.recomputePath && !unit.isMoving) {
+					unit.recomputePath = false;
+					computeNewPath(unit);
+				}
+
+				let i = unit.path.length - 1;
+				if (i >= 0) {
+					moveNext(unit, indexToPix(unit.path[i]));
+				}
+			}
+
+			function moveOrder(unit, i) {
+				unit.order = orderEnum.move;
+				unit.moveTarget = i;
+				unit.recomputePath = true;
+			}
+
+			function updateUnit(unit) {
+				if (unit.order == orderEnum.move) {
+					let i = pixToIndex(unit.position);
+					clearFog(i, 1);
+
+					if (unit.path.length == 0 && !unit.isMoving && !unit.recomputePath) {
+						unit.order = orderEnum.idle;
+						clearFog(i, 2);
+					}
+				}
+
+				moveUnit(unit);
+			}
+
+			function moveCamera() {
+				let margin = 20;
+				if (cursorPosition.x < margin) {
+					cameraPosition.x -= cameraSpeed;
+				}
+
+				if (cursorPosition.x > screenWidth - margin) {
+					cameraPosition.x += cameraSpeed;
+				}
+
+				if (cursorPosition.y < margin) {
+					cameraPosition.y -= cameraSpeed;
+				}
+
+				if (cursorPosition.y > screenHeight - margin) {
+					cameraPosition.y += cameraSpeed;
+				}
+
+				cameraPosition.x = Math.max(cameraPosition.x, 0);
+				cameraPosition.y = Math.max(cameraPosition.y, 0);
+				cameraPosition.x = Math.min(cameraPosition.x, worldWidth * tileSize - screenWidth);
+				cameraPosition.y = Math.min(cameraPosition.y, worldHeight * tileSize - screenHeight);
+			}
+
+			function update() {
+				playerUnits.forEach((v) => updateUnit(v));
+				moveCamera();
+			}
+
+			function drawCursor(x, y) {
+				let tiling = tileSize;
+
+				let h = tiling / 8;
+				let w = h * 3;
+
+				ctx.fillStyle = "white";
+				ctx.fillRect(x, y, w, h);
+				ctx.fillRect(x, y, h, w);
+				ctx.fillRect(x + tiling - w, y, w, h);
+				ctx.fillRect(x + tiling - h, y, h, w);
+				ctx.fillRect(x, y + tiling - h, w, h);
+				ctx.fillRect(x, y + tiling - w, h, w);
+				ctx.fillRect(x + tiling - w, y + tiling - h, w, h);
+				ctx.fillRect(x + tiling - h, y + tiling - w, h, w);
+			}
+
+			function drawUnit(color, p) {
+				ctx.fillStyle = color;
+				ctx.fillRect(p.x, p.y, tileSize, tileSize);
+			}
+
+			function drawBackground(map) {
+				map.forEach((v) => {
+					let tile = pixToTile(v);
+					if (isInBoundsWindow(tile)) {
+						ctx.fillStyle = v.wall ? "rosybrown" : "bisque";
+						let p = transformToCamera(v);
+						ctx.fillRect(p.x, p.y, tileSize, tileSize);
+					}
+				});
+			}
+
+			function drawFog(map) {
+				ctx.fillStyle = "dimgrey";
+				map.forEach((v) => {
+					let tile = pixToTile(v);
+					if (isInBoundsWindow(tile)) {
+						if (v.fog) {
+							let p = transformToCamera(v);
+
+							ctx.fillRect(p.x, p.y, tileSize, tileSize);
+						}
+					}
+				});
+			}
+
+			function draw() {
+				ctx.clearRect(0, 0, screenWidth, screenHeight);
+
+				// Graphics
+				drawBackground(world);
+				playerUnits.forEach((v) => drawUnit("steelblue", transformToCamera(v.position)));
+				drawFog(world);
+
+				// UI
+				if (cursor !== null) {
+					let c = transformToCamera(playerUnits[cursor].position);
+					drawCursor(c.x, c.y);
+				}
+			}
+
+			function frame() {
+				frames++;
+				update();
+				draw(world);
+				window.requestAnimationFrame(frame);
+			}
+
+			function spawnUnit(i) {
+				let pos = indexToPix(i);
+				let unit = structuredClone(unitData);
+				unit.position = { ...pos };
+				unit.astarGraph = [...world];
+				astarReset(unit);
+				playerUnits.push(unit);
+				clearFog(i, 2);
+			}
+
+			canvas.addEventListener("contextmenu", (e) => {
+				e.preventDefault();
+			});
+
+			function getNearestNonWall(i, maxradius = 3) {
+				if (!world[i].wall) {
+					return i;
+				}
+
+				for (let r = 1; r <= maxradius; r++) {
+					let neighbors = getNeighbors(i, r);
+					for (const n of neighbors) {
+						if (!world[n].wall) {
+							return n;
+						}
+					}
+				}
+
+				return i; // if not found, just return the wall tile
+			}
+
+			canvas.addEventListener("mousedown", (e) => {
+				let r = canvas.getBoundingClientRect();
+				let i = pixToIndex(transformToWorld({ x: e.clientX - r.left, y: e.clientY - r.top }));
+
+				let playerUnitIdx = playerUnits.findIndex((v) => i == pixToIndex(v.position));
+
+				if (playerUnitIdx != -1) {
+					cursor = playerUnitIdx;
+				} else if (cursor !== null) {
+					moveOrder(playerUnits[cursor], getNearestNonWall(i));
+					cursor = null;
+				}
+			});
+
+			canvas.addEventListener("mousemove", (e) => {
+				let r = canvas.getBoundingClientRect();
+				cursorPosition = { x: e.clientX - r.left, y: e.clientY - r.top };
+			});
+
+			world = initWorld();
+			initUnits();
+
+			window.requestAnimationFrame(frame);
+		</script>
+	</body>
+</html>
