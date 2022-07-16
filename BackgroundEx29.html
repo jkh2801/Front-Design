@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Background Ex29</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #222;
+			}
+			.box {
+				position: relative;
+				width: 400px;
+				height: 300px;
+			}
+			.box span {
+				position: absolute;
+				inset: 0;
+				transition: 0.5s;
+				background: url("image/face3.jpg");
+				background-size: cover;
+			}
+			.box span:nth-child(1) {
+				clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
+				transition-delay: 0s;
+			}
+			.box span:nth-child(2) {
+				clip-path: polygon(50% 0, 100% 0, 100% 50%, 50% 50%);
+				transition-delay: 0.25s;
+			}
+			.box span:nth-child(3) {
+				clip-path: polygon(0 50%, 50% 50%, 50% 100%, 0 100%);
+				transition-delay: 0.5s;
+			}
+			.box span:nth-child(4) {
+				clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+				transition-delay: 0.75s;
+			}
+			.box:hover span:nth-child(1) {
+				transform: translate(-40px, -60px) rotate(-15deg);
+			}
+			.box:hover span:nth-child(2) {
+				transform: translate(40px, -100px) rotate(25deg);
+			}
+			.box:hover span:nth-child(3) {
+				transform: translate(-40px, 80px) rotate(15deg);
+			}
+			.box:hover span:nth-child(4) {
+				transform: translate(40px, 80px) rotate(-15deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</body>
+</html>
