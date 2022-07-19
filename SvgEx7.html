@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Svg Ex7</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			body {
+				background-color: black;
+				color: #eee;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			circle {
+				stroke: white;
+				transform-origin: center center;
+			}
+
+			svg {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				stroke-color: red;
+				stroke-width: 4px;
+			}
+
+			circle:nth-child(1) {
+				stroke: #ff8787;
+				stroke-dasharray: 50 10 100 10 200 10 300 10 40 10 30 10;
+				animation: rotation 30s infinite linear;
+			}
+
+			circle:nth-child(2) {
+				stroke: #ffb987;
+				stroke-dasharray: 100 8 10 8 60 8 90 8 20 8;
+				animation: rotation 27.5s infinite linear;
+			}
+
+			circle:nth-child(3) {
+				stroke: #ffd987;
+				stroke-dasharray: 80 7 40 7 90 7 10 7 50 7;
+				animation: rotation 25s infinite linear;
+			}
+
+			circle:nth-child(4) {
+				stroke: #a9ff87;
+				stroke-dasharray: 50 7 90 7 20 7 50 7 10 7;
+				animation: rotation 22.5s infinite linear;
+			}
+
+			circle:nth-child(5) {
+				stroke: #87ffc5;
+				stroke-dasharray: 40 6 50 6 10 6 80 6 35 6;
+				animation: rotation 20s infinite linear;
+			}
+
+			circle:nth-child(6) {
+				stroke: #87d3ff;
+				stroke-dasharray: 30 5 60 5 40 5 15 5;
+				animation: rotation 17.5s infinite linear;
+			}
+
+			circle:nth-child(7) {
+				stroke: #9587ff;
+				stroke-dasharray: 30 5 60 5 40 5 15 5;
+				animation: rotation 15s infinite linear;
+			}
+
+			circle:nth-child(8) {
+				stroke: #d387ff;
+				stroke-dasharray: 20 4 50 4 30 4 15 4 10 4 50 4;
+				animation: rotation 10s infinite linear;
+			}
+
+			circle:nth-child(9) {
+				stroke: #ff87cd;
+				stroke-dasharray: 20 4 50 4 30 4 15 4 10 4 50 4;
+				animation: rotation 7.5s infinite linear;
+			}
+
+			circle:nth-child(10) {
+				stroke: #ff8787;
+				stroke-dasharray: 15 4 30 4 35 4 10 4;
+				animation: rotation 5s infinite linear;
+			}
+
+			@keyframes rotation {
+				from {
+					transform: rotate(0);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<svg width="500" height="500" viewbox="0 0 500 500">
+			<circle cx="250" cy="250" r="225" />
+			<circle cx="250" cy="250" r="200" />
+			<circle cx="250" cy="250" r="175" />
+			<circle cx="250" cy="250" r="150" />
+			<circle cx="250" cy="250" r="125" />
+			<circle cx="250" cy="250" r="100" />
+			<circle cx="250" cy="250" r="78" />
+			<circle cx="250" cy="250" r="60" />
+			<circle cx="250" cy="250" r="45" />
+			<circle cx="250" cy="250" r="35" />
+		</svg>
+	</body>
+</html>
