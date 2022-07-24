@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Icon Ex7</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+			ul {
+				position: relative;
+				display: flex;
+				gap: 40px;
+			}
+			ul li {
+				position: relative;
+				list-style: none;
+				width: 120px;
+				height: 120px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #fff;
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+				cursor: pointer;
+			}
+			ul li .fa {
+				font-size: 6em;
+				color: transparent;
+				-webkit-text-stroke: 2px var(--clr);
+			}
+			ul li::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 0;
+				border-bottom: 4px solid var(--clr);
+				transition: 0.5s ease-in-out;
+				font-family: fontAwesome;
+				text-align: center;
+				line-height: 120px;
+				font-size: 6em;
+				color: var(--clr);
+				overflow: hidden;
+			}
+			ul li:hover::before {
+				height: 100%;
+			}
+			ul li:nth-child(1)::before {
+				content: "\f099";
+			}
+			ul li:nth-child(2)::before {
+				content: "\f16d";
+			}
+			ul li:nth-child(3)::before {
+				content: "\f232";
+			}
+			ul li:nth-child(4)::before {
+				content: "\f16a";
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li style="--clr: #1da1f2"><i class="fa fa-twitter" aria-hidden="true"></i></li>
+			<li style="--clr: #dd2a7b"><i class="fa fa-instagram" aria-hidden="true"></i></li>
+			<li style="--clr: #25d366"><i class="fa fa-whatsapp" aria-hidden="true"></i></li>
+			<li style="--clr: #ff0000"><i class="fa fa-youtube-play" aria-hidden="true"></i></li>
+		</ul>
+	</body>
+</html>
