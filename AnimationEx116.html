@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animatioin Ex116</title>
+		<style>
+			:root {
+				--zoom: 100;
+				--animation-speed: 150;
+				--animation-state: running;
+
+				--float-duration: 1.4s;
+				--tilt-duration: 1.2s;
+				--slide-duration: 0.6s;
+				--slide-max-exposure: 72%;
+				--mass: 10.5em;
+				--cake-initial-position: 46%;
+				--cake-end-position: 50%;
+				--cake-tilt: -2deg;
+
+				--cake-initial-shadow: 80%;
+				--cake-end-shadow: 100%;
+				--cake-shadow-rotate: 40deg;
+				--cake-shadow-offset: 230em;
+				--cake-shadow-blur: 15em;
+			}
+
+			@keyframes cake-shadow {
+				to {
+					transform: var(--shadow-transform) scale(var(--cake-end-shadow));
+				}
+			}
+
+			@keyframes cake-float {
+				to {
+					top: var(--cake-end-position);
+				}
+			}
+
+			@keyframes cake-tilt {
+				to {
+					transform: rotate(var(--cake-tilt));
+				}
+			}
+
+			/* *=== */
+			/* *=== reset.css === */
+			/* *=== */
+			:root {
+				--unit: 1vmin;
+				--available-screen-min: 665;
+				--px: calc(var(--zoom) * (var(--unit) / var(--available-screen-min)));
+				--clip-path-top: polygon(75% 21%, 91.7% 59%, 100% 100%, 0 100%, 55.3% 0);
+				--clip-path-side: polygon(0% 0.3%, 100% 1.2%, 93.7% 91%, 5.6% 98.4%);
+			}
+
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				font-size: calc(1 * var(--px));
+				overflow: hidden;
+				touch-action: none;
+				background-color: #fff;
+			}
+
+			.slide,
+			.slide div,
+			.slide div::before,
+			.slide div::after {
+				transform-style: preserve-3d;
+				background-repeat: no-repeat;
+			}
+
+			/** === thanks to this CSS-Tricks article - https://css-tricks.com/html-inputs-and-labels-a-love-story/ === */
+			label {
+				order: 2;
+			}
+			input {
+				order: 1;
+			}
+
+			input[type="radio"] {
+				border-width: 0 !important;
+				clip: rect(1px, 1px, 1px, 1px) !important;
+				height: 1px !important;
+				overflow: hidden !important;
+				padding: 0 !important;
+				position: absolute !important;
+				white-space: nowrap !important;
+				width: 1px !important;
+			}
+
+			/* *=== */
+			/* *=== controls.css === */
+			/* *=== */
+			#controls {
+				position: absolute;
+				font-size: 0;
+				z-index: 500;
+				left: 50%;
+				bottom: max(6em, 90px);
+				transform: translateX(-50%);
+				width: 100%;
+				display: flex;
+				place-content: center;
+			}
+
+			#controls label {
+				--diameter: max(64rem, 28px);
+				cursor: pointer;
+				position: relative;
+				width: var(--diameter);
+				height: var(--diameter);
+				box-sizing: border-box;
+				display: inline-block;
+				margin: 0;
+				transform: scale(1);
+				transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			#controls label::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				background-color: var(--p-color-1);
+				transform: scale(var(--s, 0.8));
+				transition: inherit;
+				box-shadow: var(--sb, 0 0 0 0 transparent), 0 0 0 0 transparent;
+			}
+
+			@media (orientation: landscape) {
+				#controls {
+					--landscape-factor: 1;
+					left: 30rem;
+					bottom: 50%;
+					transform: translateY(50%);
+					width: auto;
+					height: 100%;
+					flex-direction: column;
+				}
+			}
+
+			@media (orientation: portrait) {
+				#controls label {
+					margin-inline: 3rem !important;
+				}
+			}
+
+			label:nth-of-type(1) {
+				--p-color-2: hsl(42, 100%, 91%);
+				--p-color-1: hsl(3, 74%, 28%);
+			}
+
+			label:nth-of-type(2) {
+				--p-color-1: hsl(24, 100%, 56%);
+				--p-color-2: hsl(29, 88%, 77%);
+			}
+
+			label:nth-of-type(3) {
+				--p-color-2: #ffe6a3;
+				--p-color-1: hsl(18, 100%, 71%);
+			}
+
+			label:nth-of-type(4) {
+				--p-color-1: hsl(18, 62%, 27%);
+				--p-color-2: hsl(19, 62%, 37%);
+			}
+
+			label:nth-of-type(5) {
+				--p-color-1: hsl(274, 45%, 40%);
+				--p-color-2: hsl(21, 41%, 87%);
+			}
+
+			label:nth-of-type(6) {
+				--p-color-1: hsl(157, 24%, 29%);
+				--p-color-2: hsl(42, 84%, 78%);
+			}
+
+			main,
+			.slide {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.slide {
+				transition: all ease-out calc(var(--slide-duration) * (100 / var(--animation-speed)));
+				transition-delay: calc(var(--slide-duration) * (100 / var(--animation-speed)));
+				clip-path: circle(0% at center);
+			}
+
+			.flavor:nth-of-type(1):checked ~ main > div:nth-of-type(1),
+			.flavor:nth-of-type(2):checked ~ main > div:nth-of-type(2),
+			.flavor:nth-of-type(3):checked ~ main > div:nth-of-type(3),
+			.flavor:nth-of-type(4):checked ~ main > div:nth-of-type(4),
+			.flavor:nth-of-type(5):checked ~ main > div:nth-of-type(5),
+			.flavor:nth-of-type(6):checked ~ main > div:nth-of-type(6) {
+				transition-delay: 0ms;
+				clip-path: circle(var(--slide-max-exposure) at center);
+				z-index: 100;
+			}
+
+			.flavor:checked ~ #controls label {
+				opacity: 0.6;
+			}
+
+			.flavor:nth-of-type(1):checked ~ #controls label:nth-of-type(1),
+			.flavor:nth-of-type(2):checked ~ #controls label:nth-of-type(2),
+			.flavor:nth-of-type(3):checked ~ #controls label:nth-of-type(3),
+			.flavor:nth-of-type(4):checked ~ #controls label:nth-of-type(4),
+			.flavor:nth-of-type(5):checked ~ #controls label:nth-of-type(5),
+			.flavor:nth-of-type(6):checked ~ #controls label:nth-of-type(6) {
+				--s: 1;
+				--sb: inset 0 0 0 max(2rem, 2px) rgba(0, 0, 0, 0.2);
+				opacity: 1;
+				margin-block: calc(var(--landscape-factor, 0) * 19rem);
+			}
+
+			.flavor:nth-of-type(1):focus-visible ~ #controls label:nth-of-type(1)::before,
+			.flavor:nth-of-type(2):focus-visible ~ #controls label:nth-of-type(2)::before,
+			.flavor:nth-of-type(3):focus-visible ~ #controls label:nth-of-type(3)::before,
+			.flavor:nth-of-type(4):focus-visible ~ #controls label:nth-of-type(4)::before,
+			.flavor:nth-of-type(5):focus-visible ~ #controls label:nth-of-type(5)::before,
+			.flavor:nth-of-type(6):focus-visible ~ #controls label:nth-of-type(6)::before {
+				box-shadow: var(--sb), 0 0 9rem 1rem var(--p-color-1);
+			}
+
+			/* *=== */
+			/* *=== slides.css === */
+			/* *=== */
+			.pastry,
+			.shadow {
+				position: absolute;
+				left: 50%;
+			}
+
+			.slide-redvelvet {
+				background-color: #ffcdb2;
+				--color-shadow: #e8ab8a;
+			}
+
+			.slide-cheese {
+				background-image: radial-gradient(circle at center, rgb(255, 241, 234), rgb(232, 218, 211));
+				--color-shadow: rgb(212, 194, 186);
+			}
+
+			.slide-strawberry {
+				background-color: rgb(255, 194, 164);
+				--color-shadow: rgba(255, 97, 82, 0.3);
+			}
+
+			.slide-chocolate {
+				background-color: hsl(34, 47%, 86%);
+				--color-shadow: hsl(35, 46%, 76%);
+			}
+
+			.slide-blueberry {
+				background-color: white;
+				--color-shadow: hsl(0, 0%, 72%);
+			}
+
+			.slide-lemon {
+				background: #eee;
+				--color-shadow: hsl(0, 0%, 70%);
+			}
+
+			.pastry {
+				background-color: blue;
+				border-radius: 50%;
+				top: var(--cake-initial-position);
+				width: var(--mass);
+				height: var(--mass);
+				transform: rotate(0);
+				animation: cake-float ease-in-out calc(var(--float-duration) * (100 / var(--animation-speed))) alternate infinite, cake-tilt ease calc(var(--tilt-duration) * (100 / var(--animation-speed))) alternate infinite;
+				animation-play-state: var(--animation-state);
+			}
+
+			.shadow {
+				top: calc(50% + var(--cake-shadow-offset));
+				width: 280em;
+				height: 75em;
+				border-radius: 50%;
+				background: var(--color-shadow);
+				--shadow-transform: translate(-50%, -50%) rotateX(var(--cake-shadow-rotate));
+				transform: var(--shadow-transform) scale(var(--cake-initial-shadow));
+				filter: blur(var(--cake-shadow-blur));
+				animation: cake-shadow ease-in-out calc(var(--float-duration) * (100 / var(--animation-speed))) alternate infinite;
+				animation-play-state: var(--animation-state);
+			}
+
+			/* *=== */
+			/* *=== slide-commons.css === */
+			/* *=== */
+			.slide .top {
+				position: absolute;
+				left: -166.2em;
+				bottom: 7.5em;
+				width: 347.6em;
+				height: 140em;
+				transform: rotate(-18.5deg);
+				transform-origin: left bottom;
+			}
+
+			/* *=== */
+			/* *=== slide-redvelvet.css === */
+			/* *=== */
+			.slide-redvelvet .top::before,
+			.slide-redvelvet .top::after,
+			.slide-redvelvet .fruit::before,
+			.slide-redvelvet .fruit::after,
+			.slide-redvelvet .fruit .cream::before,
+			.slide-redvelvet .fruit .cream::after,
+			.slide-redvelvet .cherry-base::before,
+			.slide-redvelvet .cherry-base::after,
+			.slide-redvelvet .cherry-base .gloss::before,
+			.slide-redvelvet .cherry-base .gloss::after,
+			.slide-redvelvet .side::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-redvelvet .cherry-top,
+			.slide-redvelvet .fruit,
+			.slide-redvelvet .fruit .cream,
+			.slide-redvelvet .cherry-base,
+			.slide-redvelvet .side,
+			.slide-redvelvet .side .border,
+			.slide-redvelvet .side .stripes,
+			.slide-redvelvet .side .cream {
+				position: absolute;
+			}
+
+			.slide-redvelvet .side .border,
+			.slide-redvelvet .side .stripes,
+			.slide-redvelvet .side .cream {
+				left: 0;
+			}
+
+			.slide-redvelvet .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(hsl(45, 100%, 85%), hsl(2, 79.7%, 29%)), linear-gradient(hsl(45, 100%, 95%), hsl(45, 100%, 93%));
+				background-size: 100% 6em, 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-redvelvet .top::after {
+				right: 61em;
+				top: 46em;
+				width: 159em;
+				height: 77em;
+				background-color: hsl(22, 83.3%, 92.9%);
+				transform: rotate(1deg);
+				filter: blur(16em);
+				border-radius: 50%;
+			}
+
+			.slide-redvelvet .cherry-top {
+				left: 85em;
+				top: 27em;
+				width: 53em;
+				height: 77em;
+				border-radius: 50%;
+				transform: rotate(14deg);
+				box-shadow: -4em 0 0 0 hsl(2.7, 73.7%, 29.8%), -6em 0 0 0 hsla(349, 82%, 49%, 0.1);
+			}
+
+			.slide-redvelvet .fruit {
+				right: 65em;
+				top: -26em;
+				width: 164em;
+				height: 158em;
+				transform: rotate(18.5deg) scale(1.1);
+				z-index: 5;
+			}
+
+			.slide-redvelvet .fruit::before {
+				left: 25em;
+				bottom: 8em;
+				width: 122em;
+				height: 56em;
+				border-radius: 50%;
+				background-color: hsl(45, 100%, 90%);
+				z-index: -1;
+				filter: blur(7em);
+			}
+
+			.slide-redvelvet .fruit::after {
+				left: 49em;
+				bottom: 52em;
+				width: 66em;
+				height: 29em;
+				border-radius: 50%;
+				box-shadow: 0 11em 0 10em hsl(45, 100%, 96%);
+			}
+
+			.slide-redvelvet .fruit .cream {
+				left: 27em;
+				bottom: 15em;
+				width: 112em;
+				height: 57em;
+				background: hsl(45, 100%, 93%);
+				box-shadow: 0 0 0 1px hsla(24, 71%, 85%, 0.1);
+				border-radius: 50%;
+			}
+
+			.slide-redvelvet .fruit .cream::before {
+				left: 13em;
+				bottom: 20em;
+				width: 82em;
+				height: 50em;
+				background: hsl(46, 100%, 96%);
+				border-radius: 50%;
+			}
+
+			.slide-redvelvet .fruit .cream::after {
+				left: 4em;
+				bottom: 9em;
+				width: 96em;
+				height: 50em;
+				background: hsl(46, 100%, 96%);
+				border-radius: 50%;
+			}
+
+			.slide-redvelvet .cherry-base {
+				left: 54em;
+				bottom: 45em;
+				width: 57em;
+				height: 50em;
+			}
+
+			.slide-redvelvet .cherry-base::before {
+				left: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(5.9, 71.7%, 44.3%);
+				transform: rotate(-24deg);
+				box-shadow: 0 0 0 1px hsla(349, 82%, 51%, 0.1);
+			}
+
+			.slide-redvelvet .cherry-base::after {
+				right: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(5.9, 71.7%, 44.3%);
+				transform: rotate(24deg);
+				box-shadow: 0 0 0 1px hsla(349, 82%, 51%, 0.1);
+			}
+
+			.slide-redvelvet .cherry-base .gloss {
+				position: relative;
+				z-index: 2;
+			}
+
+			.slide-redvelvet .cherry-base .gloss::before {
+				left: 20em;
+				top: 16em;
+				width: 33em;
+				height: 16em;
+				background-color: transparent;
+				border-radius: 50%;
+				transform: rotate(-18deg);
+				filter: blur(2em);
+				box-shadow: 1px 7px 0 0 hsl(5.9, 71.7%, 57.3%);
+			}
+
+			.slide-redvelvet .cherry-base .gloss::after {
+				left: 12em;
+				top: 7em;
+				width: 11em;
+				height: 14em;
+				background-color: hsl(5.9, 71.7%, 57.3%);
+				border-radius: 50%;
+				transform: rotate(41deg);
+				filter: blur(2em);
+			}
+
+			.slide-redvelvet .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+
+				background-image: linear-gradient(to left, hsl(7, 99%, 64%), hsl(7, 99%, 68%));
+				background-size: 100% 100%;
+			}
+
+			.slide-redvelvet .side .border {
+				top: 0;
+				width: 101%;
+				height: 34em;
+				background-image: linear-gradient(0deg, hsl(3, 74%, 33%), hsl(3, 74%, 24%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 12em 5em hsl(3, 74%, 33%);
+			}
+
+			.slide-redvelvet .side .stripes {
+				top: 98em;
+				width: 100%;
+				height: 83em;
+				background-image: linear-gradient(90deg, hsl(6, 72%, 46%), hsl(6, 72%, 38%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 5em 3em hsl(6, 72%, 41%);
+			}
+
+			.slide-redvelvet .side .cream {
+				bottom: 21em;
+				width: 100%;
+				height: 33em;
+				background-image: linear-gradient(90deg, hsl(6, 72%, 46%), hsl(6, 72%, 38%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 18em 4em hsl(6, 72%, 37%);
+				transform-origin: bottom right;
+				transform: rotate(-3deg);
+			}
+
+			.slide-redvelvet .side::after {
+				left: 2em;
+				top: 44em;
+				width: 2em;
+				height: 3em;
+				border-radius: 50%;
+				color: hsla(5.9, 71.7%, 41.6%, 0.37);
+				box-shadow: 337em 39em 0 0em currentColor, 111em 21em 0 1em currentColor, 2em 178em 0 0em currentColor, 305em 182em 0 1em currentColor, 0em 24em 0 0em currentColor, 315em 97em 0 0em currentColor, 71em 120em 0 1em currentColor,
+					49em 260em 0 1em currentColor, 40em 42em 0 0em currentColor, 266em 102em 0 1em currentColor, 166em 30em 0 1em currentColor, 367em 295em 0 1em currentColor, 256em 113em 0 1em currentColor, 93em 271em 0 0em currentColor,
+					128em 27em 0 0em currentColor, 46em 158em 0 0em currentColor, 75em 215em 0 1em currentColor, 171em 210em 0 0em currentColor, 306em 28em 0 0em currentColor, 352em 111em 0 1em currentColor, 147em 83em 0 0em currentColor,
+					163em 184em 0 1em currentColor, 175em 143em 0 0em currentColor, 190em 288em 0 0em currentColor, 73em 99em 0 1em currentColor, 208em 267em 0 0em currentColor, 162em 198em 0 0em currentColor, 204em 282em 0 0em currentColor,
+					213em 215em 0 1em currentColor, 166em 10em 0 1em currentColor, 322em 77em 0 1em currentColor, 242em 46em 0 0em currentColor, 328em 133em 0 0em currentColor, 275em 188em 0 1em currentColor, 137em 33em 0 1em currentColor,
+					324em 118em 0 0em currentColor, 342em 180em 0 0em currentColor, 303em 161em 0 0em currentColor, 270em 102em 0 1em currentColor, 15em 162em 0 1em currentColor, 116em 6em 0 1em currentColor, 311em 287em 0 0em currentColor,
+					183em 134em 0 1em currentColor, 168em 161em 0 1em currentColor, 8em 20em 0 0em currentColor, 358em 86em 0 0em currentColor, 324em 259em 0 1em currentColor, 23em 24em 0 1em currentColor, 272em 50em 0 0em currentColor,
+					83em 201em 0 1em currentColor, 298em 190em 0 0em currentColor, 232em 289em 0 1em currentColor, 32em 132em 0 0em currentColor, 38em 107em 0 1em currentColor, 178em 228em 0 1em currentColor, 206em 58em 0 0em currentColor,
+					247em 13em 0 0em currentColor, 80em 255em 0 0em currentColor, 221em 185em 0 1em currentColor, 245em 56em 0 1em currentColor, 15em 281em 0 1em currentColor, 170em 57em 0 1em currentColor, 94em 115em 0 1em currentColor,
+					202em 191em 0 0em currentColor, 222em 227em 0 0em currentColor, 128em 35em 0 0em currentColor, 335em 161em 0 1em currentColor, 58em 175em 0 1em currentColor, 8em 63em 0 1em currentColor, 365em 293em 0 0em currentColor,
+					300em 263em 0 1em currentColor, 239em 13em 0 1em currentColor, 155em 267em 0 1em currentColor, 351em 145em 0 0em currentColor, 34em 295em 0 0em currentColor, 70em 33em 0 0em currentColor, 360em 173em 0 1em currentColor,
+					147em 283em 0 1em currentColor, 26em 207em 0 1em currentColor, 42em 290em 0 1em currentColor, 113em 186em 0 1em currentColor, 167em 177em 0 1em currentColor, 318em 228em 0 1em currentColor, 36em 0em 0 1em currentColor,
+					95em 121em 0 1em currentColor, 97em 11em 0 0em currentColor, 48em 39em 0 0em currentColor, 281em 179em 0 1em currentColor, 179em 178em 0 1em currentColor, 130em 64em 0 1em currentColor, 365em 154em 0 0em currentColor,
+					89em 98em 0 0em currentColor, 7em 3em 0 1em currentColor, 94em 194em 0 1em currentColor, 80em 98em 0 1em currentColor, 265em 295em 0 0em currentColor, 51em 250em 0 1em currentColor, 218em 124em 0 1em currentColor,
+					299em 145em 0 0em currentColor, 47em 238em 0 1em currentColor, 45em 55em 0 0em currentColor, 275em 297em 0 0em currentColor, 309em 33em 0 1em currentColor, 305em 192em 0 0em currentColor, 248em 291em 0 1em currentColor,
+					193em 95em 0 1em currentColor, 60em 295em 0 1em currentColor, 175em 223em 0 1em currentColor, 361em 138em 0 0em currentColor, 95em 223em 0 1em currentColor, 331em 209em 0 0em currentColor, 96em 91em 0 0em currentColor,
+					268em 225em 0 1em currentColor, 114em 284em 0 0em currentColor, 115em 200em 0 0em currentColor, 350em 93em 0 0em currentColor, 26em 132em 0 1em currentColor, 182em 12em 0 0em currentColor, 290em 265em 0 0em currentColor,
+					297em 44em 0 0em currentColor;
+			}
+
+			/* *=== */
+			/* *=== slide-cheese.css === */
+			/* *=== */
+			.slide-cheese .top::before,
+			.slide-cheese .top::after,
+			.slide-cheese .side::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-cheese .side,
+			.slide-cheese .side .border,
+			.slide-cheese .side .stripes,
+			.slide-cheese .side .cream {
+				position: absolute;
+			}
+
+			.slide-cheese .side .border,
+			.slide-cheese .side .stripes,
+			.slide-cheese .side .cream {
+				left: 0;
+			}
+
+			.slide-cheese .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(90deg, rgb(252, 174, 109), rgb(255, 175, 90)), linear-gradient(0deg, rgb(255, 169, 96), rgb(255, 173, 86));
+				background-size: 100% 23em, 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-cheese .top::after {
+				right: 61em;
+				top: 46em;
+				width: 159em;
+				height: 77em;
+				background-color: hsl(24, 100%, 56%);
+				transform: rotate(1deg);
+				filter: blur(16em);
+				border-radius: 50%;
+			}
+
+			.slide-cheese .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+				background-image: linear-gradient(to left, rgb(252, 210, 170), rgb(253, 224, 198));
+				background-size: 100% 100%;
+			}
+
+			.slide-cheese .side .border {
+				top: 0;
+				width: 101%;
+				height: 34em;
+				background-image: linear-gradient(0deg, rgb(255, 169, 96), rgb(255, 173, 86));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 12em 5em hsl(29, 100%, 68%);
+			}
+
+			.slide-cheese .side .stripes {
+				top: 98em;
+				width: 100%;
+				height: 83em;
+				background-image: linear-gradient(to right, hsl(29, 88%, 80%), hsl(29, 88%, 74%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 17em 0em hsl(29, 88%, 78%);
+			}
+
+			.slide-cheese .side .cream {
+				bottom: 21em;
+				width: 100%;
+				height: 33em;
+				background-image: linear-gradient(to right, hsl(29, 88%, 80%), hsl(29, 88%, 74%));
+				background-size: 100% 100%;
+				box-shadow: 0 0 17em 0em hsl(29, 88%, 78%);
+				transform-origin: bottom right;
+				transform: rotate(-3deg);
+			}
+
+			.slide-cheese .side::after {
+				left: 2em;
+				top: 44em;
+				width: 2em;
+				height: 3em;
+				border-radius: 50%;
+				color: hsl(29, 87%, 73%);
+				box-shadow: 333em 78em 0 1em currentColor, 231em 252em 0 1em currentColor, 347em 143em 0 0em currentColor, 259em 243em 0 1em currentColor, 330em 162em 0 1em currentColor, 75em 157em 0 1em currentColor, 197em 124em 0 0em currentColor,
+					90em 202em 0 1em currentColor, 144em 227em 0 0em currentColor, 312em 104em 0 1em currentColor, 173em 278em 0 0em currentColor, 96em 99em 0 0em currentColor, 262em 264em 0 0em currentColor, 36em 118em 0 1em currentColor,
+					134em 203em 0 1em currentColor, 158em 226em 0 1em currentColor, 174em 133em 0 0em currentColor, 329em 13em 0 0em currentColor, 229em 121em 0 0em currentColor, 121em 79em 0 0em currentColor, 78em 167em 0 0em currentColor,
+					155em 96em 0 0em currentColor, 304em 231em 0 1em currentColor, 139em 226em 0 0em currentColor, 36em 290em 0 0em currentColor, 200em 287em 0 1em currentColor, 6em 74em 0 1em currentColor, 60em 3em 0 1em currentColor,
+					294em 40em 0 0em currentColor, 349em 145em 0 1em currentColor, 344em 48em 0 1em currentColor, 311em 170em 0 0em currentColor, 209em 181em 0 1em currentColor, 148em 143em 0 0em currentColor, 189em 147em 0 0em currentColor,
+					340em 265em 0 0em currentColor, 51em 118em 0 1em currentColor, 244em 175em 0 1em currentColor, 81em 121em 0 1em currentColor, 93em 159em 0 1em currentColor, 318em 211em 0 0em currentColor, 331em 107em 0 0em currentColor,
+					114em 102em 0 0em currentColor, 26em 17em 0 0em currentColor, 154em 170em 0 0em currentColor, 298em 94em 0 0em currentColor, 191em 5em 0 1em currentColor, 73em 150em 0 1em currentColor, 192em 174em 0 1em currentColor,
+					168em 281em 0 1em currentColor, 134em 264em 0 1em currentColor, 275em 248em 0 0em currentColor, 121em 144em 0 0em currentColor, 338em 88em 0 1em currentColor, 170em 96em 0 0em currentColor, 117em 87em 0 0em currentColor,
+					30em 84em 0 1em currentColor, 33em 209em 0 0em currentColor, 329em 283em 0 1em currentColor, 18em 294em 0 0em currentColor, 72em 20em 0 0em currentColor, 101em 8em 0 1em currentColor, 312em 178em 0 1em currentColor,
+					298em 22em 0 1em currentColor, 24em 15em 0 0em currentColor, 180em 68em 0 1em currentColor, 249em 71em 0 1em currentColor, 207em 116em 0 0em currentColor, 30em 28em 0 1em currentColor, 303em 109em 0 1em currentColor,
+					112em 199em 0 0em currentColor, 336em 297em 0 1em currentColor, 277em 286em 0 1em currentColor, 241em 207em 0 1em currentColor, 253em 190em 0 1em currentColor, 186em 220em 0 0em currentColor, 98em 275em 0 1em currentColor,
+					134em 261em 0 1em currentColor, 286em 248em 0 1em currentColor, 163em 297em 0 1em currentColor, 312em 296em 0 0em currentColor, 116em 175em 0 1em currentColor, 250em 114em 0 1em currentColor, 12em 8em 0 0em currentColor,
+					41em 120em 0 1em currentColor, 210em 191em 0 1em currentColor, 16em 70em 0 1em currentColor, 53em 235em 0 1em currentColor, 125em 284em 0 0em currentColor, 266em 7em 0 0em currentColor, 339em 282em 0 1em currentColor,
+					37em 288em 0 1em currentColor, 98em 176em 0 0em currentColor, 184em 16em 0 0em currentColor, 347em 110em 0 0em currentColor, 187em 217em 0 0em currentColor, 71em 272em 0 1em currentColor, 81em 51em 0 1em currentColor,
+					108em 27em 0 1em currentColor, 346em 280em 0 0em currentColor, 170em 164em 0 1em currentColor, 134em 30em 0 0em currentColor, 229em 0em 0 1em currentColor, 315em 160em 0 0em currentColor, 243em 291em 0 0em currentColor,
+					41em 186em 0 1em currentColor, 248em 239em 0 0em currentColor, 82em 137em 0 1em currentColor, 27em 273em 0 0em currentColor, 324em 168em 0 1em currentColor, 343em 79em 0 1em currentColor, 52em 95em 0 0em currentColor,
+					261em 66em 0 1em currentColor, 18em 81em 0 0em currentColor, 81em 176em 0 1em currentColor, 118em 133em 0 0em currentColor, 224em 155em 0 0em currentColor, 230em 298em 0 1em currentColor, 309em 64em 0 1em currentColor,
+					176em 234em 0 1em currentColor;
+			}
+
+			/* *=== */
+			/* *=== slide-strawberry.css === */
+			/* *=== */
+			.slide-strawberry {
+				--clip-path-cream: polygon(34% 96%, 54% 97%, 78% 91%, 92% 76%, 92% 62%, 88% 56%, 79% 49%, 65% 37%, 52% 28%, 45% 23%, 45% 11%, 58% 5%, 41% 5%, 23% 24%, 21% 31%, 21% 41%, 7% 52%, 13% 73%);
+				--clip-path-leaf: polygon(36% 80%, 15% 75%, 36% 71%, 25% 48%, 46% 62%, 32% 22%, 56% 41%, 61% 23%, 71% 48%, 83% 33%, 81% 48%, 57% 59%, 44% 69%);
+				--clip-path-fruit: polygon(72.08% 92.52%, 63.46% 97.91%, 46.67% 94.8%, 43.53% 94.38%, 22.88% 79.75%, 6.15% 60.44%, 2.15% 31.4%, 17.71% 14.63%, 32.36% 4.68%, 56.94% 3.2%, 86.6% 16.39%, 98.62% 37.47%, 93.11% 59.37%, 78.51% 85.24%);
+			}
+
+			.slide-strawberry .top::before,
+			.slide-strawberry .fruit::before,
+			.slide-strawberry .fruit .base::before,
+			.slide-strawberry .fruit .base::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-strawberry .top .cream,
+			.slide-strawberry .top .cream div,
+			.slide-strawberry .fruit,
+			.slide-strawberry .fruit .base,
+			.slide-strawberry .side,
+			.slide-strawberry .side .border,
+			.slide-strawberry .side .cream,
+			.slide-strawberry .side .stripes,
+			.slide-strawberry .stripe1,
+			.slide-strawberry .stripe2,
+			.slide-strawberry .stripe3,
+			.slide-strawberry .stripe4 {
+				position: absolute;
+			}
+
+			.slide-strawberry .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(to right, rgb(255, 245, 212), rgb(255, 243, 195)), linear-gradient(to right, rgb(255, 245, 212), hsl(45, 100%, 84%));
+				background-size: 100% 23em, 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-strawberry .top .cream {
+				right: 32em;
+				top: -3em;
+				width: 111em;
+				height: 111em;
+				background-color: rgb(227, 205, 162);
+				transform: rotate(20deg);
+				clip-path: var(--clip-path-cream);
+			}
+
+			.slide-strawberry .top .cream div {
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.slide-strawberry .top .cream .shade1 {
+				background-color: rgb(231, 213, 178);
+				clip-path: polygon(37% 98%, 57% 100%, 80% 94%, 87% 73%, 88% 60%, 88% 33%, 54% 21%, 38% 20%, 12% 32%, 3% 50%);
+			}
+
+			.slide-strawberry .top .cream .shade2 {
+				background-color: rgb(249, 237, 205);
+				clip-path: polygon(27% 96%, 67% 81%, 76% 62%, 76% 48%, 46% 22%, 35% 17%, 25% 32%);
+			}
+
+			.slide-strawberry .top .cream .shade3 {
+				background-color: rgb(249, 248, 223);
+				clip-path: polygon(31% 80%, 51% 71%, 62% 56%, 53% 44%, 44% 28%, 48% 11%, 62% 6%, 36% 0%, 21% 28%, 14% 69%);
+			}
+
+			.slide-strawberry .top .cream .shade4 {
+				background-color: rgb(251, 241, 216);
+				clip-path: polygon(16% 66%, 34% 54%, 38% 21%, 29% 11%, 20% 28%);
+			}
+
+			.slide-strawberry .top .cream .shade5 {
+				background-color: rgb(240, 228, 198);
+				clip-path: polygon(31% 79%, 50% 73.76%, 62.17% 55.59%, 54% 44%, 46% 57%, 28.66% 73.44%, 25.83% 62%, 33.83% 48.78%, 28% 32%, 37.17% 19.24%, 41% 45%);
+			}
+
+			.slide-strawberry .fruit {
+				left: 149em;
+				top: 10em;
+				width: 95em;
+				height: 108em;
+			}
+
+			.slide-strawberry .fruit::before {
+				left: -2em;
+				top: -17em;
+				width: 77em;
+				height: 77em;
+				background-image: linear-gradient(82deg, rgb(231, 214, 87), hsl(52, 69%, 46%));
+				background-repeat: repeat;
+				background-size: 10px 100%;
+				clip-path: var(--clip-path-leaf);
+				transform: rotate(21deg);
+			}
+
+			.slide-strawberry .fruit .base {
+				left: 8em;
+				top: 23em;
+				width: 80em;
+				height: 84em;
+				background-image: linear-gradient(hsl(354.2, 100%, 57.6%) 0 0);
+				clip-path: var(--clip-path-fruit);
+				padding: 1px;
+				box-sizing: border-box;
+			}
+
+			.slide-strawberry .fruit .base::before {
+				position: relative;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(circle at 40% 40%, rgb(255, 150, 106) 5%, rgb(242, 64, 46) 75%);
+				clip-path: inherit;
+				display: block;
+			}
+
+			.slide-strawberry .fruit .base::after {
+				left: 40em;
+				top: -3em;
+				width: 2em;
+				height: 3em;
+				border-radius: 50%;
+				color: rgba(255, 255, 255, 0.67);
+				box-shadow: 1em 20em 0 0 currentColor, 16em 22em 0 0 currentColor, -13em 22em 0 0 currentColor, -26em 30em 0 0 currentColor, 27em 26em 0 0 currentColor, 1em 34em 0 0 currentColor, 16em 37em 0 0 currentColor, -13em 37em 0 0 currentColor,
+					-26em 44em 0 0 currentColor, 27em 38em 0 0 currentColor, 1em 48em 0 0 currentColor, 16em 48em 0 0 currentColor, -13em 52em 0 0 currentColor, -8em 66em 0 0 currentColor, 8em 63em 0 0 currentColor, 2em 72em 0 0 currentColor;
+			}
+
+			.slide-strawberry .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+
+				background-image: linear-gradient(to right, rgb(255, 235, 174), rgb(255, 227, 157));
+				background-size: 100% 100%;
+			}
+
+			.slide-strawberry .side .border,
+			.slide-strawberry .side .cream,
+			.slide-strawberry .side .stripes {
+				left: 0;
+			}
+
+			.slide-strawberry .side .border {
+				top: 0;
+				width: 101%;
+				height: 34em;
+				background-image: linear-gradient(to right, hsl(50, 100%, 88%), hsl(45, 100%, 86%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 0 2em hsl(45, 100%, 76%);
+			}
+
+			.slide-strawberry .side .cream {
+				bottom: 54em;
+				width: 100%;
+				height: 33em;
+				background-image: linear-gradient(to right, hsl(51, 100%, 90%), hsl(45, 100%, 84%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 17em 0em hsl(45, 100%, 78%);
+				transform-origin: bottom right;
+				transform: rotate(-2deg);
+			}
+
+			.slide-strawberry .side .stripes {
+				top: 98em;
+				width: 100%;
+				height: 83em;
+				background-image: linear-gradient(to right, hsl(51, 100%, 90%), hsl(45, 100%, 84%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 17em 0em hsl(45, 100%, 78%);
+			}
+
+			.slide-strawberry .stripe1 {
+				left: 28em;
+				top: 13em;
+				width: 79em;
+				height: 58em;
+				background: radial-gradient(circle at 47% 87%, rgb(255, 150, 106) 21%, rgb(242, 64, 46) 75%);
+				clip-path: polygon(25% 0%, 67% 20%, 90% 58%, 100% 100%, 0 100%, 5% 50%);
+			}
+
+			.slide-strawberry .stripe2 {
+				left: 117em;
+				top: 13em;
+				width: 79em;
+				height: 58em;
+				background: radial-gradient(circle at 47% 106%, rgb(255, 150, 106) 21%, rgb(242, 64, 46) 75%);
+				clip-path: polygon(19% 0%, 59% 14%, 90% 58%, 100% 100%, 0 100%, 2% 50%);
+			}
+
+			.slide-strawberry .stripe3 {
+				left: 202em;
+				top: 16em;
+				width: 68em;
+				height: 54em;
+				background: radial-gradient(circle at 62% 98%, rgb(255, 150, 106) 21%, rgb(242, 64, 46) 75%);
+				clip-path: polygon(13% 0%, 41% 8%, 84% 58%, 100% 100%, 0 100%, 0% 50%);
+			}
+
+			.slide-strawberry .stripe4 {
+				left: 276em;
+				top: 16em;
+				width: 64em;
+				height: 54em;
+				background: radial-gradient(circle at 9% 87%, rgb(255, 150, 106) 21%, rgb(242, 64, 46) 75%);
+				clip-path: polygon(15% 0%, 50% 21%, 83% 58%, 100% 100%, 0 100%, 0% 50%);
+			}
+
+			/* *=== */
+			/* *=== slide-chocolate.css === */
+			/* *=== */
+			.slide-chocolate .fruit,
+			.slide-chocolate .cherry-top,
+			.slide-chocolate .cherry-base,
+			.slide-chocolate .fruit .cream,
+			.slide-chocolate .side,
+			.slide-chocolate .side .border,
+			.slide-chocolate .side .stripes,
+			.slide-chocolate .side .cream {
+				position: absolute;
+			}
+
+			.slide-chocolate .fruit::before,
+			.slide-chocolate .fruit::after,
+			.slide-chocolate .cherry-base::before,
+			.slide-chocolate .cherry-base::after,
+			.slide-chocolate .cherry-base .gloss::before,
+			.slide-chocolate .cherry-base .gloss::after,
+			.slide-chocolate .fruit .cream::before,
+			.slide-chocolate .fruit .cream::after,
+			.slide-chocolate .top::before,
+			.slide-chocolate .top::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-chocolate .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(hsl(24, 76%, 27%) 0 0), linear-gradient(hsl(23, 87%, 22%) 0 0);
+				background-size: 100% 7em, 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-chocolate .top::after {
+				right: 61em;
+				top: 46em;
+				width: 159em;
+				height: 77em;
+				background-color: hsl(19, 63%, 34%);
+				transform: rotate(1deg);
+				filter: blur(16em);
+			}
+
+			.slide-chocolate .fruit {
+				right: 8em;
+				top: -47em;
+				width: 164em;
+				height: 158em;
+				transform: rotate(18.5deg) scale(1.16);
+				z-index: 5;
+			}
+
+			.slide-chocolate .fruit::before {
+				left: 25em;
+				bottom: 8em;
+				width: 122em;
+				height: 56em;
+				border-radius: 50%;
+				background-color: hsla(25, 95%, 16%, 0.6);
+				z-index: -1;
+				filter: blur(2em);
+			}
+
+			.slide-chocolate .fruit::after {
+				left: 51em;
+				bottom: 52em;
+				width: 63em;
+				height: 29em;
+				border-radius: 50%;
+				box-shadow: 0 11em 0 10em hsl(45, 100%, 96%);
+			}
+
+			.slide-chocolate .cherry-top {
+				left: 85em;
+				top: 27em;
+				width: 53em;
+				height: 77em;
+				border-radius: 50%;
+				transform: rotate(14deg);
+				box-shadow: -4em 0 0 0 hsl(349, 82%, 46%), -6em 0 0 0 hsla(349, 82%, 49%, 0.1);
+			}
+
+			.slide-chocolate .cherry-base {
+				left: 54em;
+				bottom: 45em;
+				width: 57em;
+				height: 50em;
+			}
+
+			.slide-chocolate .cherry-base::before {
+				left: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(349, 82%, 49%);
+				transform: rotate(-24deg);
+				box-shadow: 0 0 0 1px hsla(349, 82%, 51%, 0.1);
+			}
+
+			.slide-chocolate .cherry-base::after {
+				right: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(349, 82%, 51%);
+				transform: rotate(24deg);
+				box-shadow: 0 0 0 1px hsla(349, 82%, 51%, 0.1);
+			}
+
+			.slide-chocolate .cherry-base .gloss {
+				position: relative;
+				z-index: 2;
+			}
+
+			.slide-chocolate .cherry-base .gloss::before {
+				left: 20em;
+				top: 16em;
+				width: 33em;
+				height: 16em;
+				border-radius: 50%;
+				transform: rotate(-18deg);
+				filter: blur(2em);
+				box-shadow: 0 7px 0 0 hsla(349.6, 100%, 73.9%, 0.68);
+			}
+
+			.slide-chocolate .cherry-base .gloss::after {
+				left: 12em;
+				top: 7em;
+				width: 11em;
+				height: 14em;
+				background-color: hsl(349.3, 100%, 76.9%);
+				border-radius: 50%;
+				transform: rotate(41deg);
+				filter: blur(2em);
+			}
+
+			.slide-chocolate .fruit .cream,
+			.slide-chocolate .fruit .cream::before,
+			.slide-chocolate .fruit .cream::after,
+			.slide-chocolate .top::after {
+				border-radius: 50%;
+			}
+
+			.slide-chocolate .fruit .cream {
+				left: 27em;
+				bottom: 15em;
+				width: 112em;
+				height: 57em;
+				background: hsl(24, 71%, 85%);
+				box-shadow: 0 0 0 1px hsla(24, 71%, 85%, 0.1);
+			}
+
+			.slide-chocolate .fruit .cream::before {
+				left: 13em;
+				bottom: 20em;
+				width: 82em;
+				height: 50em;
+				background: hsl(46, 100%, 96%);
+			}
+
+			.slide-chocolate .fruit .cream::after {
+				left: 4em;
+				bottom: 9em;
+				width: 96em;
+				height: 50em;
+				background: hsl(46, 100%, 96%);
+			}
+
+			.slide-chocolate .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+
+				background-image: linear-gradient(to left, hsl(19, 62%, 34%), hsl(19, 62%, 38%));
+				background-size: 100% 100%;
+			}
+
+			.slide-chocolate .side .border,
+			.slide-chocolate .side .stripes,
+			.slide-chocolate .side .cream {
+				left: 0;
+			}
+
+			.slide-chocolate .side .border {
+				top: 0;
+				width: 101%;
+				height: 34em;
+				background-image: linear-gradient(0deg, hsl(26, 88%, 18%), hsl(26, 88%, 16%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 12em 5em hsl(26, 88%, 18%);
+			}
+
+			.slide-chocolate .side .stripes {
+				top: 98em;
+				width: 100%;
+				height: 83em;
+				background-image: linear-gradient(90deg, hsl(19, 61.9%, 27.1%), hsl(18.9, 62%, 25.1%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 12em 5em hsl(18.9, 62%, 26.1%);
+			}
+
+			.slide-chocolate .side .cream {
+				bottom: 21em;
+				width: 100%;
+				height: 33em;
+				background-image: linear-gradient(90deg, hsl(19, 61.9%, 27.1%), hsl(18.9, 62%, 25.1%));
+				background-size: 100% 100%;
+				background-position: 0 0;
+				box-shadow: 0 0 17em 0em hsl(18.9, 62%, 26.1%);
+				transform-origin: bottom right;
+				transform: rotate(-3deg);
+			}
+
+			/* *=== */
+			/* *=== slide-blueberry.css === */
+			/* *=== */
+			.slide-blueberry .fruit,
+			.slide-blueberry .cherry-top,
+			.slide-blueberry .cherry-base,
+			.slide-blueberry .fruit .cream,
+			.slide-blueberry .side,
+			.slide-blueberry .side .border,
+			.slide-blueberry .side .stripes,
+			.slide-blueberry .side .cream {
+				position: absolute;
+			}
+
+			.slide-blueberry .fruit::before,
+			.slide-blueberry .fruit::after,
+			.slide-blueberry .cherry-base::before,
+			.slide-blueberry .cherry-base::after,
+			.slide-blueberry .fruit .cream::before,
+			.slide-blueberry .fruit .cream::after,
+			.slide-blueberry .top::before,
+			.slide-blueberry .top::after,
+			.slide-blueberry .side .stripes::before,
+			.slide-blueberry .side .stripes::after,
+			.slide-blueberry .cherry-base .gloss::before,
+			.slide-blueberry .cherry-base .gloss::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-blueberry .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(to left, hsl(290, 54%, 37%), hsl(293, 38%, 44%));
+				background-size: 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-blueberry .top::after {
+				right: 75em;
+				top: 68em;
+				width: 159em;
+				height: 77em;
+				background-color: hsl(290, 54%, 53%);
+				transform: rotate(1deg);
+				filter: blur(16em);
+				border-radius: 50%;
+			}
+
+			.slide-blueberry .fruit {
+				right: 23em;
+				top: -40em;
+				width: 164em;
+				height: 158em;
+				transform: rotate(18.5deg) scale(1.4);
+				z-index: 5;
+			}
+
+			.slide-blueberry .fruit::before {
+				left: 25em;
+				bottom: 11em;
+				width: 117em;
+				height: 44em;
+				border-radius: 50%;
+				background-color: hsl(291.9, 41%, 42.5%);
+				z-index: -1;
+				filter: blur(2em);
+			}
+
+			.slide-blueberry .fruit::after {
+				left: 51em;
+				bottom: 55em;
+				width: 60em;
+				height: 29em;
+				border-radius: 50%;
+				box-shadow: 0 11em 0 10em hsl(45, 100%, 96%);
+			}
+
+			.slide-blueberry .cherry-top {
+				left: 85em;
+				top: 27em;
+				width: 53em;
+				height: 77em;
+				border-radius: 50%;
+				transform: rotate(14deg);
+				box-shadow: -4em 0 0 0 hsl(349, 82%, 46%), -6em 0 0 0 hsla(349, 82%, 49%, 0.1);
+			}
+
+			.slide-blueberry .cherry-base {
+				left: 56em;
+				bottom: 45em;
+				width: 50em;
+				height: 50em;
+			}
+
+			.slide-blueberry .cherry-base::before {
+				left: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(273.9, 44.7%, 40.4%);
+				transform: rotate(-24deg);
+				box-shadow: 0 0 0 1px hsla(349, 82%, 51%, 0.1);
+			}
+
+			.slide-blueberry .cherry-base::after {
+				right: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(273.9, 44.7%, 40.4%);
+				transform: rotate(24deg);
+				box-shadow: 0 0 0 1px hsla(273.9, 44.7%, 40.4%, 0.1);
+			}
+
+			.slide-blueberry .cherry-base .gloss {
+				position: relative;
+				z-index: 2;
+			}
+
+			.slide-blueberry .cherry-base .gloss::before {
+				left: 14em;
+				top: 16em;
+				width: 33em;
+				height: 16em;
+				background-color: transparent;
+				border-radius: 50%;
+				transform: rotate(-18deg);
+				filter: blur(2em);
+				box-shadow: 0 7em 0 0 hsl(273.9, 44.7%, 49.4%);
+			}
+
+			.slide-blueberry .cherry-base .gloss::after {
+				left: 12em;
+				top: 7em;
+				width: 11em;
+				height: 14em;
+				background-color: hsl(273.9, 44.7%, 53.4%);
+				border-radius: 50%;
+				transform: rotate(41deg);
+				filter: blur(2em);
+			}
+
+			.slide-blueberry .fruit .cream,
+			.slide-blueberry .fruit .cream::before,
+			.slide-blueberry .fruit .cream::after,
+			.slide-blueberry .side .border,
+			.slide-blueberry .side .stripes::before,
+			.slide-blueberry .side .cream {
+				border-radius: 50%;
+			}
+
+			.slide-blueberry .fruit .cream {
+				left: 27em;
+				bottom: 15em;
+				width: 112em;
+				height: 57em;
+				background: linear-gradient(hsl(24, 71%, 94%), hsl(24, 71%, 85%));
+				box-shadow: 0 0 0 1px hsla(24, 71%, 85%, 0.1);
+			}
+
+			.slide-blueberry .fruit .cream::before {
+				left: 13em;
+				bottom: 20em;
+				width: 82em;
+				height: 50em;
+				background: linear-gradient(hsl(45, 100%, 96%), hsl(45, 100%, 77%));
+			}
+
+			.slide-blueberry .fruit .cream::after {
+				left: 4em;
+				bottom: 9em;
+				width: 96em;
+				height: 50em;
+				background: linear-gradient(hsl(45, 100%, 96%), hsl(45, 100%, 93%));
+			}
+
+			.slide-blueberry .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+				background-image: linear-gradient(to right, hsl(19, 42%, 90%), hsl(19, 42%, 80%));
+				background-size: 100% 100%;
+			}
+
+			.slide-blueberry .side .border {
+				left: -84em;
+				top: -68em;
+				width: 160%;
+				height: 110em;
+				background-image: linear-gradient(to left, hsl(290, 54%, 28%), hsl(290, 54%, 50%));
+				background-size: 100% 100%;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 0 3em hsla(290, 54%, 37%, 0.1);
+			}
+
+			.slide-blueberry .side .stripes {
+				left: 0;
+				top: 109em;
+				width: 100%;
+				height: 83em;
+				background-image: linear-gradient(hsl(274, 45%, 29%) 0 0);
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform: rotate(-5deg);
+			}
+
+			.slide-blueberry .side .stripes::before {
+				left: -39em;
+				top: -25em;
+				width: 521em;
+				height: 117em;
+				background-image: linear-gradient(to right, hsl(274, 45%, 30%), hsl(274, 45%, 44%));
+			}
+
+			.slide-blueberry .side .stripes::after {
+				left: -37em;
+				top: 74em;
+				width: 454em;
+				height: 44em;
+				border-radius: 47% 53% 34% 66% / 30% 69% 31% 70%;
+				background-image: linear-gradient(to right, hsl(19, 42%, 90%), hsl(19, 42%, 80%));
+			}
+
+			.slide-blueberry .side .stripes::before,
+			.slide-blueberry .side .stripes::after {
+				box-shadow: 0 0 0 1px hsla(274, 45%, 30%, 0.1);
+			}
+
+			.slide-blueberry .side .cream {
+				left: -4em;
+				bottom: 22em;
+				width: 156%;
+				height: 77em;
+				box-shadow: 0 0 12em -2em hsla(8, 52%, 9%, 1);
+				transform-origin: bottom right;
+				transform: rotate(-4deg);
+				background: hsl(8, 52%, 9%);
+			}
+
+			/* *=== */
+			/* *=== slide-lemon.css === */
+			/* *=== */
+			.slide-lemon .fruit,
+			.slide-lemon .cherry-top,
+			.slide-lemon .cherry-base,
+			.slide-lemon .fruit .cream,
+			.slide-lemon .side,
+			.slide-lemon .side .border,
+			.slide-lemon .side .stripes,
+			.slide-lemon .leaves {
+				position: absolute;
+			}
+
+			.slide-lemon .fruit::before,
+			.slide-lemon .fruit::after,
+			.slide-lemon .cherry-base::before,
+			.slide-lemon .cherry-base::after,
+			.slide-lemon .top::before,
+			.slide-lemon .top::after,
+			.slide-lemon .fruit .cream::before,
+			.slide-lemon .fruit .cream::after,
+			.slide-lemon .cherry-base .gloss::before,
+			.slide-lemon .cherry-base .gloss::after,
+			.slide-lemon .leaves::before,
+			.slide-lemon .leaves::after {
+				content: "";
+				position: absolute;
+			}
+
+			.slide-lemon .top::before {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 126em;
+				background-image: linear-gradient(to left, hsl(99, 32%, 58%), hsl(99, 32%, 58%));
+				background-size: 100% 100%;
+				background-position: left bottom;
+				clip-path: var(--clip-path-top);
+			}
+
+			.slide-lemon .top::after {
+				right: 75em;
+				top: 68em;
+				width: 159em;
+				height: 77em;
+				background-color: hsl(97, 33%, 68%);
+				transform: rotate(1deg);
+				filter: blur(16em);
+				border-radius: 50%;
+			}
+
+			.slide-lemon .fruit {
+				right: 2em;
+				top: -43em;
+				width: 164em;
+				height: 158em;
+				transform: rotate(18.5deg) scale(1.25);
+				z-index: 5;
+			}
+
+			.slide-lemon .fruit::before {
+				left: 25em;
+				bottom: 11em;
+				width: 117em;
+				height: 44em;
+				border-radius: 50%;
+				background-color: hsl(99, 32%, 58%);
+				z-index: -1;
+				filter: blur(2em);
+			}
+
+			.slide-lemon .fruit::after {
+				left: 51em;
+				bottom: 55em;
+				width: 60em;
+				height: 29em;
+				border-radius: 50%;
+				box-shadow: 0 11em 0 10em hsl(45, 100%, 96%);
+			}
+
+			.slide-lemon .cherry-base {
+				left: 56em;
+				bottom: 45em;
+				width: 50em;
+				height: 50em;
+			}
+
+			.slide-lemon .cherry-base::before {
+				left: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(44.1, 100%, 93.3%);
+				transform: rotate(-24deg);
+				box-shadow: 0 0 0 1px hsl(45, 100%, 96.1%);
+			}
+
+			.slide-lemon .cherry-base::after {
+				right: 0;
+				top: 0;
+				width: 44em;
+				height: 50em;
+				border-radius: 50%;
+				background: hsl(44.5, 100%, 93.9%);
+				transform: rotate(24deg);
+				box-shadow: 0 0 0 1px hsl(45, 100%, 96.1%);
+			}
+
+			.slide-lemon .fruit .cream,
+			.slide-lemon .fruit .cream::before,
+			.slide-lemon .fruit .cream::after,
+			.slide-lemon .cherry-base .gloss::before,
+			.slide-lemon .cherry-base .gloss::after {
+				border-radius: 50%;
+			}
+
+			.slide-lemon .fruit .cream {
+				left: 27em;
+				bottom: 15em;
+				width: 112em;
+				height: 57em;
+				background: linear-gradient(hsl(24, 71%, 94%), hsl(44, 100%, 94.1%));
+				box-shadow: 0 0 0 1px hsla(24, 71%, 85%, 0.1);
+			}
+
+			.slide-lemon .fruit .cream::before {
+				left: 13em;
+				bottom: 20em;
+				width: 82em;
+				height: 50em;
+				background: linear-gradient(hsl(45, 100%, 96%), hsl(45, 100%, 77%));
+			}
+
+			.slide-lemon .fruit .cream::after {
+				left: 4em;
+				bottom: 9em;
+				width: 96em;
+				height: 50em;
+				background: linear-gradient(hsl(45, 100%, 96%), hsl(45, 100%, 93%));
+			}
+
+			.slide-lemon .cherry-base .gloss {
+				position: relative;
+				z-index: 2;
+				opacity: 0.7;
+			}
+
+			.slide-lemon .cherry-base .gloss::before {
+				left: 14em;
+				top: 16em;
+				width: 33em;
+				height: 16em;
+				transform: rotate(-18deg);
+				filter: blur(2em);
+				box-shadow: 0 7em 0 0 hsl(0, 0%, 100%);
+			}
+
+			.slide-lemon .cherry-base .gloss::after {
+				left: 12em;
+				top: 7em;
+				width: 11em;
+				height: 14em;
+				background-color: hsl(300, 100%, 99.8%);
+				transform: rotate(41deg);
+				filter: blur(2em);
+			}
+
+			.slide-lemon .side {
+				left: -165.9em;
+				top: 2.2em;
+				width: 368.2em;
+				height: 300em;
+				transform: rotateX(49.8deg) rotateY(-27.1deg) skewX(6.4deg) rotateZ(4deg);
+				transform-origin: left top;
+				clip-path: var(--clip-path-side);
+				background-image: linear-gradient(to right, hsl(41, 85%, 87%), hsl(41, 85%, 77%));
+				background-size: 100% 100%;
+			}
+
+			.slide-lemon .side .border {
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100em;
+				background-image: linear-gradient(hsl(99, 32%, 58%) 6%, hsl(157, 24%, 29%) 85%);
+				background-size: 100% 100%;
+				background-position: 0 0;
+				transform-origin: bottom right;
+				transform: rotate(0.8deg);
+				box-shadow: 0 0 0 3em hsla(290, 54%, 37%, 0.1);
+			}
+
+			.slide-lemon .side .stripes {
+				--mi: url("data:image/svg+xml,%3Csvg width='900' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' height='160' viewBox='0 455 900 20'%3E%3Cpath d='M0 487L21.5 482.2C43 477.3 86 467.7 128.8 473.7C171.7 479.7 214.3 501.3 257.2 495.2C300 489 343 455 385.8 443.3C428.7 431.7 471.3 442.3 514.2 454.2C557 466 600 479 642.8 486.5C685.7 494 728.3 496 771.2 486.2C814 476.3 857 454.7 878.5 443.8L900 433' fill='none' stroke-linecap='round' stroke-linejoin='miter' stroke='%230066FF' stroke-width='94'/%3E%3C/svg%3E");
+				--mp: -92em 0;
+				--ms: auto 100%;
+
+				left: 0;
+				top: 125em;
+				width: 100%;
+				height: 80em;
+				background-image: linear-gradient(to right, hsl(99, 32%, 58%), hsl(157, 24%, 29%) 63%);
+				background-size: 100% 100%;
+				background-position: 0 0;
+
+				mask-image: var(--mi);
+				mask-position: var(--mp);
+				mask-size: var(--ms);
+				-webkit-mask-image: var(--mi);
+				-webkit-mask-position: var(--mp);
+				-webkit-mask-size: var(--ms);
+			}
+
+			.slide-lemon .side .cream {
+				--mi: url("data:image/svg+xml,%3Csvg viewBox='0 0 900 600' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1'%3E%3Crect x='0' y='0' fill='%23fff'%3E%3C/rect%3E%3Cpath d='M0 413L50 396C100 379 200 345 300 339.8C400 334.7 500 358.3 600 360.3C700 362.3 800 342.7 850 332.8L900 323L900 601L850 601C800 601 700 601 600 601C500 601 400 601 300 601C200 601 100 601 50 601L0 601Z' fill='%23000'%3E%3C/path%3E%3C/svg%3E");
+				--mp: 0 -119em;
+				--ms: auto 237em;
+
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 156%;
+				height: 86em;
+				background: linear-gradient(to top, hsl(99, 32%, 58%), hsl(157, 24%, 29%) 80%);
+
+				mask-image: var(--mi);
+				mask-position: var(--mp);
+				mask-size: var(--ms);
+				-webkit-mask-image: var(--mi);
+				-webkit-mask-position: var(--mp);
+				-webkit-mask-size: var(--ms);
+			}
+
+			.slide-lemon .leaves {
+				right: 142em;
+				top: 10em;
+				width: 10em;
+				height: 10em;
+			}
+
+			.slide-lemon .leaves::before {
+				left: 12em;
+				top: 4em;
+				background-color: hsl(145, 25%, 30%);
+				transform: translate(-50%, -50%) scale(0.7) rotate(-44deg) skewY(-30deg);
+				width: 83em;
+				height: 96em;
+				border-radius: 25% 9% 32% 4%;
+				box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+				background-image: radial-gradient(circle at -14% -12%, transparent 50%, #8cb774 53%, transparent 0);
+				background-size: 100% 100%;
+				background-position: 15em 3em;
+			}
+
+			.slide-lemon .leaves::after {
+				left: -22em;
+				top: 25em;
+				background-color: hsl(99, 32%, 58%);
+				transform: translate(-50%, -50%) scale(0.5) rotate(-88deg) skewX(-15deg) skewY(-18deg);
+				width: 113em;
+				height: 121em;
+				border-radius: 24% 9% 27% 7%;
+				box-shadow: -7em 6em 8em 2em hsla(151.7, 22.8%, 31%, 0.56), 0 0 0 4em hsla(152, 23%, 31%, 0.1);
+				background-image: radial-gradient(circle at -14% -12%, transparent 50%, hsl(145, 25%, 30%) 53%, transparent 0);
+				background-size: 100% 100%;
+				background-position: 22em 7em;
+			}
+		</style>
+	</head>
+	<body>
+		<input class="flavor" type="radio" name="flavor" id="redvelvet" />
+		<input class="flavor" type="radio" name="flavor" id="cheese" />
+		<input class="flavor" type="radio" name="flavor" id="strawberry" checked />
+		<input class="flavor" type="radio" name="flavor" id="chocolate" />
+		<input class="flavor" type="radio" name="flavor" id="blueberry" />
+		<input class="flavor" type="radio" name="flavor" id="lemon" />
+
+		<main>
+			<!-- == redvelvet pastry == -->
+			<div class="slide slide-redvelvet">
+				<div class="pastry">
+					<div class="top">
+						<div class="fruit">
+							<div class="cream"></div>
+							<div class="cherry-top"></div>
+							<div class="cherry-base">
+								<div class="gloss"></div>
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes"></div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+
+			<!-- == cheese pastry == -->
+			<div class="slide slide-cheese">
+				<div class="pastry">
+					<div class="top"></div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes"></div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+
+			<!-- == strawberry pastry == -->
+			<div class="slide slide-strawberry">
+				<div class="pastry">
+					<div class="top">
+						<div class="cream">
+							<div class="shade1"></div>
+							<div class="shade2"></div>
+							<div class="shade3"></div>
+							<div class="shade4"></div>
+							<div class="shade5"></div>
+						</div>
+						<div class="fruit">
+							<div class="base"></div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes">
+							<div class="stripe1"></div>
+							<div class="stripe2"></div>
+							<div class="stripe3"></div>
+							<div class="stripe4"></div>
+						</div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+
+			<!-- == chocolate pastry == -->
+			<div class="slide slide-chocolate">
+				<div class="pastry">
+					<div class="top">
+						<div class="fruit">
+							<div class="cream"></div>
+							<div class="cherry-top"></div>
+							<div class="cherry-base">
+								<div class="gloss"></div>
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes"></div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+
+			<!-- == blueberry pastry == -->
+			<div class="slide slide-blueberry">
+				<div class="pastry">
+					<div class="top">
+						<div class="fruit">
+							<div class="cream"></div>
+							<div class="cherry-base">
+								<div class="gloss"></div>
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes"></div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+
+			<!-- == lemon pastry == -->
+			<div class="slide slide-lemon">
+				<div class="pastry">
+					<div class="top">
+						<div class="leaves"></div>
+						<div class="fruit">
+							<div class="cream"></div>
+							<div class="cherry-base">
+								<div class="gloss"></div>
+							</div>
+						</div>
+					</div>
+					<div class="side">
+						<div class="border"></div>
+						<div class="stripes"></div>
+						<div class="cream"></div>
+					</div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+		</main>
+
+		<div id="controls">
+			<label for="redvelvet">Redvelvet</label>
+			<label for="cheese">Cheese Pastry</label>
+			<label for="strawberry">Strawberry Pastry</label>
+			<label for="chocolate">Chocolate Pastry</label>
+			<label for="blueberry">Blueberry Pastry</label>
+			<label for="lemon">Lemon Pastry</label>
+		</div>
+	</body>
+</html>
