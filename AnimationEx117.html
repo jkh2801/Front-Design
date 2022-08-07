@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex117</title>
+		<style>
+			:root {
+				--active-color: #efba1e;
+				--background-color: #000;
+			}
+			*,
+			*::after,
+			*::before {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			html {
+				font-size: 0.8vw;
+			}
+			body {
+				background-color: var(--background-color);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			.clock {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				position: relative;
+				width: 90rem;
+			}
+			.digit {
+				width: 12rem;
+				position: relative;
+				height: 24rem;
+			}
+			.hours,
+			.minutes,
+			.seconds {
+				position: relative;
+				display: flex;
+			}
+			.segment {
+				width: 8rem;
+				height: 2rem;
+				background-color: var(--active-color);
+				opacity: 0.08;
+				position: absolute;
+
+				border-radius: 10rem;
+				transition: opacity 400ms;
+			}
+			.colons {
+				display: flex;
+				justify-content: space-around;
+				height: 12rem;
+				flex-direction: column;
+				transform: translateX(-2rem);
+			}
+			.colon {
+				width: 3rem;
+				height: 3rem;
+				background-color: var(--active-color);
+				border-radius: 50%;
+			}
+			.segment-2 {
+				transform-origin: top left;
+				transform: rotate(90deg) translate(1.5rem, -0.05rem);
+			}
+			.segment-3 {
+				transform-origin: top right;
+				transform: rotate(-90deg) translate(-1.5rem, -0.5rem);
+			}
+			.segment-4 {
+				transform: translateY(9rem);
+			}
+			.segment-5 {
+				transform-origin: top left;
+				transform: rotate(90deg) translate(10.5rem, -0.5rem);
+			}
+			.segment-6 {
+				transform-origin: top right;
+				transform: rotate(-90deg) translate(-10.5rem, -0.5rem);
+			}
+			.segment-7 {
+				transform: translateY(18rem);
+			}
+			.active {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="clock">
+			<div class="hours">
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+			</div>
+			<div class="colons colons-1">
+				<div class="colon"></div>
+				<div class="colon"></div>
+			</div>
+			<div class="minutes">
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+			</div>
+			<div class="colons colons-2">
+				<div class="colon"></div>
+				<div class="colon"></div>
+			</div>
+			<div class="seconds">
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+				<div class="digit">
+					<div class="segment segment-1 n0 n2 n3 n5 n6 n7 n8 n9"></div>
+					<div class="segment segment-2 n0 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-3 n0 n1 n2 n3 n4 n7 n8 n9"></div>
+					<div class="segment segment-4 n2 n3 n4 n5 n6 n8 n9"></div>
+					<div class="segment segment-5 n0 n2 n6 n8"></div>
+					<div class="segment segment-6 n0 n1 n3 n5 n4 n6 n7 n8 n9"></div>
+					<div class="segment segment-7 n0 n2 n3 n5 n6 n8 n9"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			const hour1 = document.querySelectorAll(".hours .digit")[0];
+			const hour2 = document.querySelectorAll(".hours .digit")[1];
+			const minute1 = document.querySelectorAll(".minutes .digit")[0];
+			const minute2 = document.querySelectorAll(".minutes .digit")[1];
+			const second1 = document.querySelectorAll(".seconds .digit")[0];
+			const second2 = document.querySelectorAll(".seconds .digit")[1];
+			const setNumber = (element, number) => {
+				const show = element.querySelectorAll(`.n${number}`);
+				const hide = element.querySelectorAll(`:not(.n${number})`);
+
+				hide.forEach((el) => {
+					el.classList.remove("active");
+				});
+				show.forEach((el) => {
+					el.classList.add("active");
+				});
+			};
+			setInterval(() => {
+				const now = new Date();
+				const hours = now.getHours();
+				const minutes = now.getMinutes();
+				const seconds = now.getSeconds();
+				setNumber(hour1, Math.floor(hours / 10));
+				setNumber(hour2, Math.floor(hours % 10));
+				setNumber(minute1, Math.floor(minutes / 10));
+				setNumber(minute2, Math.floor(minutes % 10));
+				setNumber(second1, Math.floor(seconds / 10));
+				setNumber(second2, Math.floor(seconds % 10));
+			}, 1000);
+		</script>
+	</body>
+</html>
