@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Background Ex32</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Courgette", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #eee;
+				gap: 30px;
+			}
+			.drop {
+				position: relative;
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 2.5em;
+				counter-reset: #333;
+				text-shadow: -2px -2px 5px #fff;
+				filter: drop-shadow(4px 4px 10px #fff);
+				box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.05), 15px 25px 10px rgba(0, 0, 0, 0.05), 15px 20px 20px rgba(0, 0, 0, 0.05), inset -10px -10px 15px rgba(255, 255, 255, 0.9);
+			}
+			.drop::before {
+				content: "";
+				position: absolute;
+				top: 35px;
+				left: 25px;
+				background: #fff;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				filter: blur(2px);
+			}
+			.drop::after {
+				content: "";
+				position: absolute;
+				top: 25px;
+				left: 50px;
+				background: #fff;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				filter: blur(2px);
+			}
+			span {
+				font-size: 3em;
+			}
+			.drop ion-icon {
+				color: #ff5353;
+				font-size: 2em;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="drop">
+			<p>Html</p>
+		</div>
+		<span>+</span>
+		<div class="drop">
+			<p>CSS</p>
+		</div>
+		<span>=</span>
+		<div class="drop">
+			<p><ion-icon name="heart"></ion-icon></p>
+		</div>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body>
+</html>
