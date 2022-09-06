@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DropDown Ex2</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				min-height: 100vh;
+				background: #f9f9f9;
+			}
+			.dropdown {
+				position: relative;
+				margin-top: 100px;
+				width: 300px;
+				height: 50px;
+			}
+			.dropdown::before {
+				content: "";
+				position: absolute;
+				top: 25px;
+				right: 28px;
+				width: 12px;
+				height: 2px;
+				background: #555;
+				z-index: 10;
+				transform: rotate(40deg);
+				transition: 0.5s;
+			}
+			.dropdown.active::before {
+				right: 20px;
+			}
+			.dropdown::after {
+				content: "";
+				position: absolute;
+				top: 25px;
+				right: 20px;
+				width: 12px;
+				height: 2px;
+				background: #555;
+				z-index: 10;
+				transform: rotate(-40deg);
+				transition: 0.5s;
+			}
+			.dropdown.active::after {
+				right: 28px;
+			}
+			.dropdown input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				border-radius: 10px;
+				padding: 12px 20px;
+				font-size: 16px;
+				background: #fff;
+				box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+				outline: none;
+				border: none;
+			}
+			.dropdown .option {
+				position: absolute;
+				top: 70px;
+				width: 100%;
+				background: #fff;
+				box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+				border-radius: 10px;
+				overflow: hidden;
+				visibility: hidden;
+				opacity: 0;
+				transition: 0.25s;
+			}
+			.dropdown.active .option {
+				visibility: visible;
+				opacity: 1;
+			}
+			.dropdown .option div {
+				padding: 12px 20px;
+				cursor: pointer;
+			}
+			.dropdown .option div:hover {
+				background: #62baea;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="dropdown">
+			<input type="text" class="text02" readonly placeholder="Dropdown Menu" />
+			<div class="option">
+				<div onmouseover="show('Html')">Html</div>
+				<div onmouseover="show('CSS')">CSS</div>
+				<div onmouseover="show('Javascript')">Javascript</div>
+				<div onmouseover="show('ReactJS')">ReactJS</div>
+				<div onmouseover="show('Photoshop')">Photoshop</div>
+			</div>
+		</div>
+		<script>
+			function show(a) {
+				document.querySelector(".text02").value = a;
+			}
+			let dropdown = document.querySelector(".dropdown");
+			dropdown.onclick = function () {
+				dropdown.classList.toggle("active");
+			};
+		</script>
+	</body>
+</html>
