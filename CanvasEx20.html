@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Ex20</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				font-family: "Roboto", sans-serif;
+				font-size: 14px;
+				color: #333;
+				overflow: hidden;
+			}
+
+			#canvas {
+				background-color: #333;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			const canvas = document.querySelector("#canvas");
+			let ctx = canvas.getContext("2d");
+			let width = (canvas.width = window.innerWidth);
+			let height = (canvas.height = window.innerHeight);
+
+			class Spiral {
+				constructor({ ...arg }) {
+					this.x = arg.x || canvas.width / 2;
+					this.y = arg.y || canvas.height / 2;
+					this.size = arg.size || 15;
+					this.obSize = arg.obSize || 5;
+					this.direction = "clock";
+					this.stepCount = 0;
+					this.stepTurn = 1;
+					this.state = 1;
+					this.ternCount = 0;
+					this.limitTurn = 100;
+					this.exPos = { x: canvas.width / 2, y: canvas.height / 2 };
+				}
+
+				draw() {
+					if (this.limitTurn > this.ternCount) {
+						if (this.isPrime(this.stepCount)) {
+							ctx.strokeStyle = "#fff";
+							ctx.fillStyle = "#fff";
+						} else {
+							ctx.strokeStyle = "rgba(255,255,255,.1)";
+							ctx.fillStyle = "rgba(255,255,255,.4)";
+						}
+						ctx.beginPath();
+						ctx.moveTo(canvas.width / 2, canvas.height / 2);
+						ctx.lineTo(this.x, this.y);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.arc(this.x, this.y, this.obSize / 2, 0, Math.PI * 2);
+						ctx.fill();
+
+						ctx.beginPath();
+						ctx.moveTo(this.exPos.x, this.exPos.y);
+						ctx.lineTo(this.x, this.y);
+						ctx.stroke();
+						this.exPos = { x: this.x, y: this.y };
+					}
+				}
+				isPrime(num) {
+					for (let i = 2, s = Math.sqrt(num); i <= s; i++) if (num % i === 0) return false;
+					return num > 1;
+				}
+				update() {
+					this.stepCount++;
+					switch (this.state) {
+						case 1:
+							if (this.direction == "clock") {
+								this.x -= this.size;
+							} else {
+								this.x += this.size;
+							}
+							break;
+						case 2:
+							this.y -= this.size;
+							break;
+						case 3:
+							if (this.direction == "clock") {
+								this.x += this.size;
+							} else {
+								this.x -= this.size;
+							}
+							break;
+						case 4:
+							this.y += this.size;
+							break;
+					}
+
+					if (this.stepCount % this.stepTurn === 0) {
+						this.state++;
+						this.ternCount++;
+						if (this.state > 4) {
+							this.state = 1;
+						}
+						if (this.ternCount % 2 === 0) {
+							this.stepTurn++;
+						}
+					}
+				}
+			}
+
+			const spiral = new Spiral({
+				x: width / 2,
+				y: height / 2,
+			});
+
+			//Deltatime animation
+			let frm = 0;
+			function animate() {
+				frm++;
+				if (frm % 1 === 0) {
+					spiral.draw();
+					spiral.update();
+				}
+				requestAnimationFrame(animate);
+			}
+			animate();
+		</script>
+	</body>
+</html>
