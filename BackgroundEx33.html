@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0px;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				width: 100%;
+				height: 100vh;
+				padding: 60px 20px;
+				perspective: 900px;
+				transform-style: preserve-3d;
+				background-image: url("https://raw.githubusercontent.com/cicero-mello/codepen/main/3d-card/gwen_background.jpg");
+				background-size: cover;
+				background-position: right bottom;
+			}
+
+			img {
+				margin: auto;
+				max-height: 375px;
+				height: 100%;
+				border-radius: 14px;
+				box-shadow: 0px 0px 20px 10px #ffa22329;
+			}
+
+			img:hover {
+				box-shadow: 0px 0px 20px 10px #ffa22370;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="https://raw.githubusercontent.com/cicero-mello/codepen/main/3d-card/gerald_card.png" />
+		<script>
+			const cardElement = document.getElementsByTagName("img")[0];
+			const MAX_ROTATE_X = 20;
+			const MAX_ROTATE_Y = 18;
+
+			const onMouseMove = (event) => {
+				const card = {
+					halfHeight: event.target.height / 2,
+					halfWidth: event.target.width / 2,
+				};
+				const degsToRotateY = ((card.halfWidth - event.offsetX) * MAX_ROTATE_Y) / card.halfWidth;
+				const degsToRotateX = ((card.halfHeight - event.offsetY) * -MAX_ROTATE_X) / card.halfHeight;
+				event.target.style.transform = `rotateX(${degsToRotateX}deg) rotateY(${degsToRotateY}deg)`;
+			};
+
+			const mouseOutCardTransitionControl = (mouseOutEvent) => {
+				mouseOutEvent.target.style.transition = "400ms ease-out";
+				setTimeout(() => {
+					mouseOutEvent.target.style.transition = "50ms linear";
+				}, 400);
+			};
+
+			const resetCardTransition = (mouseEnterEvent) => {
+				mouseEnterEvent.target.style.transition = "50ms linear";
+			};
+
+			const resetCardPosition = (mouseOutEvent) => {
+				mouseOutEvent.target.style.transform = "rotateX(0deg) rotateY(0deg)";
+			};
+
+			cardElement.addEventListener("mouseenter", (event) => {
+				resetCardTransition(event);
+				cardElement.addEventListener("mousemove", onMouseMove);
+			});
+
+			cardElement.addEventListener("mouseout", (event) => {
+				mouseOutCardTransitionControl(event);
+				resetCardPosition(event);
+				cardElement.removeEventListener("mousemove", onMouseMove);
+			});
+		</script>
+	</body>
+</html>
