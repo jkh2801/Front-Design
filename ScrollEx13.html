@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scroll Ex13</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				overflow-x: hidden;
+				min-height: 100vh;
+				background: #fff;
+			}
+			.header {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				padding: 30px 100px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				z-index: 1000;
+			}
+			.logo {
+				color: #112434;
+				font-weight: 700;
+				font-size: 2em;
+				text-decoration: none;
+			}
+			.navigation {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 40px;
+			}
+			.navigation li {
+				list-style: none;
+			}
+			.navigation li a {
+				text-decoration: none;
+				padding: 6px 15px;
+				color: #112434;
+				border-radius: 20px;
+			}
+			.navigation li a:hover,
+			.navigation li a.active {
+				background: #112434;
+				color: #fff;
+			}
+			.parallax {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			.parallax img {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				pointer-events: none;
+			}
+			#text {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				font-size: 4em;
+				color: #112434;
+			}
+			.sec {
+				position: relative;
+				padding: 100px;
+				background: #112434;
+			}
+			.sec h2 {
+				font-size: 3em;
+				color: #fff;
+				margin-bottom: 10px;
+			}
+			.sec p {
+				font-size: 1em;
+				color: #fff;
+				font-weight: 300;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<a href="#" class="logo">Logo</a>
+			<ul class="navigation">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Events</a></li>
+				<li><a href="#">Contacts</a></li>
+			</ul>
+		</header>
+		<section class="parallax">
+			<h2 id="text">Parallax Website</h2>
+			<img src="image/monutain_01.png" alt="" id="m1" />
+			<img src="image/trees_02.png" alt="" id="t2" />
+			<img src="image/monutain_02.png" alt="" id="m2" />
+			<img src="image/trees_01.png" alt="" id="t1" />
+			<img src="image/man.png" alt="" id="man" />
+			<img src="image/plants.png" alt="" id="plants" />
+		</section>
+		<section class="sec">
+			<h2>Parallax Scrolling Website</h2>
+		</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+		<script>
+			gsap.from("#m1", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				y: 100,
+			});
+			gsap.from("#m2", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				y: 50,
+			});
+			gsap.from("#t1", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				x: 50,
+			});
+			gsap.from("#t2", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				x: -50,
+			});
+			gsap.from("#man", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				x: -250,
+			});
+			gsap.from("#plants", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				x: -50,
+			});
+			gsap.from("#text", {
+				scrollTrigger: {
+					scrub: true,
+				},
+				x: 600,
+			});
+		</script>
+	</body>
+</html>
