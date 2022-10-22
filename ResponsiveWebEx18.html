@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Responsive Web Ex18</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				min-height: 100vh;
+				background: #222;
+			}
+			header {
+				position: fixed;
+				padding: 30px 100px;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+			header .logo {
+				color: #fff;
+				font-size: 2em;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+			}
+			header ul {
+				display: flex;
+				gap: 40px;
+			}
+			header ul li {
+				list-style: none;
+			}
+			header ul li a {
+				text-decoration: none;
+				color: #999;
+				text-transform: uppercase;
+				letter-spacing: 0.2em;
+				transition: 0.5s;
+			}
+			section {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				min-height: 100vh;
+				padding: 10px;
+				gap: 100px;
+			}
+			section .content {
+				max-width: 700px;
+			}
+			section .content h2 {
+				font-size: 3.5em;
+				color: #fff;
+				font-weight: 500;
+				font-family: "Roboto", sans-serif;
+			}
+			section .content h2 b {
+				color: #0f0;
+				font-family: "Roboto", sans-serif;
+			}
+			section .content p {
+				color: #999;
+				font-size: 1.1em;
+			}
+			section .content .btn {
+				padding: 10px 15px;
+				background: #fff;
+				color: #222;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-weight: 500;
+				display: inline-block;
+				margin-top: 25px;
+				letter-spacing: 0.2em;
+				transition: 0.5s ease-in-out;
+			}
+			section .content .btn:hover {
+				letter-spacing: 0.4em;
+			}
+			section .container {
+				position: relative;
+				width: 400px;
+				height: 400px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap;
+			}
+			section .container .element {
+				position: relative;
+				width: 40px;
+				height: 40px;
+				background: #fff;
+				scale: 0.75;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<a href="#" class="logo">Logo</a>
+			<ul>
+				<li><a href="#" class="active">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Work</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</header>
+		<section>
+			<div class="content">
+				<h2>Level Up Your Website with <b>Anime.js</b></h2>
+				<p></p>
+				<a href="#" class="btn">Learn More</a>
+			</div>
+			<div class="container"></div>
+		</section>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+			integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script>
+			let container = document.querySelector(".container");
+			for (let i = 1; i <= 100; i++) {
+				let dot = document.createElement("div");
+				dot.classList.add("element");
+				container.appendChild(dot);
+			}
+			let dotAll = document.querySelectorAll(".element");
+			let animation = anime.timeline({
+				targets: dotAll,
+				easing: "easeInOutExpo",
+				loop: true,
+				delay: anime.stagger(100, { grid: [10, 10], from: "center" }),
+			});
+			animation
+				.add({
+					rotateZ: 180,
+					translateY: anime.stagger(-20, { grid: [10, 10], from: "center", axis: "y" }),
+					translateX: anime.stagger(-20, { grid: [10, 10], from: "center", axis: "x" }),
+					opacity: 1,
+				})
+				.add({ borderRadius: 50 })
+				.add({
+					scale: 0.2,
+					opacity: 1,
+				});
+			animation
+				.add({
+					rotateZ: 180,
+					translateY: anime.stagger(0, { grid: [10, 10], from: "center", axis: "y" }),
+					translateX: anime.stagger(0, { grid: [10, 10], from: "center", axis: "x" }),
+					opacity: 1,
+				})
+				.add({
+					scale: 1,
+					borderRadius: 0,
+				})
+				.add({
+					rotateZ: -90,
+				});
+		</script>
+	</body>
+</html>
