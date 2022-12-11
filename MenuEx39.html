@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menu Ex39</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				background: #fff;
+				overflow: hidden;
+			}
+			ul {
+				position: relative;
+			}
+			ul li {
+				list-style: none;
+				text-align: center;
+			}
+			ul li a {
+				color: #333;
+				text-decoration: none;
+				font-size: 2em;
+				padding: 5px 20px;
+				display: inline-flex;
+				font-weight: 300;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+			ul li:hover a {
+				background: #333;
+				color: var(--clr);
+				font-weight: 500;
+			}
+			ul:hover > li:not(:hover) {
+				opacity: 0;
+			}
+			ul li a::before {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 5em;
+				opacity: 0;
+				color: #222;
+				z-index: -1;
+				font-weight: 400;
+				text-transform: initial;
+				letter-spacing: 500px;
+				transition: letter-spacing 0.5s;
+				font-family: "Sacramento", cursive;
+			}
+			ul li a:hover::before {
+				content: attr(data-text);
+				opacity: 1;
+				left: 50%;
+				background: var(--clr);
+				width: 250vh;
+				height: 250vh;
+				letter-spacing: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li style="--clr: #81ecec"><a href="#" data-text="Home">Home</a></li>
+			<li style="--clr: #ff7675"><a href="#" data-text="About">About</a></li>
+			<li style="--clr: #55efc4"><a href="#" data-text="Services">Services</a></li>
+			<li style="--clr: #a29bfe"><a href="#" data-text="Work">Work</a></li>
+			<li style="--clr: #fd79a8"><a href="#" data-text="Team">Team</a></li>
+			<li style="--clr: #ffeaa7"><a href="#" data-text="Contact">Contact</a></li>
+		</ul>
+	</body>
+</html>
