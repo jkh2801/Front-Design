@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation Ex134</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				min-height: 100vh;
+				background: #111;
+				overflow: hidden;
+			}
+			span {
+				position: absolute;
+				pointer-events: none;
+				animation: animate 1s linear infinite;
+			}
+			@keyframes animate {
+				0% {
+					translate: 0 0;
+					opacity: 0;
+				}
+				10% {
+					opacity: 1;
+				}
+				30% {
+					translate: 0 100px;
+					opacity: 1;
+				}
+				90% {
+					opacity: 1;
+				}
+				100% {
+					translate: 0 80px;
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			let images = ["🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍐", "🍑", "🍒", "🍓"];
+			document.addEventListener("mousemove", function (e) {
+				let body = document.querySelector("body");
+				let emoji = document.createElement("span");
+				let x = e.offsetX;
+				let y = e.offsetY;
+
+				emoji.style.left = x + "px";
+				emoji.style.top = y + "px";
+				let icon = images[~~(Math.random() * images.length)];
+				emoji.innerText = icon;
+				let size = Math.random() * 50;
+				emoji.style.fontSize = 5 + size + "px";
+
+				let max = 0;
+				let min = 200;
+				let randomValue = ~~(Math.random() * (max + 1 - min) + min);
+
+				body.appendChild(emoji);
+				setTimeout(() => {
+					emoji.remove();
+				}, 1000);
+			});
+		</script>
+	</body>
+</html>
