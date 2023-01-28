@@ -48,6 +48,7 @@
 			}
 			.police {
 				position: absolute;
+				left: -100px;
 				width: 200px;
 				height: 80px;
 				background: #3f4c54;
@@ -56,6 +57,28 @@
 				transform-style: preserve-3d;
 				perspective: 800px;
 				z-index: 10;
+				animation: animate_police_car 5s linear infinite;
+			}
+			.police:nth-child(2) {
+				left: 200px;
+				animation-delay: -2.5s;
+			}
+			@keyframes animate_police_car {
+				0% {
+					transform: translateX(20px) translateY(-50px);
+				}
+				25% {
+					transform: translateX(-10px) translateY(0px);
+				}
+				50% {
+					transform: translateX(20px) translateY(50px);
+				}
+				75% {
+					transform: translateX(-10px) translateY(0px);
+				}
+				100% {
+					transform: translateX(20px) translateY(-50px);
+				}
 			}
 			.police::before {
 				content: "";
@@ -145,11 +168,111 @@
 				transform: rotate(15deg);
 				box-shadow: 100px 34px #ebebeb;
 			}
+			.police span i::after {
+				content: "";
+				position: absolute;
+				bottom: 7px;
+				left: 20px;
+				width: 40px;
+				height: 5px;
+				background: #ebebeb;
+				transform-origin: right;
+				transform: rotate(-15deg);
+				box-shadow: 100px -34px #ebebeb;
+			}
+			.light_beam {
+				position: absolute;
+				top: 5px;
+				right: -2px;
+				width: 10px;
+				height: 70px;
+				background: #0002;
+				border-radius: 15px;
+				transform-style: preserve-3d;
+			}
+			.light_beam::before {
+				content: "";
+				position: absolute;
+				top: 5px;
+				left: 0;
+				width: 150px;
+				height: 16px;
+				background: linear-gradient(90deg, #fff6, transparent);
+				transform-origin: left;
+				transform: perspective(500px) rotateY(-50deg);
+			}
+			.light_beam::after {
+				content: "";
+				position: absolute;
+				bottom: 5px;
+				left: 0;
+				width: 150px;
+				height: 16px;
+				background: linear-gradient(90deg, #fff6, transparent);
+				transform-origin: left;
+				transform: perspective(500px) rotateY(-50deg);
+			}
+			.police h4 {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				color: #fff;
+				text-transform: uppercase;
+				z-index: 10;
+				transform: translateY(-50%) rotate(90deg) scale(0.75);
+			}
+			.police h3 {
+				position: absolute;
+				top: 50%;
+				right: -2%;
+				color: #fff;
+				text-transform: uppercase;
+				z-index: 10;
+				transform: translateY(-50%) rotate(270deg) scale(0.75);
+			}
+			.police .side_mirror {
+				position: absolute;
+				inset: 0;
+			}
+			.police .side_mirror::before {
+				content: "";
+				position: absolute;
+				top: -8px;
+				right: 40px;
+				width: 5px;
+				height: 10px;
+				background: #ebebeb;
+				border-top-right-radius: 10px;
+			}
+			.police .side_mirror::after {
+				content: "";
+				position: absolute;
+				bottom: -8px;
+				right: 40px;
+				width: 5px;
+				height: 10px;
+				background: #ebebeb;
+				border-bottom-right-radius: 10px;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="road">
 			<div class="police">
+				<div class="light_beam"></div>
+				<h4>Police</h4>
+				<h3>Police</h3>
+				<div class="side_mirror"></div>
+				<span>
+					<b></b>
+					<i></i>
+				</span>
+			</div>
+			<div class="police">
+				<div class="light_beam"></div>
+				<h4>Police</h4>
+				<h3>Police</h3>
+				<div class="side_mirror"></div>
 				<span>
 					<b></b>
 					<i></i>
