@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex141</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+      }
+      .bos {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .box h2 {
+        font-size: 2.25em;
+        -webkit-text-stroke: 1px #f00;
+        color: transparent;
+        line-height: 1em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        animation: animate 2.5s linear infinite;
+        animation-delay: calc(var(--i) * -0.25s);
+      }
+      @keyframes animate {
+        0%,
+        10% {
+          color: #f00;
+          filter: hue-rotate(0deg);
+        }
+        10.000001% {
+          color: transparent;
+        }
+        100% {
+          color: transparent;
+          filter: hue-rotate(720deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2 style="--i: 0">Css is awesome!!</h2>
+      <h2 style="--i: 1">Css is awesome!!</h2>
+      <h2 style="--i: 2">Css is awesome!!</h2>
+      <h2 style="--i: 3">Css is awesome!!</h2>
+      <h2 style="--i: 4">Css is awesome!!</h2>
+      <h2 style="--i: 5">Css is awesome!!</h2>
+      <h2 style="--i: 6">Css is awesome!!</h2>
+      <h2 style="--i: 7">Css is awesome!!</h2>
+      <h2 style="--i: 8">Css is awesome!!</h2>
+      <h2 style="--i: 9">Css is awesome!!</h2>
+    </div>
+  </body>
+</html>
