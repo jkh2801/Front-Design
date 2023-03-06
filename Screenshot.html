@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScreenShot</title>
+    <style>
+      /* Import Google font - Poppins */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        padding: 0 30px;
+      }
+      #src-btn,
+      .screenshot {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #src-btn {
+        bottom: 15px;
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 15px 25px;
+        border-radius: 30px;
+        background: #4a98f7;
+      }
+      .src-preview {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        background: rgba(0, 0, 0, 0.65);
+        transition: all 0.15s ease;
+      }
+      .src-preview.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .src-preview .screenshot {
+        width: 70%;
+        top: 50%;
+        opacity: 0;
+        pointer-events: none;
+        aspect-ratio: 16 / 9;
+        transition: transform 0.15s ease;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      .src-preview.show .screenshot {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .screenshot #close-btn {
+        position: absolute;
+        right: -25px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
+      .screenshot img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Capture Screenshots with JavaScript</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+      deserunt exercitationem quidem, voluptate amet eius. Consequuntur
+      obcaecati ab provident, a eveniet facilis optio dolore, ut nesciunt eaque
+      quo tenetur similique atque voluptatibus nihil nobis facere! Recusandae
+      totam voluptates alias eveniet perspiciatis molestias voluptatibus
+      mollitia quaerat, doloremque dolor exercitationem, nulla delectus vero vel
+      nihil commodi error temporibus ullam dolorem repellendus adipisci?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem blanditiis
+      aut laboriosam perspiciatis assumenda, obcaecati esse iste! Consequuntur
+      quam cupiditate rerum quidem neque aperiam, totam iure fugit ipsam
+      inventore debitis quod laudantium perspiciatis ea quibusdam corporis autem
+      ullam voluptatem. Iure nam repellendus magni assumenda, ipsa soluta
+      facere, accusamus, possimus ab quia atque provident hic repellat. Ipsa in
+      possimus aperiam ut, eum doloribus accusamus, excepturi, vel earum cumque
+      atque nulla a?
+    </p>
+    <h2>Dummy heading two</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+      consectetur maxime eum tenetur laborum delectus necessitatibus expedita
+      dolores perferendis saepe praesentium nostrum voluptatibus porro
+      exercitationem ipsa maiores, veniam deleniti qui dolorum, non commodi
+      nihil magni, tempora dicta! Facilis ducimus nam consectetur exercitationem
+      molestias labore aspernatur repellendus itaque aliquid, esse totam ipsum.
+      Consequuntur culpa magnam obcaecati odit reprehenderit, voluptatem iste
+      tempore.
+    </p>
+
+    <button id="src-btn">Capture Screenshot</button>
+    <div class="src-preview">
+      <div class="screenshot">
+        <i id="close-btn" class="fa-solid fa-xmark"></i>
+        <img src="" alt="screenshot" />
+      </div>
+    </div>
+    <script>
+      const screenshotBtn = document.querySelector("#src-btn"),
+        screenshotPreview = document.querySelector(".src-preview"),
+        closeBtn = screenshotPreview.querySelector("#close-btn");
+      const captureScreen = async () => {
+        try {
+          // asking permission to use a media input to record current tab
+          const stream = await navigator.mediaDevices.getDisplayMedia({
+            preferCurrentTab: true,
+          });
+          const video = document.createElement("video");
+
+          video.addEventListener("loadedmetadata", () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            // passing video width & height as canvas width & height
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            video.play(); // playing the video so the drawn image won't be black or blank
+            // drawing an image of the captured video stream
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            stream.getVideoTracks()[0].stop(); // terminating first video track of the stream
+
+            // passing canvas data url as screenshot preview src
+            screenshotPreview.querySelector("img").src = canvas.toDataURL();
+            screenshotPreview.classList.add("show");
+          });
+          video.srcObject = stream; // passing capture stream data as video source object
+        } catch (error) {
+          // if image couldn't capture by any reason, then alert the msg
+          alert("Failed to capture screenshot!");
+        }
+      };
+      closeBtn.addEventListener("click", () =>
+        screenshotPreview.classList.toggle("show")
+      );
+      screenshotBtn.addEventListener("click", captureScreen);
+    </script>
+  </body>
+</html>
