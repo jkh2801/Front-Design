@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex145</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+        overflow: hidden;
+      }
+      h2 {
+        color: #fff;
+        font-size: 14vw;
+        z-index: 100000;
+        user-select: none;
+        pointer-events: none;
+        text-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+      }
+      span {
+        position: absolute;
+        pointer-events: none;
+        width: 300px;
+        height: 300px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: animate 4s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        5%,
+        95% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Happy Holi</h2>
+    <script>
+      const images = [];
+      let body = document.querySelector("body");
+      body.onclick = function (e) {
+        let x = e.pageX - e.target.offsetLeft;
+        let y = e.pageY - e.target.offsetTop;
+
+        let splash = document.createElement("span");
+        splash.style.left = x + "px";
+        splash.style.top = y + "px";
+
+        let bg = images[Math.floor(Math.random() * images.length)];
+        splash.style.backgroundImage = bg;
+
+        this.appendChild(splash);
+        setTimeout(() => {
+          splash.remove();
+        }, 4000);
+      };
+    </script>
+  </body>
+</html>
