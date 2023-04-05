@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex44</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #0e1538;
+        gap: 200px;
+      }
+      .box {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background: #0e1538;
+      }
+      .box::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        background: linear-gradient(45deg, #00ccff, #0e1538, #0e1538, #d400d4);
+        box-shadow: 0 0 0 20px #080c23;
+        z-index: -1;
+      }
+      .box::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        background: linear-gradient(45deg, #00ccff, #0e1538, #0e1538, #d400d4);
+        z-index: -1;
+        filter: blur(20px);
+      }
+      .box:nth-child(2)::before,
+      .box:nth-child(2)::after {
+        background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ff0a);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box"></div>
+  </body>
+</html>
