@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex147</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #161623;
+        overflow: hidden;
+      }
+      .circle {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(#03a9f4, #23ff2c);
+        border-radius: 50%;
+        animation: animate 20s ease-in-out infinite;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          transform: translateX(-700px);
+        }
+        50% {
+          transform: translateX(700px);
+        }
+      }
+      .glass {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .glass .layer {
+        position: relative;
+        width: 30px;
+        height: 100vh;
+        margin: 1px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(30px);
+      }
+      .glass .layer:nth-child(4n + 1) {
+        backdrop-filter: blur(10px);
+      }
+      .glass .layer:nth-child(4n + 2) {
+        backdrop-filter: blur(50px);
+      }
+      .glass .layer:nth-child(4n + 3) {
+        backdrop-filter: blur(20px);
+      }
+      .glass .layer:nth-child(4n + 4) {
+        backdrop-filter: blur(40px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle"></div>
+    <div class="glass">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+    </div>
+  </body>
+</html>
