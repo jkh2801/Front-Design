@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ex34</title>
+    <style>
+      .button {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+      }
+      i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        z-index: 10;
+        color: #fff;
+      }
+      .blurred {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        filter: url(#goo);
+      }
+      .blurred::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #222;
+        border-radius: 100%;
+        transition: 1.5s cubic-bezier(0, 2, 0.61, -0.05);
+      }
+      .blurred::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #222;
+        border-radius: 100%;
+        transition: 1.7s cubic-bezier(0, 2, 0.61, -0.05);
+      }
+      .blurred > span:nth-of-type(1),
+      .blurred > span:nth-of-type(2) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        background: #222;
+        border-radius: 100%;
+        transition: 1.4s cubic-bezier(0, 2, 0.61, -0.05);
+      }
+      .button:hover .blurred::before {
+        width: 40px;
+        height: 40px;
+        top: 50%;
+        left: 50%;
+      }
+      .button:hover .blurred::after {
+        width: 15px;
+        height: 15px;
+        top: 30%;
+        left: 45%;
+      }
+      .button:hover .blurred > span:nth-of-type(1) {
+        width: 30px;
+        height: 30px;
+        top: -10px;
+        left: -20px;
+      }
+      .button:hover .blurred > span:nth-of-type(2) {
+        width: 25px;
+        height: 25px;
+        top: 40px;
+        left: -20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button">
+      <i class="fab fa-facebook-f">
+        <div class="blurred">
+          <span></span>
+          <span></span>
+        </div>
+      </i>
+    </div>
+    <svg>
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="'name" />
+          <feColorMatrix
+            in="name"
+            mode="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 30 -15"
+            result="aab"
+          />
+          <feBlend in="SourceGraphic" in2="aab" />
+        </filter>
+      </defs>
+    </svg>
+  </body>
+</html>
