@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ex36</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .button {
+        position: relative;
+        width: 160px;
+        height: 60px;
+        border: 1px solid #222;
+      }
+      .button p {
+        line-height: 60px;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 900;
+        position: relative;
+        transition: 0.8s;
+        z-index: 10;
+      }
+      .button span {
+        color: transparent;
+        position: relative;
+      }
+      .button span::before {
+        content: "H";
+        position: absolute;
+        width: auto;
+        height: 60px;
+        color: #222;
+        transition: 0.2s ease-out;
+      }
+      .button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        transition: 0.8s;
+        z-index: 1;
+      }
+      .button:hover::after {
+        background: rgba(0, 0, 0, 1);
+        transform: rotate(10deg);
+      }
+      .button:hover::after {
+        background: rgba(0, 0, 0, 1);
+        transform: rotate(10deg);
+      }
+      .button:hover p {
+        color: #fff;
+      }
+      .button:hover span::before {
+        color: #fff;
+        transform: translate(-65%, -10%) rotate(360deg);
+        font-size: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button">
+      <p><span>H</span>ome</p>
+    </div>
+  </body>
+</html>
