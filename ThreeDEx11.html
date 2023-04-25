@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Ex11</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Oswald", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #e3e3e3;
+      }
+      ul {
+        position: relative;
+        transform: skewY(-25deg);
+      }
+      ul li {
+        position: absolute;
+        top: 0;
+        transform: translate(calc(var(--i) * 40px), calc(var(--i) * 40px));
+        list-style: none;
+        width: 100px;
+        padding: 15px;
+        background: #383838;
+        transition: 0.5s;
+      }
+      ul li:hover {
+        top: -54px;
+        background: var(--clr);
+      }
+      ul li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -40px;
+        width: 40px;
+        height: 100%;
+        background: #2f2f30;
+        transform-origin: right;
+        transform: skewY(45deg);
+        transition: 0.5s;
+      }
+      ul li:hover::before {
+        background: var(--clr);
+        filter: brightness(0.8);
+      }
+      ul li::after {
+        content: attr(data-text);
+        position: absolute;
+        top: -39px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: #3e3e3e;
+        transform-origin: bottom;
+        transform: skewX(45deg);
+        box-shadow: -120px 120px 20px rgba(0, 0, 0, 0.25);
+        transition: 0.5s;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        left: 0.05em;
+        padding-left: 15px;
+        box-sizing: border-box;
+        color: var(--clr);
+      }
+      ul li:hover::after {
+        filter: brightness(0.9);
+        background: var(--clr);
+        color: #fff;
+        box-shadow: -170px 170px 20px rgba(0, 0, 0, 0.25);
+      }
+      ul li a {
+        text-decoration: none;
+        color: transparent;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+      }
+      ul li:hover a {
+        color: #fff;
+      }
+      ul li span {
+        position: absolute;
+        top: 0;
+        left: -40px;
+        width: 40px;
+        text-align: center;
+        height: 100%;
+        color: var(--clr);
+        transform-origin: right;
+        transform: skewY(45deg);
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.25em;
+      }
+      ul li:hover a span {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li style="--i: -3; --clr: #1877f2" data-text="Facebook">
+        <a href="#">
+          <span><i class="fa-brands fa-fackebook-f"></i></span>Facebook
+        </a>
+      </li>
+      <li style="--i: -2; --clr: #25d366" data-text="Whatsapp">
+        <a href="#">
+          <span><i class="fa-brands fa-whatsapp"></i></span>Whatsapp
+        </a>
+      </li>
+      <li style="--i: -1; --clr: #1da1f2" data-text="Twitter">
+        <a href="#">
+          <span><i class="fa-brands fa-twitter"></i></span>Twitter
+        </a>
+      </li>
+      <li style="--i: 0; --clr: #c32aa3" data-text="Instagram">
+        <a href="#">
+          <span><i class="fa-brands fa-instagram"></i></span>Instagram
+        </a>
+      </li>
+      <li style="--i: 1; --clr: #ff0000" data-text="Youtube">
+        <a href="#">
+          <span><i class="fa-brands fa-youtube"></i></span>Youtube
+        </a>
+      </li>
+      <li style="--i: 2; --clr: #0a66c2" data-text="Linkedin">
+        <a href="#">
+          <span><i class="fa-brands fa-linkedin-in"></i></span>Linkedin
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
