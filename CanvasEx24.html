@@ -38,11 +38,13 @@
       ];
       const maxSize = 40;
       const minSize = 0;
+      const mouseRadius = 60;
+
       let mouse = {
         x: null,
         y: null,
       };
-      window.addEventListener("mousemove", function (mouse) {
+      window.addEventListener("mousemove", function (event) {
         mouse.x = event.x;
         mouse.y = event.y;
       });
@@ -75,7 +77,56 @@
           this.directionY = -this.directionY;
         }
         this.x += this.directionX;
+        this.y += this.directionY;
+
+        if (
+          mouse.x - this.x < mouseRadius &&
+          mouse.x - this.x > -mouseRadius &&
+          mouse.y - this.y < mouseRadius &&
+          mouse.y - this.y > -mouseRadius
+        ) {
+          if (this.size < maxSize) this.size += 3;
+        } else if (this.size > minSize) this.size -= 0.1;
+        if (this.size < 0) this.size = 0;
+        this.draw();
       };
+      function init() {
+        particleArray = [];
+        for (let i = 0; i < 1000; i++) {
+          let size = 0;
+          let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+          let y =
+            Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+          let directionX = Math.random() * 0.2 - 0.1;
+          let directionY = Math.random() * 0.2 - 0.1;
+          let color = colors[~~(Math.random() * colors.length)];
+
+          particleArray.push(
+            new Particle(x, y, directionX, directionY, size, color)
+          );
+        }
+      }
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+        for (let i = 0; i < particleArray.length; i++) {
+          particleArray[i].update();
+        }
+      }
+      init();
+      animate();
+
+      window.addEventListener("resize", function () {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        init();
+      });
+
+      setInterval(() => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+      }, 1000);
     </script>
   </body>
 </html>
