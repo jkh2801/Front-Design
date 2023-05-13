@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Ex27</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #canvas1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas1"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas1");
+      const ctx = canvas.getContext("2d");
+      let data;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let particlesArray = [];
+
+      const png = new Image();
+      png.src =
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOqSURBVHgBrVjNVdtAEJ5ZhSDn5FQQUQHmkjzDIfYLcA2qIKYCoIKICoAKIBVArgmOzIGfnOxUENGBLwkCop3MWLa1EjKW/Py9B6xWs6Nv53cXhBlR7frVuzt9jAhb/Hhi22qvv9LswwxAmAELl37NUvqUh44xHQCoZlhvBlASCkpi8cbfUaj9DAGBg6i79nW7BSVRikTlxj9A0ofsgqoxHYwGRIP5Y/va/wwlUIgEK3UqN+ddIr2beqH1flj/sMSD/fQK7VVufnRlXRH9U2OCFTX446fm7nnHfTa9G9Y3Oolcu8XzB1krWVbk/nm72XvuG89awv4pZtW+qRiReohqxSQgYIucyDwY7mE4UWR1p7kn1xKZ9EuEiY4WK5b3XCpWfb96vxh5hLiTeTUxjZ+QyEs/Mb9iv9+tbhxCQdjX3z02dNYCQV4ap0hI+nGweVm/Rlq5j2vNlF/FWmFITJYaMGGXC5ffeENWakOsu8+b2hP3PSEh6fck+gE7to1uVrkQuL+PfCKsTdtlnCF0PCRrQHksO8gqFCHE6DSjME6/tQ0PMphAYEyELbKS5/c89yBij/W4CilNYOB/RW4eAUEY6oMJBARO7KKcdfWBvm3Rn3yLamIlxVFcS5jF6ff33fpZnqJhSW6Z8rzz1+K2RIoak0p3fhqTk6oTvMOjKQ3INGdAZA3ixQ7RTSuGiXVhqD9VYQv3juHunPFCRXsjwv2mxIDeNsQdjoEGFERhEpxaH0dj9mUv67JhBQ2SBeoTzJsEaHISQvg1TwQJxvOkqQbzJmEGMKT9b8jAuKAx0SrMm0RZZKru3EgE4w8QTKwTo4HWFMD8SeDFaMSuWZ4g895QfAvzJ0EdY9zIpuCwR4znmOgZzJuEHaozs+QCWJmC9M/JqO7AvElIQeJgO0pmxBrJiSmuE/SFXRLwYXivzNH/BZQAW+MwtLUUISee0R4TgVFLDuvrLZgBpVI0Ls+qmXaL9hav2gfS4mFGlK4TYmZNUYoIu2mXW/xMF59SJCT6+aclfx/XNntCBDInaxhcfNq/hUzRO4eAT1ZtMp5PmNdF8qgd/vWGxRrS95N5tSQWiT8Uefw+t1nJyYnXccuHX7wmMPRKPWkNH4IsiULQRO7DatJFh26QTHGgPAKVDrIiwI5JQCAnJrkOsjKX9RUuUgI+FvTx1dX5lkYlFxWHJ6qjxhNf9bAvZwc+wNyihs7LitUp8j8IyZSHu6hBCvgKqZa511Q1uzNPtya1/x/bbe+BBlcHvAAAAABJRU5ErkJggg==";
+
+      window.addEventListener("load", (e) => {
+        ctx.drawImage(png, 0, 0);
+        drawImage();
+      });
+
+      let mouse = {
+        x: null,
+        y: null,
+        radius: 100,
+      };
+      window.addEventListener("mousemove", function (e) {
+        mouse.x = e.x + canvas.clientLeft / 2;
+        mouse.y = e.y + canvas.clientTop / 2;
+      });
+
+      function drawImage() {
+        let imgWidth = png.width;
+        let imgHeight = png.height;
+        data = ctx.getImageData(0, 0, imgWidth, imgHeight);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        class Particle {
+          constructor(x, y, color, size) {
+            this.x = x + canvas.width / 2 - png.width * 2;
+            this.y = y + canvas.height / 2 - png.height * 2;
+            this.color = color;
+            this.size = 2;
+            this.baseX = x + canvas.width / 2 - png.width * 2;
+            this.baseY = y + canvas.height / 2 - png.height * 2;
+            this.density = Math.random() * 10 + 2;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+          }
+          update() {
+            ctx.fillStyle = this.color;
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = (dx ** 2 + dy ** 2) ** 0.5;
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
+
+            const maxDistance = 100;
+            let force = (maxDistance - distance) / maxDistance;
+            if (force < 0) force = 0;
+
+            let directionX = forceDirectionX * force * this.density * 0.6;
+            let directionY = forceDirectionY * force * this.density * 0.6;
+
+            if (distance < mouse.radius + this.size) {
+              this.x -= directionX;
+              this.y -= directionY;
+            } else {
+              if (this.x !== this.baseX) {
+                let dx = this.x - this.baseX;
+                this.x -= dx / 20;
+              }
+              if (this.y !== this.baseY) {
+                let dy = this.y - this.baseY;
+                this.y -= dy / 20;
+              }
+            }
+            this.draw();
+          }
+        }
+
+        function init() {
+          particlesArray = [];
+          for (let y = 0, y2 = data.height; y < y2; y++) {
+            for (let x = 0, x2 = data.width; x < x2; x++) {
+              if (data.data[y * 4 * data.width + x * 4 + 3] > 128) {
+                let positionX = x;
+                let positionY = y;
+                let color =
+                  "rgba(" +
+                  data.data[y * 4 * data.width + x * 4] +
+                  ", " +
+                  data.data[y * 4 * data.width + x * 4 + 1] +
+                  ", " +
+                  data.data[y * 4 * data.width + x * 4 + 2] +
+                  ")";
+                particlesArray.push(
+                  new Particle(positionX * 4, positionY * 4, color)
+                );
+              }
+            }
+          }
+        }
+
+        function animate() {
+          requestAnimationFrame(animate);
+          ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+          ctx.fillRect(0, 0, innerWidth, innerHeight);
+          for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+          }
+        }
+
+        init();
+        animate();
+      }
+
+      window.addEventListener("resize", () => {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        init();
+      });
+    </script>
+  </body>
+</html>
