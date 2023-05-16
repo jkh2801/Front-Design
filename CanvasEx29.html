@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Ex29</title>
+    <style>
+      #canvas1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 400px;
+        border: 2px solid #222;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas1"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas1");
+      const ctx = canvas.getContext("2d");
+      canvas.width = 600;
+      canvas.height = 400;
+
+      let spacePressed = false;
+      let angle = 0;
+      let hue = 0;
+      let frame = 0;
+      let score = 0;
+      let gamespeed = 2;
+
+      class Bird {
+        constructor() {
+          this.x = 150;
+          this.y = 200;
+          this.vy = 0;
+          this.width = 20;
+          this.height = 20;
+          this.weight = 1;
+        }
+        update() {
+          let curve = Math.sin(angle) * 20;
+          if (this.y > canvas.height - this.height * 3 + curve) {
+            this.y = canvas.height - this.height * 3 + curve;
+            this.vy = 0;
+          } else {
+            this.vy += this.weight;
+            this.vy *= 0.9;
+            this.y += this.vy;
+          }
+          if (this.y < 0 + this.height) {
+            this.y = 0 + this.height;
+            this.vy = 0;
+          }
+          if (spacePressed && this.y > this.height * 3) this.flap();
+        }
+        draw() {
+          ctx.fillStyle = "red";
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+        flap() {
+          this.vy -= 2;
+        }
+      }
+
+      const bird = new Bird();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.fillRect(10, canvas.height - 90, 50, 50);
+        bird.update();
+        bird.draw();
+        requestAnimationFrame(animate);
+        angle += 0.12;
+      }
+      animate();
+
+      window.addEventListener("keydouwn", function (e) {
+        if (e.code === "Space") spacePressed = true;
+      });
+
+      window.addEventListener("keyup", function (e) {
+        if (e.code === "Space") spacePressed = false;
+      });
+    </script>
+  </body>
+</html>
