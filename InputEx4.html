@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Ex4</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1d2b3a;
+      }
+      .inputBox {
+        position: relative;
+        width: 300px;
+      }
+      .inputBox input {
+        padding: 15px 20px;
+        border: none;
+        outline: none;
+        width: 100%;
+        background: transparent;
+        border-radius: 5px;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 1em;
+      }
+      .inputBox span {
+        position: absolute;
+        left: 0;
+        padding: 15px 20px;
+        pointer-events: none;
+        font-size: 1em;
+        transition: 0.5s;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 0.1em;
+      }
+      .inputBox input:focus ~ span,
+      .inputBox input:valid ~ span {
+        color: #1d2b3a;
+        font-size: 0.75em;
+        transform: translate(20px, -7px);
+        padding: 0 5px;
+        background: #00dfc4;
+        border-radius: 2px;
+      }
+      #toggle {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        background: #f00;
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      #toggle.hide {
+        background: #00f;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="inputBox">
+      <input type="password" required id="password" />
+      <span>Password</span>
+      <div id="toggle" onclick="showHide()"></div>
+    </div>
+    <script>
+      let password = document.getElementById("password");
+      let togglePassword = document.getElementById("toggle");
+
+      function showHide() {
+        if (password.type === "password") {
+          password.setAttribute("type", "text");
+          togglePassword.classList.add("hide");
+        } else {
+          password.setAttribute("type", "password");
+        }
+      }
+    </script>
+  </body>
+</html>
