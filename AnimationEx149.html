@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnimationEx149</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #333;
+      }
+      .box {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #ff6464;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.25);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: 0.1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">Magnetic</div>
+    <script>
+      let box = document.querySelector(".box");
+      box.addEventListener("mousemove", (e) => {
+        let x = e.offsetX;
+        let y = e.offsetY;
+        let boxWidth = box.clientWidth;
+        let boxHeight = box.clientHeight;
+        let moveX = x - boxWidth / 2;
+        let moveY = y - boxHeight / 2;
+        box.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+      });
+      box.addEventListener("mouseout", (e) => {
+        box.style.transform = "";
+      });
+    </script>
+  </body>
+</html>
