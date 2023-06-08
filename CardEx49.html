@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex49</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      :root {
+        --clr: #083d41;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: var(--clr);
+      }
+      .card {
+        position: relative;
+        width: 320px;
+        height: 430px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card .box {
+        position: relative;
+        width: 110%;
+        height: 200px;
+        border-radius: 15px;
+        background: #fff;
+      }
+      .card .box:nth-child(2) {
+        background: #fff;
+        height: 220px;
+        width: 100%;
+      }
+      .card .circle {
+        position: absolute;
+        top: 50%;
+        left: -70px;
+        transform: translateY(-50%);
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 10px solid var(--clr);
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="circle"></div>
+    </div>
+  </body>
+</html>
