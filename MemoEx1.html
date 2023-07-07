@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memo Ex1</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      :root {
+        --size: 300px;
+      }
+      body {
+        background: #2f363e;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding: 50px;
+      }
+      .container .notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      .container .notes .note {
+        position: relative;
+        width: var(--size);
+        height: var(--size);
+        background: #f7e98d;
+        padding: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      }
+      .container .notes .note::before {
+        content: "Double Click to Remove This Note";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 3px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.85em;
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      #create {
+        position: relative;
+        width: var(--size);
+        height: var(--size);
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6em;
+        cursor: pointer;
+      }
+      #create i {
+        position: absolute;
+        color: #fff;
+      }
+      .createBox {
+        position: relative;
+        width: var(--size);
+        height: var(--size);
+        z-index: 1000;
+        display: none;
+      }
+      .createBox textarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--size);
+        height: var(--size);
+        padding: 20px;
+        outline: none;
+        font-size: 0.2em;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="notes">
+        <div id="create">
+          <i class="fa-solid fa-plus"></i>
+          <div class="createBox">
+            <div class="innerCreateBox">
+              <textarea
+                placeholder="White here..."
+                id="userInput"
+                maxlength="160"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div id="note"></div>
+      </div>
+    </div>
+    <script>
+      let createBox = document.getElementsByClassName("createBox")[0];
+      let notes = document.getElementsByClassName("notes")[0];
+      let input = document.getElementById("userInput");
+      let i = 0;
+
+      createBox.addEventListener("keydown", content);
+
+      document.getElementById("create").addEventListener("click", function () {
+        createBox.style.display = "block";
+      });
+
+      function content(e) {
+        if (e.keyCode == "13") {
+          divStyle(input.value);
+          input.value = "";
+          createBox.style.display = "none";
+        }
+      }
+      function divStyle(text) {
+        let div = document.createElement("div");
+        div.classList = "note";
+        div.innerHTML = '<div class="details"><h3>' + text + "</h3></div>";
+        div.addEventListener("dblclick", function () {
+          div.remove();
+        });
+        notes.appendChild(div);
+      }
+    </script>
+  </body>
+</html>
