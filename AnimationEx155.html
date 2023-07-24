@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex155</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        background: #111;
+        overflow: hidden;
+      }
+      .lines {
+        position: absolute;
+        height: 100vh;
+        background: #ea0914;
+        z-index: 1000;
+        mix-blend-mode: color-dodge;
+        width: 50px;
+        animation: animate 2s linear infinite;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function stripes() {
+        let sizeW = Math.random() * 3;
+        let e = document.createElement("div");
+        e.classList.add("lines");
+        document.body.appendChild(e);
+
+        e.style.left = Math.random() * innerWidth + "px";
+        e.style.width = 1 + sizeW + "px";
+        e.style.background =
+          "hsl(" + ~~(Math.random() * 60) + "deg, 100% , 50%)";
+
+        setTimeout(function () {
+          document.body.removeChild(e);
+        }, 2000);
+      }
+
+      setInterval(function () {
+        stripes();
+      }, 20);
+    </script>
+  </body>
+</html>
