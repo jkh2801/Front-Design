@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex156</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+      }
+      .box {
+        position: relative;
+        width: 300px;
+        height: 300px;
+      }
+      .box span {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: url("image/bg32.jpg");
+        background-repeat: no-repeat;
+        animation: animate 10s linear infinite;
+      }
+
+      @keyframes animate {
+        0%,
+        10% {
+          scale: 1;
+          rotate: 0deg;
+          translate: 0 0;
+          transform-origin: center;
+        }
+        20%,
+        30% {
+          scale: 0.5;
+          rotate: 0deg;
+          translate: 0 0;
+          transform-origin: center;
+        }
+        40% {
+          scale: 0.5;
+          rotate: 360deg;
+          translate: 150px 0;
+          transform-origin: 100px;
+        }
+        70% {
+          scale: 0.5;
+          rotate: 720deg;
+          translate: -150px 0;
+          transform-origin: -100px;
+        }
+        90% {
+          scale: 2.5;
+          rotate: 0deg;
+          translate: 0 0;
+          transform-origin: center;
+        }
+        100% {
+          scale: 1;
+          rotate: 0deg;
+          translate: 0 0;
+          transform-origin: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div id="pixel"></div>
+    </div>
+    <script>
+      let w = 300 / 5;
+      let h = 600 / 5;
+
+      function pixel() {
+        for (let i = 0; i < h; i++) {
+          for (let j = 0; j < w; j++) {
+            let span = document.createElement("span");
+            let random = Math.random() * 1;
+            let randomFixed = random.toFixed(2);
+
+            document.getElementById("pixel").appendChild(span);
+            span.style.left = j * 10 + "px";
+            span.style.top = i * 10 + "px";
+            span.style.backgroundPosition =
+              -j * 10 + "px " + -i * 10 + "px, center";
+            span.style.animationDelay = randomFixed + "s";
+          }
+        }
+      }
+      pixel();
+    </script>
+  </body>
+</html>
