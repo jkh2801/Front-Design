@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading Ex29</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 40px;
+        min-height: 100vh;
+        background: #191919;
+      }
+      @property --a {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+      .loader1 {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background: repeating-conic-gradient(
+          from var(--a),
+          var(--clr) 0%,
+          var(--clr) 5%,
+          transparent 5%,
+          transparent 40%,
+          var(--clr) 100%
+        );
+        border-radius: 50%;
+        animation: animate 2s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          --a: 0deg;
+        }
+        100% {
+          --a: 360deg;
+        }
+      }
+      .loader1::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: #191919;
+        border-radius: 50%;
+      }
+      .loader1 span {
+        position: absolute;
+        inset: 0;
+        animation: rotate 2s linear infinite;
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .loader1 span::before {
+        content: "";
+        position: absolute;
+        left: 94px;
+        width: 10px;
+        height: 10px;
+        background: var(--clr);
+        border-radius: 50%;
+        box-shadow: 0 0 5px var(--clr), 0 0 20px var(--clr), 0 0 40px var(--clr);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader1" style="--clr: #ff0">
+      <span></span>
+    </div>
+  </body>
+</html>
