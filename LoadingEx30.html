@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading Ex30</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 40px;
+        min-height: 100vh;
+        background: #191919;
+      }
+      @property --a {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+      .loader2 {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background: repeating-conic-gradient(
+          from var(--a),
+          var(--clr1) 0%,
+          var(--clr1) 5%,
+          transparent 5%,
+          transparent 60%,
+          var(--clr1) 100%
+        );
+        border-radius: 50%;
+        animation: animate 4s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          --a: 0deg;
+        }
+        100% {
+          --a: 360deg;
+        }
+      }
+      .loader2::before {
+        content: "";
+        position: absolute;
+        inset: 0px;
+        background: repeating-conic-gradient(
+          from var(--a),
+          var(--clr2) 0%,
+          var(--clr2) 5%,
+          transparent 5%,
+          transparent 60%,
+          var(--clr2) 100%
+        );
+        border-radius: 50%;
+        animation: animate 4s linear infinite;
+        animation-delay: -2s;
+      }
+      .loader2 span {
+        position: absolute;
+        display: block;
+        inset: 0;
+        z-index: 1000;
+        animation: rotate 4s linear infinite;
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .loader2 span::before {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 92px;
+        width: 10px;
+        height: 10px;
+        background: var(--clr1);
+        border-radius: 50%;
+        box-shadow: 0 0 5px var(--clr1), 0 0 20px var(--clr1),
+          0 0 40px var(--clr1), 0 0 60px var(--clr1);
+      }
+      .loader2 span::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        right: 92px;
+        width: 10px;
+        height: 10px;
+        background: var(--clr2);
+        border-radius: 50%;
+        box-shadow: 0 0 5px var(--clr2), 0 0 20px var(--clr2),
+          0 0 40px var(--clr2), 0 0 60px var(--clr2);
+      }
+      .loader2::after {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        background: #191919;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader2" style="--clr1: #45ffd8; --clr2: #bfff45">
+      <span></span>
+    </div>
+  </body>
+</html>
