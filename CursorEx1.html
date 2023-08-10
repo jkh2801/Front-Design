@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Ex1</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        background: #222;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px),
+          linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 40px 40px;
+        cursor: none;
+      }
+      #cursor {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        border-top: 5px solid #0f0;
+        border-left: 5px solid #0f0;
+        transform-origin: top;
+        transform: translate(-1px, 5px) rotate(15deg) scale(0);
+        transition: transform 0.1s;
+        pointer-events: none;
+        animation: animate 5s linear infinite;
+      }
+      #cursor::before {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 40px;
+        background: #0f0;
+        transform-origin: top;
+        transform: rotate(315deg);
+      }
+      body:hover #cursor {
+        transform: translate(-1px, 5px) rotate(15deg) scale(1);
+      }
+      @keyframes animate {
+        0% {
+          filter: drop-shadow(0 0 5px #0f0) drop-shadow(0 0 15px #0f0)
+            drop-shadow(0 0 30px #0f0) hue-rotate(0deg);
+        }
+        100% {
+          filter: drop-shadow(0 0 5px #0f0) drop-shadow(0 0 15px #0f0)
+            drop-shadow(0 0 30px #0f0) hue-rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cursor"></div>
+    <script>
+      let cursor = document.querySelector("#cursor");
+      let body = document.querySelector("body");
+      document.addEventListener("mousemove", (e) => {
+        body.style.backgroundPositionX = e.pageX / -4 + "px";
+        body.style.backgroundPositionY = e.pageY / -4 + "px";
+        cursor.style.top = e.pageY + "px";
+        cursor.style.left = e.pageX + "px";
+      });
+    </script>
+  </body>
+</html>
