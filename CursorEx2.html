@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Ex2</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        overflow: hidden;
+        background: #222;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px),
+          linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 40px 40px;
+        cursor: none;
+      }
+      #cursor {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        border-top: 5px solid #0f0;
+        border-left: 5px solid #0f0;
+        transform-origin: top;
+        transform: translate(-1px, 5px) rotate(15deg);
+        transition: trasnform 0.1s;
+        pointer-events: none;
+        filter: drop-shadow(0 0 5px #0f0) drop-shadow(0 0 15px #0f0)
+          drop-shadow(0 0 35px #0f0) hue-rotate(60deg);
+      }
+      #cursor::before {
+        content: "";
+        position: absolute;
+        left: -2.5px;
+        width: 5px;
+        height: 40px;
+        background: #0f0;
+        transform-origin: top;
+        transform: rotate(315deg);
+      }
+      body:hover #cursor {
+        transform: translate(-1px, 5px) rotate(15deg) scale(1);
+      }
+      .element {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        color: #0f0;
+        pointer-events: none;
+        width: 10px;
+        height: 10px;
+        transition: 1s;
+        font-size: 2em;
+        filter: drop-shadow(0 0 5px #0f0) drop-shadow(0 0 25px #0f0)
+          hue-rotate(60deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cursor"></div>
+    <script>
+      let cursor = document.querySelector("#cursor");
+      let body = document.querySelector("body");
+      document.onmousemove = function (e) {
+        cursor.style.top = e.pageY + "px";
+        cursor.style.left = e.pageX + "px";
+
+        body.style.backgroundPositionX = e.pageX / -4 + "px";
+        body.style.backgroundPositionY = e.pageY / -4 + "px";
+
+        let element = document.createElement("div");
+        element.classList = "element";
+        body.prepend(element);
+
+        element.style.left = cursor.getBoundingClientRect().x + "px";
+        element.style.top = cursor.getBoundingClientRect().y - 20 + "px";
+
+        setTimeout(function () {
+          let text = document.querySelectorAll(".element")[0];
+          let directionX = Math.random() < 0.5 ? -1 : 1;
+          let directionY = Math.random() < 0.5 ? -1 : 1;
+
+          text.style.left =
+            parseInt(text.style.left) -
+            directionX * (Math.random() * 200) +
+            "px";
+          text.style.top =
+            parseInt(text.style.top) -
+            directionY * (Math.random() * 200) +
+            "px";
+
+          text.style.opacity = 0;
+          text.style.trasnform = "scale(0.25)";
+          text.innerHTML = randomText();
+
+          setTimeout(() => element.remove(), 1000);
+        }, 10);
+      };
+      function randomText() {
+        var text = "abcdefghijklmnopqrstuvwxyz0123456789";
+        letter = text[~~(Math.random() * text.length)];
+        return letter;
+      }
+    </script>
+  </body>
+</html>
