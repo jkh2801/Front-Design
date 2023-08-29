@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disable Ex1</title>
+  </head>
+  <body>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+      soluta, quam cupiditate quod.
+    </p>
+    <script>
+      const disabledKeys = ["c", "C", "x", "J", "u", "I"]; // keys that will be disabled
+      const showAlert = (e) => {
+        e.preventDefault(); // preventing its default behaviour
+        return alert("Sorry, you can't view or copy source codes this way!");
+      };
+      document.addEventListener("contextmenu", (e) => {
+        showAlert(e); // calling showAlert() function on mouse right click
+      });
+      document.addEventListener("keydown", (e) => {
+        // calling showAlert() function, if the pressed key matched to disabled keys
+        if ((e.ctrlKey && disabledKeys.includes(e.key)) || e.key === "F12") {
+          showAlert(e);
+        }
+      });
+    </script>
+  </body>
+</html>
