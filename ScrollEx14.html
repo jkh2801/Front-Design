@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Ex14</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: #111;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      section h2 {
+        position: relative;
+        color: #fff;
+        font-size: 8vw;
+        font-weight: 500;
+      }
+      .container {
+        position: relative;
+        top: -200px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 700px;
+        gap: 30px;
+      }
+      .container .box {
+        position: relative;
+        top: 50vh;
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+        background: #fff;
+        border-radius: 10px;
+      }
+      .container .box:nth-child(3n + 1) {
+        transform: translate(-400px, 0) scale(0);
+      }
+      .container .box:nth-child(3n + 2) {
+        transform: translate(0, 400px) scale(0);
+      }
+      .container .box:nth-child(3n + 3) {
+        transform: translate(400px, 0) scale(0);
+      }
+      .container .box.active {
+        transform: translate(0, 0) scale(1);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>Scroll To Reveal</h2>
+    </section>
+    <div class="container"></div>
+    <script>
+      for (let i = 0; i <= 60; i++) {
+        let box = document.createElement("div");
+        box.classList.add("box");
+        document.querySelector(".container").appendChild(box);
+      }
+      let randomColorBlock = document.querySelectorAll(".box");
+
+      function addColor() {
+        randomColorBlock.forEach(
+          (e) => (e.style.background = RandomHexColorCode())
+        );
+      }
+
+      function RandomHexColorCode() {
+        var chars = "0123456789abdef";
+        var colorLength = 6;
+        var color = "";
+        for (let i = 0; i < colorLength; i++) {
+          var randomColor = Math.floor(Math.random() * chars.length);
+          color += chars.substring(randomColor, randomColor + 1);
+        }
+        return "#" + color;
+      }
+      addColor();
+      let boxes = document.querySelectorAll(".box");
+      function scrollTrigger() {
+        boxes.forEach((boxxx) => {
+          if (boxxx.offsetTop < window.scrollY) boxxx.classList.add("active");
+          else boxx.classList.remove("active");
+        });
+      }
+      window.addEventListener("scroll", scrollTrigger);
+    </script>
+  </body>
+</html>
