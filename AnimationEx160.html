@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex160</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --clr: #0f0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        animation: animateColor 2s linear infinite;
+      }
+      @keyframes animateColor {
+        0% {
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+      .container .cloud {
+        position: relative;
+        width: 300px;
+        height: 100px;
+        z-index: 100;
+        filter: drop-shadow(0 0 35px var(--clr));
+      }
+
+      .container .cloud::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        left: 40px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: var(--clr);
+        box-shadow: 90px -10px 0 30px var(--clr);
+      }
+      .container .cloud::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--clr);
+        border-radius: 100px;
+        z-index: 1000;
+      }
+      .container .cloud .drop {
+        position: absolute;
+        top: 60px;
+        height: 20px;
+        line-height: 20px;
+        color: var(--clr);
+        transform-origin: bottom;
+        animation: animate 2s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0) scaleY(0);
+          transform-origin: top;
+        }
+        10% {
+          transform: translateY(0) scaleY(0.25);
+          transform-origin: top;
+        }
+        20% {
+          transform: translateY(0) scaleY(1);
+        }
+        70% {
+          transform: translateY(300px) scaleY(1);
+          transform-origin: bottom;
+        }
+        80% {
+          transform: translateY(300px) scaleY(1);
+          transform-origin: bottom;
+        }
+        100% {
+          transform: translateY(300px) scaleY(0);
+          transform-origin: bottom;
+          text-shadow: -180px 0 0 var(--clr), 180px 0 0 var(--clr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="cloud"></div>
+    </div>
+    <script>
+      function randomText() {
+        var text = "abcdefghijklmnopqrstuvwxyz0123456789";
+        letter = text[~~(Math.random() * text.length)];
+        return letter;
+      }
+      function rain() {
+        let cloud = document.querySelector(".cloud");
+        let e = document.createElement("div");
+
+        e.classList.add("drop");
+        cloud.appendChild(e);
+
+        let left = ~~(Math.random() * 290);
+        let size = Math.random() * 1.5;
+        let duration = Math.random() * 1;
+
+        e.innerText = randomText();
+        e.style.left = left + "px";
+        e.style.fontSize = 0.5 + size + "em";
+        e.style.animationDuration = 1 + duration + "s";
+
+        setTimeout(function () {
+          cloud.removeChild(e);
+        }, 2000);
+      }
+      setInterval(function () {
+        rain();
+      }, 20);
+    </script>
+  </body>
+</html>
