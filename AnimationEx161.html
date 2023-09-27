@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex161</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        background: #fff;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .bg {
+        position: absolute;
+        width: 200vw;
+        height: 200vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: animate 10s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .bg span {
+        position: absolute;
+        width: 500px;
+        height: 150vh;
+        transform: translate(-50%, -50%) rotate(calc(30deg * var(--i)));
+        transform-origin: bottom right;
+      }
+      .bg span::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 500px;
+        box-shadow: -90px -90px 0 89.5px #000;
+      }
+      .bh span:nth-child(even)::before {
+        box-shadow: -90px -90px 0 90.5px #3c4396;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <span style="--i: 0"></span>
+      <span style="--i: 1"></span>
+      <span style="--i: 2"></span>
+      <span style="--i: 3"></span>
+      <span style="--i: 4"></span>
+      <span style="--i: 5"></span>
+      <span style="--i: 6"></span>
+      <span style="--i: 7"></span>
+      <span style="--i: 8"></span>
+      <span style="--i: 9"></span>
+      <span style="--i: 10"></span>
+      <span style="--i: 11"></span>
+    </div>
+  </body>
+</html>
