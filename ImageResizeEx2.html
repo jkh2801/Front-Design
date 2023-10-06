@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Resize EX2</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #025bee;
+      }
+      .wrapper {
+        width: min(90%, 800px);
+        position: absolute;
+        transform: translateX(-50%);
+        top: 1em;
+        left: 50%;
+        background-color: #ffffff;
+        padding: 2em 3em;
+        border-radius: 0.5em;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+        border-radius: 7px;
+      }
+      .container .image-container,
+      .container .preview-container {
+        width: 100%;
+      }
+      input[type="file"] {
+        display: none;
+      }
+      label {
+        display: block;
+        position: relative;
+        background-color: #025bee;
+        color: #ffffff;
+        font-size: 16px;
+        text-align: center;
+        width: 250px;
+        padding: 16px 0;
+        border-radius: 0.3em;
+        margin: 16px auto;
+        cursor: pointer;
+      }
+      img {
+        display: block;
+        /* Important for cropper js*/
+        max-width: 100%;
+      }
+      .image-container {
+        width: 60%;
+        margin: 0 auto;
+      }
+      .options {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+      }
+      input[type="number"] {
+        width: 100px;
+        padding: 16px 5px;
+        border-radius: 0.3em;
+        border: 2px solid #000000;
+      }
+      button {
+        padding: 1em;
+        border-radius: 0.3em;
+        border: 2px solid #025bee;
+        background-color: #ffffff;
+        color: #025bee;
+      }
+      .btns {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 1em;
+      }
+      .btns button {
+        font-size: 1em;
+      }
+      .btns a {
+        border: 2px solid #025bee;
+        background-color: #025bee;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 1em;
+        font-size: 1em;
+        border-radius: 0.3em;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="image-container">
+          <img id="image" />
+        </div>
+        <div class="preview-container">
+          <img id="preview-image" />
+        </div>
+      </div>
+      <input type="file" id="file" accept="image/*" />
+      <label for="file">Choose A Photo</label>
+      <div class="options hide">
+        <input
+          type="number"
+          id="height-input"
+          placeholder="Enter Height"
+          max="780"
+        />
+        <input
+          type="number"
+          id="width-input"
+          placeholder="Enter Width"
+          max="780"
+        />
+        <button class="aspect-ratio-button">16:9</button>
+        <button class="aspect-ratio-button">4:3</button>
+        <button class="aspect-ratio-button">1:1</button>
+        <button class="aspect-ratio-button">2:3</button>
+        <button class="aspect-ratio-button">Free</button>
+      </div>
+      <div class="btns">
+        <button id="preview" class="hide">Preview</button>
+        <a href="" id="download" class="hide">Download</a>
+      </div>
+    </div>
+    <script>
+      let fileInput = document.getElementById("file");
+      let image = document.getElementById("image");
+      let downloadButton = document.getElementById("download");
+      let aspectRatio = document.querySelectorAll(".aspect-ratio-button");
+      const previewButton = document.getElementById("preview");
+      const previewImage = document.getElementById("preview-image");
+      const options = document.querySelector(".options");
+      const widthInput = document.getElementById("width-input");
+      const heightInput = document.getElementById("height-input");
+      let cropper = "";
+      let fileName = "";
+
+      fileInput.onchange = () => {
+        previewImage.src = "";
+        heightInput.value = 0;
+        widthInput.value = 0;
+        downloadButton.classList.add("hide");
+
+        //The FileReader object helps to read contents of file stored on the computer
+        let reader = new FileReader();
+        //readAsDataURL reads the content of input file
+        reader.readAsDataURL(fileInput.files[0]);
+
+        reader.onload = () => {
+          image.setAttribute("src", reader.result);
+          if (cropper) {
+            cropper.destroy();
+          }
+          //Initialize cropper
+          cropper = new Cropper(image);
+          options.classList.remove("hide");
+          previewButton.classList.remove("hide");
+        };
+        fileName = fileInput.files[0].name.split(".")[0];
+      };
+
+      //Set aspect ration
+      aspectRatio.forEach((element) => {
+        element.addEventListener("click", () => {
+          if (element.innerText == "Free") {
+            cropper.setAspectRatio(NaN);
+          } else {
+            cropper.setAspectRatio(eval(element.innerText.replace(":", "/")));
+          }
+        });
+      });
+
+      heightInput.addEventListener("input", () => {
+        const { height } = cropper.getImageData();
+        if (parseInt(heightInput.value) > Math.round(height)) {
+          heightInput.value = Math.round(height);
+        }
+        let newHeight = parseInt(heightInput.value);
+        cropper.setCropBoxData({ height: newHeight });
+      });
+      widthInput.addEventListener("input", () => {
+        const { width } = cropper.getImageData();
+        if (parseInt(widthInput.value) > Math.round(width)) {
+          widthInput.value = Math.round(width);
+        }
+        let newWidth = parseInt(widthInput.value);
+        cropper.setCropBoxData({ width: newWidth });
+      });
+
+      previewButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        downloadButton.classList.remove("hide");
+        let imgSrc = cropper.getCroppedCanvas({}).toDataURL();
+        //Set preview
+        previewImage.src = imgSrc;
+        downloadButton.download = `cropped_${fileName}.png`;
+        downloadButton.setAttribute("href", imgSrc);
+      });
+
+      window.onload = () => {
+        download.classList.add("hide");
+        options.classList.add("hide");
+        previewButton.classList.add("hide");
+      };
+    </script>
+  </body>
+</html>
