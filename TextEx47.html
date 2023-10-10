@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex47</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #0a0a0a;
+      }
+      .container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        height: 14.37em;
+        width: 28.12em;
+        cursor: pointer;
+      }
+      h1 {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        text-align: center;
+        font-size: 9.37em;
+        position: absolute;
+      }
+      p {
+        color: #ff3c78;
+        width: 100%;
+        font-size: 2.5em;
+        font-weight: 500;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        text-align: center;
+      }
+      .container:hover h1:nth-child(2) {
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        transform: translateY(-50px);
+        transition: 0.3s;
+      }
+      .container:hover h1:nth-child(3) {
+        clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+        transform: translateY(50px);
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>How Are You?</p>
+      <h1>HELLO</h1>
+      <h1>HELLO</h1>
+    </div>
+  </body>
+</html>
