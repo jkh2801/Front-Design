@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex163</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #131a1c;
+      }
+      .loader {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: animateColor 7.2s linear infinite;
+      }
+      @keyframes animateColor {
+        0% {
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+      .loader span {
+        position: absolute;
+        transform-origin: 150px;
+        transform: translateX(-150px) rotate(calc(var(--i) * 30deg));
+        filter: drop-shadow(0 0 5px #3cc2ff) drop-shadow(0 0 15px #3cc2ff)
+          drop-shadow(0 0 30px #3cc2ff);
+      }
+      .loader span i {
+        position: relative;
+        color: #3cc2ff;
+        animation: rotate-stars 2.4s linear infinite;
+        animation-delay: calc(var(--i) * -0.2s);
+      }
+      @keyframes rotate-stars {
+        0% {
+          transform: rotate(0deg) scale(0);
+        }
+        50% {
+          transform: rotate(180deg) scale(3);
+        }
+        100% {
+          transform: rotate(360deg) scale(0);
+        }
+      }
+      .loader span::before {
+        content: "\f005";
+        position: absolute;
+        font-family: fontAwesome;
+        font-size: 0.75em;
+        color: #131a1c;
+        animation: rotate-particle 2.4s linear infinite;
+        animation-delay: calc(var(--i) * -0.2s);
+      }
+      @keyframes rotate-particle {
+        0% {
+          scale: 1;
+          opacity: 0;
+          rotate: 0deg;
+        }
+        50% {
+          scale: 1;
+          opacity: 1;
+          rotate: 180deg;
+        }
+        100% {
+          scale: 0;
+          opacity: 0;
+          rotate: 360deg;
+          filter: drop-shadow(-150px 0 #3cc2ff) drop-shadow(150px 0 #3cc2ff)
+            drop-shadow(0 150px #3cc2ff) drop-shadow(0 -150px #3cc2ff);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+      <span style="--i: 1"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 2"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 3"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 4"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 5"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 6"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 7"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 8"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 9"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 10"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 11"><i class="fa-solid fa-star"></i></span>
+      <span style="--i: 12"><i class="fa-solid fa-star"></i></span>
+    </div>
+  </body>
+</html>
