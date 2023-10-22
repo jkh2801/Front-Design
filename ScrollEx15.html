@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Ex15</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+      }
+      .scroll {
+        position: relative;
+        display: flex;
+        width: 700px;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #fff 20%,
+          #fff 80%,
+          transparent
+        );
+      }
+      .scroll div {
+        white-space: nowrap;
+        animation: animate var(--t) linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      .scroll div span {
+        display: inline-flex;
+        margin: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: 0.5s;
+      }
+      .scroll div span:hover {
+        background: #4caf50;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll" style="--t: 20s">
+      <div>
+        <span>Html</span>
+        <span>CSS</span>
+        <span>Javascript</span>
+        <span>ReactJS</span>
+        <span>Figma</span>
+        <span>Photoshop</span>
+        <span>Angular</span>
+      </div>
+      <div>
+        <span>Html</span>
+        <span>CSS</span>
+        <span>Javascript</span>
+        <span>ReactJS</span>
+        <span>Figma</span>
+        <span>Photoshop</span>
+        <span>Angular</span>
+      </div>
+    </div>
+  </body>
+</html>
