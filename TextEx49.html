@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex49</title>
+    <style>
+      body {
+        background-color: #000000;
+      }
+      .container {
+        height: 10em;
+        width: 45em;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+      .container h1 {
+        color: #ffffff;
+        font-family: "Poppins", sans-serif;
+        font-size: 7.3em;
+        position: absolute;
+        line-height: 0;
+      }
+      .container img {
+        position: absolute;
+        width: 25em;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        animation: spin 8s infinite linear;
+      }
+      @keyframes spin {
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      .container h1:nth-child(3) {
+        color: transparent;
+        -webkit-text-stroke: 3px #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>SUNFLOWER</h1>
+      <img src="image/apple.png" />
+      <h1>SUNFLOWER</h1>
+    </div>
+  </body>
+</html>
