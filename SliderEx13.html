@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SliderEx13</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+      }
+      img {
+        width: 100%;
+      }
+      .hide {
+        display: none;
+      }
+      .container {
+        position: absolute;
+        left: 5%;
+        top: 10%;
+        width: 90%;
+        height: 80vh;
+        overflow: hidden;
+        cursor: grab;
+      }
+      .slider-inner {
+        position: absolute;
+        top: 2%;
+        left: 0px;
+        width: 500%;
+        height: 100%;
+        display: grid;
+        gap: 1rem;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="slider-inner"></div>
+    </div>
+    <script>
+      //Initial References
+      const sliderContainer = document.querySelector(".container");
+      const innerSlider = document.querySelector(".slider-inner");
+      let innerContainer = innerSlider.getBoundingClientRect();
+      let outerContainer = sliderContainer.getBoundingClientRect();
+
+      //Slider variables
+      let active = false,
+        startX = 0;
+
+      const images = [
+        "image/bg1.jpg",
+        "image/bg2.jpg",
+        "image/bg3.jpg",
+        "image/bg4.jpg",
+        "image/bg5.jpg",
+        "image/bg6.jpg",
+      ];
+
+      let events = {
+        mouse: {
+          down: "mousedown",
+          move: "mousemove",
+          up: "mouseup",
+        },
+        touch: {
+          down: "touchstart",
+          move: "touchmove",
+          up: "touchend",
+        },
+      };
+
+      let deviceType = "";
+
+      const isTouchDevice = () => {
+        try {
+          document.createEvent("TouchEvent");
+          deviceType = "touch";
+          return true;
+        } catch (e) {
+          deviceType = "mouse";
+          return false;
+        }
+      };
+
+      //Generates Slides
+      const slideGenerator = () => {
+        for (let i of images) {
+          const div = document.createElement("div");
+          div.classList.add("slide");
+          div.innerHTML = `<img src='${i}' class='image'>`;
+          innerSlider.appendChild(div);
+        }
+        innerSlider.style.gridTemplateColumns = `repeat(${images.length},1fr)`;
+      };
+
+      isTouchDevice();
+
+      //Mousedown
+      sliderContainer.addEventListener(events[deviceType].down, (e) => {
+        active = true;
+        startX =
+          (!isTouchDevice()
+            ? e.clientX
+            : e.touches[0].clientX - outerContainer.left) -
+          innerSlider.offsetLeft;
+        sliderContainer.style.cursor = "grabbing";
+      });
+
+      //Mouseup
+      sliderContainer.addEventListener(events[deviceType].up, () => {
+        sliderContainer.style.cursor = "grab";
+        active = false;
+      });
+
+      //MouseMove
+      sliderContainer.addEventListener(events[deviceType].move, (e) => {
+        if (active) {
+          e.preventDefault();
+          let currentX = !isTouchDevice()
+            ? e.clientX
+            : e.touches[0].clientX - outerContainer.left;
+          innerSlider.style.left = `${currentX - startX}px`;
+          checkBoundary();
+        }
+      });
+
+      const checkBoundary = () => {
+        innerContainer = innerSlider.getBoundingClientRect();
+        outerContainer = sliderContainer.getBoundingClientRect();
+        if (parseInt(innerSlider.style.left) >= 0) {
+          innerSlider.style.left = "0px";
+        } else if (innerContainer.right < outerContainer.right) {
+          innerSlider.style.left = `-${
+            innerContainer.width - outerContainer.width
+          }px`;
+        }
+      };
+
+      window.onload = () => {
+        slideGenerator();
+      };
+    </script>
+  </body>
+</html>
