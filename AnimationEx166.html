@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex166</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .sec {
+        position: relative;
+        background: #111;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .star {
+        position: relative;
+        color: #222;
+      }
+      .star::before {
+        content: "\f005";
+        font-family: fontAwesome;
+      }
+      .star.animate {
+        color: #0f0;
+        text-shadow: 0 0 5px #0f0, 0 0 20px #0f0, 0 0 50px #0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sec"></section>
+    <script>
+      for (let i = 0; i <= 175; i++) {
+        let stars = document.createElement("div");
+        stars.classList.add("star");
+        let size = Math.random() * 20;
+        stars.style.fontSize = 10 + size + "px";
+        stars.style.left = Math.random() * innerWidth + "px";
+        stars.style.top = Math.random() * innerHeight + "px";
+        stars.style.filter = `hue-rotate(${i * 5}deg)`;
+        document.querySelector(".sec").appendChild(stars);
+      }
+      function animateStars() {
+        let all = document.querySelectorAll(".star");
+        let num = ~~(Math.random() * all.length);
+        all[num].classList.toggle("animate");
+      }
+      setInterval(() => {
+        animateStars();
+      }, 50);
+    </script>
+  </body>
+</html>
