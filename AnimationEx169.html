@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex169</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+        gap: 300px;
+      }
+      .imgBx {
+        position: relative;
+        width: 300px;
+        height: 400px;
+      }
+      .imgBx img {
+        position: absolute;
+        z-index: 2;
+      }
+      .imgBx img:not(:first-child) {
+        animation: animate 4s linear infinite;
+        animation-delay: calc(-0.8s * var(--i));
+        opacity: 0.5;
+        z-index: 1;
+      }
+      @keyframes animate {
+        0% {
+          top: 0;
+          left: 0;
+          opacity: 0.5;
+        }
+        100% {
+          top: 150px;
+          left: -250px;
+          opacity: 0;
+        }
+      }
+      .imgBx:nth-child(2) img:not(:first-child) {
+        animation: animate-two 4s linear infinite;
+        animation-delay: calc(-0.8s * var(--i));
+        opacity: 0.5;
+        z-index: 1;
+      }
+      @keyframes animate-two {
+        0% {
+          top: 0;
+          left: 0;
+          opacity: 0.5;
+        }
+        100% {
+          top: 150px;
+          left: 250px;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="imgBx">
+      <img src="image/old3d.png" alt="" />
+      <img src="image/old3d.png" alt="" style="--i: 1" />
+      <img src="image/old3d.png" alt="" style="--i: 2" />
+      <img src="image/old3d.png" alt="" style="--i: 3" />
+      <img src="image/old3d.png" alt="" style="--i: 4" />
+      <img src="image/old3d.png" alt="" style="--i: 5" />
+    </div>
+    <div class="imgBx">
+      <img src="image/archer3d.png" alt="" />
+      <img src="image/archer3d.png" alt="" style="--i: 1" />
+      <img src="image/archer3d.png" alt="" style="--i: 2" />
+      <img src="image/archer3d.png" alt="" style="--i: 3" />
+      <img src="image/archer3d.png" alt="" style="--i: 4" />
+      <img src="image/archer3d.png" alt="" style="--i: 5" />
+    </div>
+  </body>
+</html>
