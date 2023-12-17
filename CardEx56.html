@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex56</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #0f0f0f;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        gap: 80px;
+      }
+      .container .card {
+        position: relative;
+        width: 300px;
+        height: 400px;
+      }
+      .container .card .imgBx {
+        position: absolute;
+        inset: 0;
+        background: #222;
+        border-radius: 20px;
+      }
+      .container .card .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+        border-radius: 20px;
+      }
+      .container .card:hover .imgBx img {
+        opacity: 0;
+      }
+      .container .card .c3d {
+        position: absolute;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(0);
+        transition: 0.5s;
+      }
+      .container .card:hover .c3d {
+        opacity: 1;
+        transform: translateY(-25%);
+      }
+      .card h2 {
+        position: absolute;
+        bottom: 10px;
+        left: 70%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 1.75em;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        background: var(--clr);
+        width: 80%;
+        text-align: center;
+        padding: 5px 20px;
+        border-radius: 10px;
+        transition: 0.5s;
+        opacity: 0;
+      }
+      .card:hover h2 {
+        bottom: 30px;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card" style="--clr: #e9a643">
+        <div class="imgBx">
+          <img src="image/old.jpg" alt="" />
+        </div>
+        <img src="image/old3d.png" class="c3d" alt="" />
+        <h2>Barbarians</h2>
+      </div>
+      <div class="card" style="--clr: #ad4a9d">
+        <div class="imgBx">
+          <img src="image/archer.jpg" alt="" />
+        </div>
+        <img src="image/archer3d.png" class="c3d" alt="" />
+        <h2>Archers</h2>
+      </div>
+    </div>
+  </body>
+</html>
