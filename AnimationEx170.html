@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex170</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #111;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .star {
+        position: absolute;
+        top: -20px;
+        color: #fff;
+        animation: animate 5s linear forwards;
+      }
+      .star::before {
+        content: "\f005";
+        font-family: fontAwesome;
+        text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 50px #fff;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function stars() {
+        let e = document.createElement("div");
+        e.setAttribute("class", "star");
+        document.body.appendChild(e);
+        e.style.left = Math.random() * +innerWidth + "px";
+
+        let size = Math.random() * 12;
+        let duration = Math.random() * 3;
+
+        e.style.fontSize = 12 + size + "px";
+        e.style.animationDuration = 2 + duration + "s";
+
+        setTimeout(function () {
+          document.body.removeChild(e);
+        }, 5000);
+      }
+      setInterval(() => {
+        stars();
+      }, 100);
+    </script>
+  </body>
+</html>
