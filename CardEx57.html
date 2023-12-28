@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex57</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(#63120f, #5b1716);
+      }
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        transform-style: preserve-3d;
+      }
+      .container .box {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        margin: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        transform-style: preserve-3d;
+      }
+      .container .box .name {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        transform-style: preserve-3d;
+        transform: translate3d(0, 0, 75px);
+        color: #fff;
+        opacity: 0;
+        z-index: 10;
+        transition: 0.5s;
+      }
+      .container .box:hover .name {
+        top: 40px;
+        opacity: 1;
+      }
+      .container .box .buy {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform-style: preserve-3d;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 20px 25px;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: 0.5s;
+        transform: translate3d(-50%, 0, 80px);
+        width: 150px;
+        font-weight: 600;
+        text-align: center;
+        z-index: 10;
+      }
+      .container .box .product {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        max-width: 300px;
+        transform-style: preserve-3d;
+        transition: 0.5s;
+      }
+      .container .box:hover .product {
+        transform: translate3d(-50%, -50%, 100px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h2 class="name">Name</h2>
+        <a href="#" class="buy">Buy Now</a>
+        <img src="image/old3d.png" alt="" class="product" />
+      </div>
+      <div class="box">
+        <h2 class="name">Name</h2>
+        <a href="#" class="buy">Buy Now</a>
+        <img src="image/archer3d.png" alt="" class="product" />
+      </div>
+    </div>
+    <script src="js/vanilla-tilt.js"></script>
+    <script>
+      VanillaTilt.init(document.querySelectorAll(".box"), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5,
+      });
+    </script>
+  </body>
+</html>
