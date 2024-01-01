@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex54</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: verdana;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #262626;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px),
+          linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      .box {
+        position: absolute;
+        cursor: pointer;
+      }
+      .box span {
+        display: inline-block;
+        color: #fff;
+        font-size: 10em;
+        font-weight: bold;
+        transition: 2s;
+        filter: blur(1px);
+      }
+      .box span:last-child {
+        color: #ff236e;
+      }
+      .box:hover span:last-child {
+        transform: rotate(45deg) translateY(-200px);
+        opacity: 0;
+        filter: blur(30px);
+      }
+      .box span:nth-child(3)::after {
+        content: "4";
+        position: absolute;
+        color: #1dff4e;
+        transform: rotate(-45deg) translateY(200px);
+        opacity: 0;
+        filter: blur(30px);
+        transition: 2s;
+      }
+      .box:hover span:nth-child(3)::after {
+        transform: rotate(0deg) translateY(0px);
+        opacity: 1;
+        filter: blur(0px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span>2</span>
+      <span>0</span>
+      <span>2</span>
+      <span>3</span>
+    </div>
+  </body>
+</html>
