@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Ex37</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: consolas;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300vh;
+        background: #222;
+      }
+      section {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1000;
+      }
+      section .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("image/bg15.jpg");
+        background-size: cover;
+      }
+      section .slide#slide1 {
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+      }
+      section .slide#slide2 {
+        clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="slide" id="slide1"></div>
+      <div class="slide" id="slide2"></div>
+    </section>
+    <script>
+      let slide1 = document.getElementById("slide1");
+      let slide2 = document.getElementById("slide2");
+      window.addEventListener("scroll", function () {
+        slide1.style.left = window.pageYOffset + "px";
+        slide2.style.left = -window.pageYOffset + "px";
+      });
+    </script>
+  </body>
+</html>
