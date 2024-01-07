@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex55</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: consolas;
+      }
+      body {
+        background: #333;
+        user-select: none;
+      }
+      .banner {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #09da37;
+        z-index: 1;
+        clip-path: circle(15vw at var(--x) var(--y));
+      }
+      .banner h2 {
+        position: relative;
+        color: transparent;
+        -webkit-text-stroke: 4px #333;
+        font-size: 25vw;
+        pointer-events: none;
+        font-weight: bold;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .content h2 {
+        position: relative;
+        color: transparent;
+        pointer-events: none;
+        -webkit-text-stroke: 4px #09da37;
+        font-size: 25vw;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="banner">
+      <h2>2024</h2>
+    </section>
+    <section class="content">
+      <h2>2023</h2>
+    </section>
+    <script>
+      let pos = document.documentElement;
+      pos.addEventListener("mousemove", (e) => {
+        pos.style.setProperty("--x", e.clientX + "px");
+        pos.style.setProperty("--y", e.clientY + "px");
+      });
+    </script>
+  </body>
+</html>
