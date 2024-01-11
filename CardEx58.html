@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex58</title>
+    <style>
+      body {
+        background-color: #e0f1fa;
+      }
+      .image-container {
+        width: 400px;
+        position: absolute;
+        top: 10em;
+        right: 10em;
+      }
+      .image {
+        border-radius: 2em;
+        width: 100%;
+        height: 100%;
+        border: 15px solid white;
+        cursor: pointer;
+      }
+      .image-container:first-child {
+        transform: rotate(23deg);
+      }
+      .image-container:nth-child(2) {
+        transform: rotate(328deg);
+      }
+      .image-container:nth-child(3) {
+        transform: rotate(169deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery-container">
+      <div class="image-container"></div>
+      <div class="image-container"></div>
+      <div class="image-container"></div>
+      <div class="image-container"></div>
+    </div>
+    <script>
+      //Get all image container
+      let childElement = document.querySelectorAll(".image-container");
+
+      //Array of image URLs
+      let imageUrls = [
+        "image/bg1.jpg",
+        "image/bg2.jpg",
+        "image/bg3.jpg",
+        "image/bg4.jpg",
+      ];
+
+      //Initial z-index value
+      let zIndex = 1;
+
+      //Iterate through each image container
+      childElement.forEach((element, index) => {
+        //Create an image element
+        let img = document.createElement("img");
+        img.setAttribute("src", imageUrls[index]);
+        img.setAttribute("class", "image");
+        element.appendChild(img);
+
+        //Add a click event listener to each image container
+        element.addEventListener("click", () => {
+          zIndex++;
+          element.style.right = "50em";
+          element.style.zIndex = zIndex.toString();
+          element.style.transform = "rotate(0deg)";
+
+          //Apply transition to right property
+          element.style.transition = " right 0.3s ease";
+
+          //Remomve the class and reset properties after a delay
+          setTimeout(() => {
+            zIndex -= 3;
+            element.style.right = "";
+            element.style.zIndex = zIndex.toString();
+            element.style.transform = "";
+
+            //Set a transition for clearing the transition property
+            element.style.transition = "all 0.3s ease";
+
+            //Clear the transition property after a slight delay
+            setTimeout(() => {
+              element.style.transition = "";
+            }, 300);
+          }, 1000);
+        });
+      });
+    </script>
+  </body>
+</html>
