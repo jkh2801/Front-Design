@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swipe Ex1</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #9679ff;
+      }
+      .container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+      #touch-area {
+        background-color: #ffffff;
+        height: 30em;
+        width: 30em;
+        border-radius: 0.6em;
+      }
+      #output {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2em;
+        background-color: #ffffff;
+        text-align: center;
+        padding: 0.8em 0;
+        border-radius: 0.3em;
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="touch-area"></div>
+      <p id="output">Swipe Across The Above Area</p>
+    </div>
+    <script>
+      let touchArea = document.getElementById("touch-area");
+      let output = document.getElementById("output");
+
+      //Initial mouse X and Y positions are 0
+
+      let mouseX,
+        initialX = 0;
+      let mouseY,
+        initialY = 0;
+      let isSwiped;
+
+      //Events for touch and mouse
+      let events = {
+        mouse: {
+          down: "mousedown",
+          move: "mousemove",
+          up: "mouseup",
+        },
+        touch: {
+          down: "touchstart",
+          move: "touchmove",
+          up: "touchend",
+        },
+      };
+
+      let deviceType = "";
+
+      //Detect touch device
+
+      const isTouchDevice = () => {
+        try {
+          //We try to create TouchEvent (it would fail for desktops and throw error)
+          document.createEvent("TouchEvent");
+          deviceType = "touch";
+          return true;
+        } catch (e) {
+          deviceType = "mouse";
+          return false;
+        }
+      };
+
+      //Get left and top of touchArea
+      let rectLeft = touchArea.getBoundingClientRect().left;
+      let rectTop = touchArea.getBoundingClientRect().top;
+
+      //Get Exact X and Y position of mouse/touch
+      const getXY = (e) => {
+        mouseX = (!isTouchDevice() ? e.pageX : e.touches[0].pageX) - rectLeft;
+        mouseY = (!isTouchDevice() ? e.pageY : e.touches[0].pageY) - rectTop;
+      };
+
+      isTouchDevice();
+
+      //Start Swipe
+      touchArea.addEventListener(events[deviceType].down, (event) => {
+        isSwiped = true;
+        //Get X and Y Position
+        getXY(event);
+        initialX = mouseX;
+        initialY = mouseY;
+      });
+
+      //Mousemove / touchmove
+      touchArea.addEventListener(events[deviceType].move, (event) => {
+        if (!isTouchDevice()) {
+          event.preventDefault();
+        }
+        if (isSwiped) {
+          getXY(event);
+          let diffX = mouseX - initialX;
+          let diffY = mouseY - initialY;
+          if (Math.abs(diffY) > Math.abs(diffX)) {
+            output.innerText = diffY > 0 ? "Down" : "Up";
+          } else {
+            output.innerText = diffX > 0 ? "Right" : "Left";
+          }
+        }
+      });
+
+      //Stop Drawing
+      touchArea.addEventListener(events[deviceType].up, () => {
+        isSwiped = false;
+      });
+
+      touchArea.addEventListener("mouseleave", () => {
+        isSwiped = false;
+      });
+
+      window.onload = () => {
+        isSwiped = false;
+      };
+    </script>
+  </body>
+</html>
