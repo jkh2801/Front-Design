@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Ex44</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+      }
+      .navigation {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        background: #fff;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+        transition-delay: 0.8s;
+      }
+      .navigation.active {
+        width: 200px;
+        height: 200px;
+        transition-delay: 0s;
+      }
+      .navigation span {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: #333;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        cursor: pointer;
+        transform: translate(calc(14px * var(--x)), calc(14px * var(--y)));
+        transition: transform 0.5s, width 0.5s, height 0.5s;
+        transition-delay: calc(0.1s * var(--i));
+      }
+      .navigation.active span {
+        transform: translate(calc(60px * var(--x)), calc(60px * var(--y)));
+        background: #29fd53;
+        border: 2px solid #333;
+        width: 45px;
+        height: 45px;
+      }
+      .menuToggle {
+        position: absolute;
+        bottom: -15px;
+        width: 30px;
+        height: 15px;
+        background: #fff;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .menuToggle::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -8px;
+        width: 10px;
+        height: 10px;
+        background: transparent;
+        border-top-right-radius: 10px;
+        box-shadow: 2px -5px 0 2px #fff;
+      }
+      .menuToggle::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -8px;
+        width: 10px;
+        height: 10px;
+        background: transparent;
+        border-top-left-radius: 10px;
+        box-shadow: -2px -5px 0 2px #fff;
+      }
+      .menuToggle b {
+        position: absolute;
+        top: -10px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+        z-index: 1;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+      .menuToggle b::before {
+        content: "";
+        position: absolute;
+        left: 2.75px;
+        width: 12px;
+        height: 2px;
+        background: #333;
+        transform: rotate(45deg);
+        transition: 0.5s;
+        transition-delay: 0.5s;
+      }
+      .menuToggle b::after {
+        content: "";
+        position: absolute;
+        right: 2.75px;
+        width: 12px;
+        height: 2px;
+        background: #333;
+        transform: rotate(135deg);
+        transition: 0.5s;
+        transition-delay: 0.5s;
+      }
+      .navigation.active .menuToggle b::before {
+        left: 6.5px;
+      }
+      .navigation.active .menuToggle b::after {
+        right: 6.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navigation">
+      <span style="--i: 0; --x: -1; --y: 0"></span>
+      <span style="--i: 1; --x: 1; --y: 0"></span>
+      <span style="--i: 2; --x: 0; --y: -1"></span>
+      <span style="--i: 3; --x: 0; --y: 1"></span>
+      <span style="--i: 4; --x: 1; --y: 1"></span>
+      <span style="--i: 5; --x: -1; --y: -1"></span>
+      <span style="--i: 6; --x: -1; --y: 1"></span>
+      <span style="--i: 7; --x: 1; --y: -1"></span>
+      <span style="--i: 0; --x: 0; --y: 0"></span>
+      <div class="menuToggle"><b></b></div>
+    </div>
+    <script>
+      let navigation = document.querySelector(".navigation");
+      let menuToggle = document.querySelector(".menuToggle");
+      menuToggle.onclick = function () {
+        navigation.classList.toggle("active");
+      };
+    </script>
+  </body>
+</html>
