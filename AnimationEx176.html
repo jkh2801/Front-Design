@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex176</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #121317;
+      }
+      .container {
+        background-color: #202229;
+        width: 18.75em;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        padding: 3em;
+        border-radius: 1em;
+      }
+      #result-box {
+        height: 200px;
+        width: 200px;
+
+        box-shadow: 0 0 0 10px #202229, 0 0 0 15px #f5f5f5;
+        border-radius: 1em;
+        margin-bottom: 2em;
+      }
+      #input-box {
+        width: 100%;
+        padding: 1em;
+        border: none;
+        outline: none;
+        border-radius: 0.5em;
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="result-box"></div>
+      <input type="text" id="input-box" value="orange" />
+    </div>
+    <script>
+      let inputBox = document.getElementById("input-box");
+      let resultBox = document.getElementById("result-box");
+      let changeColor = () => {
+        let input = inputBox.value;
+        resultBox.style.backgroundColor = input;
+      };
+      inputBox.addEventListener("input", changeColor);
+      window.addEventListener("load", changeColor);
+    </script>
+  </body>
+</html>
