@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Ex4</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        gap: 50px;
+        background: #2f363e;
+      }
+      .drag {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 320px;
+        gap: 10px;
+        cursor: grab;
+      }
+      .drag .dragBox {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background: #0003;
+      }
+      .images {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: var(--img);
+        background-size: cover;
+      }
+      .reset {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 25px;
+        border: none;
+        background: #fff;
+        color: #222;
+        font-size: 1em;
+        font-weight: 500;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      .board {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .dropBox {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        background: #0003;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drag" id="drag">
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block1"
+          style="--img: url(image/game4_1.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block2"
+          style="--img: url(image/game4_2.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block3"
+          style="--img: url(image/game4_3.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block4"
+          style="--img: url(image/game4_4.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block5"
+          style="--img: url(image/game4_5.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block6"
+          style="--img: url(image/game4_6.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block7"
+          style="--img: url(image/game4_7.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block8"
+          style="--img: url(image/game4_8.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+      <div class="dragBox">
+        <div
+          class="images"
+          draggable="true"
+          id="block9"
+          style="--img: url(image/game4_9.png)"
+          ondragstart="drag(event)"
+        ></div>
+      </div>
+    </div>
+    <div class="board">
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dropBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+    </div>
+    <button class="reset" onclick="window.location.reload()">
+      Reset Puzzle
+    </button>
+    <script>
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+      }
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("text");
+        event.target.appendChild(document.getElementById(data));
+      }
+
+      onload = function () {
+        let parent = document.getElementById("drag");
+        let frag = document.createDocumentFragment();
+        while (parent.children.length) {
+          frag.appendChild(
+            parent.children[~~(Math.random() * parent.children.length)]
+          );
+        }
+        parent.appendChild(frag);
+      };
+    </script>
+  </body>
+</html>
