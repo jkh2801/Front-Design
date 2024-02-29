@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider Ex15</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+      }
+      h2 {
+        color: #fff;
+        font-size: 4em;
+        display: flex;
+        font-weight: 400;
+        text-transform: uppercase;
+        -webkit-box-reflect: below -48px linear-gradient (transparent, #0002);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>Scroll&nbspTo&nbspSee&nbspMagic</h2>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <script>
+        let text = document.querySelector("h2");
+        let textString = text.textContent;
+        let split = textString.split("");
+        text.textContent = "";
+        for (let i = 0; i < split.length; i++) {
+          text.innerHTML += "<span>" + split[i] + "</span>";
+        }
+
+        let tl = gsap.timeline();
+        tl.from("span", {
+          y: -500,
+          opacity: 0,
+          scrollTrigger: {
+            pin: true,
+            scrub: 1,
+            trigger: "section",
+          },
+          stagger: {
+            amount: 2,
+          },
+        });
+      </script>
+    </section>
+  </body>
+</html>
