@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magnetic Ex1</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+        overflow-x: hidden;
+        cursor: none;
+      }
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
+      ul li {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.1s;
+        font-size: 2em;
+        text-decoration: none;
+      }
+      ul li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: none;
+      }
+      ul li i {
+        position: absolute;
+        pointer-events: none;
+        color: #fff;
+      }
+      #cursor {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        border: 10px solid #fff;
+        border-radius: 50%;
+        filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #fff);
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.5s, left 0s, top 0s;
+      }
+      ul li:hover ~ #cursor {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #fff;
+      }
+      body:hover #cursor {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="#"></a>
+        <i class="fa-brands fa-facebook-f"></i>
+      </li>
+      <li>
+        <a href="#"></a>
+        <i class="fa-brands fa-x-twitter"></i>
+      </li>
+      <li>
+        <a href="#"></a>
+        <i class="fa-brands fa-instagram"></i>
+      </li>
+      <div id="cursor"></div>
+    </ul>
+    <script>
+      let cursor = document.getElementById("cursor");
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.pageX + "px";
+        cursor.style.top = e.pageY + "px";
+      });
+      let items = document.querySelectorAll("ul li").forEach((item) => {
+        item.addEventListener("mousemove", (e) => {
+          let x = e.offsetX;
+          let y = e.offsetY;
+
+          let w = item.clientWidth;
+          let h = item.clientHeight;
+
+          let transX = x - w / 2;
+          let transY = y - h / 2;
+
+          item.style.transform = `translate(${transX}px, ${transY}px)`;
+        });
+        item.addEventListener("mouseout", (e) => (item.style.transform = ""));
+      });
+    </script>
+  </body>
+</html>
