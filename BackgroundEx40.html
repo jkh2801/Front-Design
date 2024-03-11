@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Ex40</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #111;
+      }
+      .box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .box .group {
+        position: relative;
+        transform: rotate(-30deg);
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+      .iconContainer {
+        display: flex;
+        gap: 0.5em;
+        font-size: 4em;
+        width: 200vw;
+        animation: animate 80s linear infinite;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          transform: translateX(-100vw);
+        }
+        50% {
+          transform: translateX(0vw);
+        }
+      }
+      .iconContainer:nth-child(even) {
+        animation: animate 80s linear infinite;
+      }
+      .iconContainer i {
+        cursor: default;
+        user-select: none;
+        transition: 2s;
+        color: transparent;
+        opacity: 0.35;
+        -webkit-text-stroke: 1px #0f0;
+      }
+      .iconContainer i:hover {
+        color: #0f0;
+        transition: 0s;
+        -webkit-text-stroke: 1px transparent;
+        opacity: 1;
+        text-shadow: 0 0 120px #0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="group"></div>
+    </div>
+    <script>
+      const group = document.querySelector(".group");
+      for (let i = 0; i < 20; i++) {
+        const containerId = `iconContainer${i}`;
+        const container = document.createElement("div");
+        container.className = "iconContainer";
+        container.id = containerId;
+        group.appendChild(container);
+        addIcons(containerId);
+      }
+      function addIcons(containerId) {
+        const iconContainer = document.getElementById(containerId);
+        const unicodes = [
+          "\uf001",
+          "\uf002",
+          "\uf003",
+          "\uf004",
+          "\uf005",
+          "\uf006",
+          "\uf007",
+          "\uf008",
+          "\uf009",
+          "\uf010",
+          "\uf011",
+          "\uf012",
+          "\uf013",
+          "\uf014",
+          "\uf015",
+          "\uf016",
+          "\uf017",
+          "\uf018",
+          "\uf019",
+          "\uf021",
+        ];
+        for (let i = 0; i < 50; i++) {
+          const icon = document.createElement("i");
+          icon.className = "icon fas";
+          icon.innerHTML = randomIcon(unicodes);
+          iconContainer.appendChild(icon);
+        }
+      }
+      function randomIcon(values) {
+        const randomIndex = ~~(Math.random() * values.length);
+        return values[randomIndex];
+      }
+    </script>
+  </body>
+</html>
