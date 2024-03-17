@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex182</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #0f1b26;
+        overflow: hidden;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .container .box {
+        position: relative;
+        width: 250px;
+        height: 50px;
+        background: #1d3244;
+        border-radius: 5px;
+        transition: 0.5s;
+      }
+      .container .box.hovered {
+        scale: 1.75;
+        z-index: 100000;
+        background: #1296ff;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+      }
+      .container .box.prev1,
+      .container .box.next1 {
+        scale: 1.5;
+        z-index: 3;
+        background: #0d75c9;
+        box-sizing: 0 0 50px rgba(0, 0, 0, 0.15);
+      }
+      .container .box.prev2,
+      .container .box.next2 {
+        scale: 1.25;
+        z-index: 2;
+        background: #08518d;
+        box-sizing: 0 0 50px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <script>
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach((box) => {
+        box.addEventListener("mouseover", (e) => {
+          const prevSibling = e.target.previousElementSibling;
+          const prevPrevSibling = prevSibling?.previousElementSibling;
+
+          const nextSibling = e.target.nextElementSibling;
+          const nextNextSibling = nextSibling?.nextElementSibling;
+
+          e.target.classList.add("hovered");
+
+          if (prevPrevSibling) prevPrevSibling.classList.add("prev2");
+          if (prevSibling) prevSibling.classList.add("prev1");
+          if (nextNextSibling) nextNextSibling.classList.add("next2");
+          if (nextSibling) nextSibling.classList.add("next1");
+
+          box.addEventListener("mouseout", (e) => {
+            const parent = e.target.parentElement;
+            const siblings = parent.querySelectorAll(
+              ".next1,.next2,.prev1,.prev2,.hovered"
+            );
+            siblings.forEach((sibling) =>
+              sibling.classList.remove(
+                "next1",
+                "next2",
+                "prev1",
+                "prev2",
+                "hovered"
+              )
+            );
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
