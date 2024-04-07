@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ex43</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1d2b3a;
+        overflow: hidden;
+      }
+      #button {
+        position: relative;
+        padding: 10px 20px;
+        color: #fff;
+        background: #0a87ff;
+        font-weight: 500;
+        border-radius: 6px;
+        outline: none;
+        border: none;
+        filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+      }
+      .spark {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: #0a87ff;
+        z-index: -1;
+        animation: animate 2s linear forwards;
+      }
+      .spark:nth-child(even) {
+        background: transparent;
+        border: 1px solid #fff;
+      }
+      @keyframes animate {
+        0% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--x), var(--y));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button id="button">Magic Button</button>
+    <script>
+      let btn = document.getElementById("button");
+      btn.addEventListener("click", () => {
+        for (let i = 0; i < 50; i++) {
+          let spark = document.createElement("i");
+          spark.classList.add("spark");
+          const randomX = (Math.random() - 0.5) * window.innerWidth;
+          const randomY = (Math.random() - 0.5) * window.innerHeight;
+
+          spark.style.setProperty("--x", randomX + "px");
+          spark.style.setProperty("--y", randomY + "px");
+
+          const randomSize = Math.random() * 8 + 2;
+          spark.style.width = randomSize + "px";
+          spark.style.height = randomSize + "px";
+
+          const duration = Math.random() * 2 + 0.5;
+          spark.style.animation = `animate ${duration}s ease-out forwards`;
+
+          document.body.appendChild(spark);
+
+          setTimeout(() => {
+            spark.remove();
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
