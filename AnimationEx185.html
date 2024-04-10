@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex185</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+        overflow: hidden;
+      }
+      h2 {
+        color: #333;
+        font-size: 5em;
+        user-select: none;
+        text-align: center;
+      }
+      i {
+        position: absolute;
+        background: #fff;
+        pointer-events: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: animate 2s ease-out forwards;
+      }
+      @keyframes animate {
+        0% {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--randomX), var(--randomY));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Happy Year</h2>
+    <script>
+      let body = document.querySelector("body");
+      let h2 = document.querySelector("h2");
+      body.addEventListener("click", (e) => {
+        for (let i = 0; i < 5; i++) {
+          let spark = document.createElement("i");
+
+          spark.style.top = e.clientY - body.offsetTop + "px";
+          spark.style.left = e.clientX - body.offsetLeft + "px";
+          let randomX = ((Math.random() - 0.5) * window.innerWidth) / 1.5;
+          let randomY = ((Math.random() - 0.5) * window.innerHeight) / 1.5;
+          spark.style.setProperty("--randomX", randomX + "px");
+          spark.style.setProperty("--randomY", randomY + "px");
+
+          let size = Math.random() * 30 + 2;
+          spark.style.width = size + "px";
+          spark.style.height = size + "px";
+          let duration = Math.random() * 2 + 0.5;
+          spark.style.animation = `animate ${duration}s ease-out forwards`;
+
+          let colors = ["#f4034c", "#fff", "#ffeb3b", "#03a9f4"];
+          let randomColor = colors[~~(Math.random() * colors.length)];
+          spark.style.background = randomColor;
+          h2.style.color = randomColor;
+
+          body.appendChild(spark);
+
+          setTimeout(() => {
+            spark.remove();
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
