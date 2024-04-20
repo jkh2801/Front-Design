@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Bar Ex3</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #363636;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+      .container .circle {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+      .container .circle::before {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: #222;
+        opacity: 0.8;
+      }
+      .container .circle::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: #333;
+        border: 15px solid #4d4c51;
+        border-radius: 50%;
+        box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.75), 0 -2px 2px rgba(255, 255, 255, 0.5),
+          inset 0 4px 2px rgba(0, 0, 0, 0.25),
+          inset 0 -2px 2px rgba(255, 255, 255, 0.5);
+      }
+      .container .circle .number {
+        position: relative;
+        color: #fff;
+        z-index: 10;
+        line-height: 1em;
+        font-size: 2em;
+      }
+      .container .circle .number span {
+        font-size: 0.5em;
+        font-weight: 500;
+      }
+      .container .circle h4 {
+        position: relative;
+        color: #fff;
+        z-index: 10;
+        font-weight: 500;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        line-height: 0.6em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="circle" data-degree="62" data-color="#ff2972">
+        <h2 class="number">62 <span>%</span></h2>
+        <h4>Html</h4>
+      </div>
+      <div class="circle" data-degree="85" data-color="#fee800">
+        <h2 class="number">85 <span>%</span></h2>
+        <h4>Html</h4>
+      </div>
+      <div class="circle" data-degree="53" data-color="#04fc43">
+        <h2 class="number">53 <span>%</span></h2>
+        <h4>Html</h4>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", (e) => {
+        let circle = document.querySelectorAll(".circle");
+        circle.forEach((p) => {
+          let degree = 0;
+          var targetDegree = parseInt(p.getAttribute("data-degree"));
+          let color = p.getAttribute("data-color");
+          let number = p.querySelector(".number");
+
+          var interval = setInterval(() => {
+            degree += 1;
+            if (degree > targetDegree) {
+              clearInterval(interval);
+              return;
+            }
+            p.style.background = `conic-gradient(${color} ${degree}%, #222 0%)`;
+            number.innerHTML = degree + `<span>%</span>`;
+            number.style.color = color;
+          }, 50);
+        });
+      });
+    </script>
+  </body>
+</html>
