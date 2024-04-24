@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Ex18</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 500vh;
+        background: #111;
+      }
+      .paragraph {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 700px;
+        font-size: 2.25em;
+        line-height: 1.5em;
+        text-align: center;
+      }
+      .paragraph span {
+        display: inline-flex;
+        color: #333;
+        transition: 0.5s;
+        opacity: 0;
+        transform: translateY(500px) rotate(360deg) scale(1);
+      }
+      .paragraph span.reveal {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+        opacity: 1;
+        transform: translateY(0px) rotate(0deg) scale(1);
+      }
+    </style>
+  </head>
+  <body>
+    <p class="paragraph">
+      All samples shall be properly labeled in order to ensure that the results
+      can be traced back to the location from which it was collected.
+    </p>
+    <script>
+      let paragraph = document.querySelector(".paragraph");
+      let spans = paragraph.textContent
+        .trim()
+        .split(" ")
+        .map((w) => `<span>${w}&nbsp;</span>`);
+      paragraph.innerHTML = spans.join("");
+
+      window.addEventListener("scroll", () => {
+        let scrollPosition = window.scrollY;
+        let paragraphTop = paragraph.getBoundingClientRect().top;
+
+        document.querySelectorAll(".paragraph span").forEach((span, idx) => {
+          let spanTop = paragraphTop + (span.offsetHeight + 20) * idx;
+          span.classList.toggle("reveal", scrollPosition > spanTop - 20);
+        });
+      });
+    </script>
+  </body>
+</html>
