@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThreeD Ex14</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1a252c;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+      }
+      .container img {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        transition: 0.5s;
+        transform-origin: bottom center;
+        -webkit-box-reflect: belox 1px linear-gradient(transparent, #0002);
+      }
+      .container .img.hovered {
+        transform: perspective(500px) rotateY(0deg) scale(1.5);
+        z-index: 10000;
+      }
+      .container .img.prev {
+        margin: 0 -20px;
+        transform: perspective(500px) rotateY(45deg) scale(0.95);
+      }
+      .container .img.next {
+        margin: 0 -20px;
+        transform: perspective(500px) rotateY(-45deg) scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="image/bg1.jpg" alt="" class="img" />
+      <img src="image/bg2.jpg" alt="" class="img" />
+      <img src="image/bg3.jpg" alt="" class="img" />
+      <img src="image/bg4.jpg" alt="" class="img" />
+      <img src="image/bg5.jpg" alt="" class="img" />
+      <img src="image/bg6.jpg" alt="" class="img" />
+    </div>
+    <script>
+      document.querySelectorAll(".img").forEach((box, idx, boxes) => {
+        box.addEventListener("mouseover", () => {
+          boxes.forEach((b, i) => {
+            let className = i < idx ? "prev" : i === idx ? "hovered" : "next";
+            b.classList.remove("prev", "hovered", "next");
+            b.classList.add(className);
+          });
+        });
+        box.addEventListener("moverleave", () => {
+          boxes.forEach((b) => b.classList.remove("prev", "next", "hovered"));
+        });
+      });
+    </script>
+  </body>
+</html>
