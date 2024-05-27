@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex188</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1d2b3a;
+        overflow: hidden;
+        filter: url("gooey");
+      }
+      .circle {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #0d8bdf;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .particles {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #0d8bdf;
+        animation: animate 2s ease forwards;
+        z-index: -1;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(var(--x), var(--y));
+        }
+      }
+      svg {
+        width: 0;
+        height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle"></div>
+    <svg>
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDevitaion="10" />
+        <feColorMatrix
+          values="1 0 0 0 0
+                                    0 1 0 0 0
+                                    0 0 1 0 0 
+                                    0 0 0 50 -10"
+        />
+      </filter>
+    </svg>
+    <script>
+      let circle = document.querySelector(".circle");
+      circle.addEventListener("click", () => {
+        for (let i = 0; i < 50; i++) {
+          let p = document.createElement("i");
+          p.classList.add("particles");
+
+          let randomX = (Math.random() - 0.5) * window.innerWidth;
+          let randomY = (Math.random() - 0.5) * window.innerHeight;
+
+          p.style.setProperty("--x", randomX + "px");
+          p.style.setProperty("--y", randomY + "px");
+
+          let randomSize = Math.random() * 60 + 10;
+          p.style.width = randomSize + "px";
+          p.style.height = randomSize + "px";
+
+          let duration = Math.random() * 3 + 2;
+          p.style.animation = `animate ${duration}s ease forwards`;
+
+          document.body.appendChild(p);
+
+          setTimeout(() => {
+            p.remove();
+          }, 5000);
+        }
+      });
+    </script>
+  </body>
+</html>
