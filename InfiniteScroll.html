@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Scroll</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #container {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+      }
+      #container img {
+        max-width: 300px;
+        max-height: 400px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      let currentPage = 1;
+      function loadImage() {
+        let images = Array.from({ length: 24 }, (_, idx) => {
+          return `<img src='image/bg${idx}.jpg'/>`;
+        });
+        let container = document.getElementById("container");
+        container.innerHTML += images.join("");
+      }
+      loadImage();
+
+      window.addEventListener("scroll", () => {
+        let { scrollTop, clientHeight, scrollHeight } =
+          document.documentElement;
+        if (scrollTop + clientHeight >= scrollHeight) {
+          currentPage++;
+          loadImage();
+        }
+      });
+    </script>
+  </body>
+</html>
