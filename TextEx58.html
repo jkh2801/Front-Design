@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex58</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #262626;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px),
+          linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 4vh 4vh;
+      }
+      h2 {
+        display: inline-block;
+        color: #fff;
+        font-size: 4em;
+        font-weight: 600;
+        padding: 0 100px;
+      }
+      h2 span {
+        position: relative;
+        color: transparent;
+        -webkit-text-stroke: 1px #01fe87;
+        line-height: 1.2em;
+        padding: 5px 10px;
+        animation: displayText 12s infinite;
+        animation-delay: calc(-3s * var(--i));
+      }
+      @keyframes displayText {
+        0% {
+          display: inline-block;
+        }
+        25%,
+        100% {
+          display: none;
+        }
+      }
+      h2 span::before {
+        content: attr(data-text);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: 0;
+        height: 100%;
+        color: #01fe87;
+        overflow: hidden;
+        white-space: nowrap;
+        border: 2px solid #01fe87;
+        border-radius: 10px;
+        padding: 5px 10px;
+        animation: animate 3s linear infinite;
+        filter: drop-shadow(0 0 5px #01fe87) drop-shadow(0 0 25px #01fe87);
+      }
+      @keyframes animate {
+        0%,
+        10%,
+        100% {
+          width: 0;
+        }
+        70%,
+        90% {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>
+      I'm <span style="--i: 0" data-text="Youtuber.">Youtuber.</span>
+      <span style="--i: 1" data-text="Coder.">Coder.</span>
+      <span style="--i: 2" data-text="Designer.">Designer.</span>
+      <span style="--i: 3" data-text="Creative.">Creative.</span>
+    </h2>
+  </body>
+</html>
