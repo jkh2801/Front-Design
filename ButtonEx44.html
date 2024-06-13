@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ex44</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        gap: 32px;
+        background: #1c2630;
+      }
+      .btn {
+        position: relative;
+        display: inline-block;
+        padding: 10px 30px;
+        font-size: 1em;
+        background: transparent;
+        border: 2px solid var(--clr);
+        font-weight: 500;
+        border-radius: 40px;
+        cursor: pointer;
+        color: var(--clr);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: 1s;
+        overflow: hidden;
+      }
+      .btn:hover {
+        background: var(--clr);
+        box-shadow: 0 0 25px var(--clr), 0 0 100px var(--clr),
+          0 0 150px var(--clr);
+      }
+      .btn span {
+        position: relative;
+        display: inline-block;
+        transition: transform 0.5s;
+        text-shadow: 0 35px #fff;
+        transform: translateY(0px);
+      }
+      .btn:hover span.hover {
+        transform: translateY(-35px);
+      }
+      .btn span.hover {
+        transform: translateY(-35px);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" style="--clr: #007bff">Hover Me</button>
+    <button class="btn" style="--clr: #ff0055">Click Here</button>
+    <button class="btn" style="--clr: #b731e5">Awesome</button>
+    <script>
+      let buttons = document.querySelectorAll(".btn");
+      buttons.forEach((b) => {
+        let text = b.textContent;
+        b.innerHTML = "";
+
+        for (let char of text) {
+          let span = document.createElement("span");
+          span.textContent = char === " " ? "\u00A0" : char;
+          b.appendChild(span);
+        }
+
+        let spans = b.querySelectorAll("span");
+
+        b.addEventListener("mouseenter", () => {
+          spans.forEach((span, idx) => {
+            setTimeout(() => {
+              span.classList.add("hover");
+            }, idx * 50);
+          });
+        });
+
+        b.addEventListener("mouseleave", () => {
+          spans.forEach((span, idx) => {
+            setTimeout(() => {
+              span.classList.remove("hover");
+            }, idx * 50);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
