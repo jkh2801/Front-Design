@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Ex19</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 600vh;
+      }
+      .box {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 40px;
+      }
+      h2 {
+        color: #fff;
+        font-size: 2.5em;
+        font-weight: 600;
+      }
+      p {
+        color: #fff;
+      }
+      p span {
+        position: relative;
+        color: #666;
+        font-size: 1.5em;
+        transition: 0.25s;
+      }
+      p span.active {
+        color: #0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>Modern Text Schroll Animation</h2>
+      <p class="text">
+        Lorem iposum dolor sit amet, consectetur adipisicing elit, sed do
+        elusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud eercitation ullamco laboris nisi ut aliquip
+        ex ea commodos consequat.
+      </p>
+    </div>
+    <script>
+      let textElement = document.querySelector(".text");
+      let textContent = textElement.textContent;
+      textElement.innerHTML = "";
+
+      for (const char of textContent) {
+        let span = document.createElement("span");
+        span.textContent = char;
+        textElement.appendChild(span);
+      }
+
+      let spans = textElement.querySelectorAll("span");
+      window.addEventListener("scroll", () => {
+        let scrollDistance = window.scrollY;
+        spans.forEach((span, idx) => {
+          if (scrollDistance >= (idx + 1) * 10) span.classList.add("active");
+          else span.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
