@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex191</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #262626;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px),
+          linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 5vh 5vh;
+        overflow: hidden;
+      }
+      h2 {
+        color: #fff;
+        font-weight: 8em;
+        font-family: consolas;
+      }
+      .circle {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        aspect-ratio: 1/1;
+        border: 5px solid rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        background: #0f0;
+        animation: animate 10s linear forwards;
+        transform-origin: top;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0vh) scale(0);
+        }
+        10% {
+          transform: translateY(0vh) scale(1);
+        }
+        45% {
+          transform: translateY(0vh) scale(1);
+        }
+        55% {
+          transform: translateY(calc(100vh - 100%)) scale(1);
+        }
+        90% {
+          transform: translateY(calc(100vh - 100%)) scale(1);
+          transform-origin: bottom;
+        }
+        100% {
+          transform: translateY(calc(100vh - 100%)) scale(0);
+          transform-origin: bottom;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Falling</h2>
+    <script>
+      function falling() {
+        let e = document.createElement("div");
+        e.setAttribute("class", "circle");
+        document.body.appendChild(e);
+
+        let size = Math.random() * 25;
+        e.style.width = 5 + size + "px";
+        e.style.left = Math.random() * innerWidth + "px";
+        let angle = Math.random() * 360;
+        e.style.filter = `hue-rotate(${angle}deg)`;
+
+        setTimeout(() => {
+          falling();
+        }, 10000);
+      }
+      setInterval(() => {
+        falling();
+      }, 200);
+    </script>
+  </body>
+</html>
