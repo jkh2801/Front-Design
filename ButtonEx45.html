@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Ex45</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #363a3b;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+      .container .box {
+        position: relative;
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+        filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
+      }
+      .container .box::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border: 1px solid #7ef0ff;
+      }
+      .container .box span {
+        position: absolute;
+        width: 40px;
+        height: 1px;
+        background: #7ef0ff;
+        pointer-events: none;
+        transition: 0.2s ease-in-out;
+      }
+      .container .box.active span {
+        transform: translateX(60px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let boxes = document.querySelectorAll(".box");
+        boxes.forEach((box) => {
+          let spans = [];
+          for (let i = 0; i < 40; i++) {
+            let span = document.createElement("span");
+            spans.push(span);
+            box.appendChild(span);
+            span.style.top = `${i * 1}px`;
+            let randomDelay = Math.random() * 0.25 + 0;
+            span.style.transitionDelay = randomDelay + "s";
+          }
+          box.addEventListener("click", () => {
+            box.classList.toggle("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
