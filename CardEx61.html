@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Ex61</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .dotBox {
+        width: 200px;
+        height: 200px;
+        cursor: pointer;
+        background: linear-gradient(90deg, #333 50%, transparent 50%) 0 0 / 4px
+            1px repeat-x,
+          linear-gradient(90deg, #333 50%, transparent 50%) 0 100% / 4px 1px
+            repeat-x,
+          linear-gradient(0, #333 50%, transparent 50%) 0 0 / 1px 4px repeat-y,
+          linear-gradient(0, #333 50%, transparent 50%) 100% 0 / 1px 4px
+            repeat-y;
+      }
+      .dotBox:hover {
+        outline: none;
+        animation: dot-animate 0.1s infinite;
+      }
+      @keyframes dot-animate {
+        to {
+          background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dotBox"></div>
+  </body>
+</html>
