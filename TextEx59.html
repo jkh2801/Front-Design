@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Ex59</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+      }
+      .loader {
+        position: relative;
+        cursor: default;
+        -webkit-box-reflect: below -25px linear-gradient(transparent, #0005);
+      }
+      .loader span {
+        position: relative;
+        display: inline-flex;
+        font-size: 3em;
+        color: transparent;
+        -webkit-text-stroke: 1px #fff9;
+        text-transform: uppercase;
+        font-weight: 800;
+        animation: animate 2s ease-in-out infinite;
+        animation-delay: calc(0.15s * var(--i));
+      }
+      @keyframes animate {
+        0% {
+          transform: translateY(0px);
+          color: transparent;
+          text-shadow: none;
+        }
+        20% {
+          transform: translateY(-60px);
+          color: #fff;
+          text-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff;
+        }
+        40%,
+        100% {
+          transform: translateY(0px);
+          color: transparent;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+      <span style="--i: 1">L</span>
+      <span style="--i: 2">o</span>
+      <span style="--i: 3">a</span>
+      <span style="--i: 4">d</span>
+      <span style="--i: 5">i</span>
+      <span style="--i: 6">n</span>
+      <span style="--i: 7">g</span>
+      <span style="--i: 8">.</span>
+      <span style="--i: 9">.</span>
+    </div>
+  </body>
+</html>
