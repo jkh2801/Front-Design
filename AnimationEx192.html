@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex192</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #555;
+        overflow: hidden;
+      }
+      .container {
+        position: relative;
+        transform: skewY(-20deg);
+      }
+      .container .cube {
+        position: relative;
+        translate: calc(60px * var(--z)) calc(60px * var(--z));
+      }
+      .container .cube div {
+        position: absolute;
+        translate: calc(-70px * var(--x)) calc(-70px * var(--y));
+      }
+      .container .cube div span {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: #dcdcdc;
+        transition: 1.5s;
+      }
+      .container .cube div span.active {
+        background: #ef4149;
+        transform: translate(0, -50px);
+        animation: animate 2s ease-in-out infinite;
+      }
+      .container .cube div span::before {
+        content: "";
+        position: absolute;
+        left: -40px;
+        width: 40px;
+        height: 100%;
+        background: #c8c8c8;
+        transform-origin: right;
+        transform: skewY(45deg);
+        transition: 1.5s;
+      }
+      .container .cube div span.active::before {
+        background: #f75d64;
+      }
+      .container .cube div span::after {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: #f2f2f2;
+        transform-origin: bottom;
+        transform: skewX(45deg);
+        transition: 1.5s;
+        box-shadow: -100px 100px 5px rgba(0, 0, 0, 0.15);
+      }
+      .container .cube div span.active::after {
+        background: #f14e55;
+        box-shadow: -150px 150px 5px rgba(0, 0, 0, 0.15);
+      }
+      @keyframes animate {
+        0% {
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      function cubes() {
+        let container = document.querySelector(".container");
+        let zValues = [-3, -2, -1, 0, 1, 2, 3];
+        zValues.forEach((z) => {
+          let cube = document.createElement("div");
+          cube.classList.add("cube");
+          cube.style.setProperty("--z", z);
+
+          for (let x = -3; x <= 3; x++) {
+            let div = document.createElement("div");
+            div.style.setProperty("--x", x);
+            div.style.setProperty("--y", 0);
+
+            let span = document.createElement("span");
+            span.style.setProperty("--i", 3);
+            div.appendChild(span);
+            cube.appendChild(div);
+          }
+          container.appendChild(cube);
+        });
+        activeRandomCube();
+      }
+      function activeRandomCube() {
+        let spans = document.querySelectorAll(".cube span");
+        setInterval(() => {
+          let randomIdx = ~~(Math.random() * spans.length);
+          let randomSpan = spans[randomIdx];
+          randomSpan.classList.add("active");
+
+          setTimeout(() => {
+            randomSpan.classList.remove("active");
+          }, 2000);
+        }, 500);
+      }
+      cubes();
+    </script>
+  </body>
+</html>
