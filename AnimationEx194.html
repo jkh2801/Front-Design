@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex194</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        overflow: hidden;
+      }
+      section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: #1d2b3a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        position: relative;
+        width: 400px;
+        height: 150px;
+        background: #fff;
+        border-radius: 20px;
+        filter: url(#gooey);
+      }
+      h2 {
+        position: absolute;
+        font-size: 6em;
+        color: #1d2b3a;
+        z-index: 100;
+      }
+      .drops {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        aspect-ratio: 1/1;
+        background: #fff;
+        border-radius: 50%;
+        z-index: 1000;
+        animation: animate 5s ease-in-out forwards;
+      }
+      @keyframes animate {
+        0% {
+          transform: translateX(-50%) translateY(calc(-60vh - 100%));
+        }
+        25% {
+          transform: translateX(-50%) translateY(-100%);
+        }
+        50% {
+          transform: translateX(-50%) translateY(0);
+        }
+        75% {
+          transform: translateX(-50%) translateY(100%);
+        }
+        100% {
+          transform: translateX(-50%) translateY(calc(80vh - 100%));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="box"></div>
+      <h2>Liquid</h2>
+    </section>
+    <svg>
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+        <feColorMatrix
+          value="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 50 -10"
+        />
+      </filter>
+    </svg>
+    <script>
+      function liquid() {
+        let box = document.querySelector(".box");
+        let e = document.createElement("div");
+        e.setAttribute("class", "drops");
+        box.appendChild(e);
+
+        let size = Math.random() * 100;
+        e.style.width = 15 + size + "px";
+        let boxWidth = box.clientWidth;
+        e.style.left = Math.random() * boxWidth + "px";
+
+        setTimeout(() => {
+          box.removeChild(e);
+        }, 5000);
+      }
+      setInterval(() => {
+        liquid();
+      }, 200);
+    </script>
+  </body>
+</html>
