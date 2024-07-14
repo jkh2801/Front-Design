@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex195</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: consolas;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300vh;
+        background: #333;
+      }
+      .box {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 440px;
+        padding: 0 0 25px;
+      }
+      .box span {
+        position: absolute;
+        color: transparent;
+        -webkit-text-stroke: 0.5px #fff;
+        font-size: 1.5em;
+        transition: 0.25s;
+      }
+      .box span.active {
+        color: #0f0;
+        -webkit-text-stroke: 0.5px #fff0;
+        text-shadow: 0 0 10px #0f0, 0 0 30px #0f0, 0 0 60px #0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2 class="text">Scroll to See Magic...</h2>
+    </div>
+    <script>
+      let textElement = document.querySelector(".text");
+      let textContent = textElement.textContent;
+      textElement.innerHTML = "";
+
+      let spans = [];
+      for (const char of textContent) {
+        let span = document.createElement("span");
+        span.textContent = char;
+        textElement.appendChild(span);
+        spans.push(span);
+      }
+
+      window.addEventListener("scroll", () => {
+        let scrollDistance = window.scrollY;
+        spans.forEach((span, idx) => {
+          if (scrollDistance >= (idx + 1) * 50) {
+            span.style.transform = `translate(${idx * 20}px, 0)`;
+            span.classList.add("active");
+          } else {
+            span.style.transform = `translate(${Math.random() * 100 - 50}vw, ${
+              Math.random() * 100 - 50
+            }vh)`;
+            span.classList.remove("active");
+          }
+        });
+      });
+      window.dispatchEvent(new Event("scroll"));
+    </script>
+  </body>
+</html>
