@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex196</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 250vh;
+        background: #363a3b;
+      }
+      section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+      h2 {
+        position: relative;
+        top: 100px;
+        color: #fff;
+        font-size: 3em;
+        font-family: consolas;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .image-container {
+        position: absolute;
+        top: 60vh;
+        width: 400px;
+        height: 400px;
+      }
+      .image-container .image-slice {
+        position: absolute;
+        transition: all 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>Scroll Down</h2>
+      <div class="image-container"></div>
+    </section>
+    <script>
+      let imageUrl = "image/bg1.jpg";
+      let container = document.querySelector(".image-container");
+      let sliceWidth = 20;
+      let sliceHeight = 20;
+      let rows = 20;
+      let cols = 20;
+      let slices = [];
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          let span = document.createElement("span");
+          span.classList.add("image-slice");
+          span.style.top = `${row * sliceHeight}px`;
+          span.style.left = `${col * sliceWidth}px`;
+          span.style.width = `${sliceWidth}px`;
+          span.style.height = `${sliceHeight}px`;
+          span.style.backgroundImage = `url(${imageUrl})`;
+          span.style.backgroundPosition = `-${col * sliceWidth}px -${
+            row * sliceHeight
+          }px`;
+          container.appendChild(span);
+          slices.push(span);
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        let scrollPosition = window.scrollY;
+        slices.forEach((slice, idx) => {
+          if (scrollPosition >= idx * 1) {
+            slice.style.transform = `translate(0, 0) rotate(0deg)`;
+          } else {
+            slice.style.transform = `translate(${Math.random() * 100 - 50}vw, ${
+              Math.random() * 100 - 50
+            }vh) rotate(${Math.random() * 360}deg)`;
+          }
+        });
+      });
+
+      window.dispatchEvent(new Event("scroll"));
+    </script>
+  </body>
+</html>
