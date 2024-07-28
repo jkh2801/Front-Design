@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Ex4</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        background: #ffee5a;
+      }
+      body.dark {
+        background: #111;
+      }
+      .cursor {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cursor .circle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #f44336;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+      body.dark .cursor .circle {
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      let body = document.querySelector("body");
+      body.onclick = () => {
+        body.classList.toggle("dark");
+      };
+
+      let cursor = document.querySelector(".cursor");
+      for (let i = 0; i < 200; i++) {
+        let circle = document.createElement("div");
+        circle.classList.add("circle");
+        cursor.appendChild(circle);
+      }
+
+      document.body.addEventListener("mousemove", (e) => {
+        gsap.to(".circle", {
+          x: e.clientX,
+          y: e.clientY,
+          stagger: -0.0025,
+          scale: (i, target) => {
+            return 1 + i * (2 / 200);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
