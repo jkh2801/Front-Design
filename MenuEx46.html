@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Ex46</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #131313;
+      }
+      ul {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform-style: preserve-3d;
+      }
+      ul li {
+        position: relative;
+        list-style: none;
+        transform-style: preserve-3d;
+      }
+      ul li a {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        transform-style: preserve-3d;
+      }
+      ul li a span {
+        position: relative;
+        color: #fff;
+        font-size: 4em;
+        padding: 5px 20px;
+        font-weight: 700;
+        transform-style: preserve-3d;
+      }
+      ul:hover li a span {
+        opacity: 0.1;
+      }
+      ul li a span:hover {
+        opacity: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px #fff;
+      }
+      ul li a span::before,
+      ul li a span::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5px 20px;
+        opacity: 0;
+        transform-style: preserve-3d;
+        -webkit-text-stroke: 0px #fff;
+        transform: translateZ(0px);
+        text-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+      }
+      ul li a:hover span::before {
+        transform: translateZ(75px);
+        opacity: 1;
+        color: #ff3e7f;
+      }
+      ul li a:hover span::after {
+        transform: translateZ(150px);
+        opacity: 1;
+        color: #5cb7ff;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="#">
+          <span data-text="Home">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span data-text="About">About</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span data-text="Services">Services</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span data-text="Portfolio">Portfolio</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span data-text="Team">Team</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span data-text="Contact">Contact</span>
+        </a>
+      </li>
+    </ul>
+    <script src="js/vanilla-tilt.js"></script>
+    <script>
+      VanillaTilt.init(
+        document.querySelectorAll("ul li a", {
+          max: 25,
+          speed: 400,
+        })
+      );
+    </script>
+  </body>
+</html>
