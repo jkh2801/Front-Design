@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Ex5</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #2e2c39;
+        overflow: hidden;
+      }
+      .cursor {
+        position: absolute;
+        pointer-events: none;
+        left: 20px;
+      }
+      .cursor span {
+        position: absolute;
+        width: 12px;
+        height: 60px;
+        background: #fff;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        border-top: 60px solid #ff7534;
+        border-bottom: 60px solid #00c464;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let cursor = document.querySelector(".cursor");
+        for (let i = 0; i < 20; i++) {
+          let span = document.createElement("span");
+          span.style.setProperty("--i", i + 1);
+          span.style.left = i * 15 + "px";
+          cursor.appendChild(span);
+        }
+        document.addEventListener("mousemove", (e) => {
+          gsap.to("span", {
+            x: e.clientX,
+            y: e.clientY,
+            stagger: 0.05,
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
