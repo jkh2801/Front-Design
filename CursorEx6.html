@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Ex6</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: none;
+      }
+      body {
+        background: #222;
+        height: 100vh;
+        overflow: hidden;
+      }
+      #cursor {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: flex;
+        pointer-events: none;
+        scale: 0.1;
+        transform-origin: top left;
+      }
+      .flag-unit {
+        width: 5px;
+        height: 5px;
+        background: #f00;
+        animation: vertical 1s infinite;
+      }
+      #textBox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #textBox span {
+        color: #fff;
+        font-size: 80px;
+        font-weight: 700;
+        animation: vertical 1s infinite;
+      }
+
+      @keyframes vertical {
+        0%,
+        100% {
+          transform: translateY(-10px);
+        }
+        50% {
+          transform: translateY(10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cursor">
+      <div id="textBox">
+        <span>S</span>
+        <span>u</span>
+        <span>p</span>
+        <span>r</span>
+        <span>e</span>
+        <span>m</span>
+        <span>e</span>
+      </div>
+    </div>
+    <script>
+      const cursor = document.getElementById("cursor");
+      const textBox = document.getElementById("textBox");
+      const spans = textBox.querySelectorAll("span");
+      spans.forEach((span, index) => {
+        // span.style.setProperty("animation-delay", `${index * 10}s`);
+        span.style.animationDelay = `${index * 100}ms`;
+      });
+
+      let cursorX = 0,
+        cursorY = 0,
+        borderX = 0,
+        borderY = 0;
+      let deviceType = "";
+
+      const isTouchDevice = () => {
+        try {
+          document.createEvent("TouchEvent");
+          deviceType = "touch";
+          return true;
+        } catch (e) {
+          deviceType = "mouse";
+          return false;
+        }
+      };
+
+      const move = (e) => {
+        cursorX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+        cursorY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+      };
+
+      document.addEventListener("mousemove", (e) => move(e));
+      document.addEventListener("touchmove", (e) => move(e));
+      document.addEventListener("touchend", (e) => e.preventDefault());
+
+      const rows = 50;
+      const columns = 75;
+
+      const generateUnit = (columnNum) => {
+        const flagUnit = document.createElement("div");
+        flagUnit.classList.add("flag-unit");
+        flagUnit.style.setProperty("animation-delay", `${columnNum * 10}ms`);
+        flagUnit.style.setProperty("--displacement", `${columnNum / 5}px`);
+
+        const column = document.getElementById(`column-${columnNum}`);
+        column.innerHTML += flagUnit.outerHTML;
+      };
+
+      for (let i = 0; i < columns; i++) {
+        cursor.innerHTML += `<div class="column" id="column-${i}"></div>`;
+        for (let j = 0; j < rows; j++) {
+          generateUnit(i);
+        }
+      }
+
+      const borderAnimation = () => {
+        const gapValue = 5;
+        borderX += (cursorX - borderX) / gapValue;
+        borderY += (cursorY - borderY) / gapValue;
+        requestAnimationFrame(borderAnimation);
+      };
+
+      borderAnimation();
+    </script>
+  </body>
+</html>

@@ -1,97 +1,133 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Svg Ex4</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<style>
-			body {
-				background-color: #222121;
-			}
-			.waves {
-				position: fixed;
-				width: 100%;
-				bottom: 0;
-				left: 0;
-				text-align: center;
-				min-height: 60vh;
-			}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Svg Ex4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #222121;
+      }
+      .waves {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        min-height: 60vh;
+      }
 
-			.cls-1 {
-				opacity: 0.2;
-			}
-			.cls-2,
-			.cls-3 {
-				fill-rule: evenodd;
-			}
-			.cls-2 {
-				opacity: 0.7;
-				isolation: isolate;
-				fill: url(#linear-gradient);
-			}
-			.parallax > use {
-				animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-			}
-			.parallax > use:nth-child(1) {
-				animation-delay: -2s;
-				animation-duration: 7s;
-			}
-			.parallax > use:nth-child(2) {
-				animation-delay: -3s;
-				animation-duration: 10s;
-			}
-			.parallax > use:nth-child(3) {
-				animation-delay: -4s;
-				animation-duration: 13s;
-			}
-			.parallax > use:nth-child(4) {
-				animation-delay: -5s;
-				animation-duration: 20s;
-			}
-			@keyframes move-forever {
-				0% {
-					transform: translate3d(-90px, 0, 0);
-				}
-				100% {
-					transform: translate3d(85px, 0, 0);
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div class="waves">
-			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 25 150 30" preserveAspectRatio="none" shape-rendering="auto">
-				<defs>
-					<style type="text/css">
-						.st0 {
-							opacity: 0.201;
-						}
+      .cls-1 {
+        opacity: 0.2;
+      }
+      .cls-2,
+      .cls-3 {
+        fill-rule: evenodd;
+      }
+      .cls-2 {
+        opacity: 0.7;
+        isolation: isolate;
+        fill: url(#linear-gradient);
+      }
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="waves">
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 25 150 30"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <style type="text/css">
+            .st0 {
+              opacity: 0.201;
+            }
 
-						.st1 {
-							display: none;
-							opacity: 0.7;
-							fill: url(#Filled.Graph-4_1_);
-							enable-background: new;
-						}
+            .st1 {
+              display: none;
+              opacity: 0.7;
+              fill: url(#Filled.Graph-4_1_);
+              enable-background: new;
+            }
 
-						.st2 {
-							fill: url(#gentle-wave_1_);
-						}
-					</style>
-					<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-					<linearGradient id="linear-gradient" x1="3675.66" y1="24.41" x2="3675.66" y2="24" gradientTransform="translate(5881855.72 4816) rotate(180) scale(1600 198)" gradientUnits="userSpaceOnUse">
-						<stop offset="0" stop-color="#6cc9f0" />
-						<stop offset="1" stop-color="#fff" stop-opacity="0" />
-					</linearGradient>
-				</defs>
-				<g class="parallax cls-1">
-					<use xlink:href="#gentle-wave" class="cls-2" x="48" y="0" opacity="70%" />
-					<use xlink:href="#gentle-wave" class="cls-2" x="48" y="3" opacity="50%" />
-					<use xlink:href="#gentle-wave" class="cls-2" x="48" y="5" opacity="30%" />
-					<use xlink:href="#gentle-wave" class="cls-2" x="48" y="7" />
-				</g>
-			</svg>
-		</div>
-	</body>
+            .st2 {
+              fill: url(#gentle-wave_1_);
+            }
+          </style>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+          <linearGradient
+            id="linear-gradient"
+            x1="3675.66"
+            y1="24.41"
+            x2="3675.66"
+            y2="24"
+            gradientTransform="translate(5881855.72 4816) rotate(180) scale(1600 198)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stop-color="#6cc9f0" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <g class="parallax cls-1">
+          <use
+            xlink:href="#gentle-wave"
+            class="cls-2"
+            x="48"
+            y="0"
+            opacity="70%"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            class="cls-2"
+            x="48"
+            y="3"
+            opacity="50%"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            class="cls-2"
+            x="48"
+            y="5"
+            opacity="30%"
+          />
+          <use xlink:href="#gentle-wave" class="cls-2" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+  </body>
 </html>
