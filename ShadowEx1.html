@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shadow Ex1</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #333;
+        overflow: hidden;
+      }
+      #text {
+        position: relative;
+        color: #fff;
+        font-weight: 100;
+        font-size: 10em;
+        cursor: default;
+      }
+      #light {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 15px #fff, 0 0 50px #fff, 0 0 100px #fff, 0 0 200px #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="text">Shadow</div>
+    <div id="light"></div>
+    <script>
+      let text = document.getElementById("text");
+      let light = document.getElementById("light");
+      document.addEventListener("mousemove", (e) => {
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
+        light.style.left = mouseX + "px";
+        light.style.top = mouseY + "px";
+
+        let distanceX = mouseX - text.offsetLeft - text.offsetWidth / 2;
+        let distanceY = mouseY - text.offsetTop - text.offsetHeight / 2;
+
+        let newShadow = ``;
+
+        for (let i = 0; i < 200; i++) {
+          let shadowX = (-distanceX * i) / 200;
+          let shadowY = (-distanceY * i) / 200;
+          let opacity = 1 - i / 100;
+
+          newShadow +=
+            (newShadow ? "," : "") +
+            shadowX +
+            "px " +
+            shadowY +
+            "px 0 rgba(33, 33, 33," +
+            opacity +
+            ")";
+        }
+        text.style.textShadow = newShadow;
+      });
+    </script>
+  </body>
+</html>
