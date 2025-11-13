@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Ex20</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+      section {
+        width: 100%;
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 8em;
+        font-weight: 800;
+        color: rgba(0, 0, 0, 0.25);
+        text-transform: uppercase;
+        background: var(--clr);
+      }
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 50px 0;
+      }
+      .logo {
+        position: relative;
+        color: #fff;
+        font-size: 2em;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      header nav {
+        display: flex;
+        gap: 10px;
+      }
+      header nav a {
+        position: relative;
+        text-decoration: none;
+        padding: 12px 20px;
+        color: #fff;
+        font-weight: 500;
+      }
+      header nav a.active {
+        background: var(--clr);
+        color: #333;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      header nav a.active::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        bottom: 0;
+        width: 20px;
+        height: 20px;
+        background: transparent;
+        border-bottom-right-radius: 20px;
+        box-shadow: 5px 5px 0 5px var(--clr);
+      }
+      header nav a.active::after {
+        content: "";
+        position: absolute;
+        right: -20px;
+        bottom: 0;
+        width: 20px;
+        height: 20px;
+        background: transparent;
+        border-bottom-left-radius: 20px;
+        box-shadow: -5px 5px 0 5px var(--clr);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <nav>
+        <a href="#home" style="--clr: #ff4d4d" class="active">Home</a>
+        <a href="#about" style="--clr: #c67cf0">About</a>
+        <a href="#services" style="--clr: #ffeaa7">Services</a>
+        <a href="#portfolio" style="--clr: #17c0eb">Portfolio</a>
+        <a href="#contact" style="--clr: #fd79a8">Contact</a>
+      </nav>
+    </header>
+    <section id="home" style="--clr: #ff4d4d">Home</section>
+    <section id="about" style="--clr: #c67cf0">About</section>
+    <section id="services" style="--clr: #ffeaa7">Services</section>
+    <section id="portfolio" style="--clr: #17c0eb">Portfolio</section>
+    <section id="contact" style="--clr: #fd79a8">Contact</section>
+    <script>
+      let sec = document.querySelectorAll("section");
+      let links = document.querySelectorAll("nav a");
+
+      window.onscroll = () => {
+        sec.forEach((s) => {
+          let top = window.scrollY;
+          let offset = s.offsetTop - 60;
+          let height = s.offsetHeight;
+          let id = s.getAttribute("id");
+
+          console.log(top >= offset);
+
+          if (top >= offset && top < offset + height) {
+            links.forEach((l) => {
+              l.classList.remove("active");
+              document
+                .querySelector("nav a[href*=" + id + "]")
+                .classList.add("active");
+            });
+          }
+        });
+      };
+    </script>
+  </body>
+</html>
