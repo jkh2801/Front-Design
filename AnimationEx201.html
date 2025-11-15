@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Ex201</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+      }
+      .container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+      }
+      .dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: rotate(calc(360deg / 60 * var(--i))) translateX(200px);
+      }
+      .dot:nth-child(even)::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        background: #0f0;
+        border-radius: 50%;
+        animation: animateEven 6s ease-in-out infinite;
+        animation-delay: calc(var(--i) * 0.1s);
+      }
+      @keyframes animateEven {
+        0% {
+          transform: translate(0, 0);
+        }
+        10% {
+          transform: translate(50px, 0);
+        }
+        20%,
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      .dot:nth-child(odd)::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        background: #0f0;
+        border-radius: 50%;
+        animation: animateOdd 6s ease-in-out infinite;
+        animation-delay: calc(var(--i) * 0.1s);
+      }
+      @keyframes animateOdd {
+        0% {
+          transform: translate(0, 0);
+        }
+        10% {
+          transform: translate(-50px, 0);
+        }
+        20%,
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      let container = document.querySelector(".container");
+      for (let i = 0; i <= 60; i++) {
+        let dot = document.createElement("div");
+        dot.classList.add("dot");
+        dot.style.setProperty("--i", i);
+        container.appendChild(dot);
+      }
+    </script>
+  </body>
+</html>
